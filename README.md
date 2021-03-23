@@ -19,18 +19,18 @@
 
 ### User Story
 
-A timed merkle drops is a viable way to ensure NFT supply meets demand exactly.
+A timed merkle drop is an efficient way to ensure NFT supply meets demand exactly.
 Essentially, a merkle root can be published that has `x` mintable tokens in it.
 This number can be arbitrarily high. However, after either
 
 1. `y` blocks are mined, or
 2. `z` timestamp passes
 
-the drop ends and no more NFTs can be mined from that hash.
+the drop ends and no more NFTs can be minted from that hash.
 
 In emergency situations, the plugin could be disconnected from the contract
-by the farmacists, but this would be pretty awkward and we'd have some
-explaining to do.
+by the "farmacists", but this would be pretty awkward and we'd have some
+explaining to do. However, it is a fairly lightweight emergency shutoff.
 
 ### Functionality
 
