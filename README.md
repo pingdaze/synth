@@ -37,3 +37,10 @@ explaining to do. However, it is a fairly lightweight emergency shutoff.
 - Can publish a sequence of merkle drops
 - Each drop can be valid until either a timestamp or block height is reached
 - merkle leaves are validated using the token Id and the IPFS hash.
+
+### Discussion
+
+- IPFS URI registry to offload semantics from the token
+  contract
+
+- outward migration?

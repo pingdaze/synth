@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/cryptography/MerkleProof.sol";
+import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./IMintValidator.sol";
 
@@ -19,6 +19,7 @@ contract MerkleValidator is Ownable, IMintValidator {
   function isValid(
     address _operator,
     uint256 _dropId,
+    uint256 _qty,
     string calldata _metadata,
     bytes memory _data
   ) external override returns (bool valid) {
