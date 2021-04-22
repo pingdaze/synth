@@ -8,7 +8,7 @@ interface IReadMetadata {
   function get(uint256 _id) external view returns (string memory metadata);
 }
 
-contract MetadataRegistry is Ownable {
+contract MetadataRegistry is IReadMetadata, Ownable {
   event Register(uint256 id, string metadata);
   event UnRegister(uint256 id);
 
@@ -19,7 +19,12 @@ contract MetadataRegistry is Ownable {
     emit Register(_id, _metadata);
   }
 
-  function get(uint256 _id) public view returns (string memory metadata) {
+  function get(uint256 _id)
+    public
+    view
+    override
+    returns (string memory metadata)
+  {
     metadata = idToMetadata[_id];
     require(bytes(metadata).length > 0, "MISSING_URI");
   }
