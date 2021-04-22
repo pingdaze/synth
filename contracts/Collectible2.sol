@@ -7,28 +7,39 @@ import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./IMintValidator.sol";
+import "./MetadataRegistry.sol";
 
-/**
- * @dev {ERC1155} token, including:
- *
- *  -
- *  -
- *  -
- *
- */
+// write interface for
+//Interface
+
 contract Collectible2 is Context, ERC1155Burnable, Ownable {
   event Validator(IMintValidator indexed validator, bool indexed active);
 
   IERC1155 public originalToken;
   mapping(IMintValidator => bool) public isValidator;
+  // URI base; NOT the whole uri.
   string private _uri;
+  IReadMetadata private _registry;
 
   /**
    * @dev intializes the core ERC1155 logic, and sets the original address
    */
-  constructor(address _original, string memory uri_) ERC1155(uri_) {
-    // _setURI(uri_);
-    originalToken = IERC1155(_original);
+  constructor(
+    IERC1155 _original,
+    string memory baseUri_,
+    IReadMetadata registry_
+  ) ERC1155(baseUri_) {
+    _registry = registry_;
+    originalToken = _original;
+    _uri = baseUri_;
+  }
+
+  function uri(uint256 _id) public view override returns (string memory) {
+    return string(abi.encodePacked(_uri, _registry.get(_id)));
+  }
+
+  function setBaseURI(string calldata _newBaseUri) external onlyOwner {
+    _setURI(_newBaseUri);
   }
 
   function addValidator(IMintValidator _validator) external virtual onlyOwner {
@@ -98,19 +109,11 @@ contract Collectible2 is Context, ERC1155Burnable, Ownable {
     string calldata _metadata
   ) public virtual {
     require(isValidator[_validator], "BAD_VALIDATOR");
-    require(_validator.isValid(msg.sender, _id, _amount, _metadata, _data));
+    require(
+      _validator.isValid(msg.sender, _id, _amount, _metadata, _data),
+      "INVALID_MINT"
+    );
 
     _mint(_to, _id, _amount, _data);
-  }
-
-  function _beforeTokenTransfer(
-    address operator,
-    address from,
-    address to,
-    uint256[] memory ids,
-    uint256[] memory amounts,
-    bytes memory data
-  ) internal virtual override(ERC1155) {
-    super._beforeTokenTransfer(operator, from, to, ids, amounts, data);
   }
 }

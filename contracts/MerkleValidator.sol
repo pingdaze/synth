@@ -17,18 +17,18 @@ contract MerkleValidator is Ownable, IMintValidator {
   mapping(uint256 => bool) public claimed;
 
   function isValid(
-    address _operator,
-    uint256 _dropId,
-    uint256 _qty,
-    string calldata _metadata,
-    bytes memory _data
-  ) external override returns (bool valid) {
+    address, /* _operator*/
+    uint256, /* _dropId*/
+    uint256, /* _qty*/
+    string calldata, /*  _metadata*/
+    bytes memory /* _data*/
+  ) external pure override returns (bool valid) {
     // 0: validate that blocknumber or timestamp have not passed
     // 1. lookup merkle root and ensure drop is valid
     // 2. generate hash using input params
     // 3. verify hash
     // 4. mark as claimed? probably better to check this on the token contract
-    // 4. return result
+    // 5. return result
     return false;
   }
 
