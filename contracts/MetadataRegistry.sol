@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.0;
+//pragma abicoder v2;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -14,7 +15,7 @@ contract MetadataRegistry is IReadMetadata, Ownable {
 
   mapping(uint256 => string) public idToMetadata;
 
-  function set(uint256 _id, string calldata _metadata) external onlyOwner {
+  function set(uint256 _id, string calldata _metadata) public onlyOwner {
     idToMetadata[_id] = _metadata;
     emit Register(_id, _metadata);
   }
@@ -27,5 +28,15 @@ contract MetadataRegistry is IReadMetadata, Ownable {
   {
     metadata = idToMetadata[_id];
     require(bytes(metadata).length > 0, "MISSING_URI");
+  }
+
+  function setMultiple(uint256[] calldata _ids, string[] calldata _metadatas)
+    external
+    onlyOwner
+  {
+    require(_ids.length == _metadatas.length, "SET_MULTIPLE_LENGTH_MISMATCH");
+    for (uint256 i = 0; i < _ids.length; i++) {
+      set(_ids[i], _metadatas[i]);
+    }
   }
 }

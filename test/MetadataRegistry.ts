@@ -34,4 +34,15 @@ contract("MetadataRegistry", (addresses) => {
       "Ownable: caller is not the owner"
     );
   });
+  describe("setMultiple", () => {
+    it("accepts multiple entries", async () => {
+      const keys = [1, 2, 3, 4].map(toBN);
+      const values = ["Hi", "mom", "from", "space"];
+      const receipt = await registry.setMultiple(keys, values);
+      keys.forEach(async (k, i) => {
+        assert.equal(await registry.get(k), values[i]);
+        expectEvent(receipt, "Register", { id: k, metadata: values[i] });
+      });
+    });
+  });
 });
