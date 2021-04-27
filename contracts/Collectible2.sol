@@ -22,7 +22,7 @@ contract Collectible2 is Context, ERC1155Burnable, Ownable {
   IReadMetadata private _registry;
 
   /**
-   * @dev intializes the core ERC1155 logic, and sets the original address
+   * @dev intializes the core ERC1155 logic, and sets the original URI base
    */
   constructor(
     IERC1155 _original,
@@ -34,14 +34,23 @@ contract Collectible2 is Context, ERC1155Burnable, Ownable {
     _uri = baseUri_;
   }
 
+  /**
+   * @dev query URI for a token Id. Queries the Metadata registry on the backend
+   */
   function uri(uint256 _id) public view override returns (string memory) {
     return string(abi.encodePacked(_uri, _registry.get(_id)));
   }
 
+  /**
+   * @dev change the URI base address after construction.
+   */
   function setBaseURI(string calldata _newBaseUri) external onlyOwner {
     _setURI(_newBaseUri);
   }
 
+  /**
+   * @dev An active Validator is necessary to enable `modularMint`
+   */
   function addValidator(IMintValidator _validator) external virtual onlyOwner {
     bool isActive = isValidator[_validator];
     require(!isActive, "VALIDATOR_ACTIVE");
@@ -49,6 +58,9 @@ contract Collectible2 is Context, ERC1155Burnable, Ownable {
     emit Validator(_validator, !isActive);
   }
 
+  /**
+   * @dev Remove Validators that are no longer needed to remove attack surfaces
+   */
   function removeValidator(IMintValidator _validator)
     external
     virtual
@@ -61,7 +73,8 @@ contract Collectible2 is Context, ERC1155Burnable, Ownable {
   }
 
   /**
-   * @dev xref:ROOT:erc1155.adoc#batch-operations[Batched] variant of {mint}.
+   * @dev Mint mulitiple tokens at different quantities. This is an onlyOwner-guareded
+          function and is meant basically as a sudo-command.
    */
   function mintBatch(
     address to,
@@ -94,10 +107,7 @@ contract Collectible2 is Context, ERC1155Burnable, Ownable {
 
   /**
    * @dev Creates `amount` new tokens for `to`, of token type `id`.
-   *
-   * See {ERC1155-_mint}.
-   *
-   * Requirements:
+   *      At least one Validator must be active in order to utilized this interface.
    *
    */
   function modularMint(
