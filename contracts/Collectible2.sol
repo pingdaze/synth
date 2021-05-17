@@ -17,6 +17,7 @@ contract Collectible2 is Context, ERC1155Burnable, Ownable {
 
   IERC1155 public originalToken;
   mapping(IMintValidator => bool) public isValidator;
+  mapping(uint256 => uint256) public quantityMinted;
   // URI base; NOT the whole uri.
   string private _uri;
   IReadMetadata private _registry;
@@ -77,12 +78,13 @@ contract Collectible2 is Context, ERC1155Burnable, Ownable {
           function and is meant basically as a sudo-command.
    */
   function mintBatch(
-    address to,
-    uint256[] memory ids,
-    uint256[] memory amounts,
-    bytes memory data
+    address _to,
+    uint256[] memory _ids,
+    uint256[] memory _amounts,
+    bytes memory _data
   ) external virtual onlyOwner {
-    _mintBatch(to, ids, amounts, data);
+    _mintBatch(_to, _ids, _amounts, _data);
+    _updateMintedQuantities(_ids, _amounts);
   }
 
   /**
@@ -90,25 +92,27 @@ contract Collectible2 is Context, ERC1155Burnable, Ownable {
    * @dev accepts token _ids from the original Pillz token, burns them and
    * mints replacements.
    */
-  function migrate(uint256[] calldata _ids, uint256[] calldata _values) public {
-    address burner = address(0x1);
-    bytes memory empty = "";
+  function migrate(uint256[] calldata _ids, uint256[] calldata _amounts)
+    public
+  {
+    address burnerAddress = address(0x1);
+    bytes memory emptyBytes = "";
 
     // unlike ERC-20s, this call will revert if the tokens can't be transfered
     originalToken.safeBatchTransferFrom(
       _msgSender(),
-      burner,
+      burnerAddress,
       _ids,
-      _values,
-      empty
+      _amounts,
+      emptyBytes
     );
-    _mintBatch(_msgSender(), _ids, _values, empty);
+    _mintBatch(_msgSender(), _ids, _amounts, emptyBytes);
+    _updateMintedQuantities(_ids, _amounts);
   }
 
   /**
    * @dev Creates `amount` new tokens for `to`, of token type `id`.
    *      At least one Validator must be active in order to utilized this interface.
-   *
    */
   function modularMint(
     uint256 _id,
@@ -125,5 +129,24 @@ contract Collectible2 is Context, ERC1155Burnable, Ownable {
     );
 
     _mint(_to, _id, _amount, _data);
+    _updateMintedQuantity(_id, _amount);
+  }
+
+  function _updateMintedQuantities(
+    uint256[] memory _ids,
+    uint256[] memory _amounts
+  ) internal {
+    require(_ids.length == _amounts.length, "MINT_QUANTITY_MISMATCH");
+    for (uint256 i = 0; i < _ids.length; i++) {
+      quantityMinted[_ids[i]] += _amounts[i];
+    }
+  }
+
+  function _updateMintedQuantity(uint256 _id, uint256 _amount) internal {
+    uint256[] memory ids = new uint256[](1);
+    uint256[] memory amounts = new uint256[](1);
+    ids[0] = _id;
+    amounts[0] = _amount;
+    _updateMintedQuantities(ids, amounts);
   }
 }

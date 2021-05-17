@@ -48,7 +48,11 @@ module.exports = {
           command: "test",
           params: {
             noCompile: false,
-            testFiles: ["test/Collectible2.ts", "test/MetadataRegistry.ts"],
+            testFiles: [
+              "test/Collectible2.ts",
+              "test/MetadataRegistry.ts",
+              "test/SequenceValidator.ts",
+            ],
           },
         },
       ],

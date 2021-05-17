@@ -74,6 +74,7 @@ contract("Collectible2", (addresses) => {
       it("mints tokens to a contract", async () => {
         const H = await HolderContract.new();
         await C.addValidator(T.address);
+        const initialMintedQuantity = await C.quantityMinted(id);
         const receipt = await C.modularMint(
           id,
           H.address,
@@ -90,8 +91,13 @@ contract("Collectible2", (addresses) => {
           value: toBN(amount),
         });
         assert.equal(balance, amount);
+        const updatedMintedQuantity = await C.quantityMinted(id);
+        const newlyMintedQuantity =
+          updatedMintedQuantity - initialMintedQuantity;
+        assert.equal(newlyMintedQuantity, amount);
       });
       it("mints tokens to an EOA", async () => {
+        const initialMintedQuantity = await C.quantityMinted(id);
         const receipt = await C.modularMint(
           id,
           user1,
@@ -108,6 +114,10 @@ contract("Collectible2", (addresses) => {
           value: toBN(amount),
         });
         assert.equal(balance, amount);
+        const updatedMintedQuantity = await C.quantityMinted(id);
+        const newlyMintedQuantity =
+          updatedMintedQuantity - initialMintedQuantity;
+        assert.equal(newlyMintedQuantity, amount);
       });
     });
   });
@@ -145,6 +155,7 @@ contract("Collectible2", (addresses) => {
         operator: newToken.address,
         approved: true,
       });
+      const initialMintedQuantity = await newToken.quantityMinted(id);
       const receipt2 = await newToken.migrate([id], [amount], { from: user1 });
       expectEvent(receipt2, "TransferBatch", {
         operator: newToken.address,
@@ -161,6 +172,9 @@ contract("Collectible2", (addresses) => {
         values: [toBN(amount)],
       });
       assert.equal(await oldToken.balanceOf(burnerAddress, id), amount);
+      const updatedMintedQuantity = await newToken.quantityMinted(id);
+      const newlyMintedQuantity = updatedMintedQuantity - initialMintedQuantity;
+      assert.equal(newlyMintedQuantity, amount);
     });
   });
   describe("batch minting", () => {
