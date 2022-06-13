@@ -1,0 +1,28 @@
+{
+    "Portalpill:docile": {
+        "description": "A SYNTH Portalpill in a curious state of hibernation. The portal’s tropical liquid ebbs and flows as if stirred by an invisible hand. When and how it might be activated remains a mystery to you.",
+        "external_url": "http://pills.game/",
+        "name": "Portalpill",
+        "attributes": [
+            {"trait_type": "Gen", 
+            "value": "Synth"},
+            {"trait_type": "Activation State", 
+            "value": "Docile"}
+        ],
+        "image": "",
+        "animation_url": "",
+    },
+    "Portalpill:active": {
+        "description": "A SYNTH Portalpill awake, aware and active….. but are you ready? As soon as you peer into the portal’s shimmering liquid you’ll find yourself transported to Chainspace.",
+        "external_url": "http://pills.game/",
+        "name": "Portalpill",
+        "attributes": [
+            {"trait_type": "Gen", 
+            "value": "Synth"},
+            {"trait_type": "Activation State", 
+            "value": "Active"}
+        ],
+        "image": "",
+        "animation_url": "",
+    }
+}
