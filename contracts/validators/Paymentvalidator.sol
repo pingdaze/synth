@@ -72,10 +72,12 @@ contract PaymentValidator is IMintValidator, Ownable {
         totalSupply = _supply;
     }
 
+    /// @notice DO NOT USE
+    /// @dev prevents calls from the main core instance since this validation requires payments
     function validate(
-        address _recipient,
+        address ,
         uint256, /* _dropId*/
-        uint256[] calldata _qty, /* _qty*/
+        uint256[] calldata, /* _qty*/
         string calldata, /* _metadata*/
         bytes memory /* _data*/
     ) external override {
@@ -97,10 +99,17 @@ contract PaymentValidator is IMintValidator, Ownable {
         totalMinted = newTotal;
     }
 
+    /// @notice Collects and sends an amount of ETH to the selected target from this validator
+    /// @dev Explain to a developer any extra details
+    /// @param target Address to send requested ETH to
+    /// @param value Amount of ETH (in wei) to transfer
     function collectEth(address target, uint256 value) external onlyOwner {
         _sendEth(target, value);
     }
 
+    /// @notice Collects all ETH to the selected target from this validator
+    /// @dev Explain to a developer any extra details
+    /// @param target Address to send requested ETH to
     function collectAllEth(address target) external onlyOwner {
         _sendEth(target, address(this).balance);
     }
