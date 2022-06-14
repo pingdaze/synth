@@ -82,42 +82,17 @@ SYNTH
 
 ### TODO
 
-TOTEM QUEST TO DO
-
-- Tests pass w/ new contract
-
 
 PACE TODO
 
-- Get the paid/gated character options logic built out better in the SelectableOption.sol contract
-
-- Make Rep/XP both 4262 compliant
-  -https://eips.ethereum.org/EIPS/eip-4626
-
 - Add wearables data
-
-- Setup metadata server
 
 - Add Faction membership and beef up factions system
   - Setup REP/REP Earning for each Faction
 
-- Check that pillboosts are being burnt correctly
-  - make sure that only legacy pillboosts correctly change the drop rates
-
-
 - Make sure Achievements work well, are extensible, and integrate with the permissions system
 
 - Make sure portalpill is being burned correctly/required
-
-- Isolate chainlink logic so it can be handled through a msg relay
-  - This is half done, we still need to cleanup the logic alot for this
-
-- MetaTx?
-
-- Make randomness request Owner/Auth initiated vs called right in that initial function
-
-- Force wearables/augmnets not-equipable by default
-
 
 TESTING
 - Fix tests for the character generation process
@@ -130,7 +105,6 @@ TESTING
 NEXT UP PRIORITY
 
 - Flatten out the skeleton/outfit structs into enums and arrays
-
 
 - Add Class section for characters
 
