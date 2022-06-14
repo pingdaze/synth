@@ -85,21 +85,12 @@ SYNTH
 
 PACE TODO
 
-- Add wearables data
-
 - Add Faction membership and beef up factions system
   - Setup REP/REP Earning for each Faction
 
 - Make sure Achievements work well, are extensible, and integrate with the permissions system
 
 - Make sure portalpill is being burned correctly/required
-
-TESTING
-- Fix tests for the character generation process
-
-- Write tests for signature validator
-
-- Improve tests across the board
 
 
 NEXT UP PRIORITY
