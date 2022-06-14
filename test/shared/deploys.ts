@@ -126,6 +126,16 @@ export const deployCheckerValidator = async (
     return CheckerValidator.deploy(core.address, nift.address, _id);
   };
 
+export const deployPaymentValidator = async (
+      core: Core1155,
+      _id = 1,
+      _cost = ethers.utils.parseEther("1"),
+      _supply = 10000
+  ) => {
+    const PaymentValidator = await ethers.getContractFactory("PaymentValidator");
+    return PaymentValidator.deploy(core.address, _id, _cost, _supply);
+  };
+
 
   
 export const deployBasicValidator = async (
