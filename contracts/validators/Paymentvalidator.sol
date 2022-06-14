@@ -56,6 +56,7 @@ contract PaymentValidator is IMintValidator, Ownable {
     uint256 private _cost;
     uint256 public totalSupply;
     uint256 public totalMinted;
+    uint256 public perTxLimit;
 
     /// @param _core we use this to trigger the token mints
     /// @param id_ This ID must be registered in core, this is the ID that portalpills will mint into
@@ -70,6 +71,7 @@ contract PaymentValidator is IMintValidator, Ownable {
         core = _core;
         _cost = cost_;
         totalSupply = _supply;
+        perTxLimit = totalSupply;
     }
 
     /// @notice DO NOT USE
@@ -91,8 +93,12 @@ contract PaymentValidator is IMintValidator, Ownable {
         address _recipient,
         uint256 _qty
     ) external payable {
-        // Has to be checked; could overflow
-        uint256 newTotal = _qty + totalMinted;
+        uint256 newTotal;
+        require(_qty <= perTxLimit, "Not enough supply");
+        // Quantity + total minted will never overflow
+        unchecked {
+            newTotal = _qty + totalMinted;
+        }        
         require(newTotal <= totalSupply, "Not enough supply");
         require(msg.value/_cost  >= _qty, "Sorry not enough ETH provided");
         _validate(_recipient, _qty);
@@ -100,15 +106,20 @@ contract PaymentValidator is IMintValidator, Ownable {
     }
 
     /// @notice Collects and sends an amount of ETH to the selected target from this validator
-    /// @dev Explain to a developer any extra details
     /// @param target Address to send requested ETH to
     /// @param value Amount of ETH (in wei) to transfer
     function collectEth(address target, uint256 value) external onlyOwner {
         _sendEth(target, value);
     }
 
+    /// @notice Sets a limit on the number of pills that can be purchased in a single transaction
+    /// @param limit New token limit per transaction
+    function newLimit(uint256 limit) external onlyOwner {
+        require(limit < totalSupply,"Limit must be under supply total");
+        perTxLimit = limit;
+    }
+
     /// @notice Collects all ETH to the selected target from this validator
-    /// @dev Explain to a developer any extra details
     /// @param target Address to send requested ETH to
     function collectAllEth(address target) external onlyOwner {
         _sendEth(target, address(this).balance);

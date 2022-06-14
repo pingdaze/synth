@@ -54,6 +54,10 @@ describe.only("PaymentValidator", () => {
     it("can't purchase NFTs beyond supply", async () => {
         expect(validator.directSale(owner.address, 10001, {value: web3.utils.toWei("10001")})).to.be.revertedWith("Not enough supply");
     });
+    it("can't purchase NFTs beyond purchase limit if set", async () => {
+      receipt = await validator.newLimit(3);
+      expect(validator.directSale(owner.address, 3, {value: web3.utils.toWei("10001")})).to.be.revertedWith("Not enough supply");
+    });
     it("can recover all ETH that's been send", async () => {
       initialBalance = await ethers.provider.getBalance(user1.address);
       receipt = await validator.directSale(owner.address, 1, {value: cost});
