@@ -15,11 +15,12 @@ const amount = 1;
 
 
 
+
 describe.only("PaymentValidator", () => {
 
   describe("isValid", () => {
     let owner: SignerWithAddress, user1: SignerWithAddress;
-    let core: Core1155, validator : PaymentValidator, receipt;
+    let core: Core1155, validator : PaymentValidator, receipt, initialBalance;
     before(async () => {
       [owner, user1] = await ethers.getSigners();
     });
@@ -43,8 +44,8 @@ describe.only("PaymentValidator", () => {
     });
 
     it("can purchase NFT", async () => {
-        receipt = await validator.directSale(owner.address, 1, {value: cost});
-         expect(await core.balanceOf(owner.address, coreId)).to.equal(1);
+      receipt = await validator.directSale(owner.address, 1, {value: cost});
+      expect(await core.balanceOf(owner.address, coreId)).to.equal(1);
     });
     it("can purchase multiple NFTs", async () => {
         receipt = await validator.directSale(owner.address, 2, {value: web3.utils.toWei("2")});
@@ -52,6 +53,12 @@ describe.only("PaymentValidator", () => {
     });
     it("can't purchase NFTs beyond supply", async () => {
         expect(validator.directSale(owner.address, 10001, {value: web3.utils.toWei("10001")})).to.be.revertedWith("Not enough supply");
+    });
+    it("can recover all ETH that's been send", async () => {
+      initialBalance = await ethers.provider.getBalance(user1.address);
+      receipt = await validator.directSale(owner.address, 1, {value: cost});
+      receipt = await validator.collectAllEth(user1.address);
+      expect(await ethers.provider.getBalance(user1.address)).to.equal(initialBalance.add(cost));
     });
     it("can't purchase if enough value isn't provided", async () => {
         expect(validator.connect(user1).directSale(user1.address, 1)).to.be.revertedWith("Sorry not enough ETH provided");

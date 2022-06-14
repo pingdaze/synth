@@ -43,11 +43,12 @@ pragma solidity ^0.8.0;
 
 import "../interfaces/IMintValidator.sol";
 import "../interfaces/IFabricator.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 /// @title PaymentValidator
 /// @notice Basic validator that takes payment in ETH and mints out an mount of tokens in the initialized ID
 /// @dev Plz don't use this it's not meant for you
-contract PaymentValidator is IMintValidator {
+contract PaymentValidator is IMintValidator, Ownable {
 
     uint256 private immutable _id;
     // This is the instance of core we call home to for the minty minty
@@ -57,7 +58,7 @@ contract PaymentValidator is IMintValidator {
     uint256 public totalMinted;
 
     /// @param _core we use this to trigger the token mints
-    /// @param id_ This ID must be registered in core, 1155s of the old system will
+    /// @param id_ This ID must be registered in core, this is the ID that portalpills will mint into
     /// @param cost_ Cost in WEI (ETH) required _per 1155_
     constructor(
         IFabricator _core,
@@ -79,7 +80,7 @@ contract PaymentValidator is IMintValidator {
         bytes memory /* _data*/
     ) external override {
         revert("Use payable validator");
-    }
+    }    
 
     /// @notice Purchase PortalPills directly
     /// @param _recipient Target account to receieve the purchased Portal Pills
@@ -94,6 +95,19 @@ contract PaymentValidator is IMintValidator {
         require(msg.value/_cost  >= _qty, "Sorry not enough ETH provided");
         _validate(_recipient, _qty);
         totalMinted = newTotal;
+    }
+
+    function collectEth(address target, uint256 value) external onlyOwner {
+        _sendEth(target, value);
+    }
+
+    function collectAllEth(address target) external onlyOwner {
+        _sendEth(target, address(this).balance);
+    }
+
+    function _sendEth(address target, uint256 value) internal {
+        (bool success, ) = target.call{value: value}("");
+        require(success, "Transfer failed.");
     }
 
     function _validate(address _recipient, uint256 _qty) internal {
