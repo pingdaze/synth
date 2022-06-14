@@ -14,6 +14,7 @@ async function main() {
       await deployMockToTestnet();
     }
     const cost = ethers.utils.parseEther(".1");
+    const coreId = 2;
     if(network.name === "mainnet") {
       const accounts = await ethers.getSigners();
       console.log(accounts[3]);
