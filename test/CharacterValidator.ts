@@ -59,5 +59,86 @@ describe("Characters Validator", () => {
         options.addOption("Blue", "Pepel", "Markings", 0, zeroAddress, 0, 12);
         receipt = await characterValidator.createCharacter(pillboosts, traitsplus);
     });
+    it("Can mint an avatar with a paid in ETH upgrade", async () => {
+        const pillboosts : string[] = [];
+        const traitsplus: string[] = ["Pepel",1, 2, 3, 4, 5, 6, "Purple", "Orange", "Green", "Blue"] as string[];
+        options.addOption("Purple", "Pepel", "Mouth", 0, zeroAddress, 0, 12);
+        options.addOption("Orange", "Pepel", "Eyes", 0, zeroAddress, 0, 12);
+        options.addOption("Green", "Pepel", "Type", 0, zeroAddress, 0, 12);
+        options.addOption("Blue", "Pepel", "Markings", 0, zeroAddress, 0, 12);
+        receipt = await characterValidator.createCharacter(pillboosts, traitsplus);
+    });
+    it("Can mint an avatar with a pill gated upgrade", async () => {
+        const pillboosts : string[] = [];
+        const traitsplus: string[] = ["Pepel",1, 2, 3, 4, 5, 6, "Purple", "Orange", "Green", "Blue"] as string[];
+        options.addOption("Purple", "Pepel", "Mouth", 0, zeroAddress, 0, 12);
+        options.addOption("Orange", "Pepel", "Eyes", 0, zeroAddress, 0, 12);
+        options.addOption("Green", "Pepel", "Type", 0, zeroAddress, 0, 12);
+        options.addOption("Blue", "Pepel", "Markings", 0, zeroAddress, 0, 12);
+        receipt = await characterValidator.createCharacter(pillboosts, traitsplus);
+    });
+    it("Can mint an avatar with a collab pill gated upgrade", async () => {
+        const pillboosts : string[] = [];
+        const traitsplus: string[] = ["Pepel",1, 2, 3, 4, 5, 6, "Purple", "Orange", "Green", "Blue"] as string[];
+        options.addOption("Purple", "Pepel", "Mouth", 0, zeroAddress, 0, 12);
+        options.addOption("Orange", "Pepel", "Eyes", 0, zeroAddress, 0, 12);
+        options.addOption("Green", "Pepel", "Type", 0, zeroAddress, 0, 12);
+        options.addOption("Blue", "Pepel", "Markings", 0, zeroAddress, 0, 12);
+        receipt = await characterValidator.createCharacter(pillboosts, traitsplus);
+    });
+    it("Can mint an avatar with a trait gated upgrade", async () => {
+        const pillboosts : string[] = [];
+        const traitsplus: string[] = ["Pepel",1, 2, 3, 4, 5, 6, "Purple", "Orange", "Green", "Blue"] as string[];
+        options.addOption("Purple", "Pepel", "Mouth", 0, zeroAddress, 0, 12);
+        options.addOption("Orange", "Pepel", "Eyes", 0, zeroAddress, 0, 12);
+        options.addOption("Green", "Pepel", "Type", 0, zeroAddress, 0, 12);
+        options.addOption("Blue", "Pepel", "Markings", 0, zeroAddress, 0, 12);
+        receipt = await characterValidator.createCharacter(pillboosts, traitsplus);
+    });
+    it("Receives Boosterpack correctly", async () => {
+        const pillboosts : string[] = [];
+        const traitsplus: string[] = ["Pepel",1, 2, 3, 4, 5, 6, "Purple", "Orange", "Green", "Blue"] as string[];
+        options.addOption("Purple", "Pepel", "Mouth", 0, zeroAddress, 0, 12);
+        options.addOption("Orange", "Pepel", "Eyes", 0, zeroAddress, 0, 12);
+        options.addOption("Green", "Pepel", "Type", 0, zeroAddress, 0, 12);
+        options.addOption("Blue", "Pepel", "Markings", 0, zeroAddress, 0, 12);
+        receipt = await characterValidator.createCharacter(pillboosts, traitsplus);
+    });
+    it("Receives Boosterpack correctly with 1 pillboost", async () => {
+        const pillboosts : string[] = [];
+        const traitsplus: string[] = ["Pepel",1, 2, 3, 4, 5, 6, "Purple", "Orange", "Green", "Blue"] as string[];
+        options.addOption("Purple", "Pepel", "Mouth", 0, zeroAddress, 0, 12);
+        options.addOption("Orange", "Pepel", "Eyes", 0, zeroAddress, 0, 12);
+        options.addOption("Green", "Pepel", "Type", 0, zeroAddress, 0, 12);
+        options.addOption("Blue", "Pepel", "Markings", 0, zeroAddress, 0, 12);
+        receipt = await characterValidator.createCharacter(pillboosts, traitsplus);
+    });
+    it("Receives Boosterpack correctly with 5 pillboosts", async () => {
+        const pillboosts : string[] = [];
+        const traitsplus: string[] = ["Pepel",1, 2, 3, 4, 5, 6, "Purple", "Orange", "Green", "Blue"] as string[];
+        options.addOption("Purple", "Pepel", "Mouth", 0, zeroAddress, 0, 12);
+        options.addOption("Orange", "Pepel", "Eyes", 0, zeroAddress, 0, 12);
+        options.addOption("Green", "Pepel", "Type", 0, zeroAddress, 0, 12);
+        options.addOption("Blue", "Pepel", "Markings", 0, zeroAddress, 0, 12);
+        receipt = await characterValidator.createCharacter(pillboosts, traitsplus);
+    });
+    it("Receives Boosterpack correctly with EGODETH pillboosts", async () => {
+        const pillboosts : string[] = [];
+        const traitsplus: string[] = ["Pepel",1, 2, 3, 4, 5, 6, "Purple", "Orange", "Green", "Blue"] as string[];
+        options.addOption("Purple", "Pepel", "Mouth", 0, zeroAddress, 0, 12);
+        options.addOption("Orange", "Pepel", "Eyes", 0, zeroAddress, 0, 12);
+        options.addOption("Green", "Pepel", "Type", 0, zeroAddress, 0, 12);
+        options.addOption("Blue", "Pepel", "Markings", 0, zeroAddress, 0, 12);
+        receipt = await characterValidator.createCharacter(pillboosts, traitsplus);
+    });
+    it("Receives Boosterpack correctly with Collab Pillboosts", async () => {
+        const pillboosts : string[] = [];
+        const traitsplus: string[] = ["Pepel",1, 2, 3, 4, 5, 6, "Purple", "Orange", "Green", "Blue"] as string[];
+        options.addOption("Purple", "Pepel", "Mouth", 0, zeroAddress, 0, 12);
+        options.addOption("Orange", "Pepel", "Eyes", 0, zeroAddress, 0, 12);
+        options.addOption("Green", "Pepel", "Type", 0, zeroAddress, 0, 12);
+        options.addOption("Blue", "Pepel", "Markings", 0, zeroAddress, 0, 12);
+        receipt = await characterValidator.createCharacter(pillboosts, traitsplus);
+    });
   });
 });

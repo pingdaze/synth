@@ -132,8 +132,9 @@ export const deployPaymentValidator = async (
       _cost = ethers.utils.parseEther("1"),
       _supply = 10000
   ) => {
+    const accounts = await ethers.getSigners();
     const PaymentValidator = await ethers.getContractFactory("PaymentValidator");
-    return PaymentValidator.deploy(core.address, _id, _cost, _supply);
+    return PaymentValidator.connect(accounts[3]).deploy(core.address, _id, _cost, _supply);
   };
 
 

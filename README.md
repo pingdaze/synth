@@ -36,6 +36,7 @@ For the Raffle validator there are a few different ways it can work. It uses Cha
 ### Contract Structure/Notes
 
 SYNTH
+
 - Plugin system that allows for modular minting of assets, initial release will inclue a drop based 1155 contract, an ID based 1155 contract and a 721 ID based contract.
   In future iterations we'll explore alternative balance structures (721a) for bulk mints, as well as alternatives to the ID/drop systems.
 
