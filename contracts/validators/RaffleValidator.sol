@@ -62,22 +62,22 @@ contract RaffleValidator is VRFConsumerBaseV2, Auth {
   // Triggering the "whitelist disabled" circumvents this behavior.
   using ECDSA for bytes32;
   struct EIP712Domain {
-      string name;
-      string version;
-      uint256 chainId;
-      address verifyingContract;
+    string name;
+    string version;
+    uint256 chainId;
+    address verifyingContract;
   }
   struct Target {
-      uint256 chainId;
-      address wallet;
+    uint256 chainId;
+    address wallet;
   }
   bytes32 private immutable _domainSeparator;
   bytes32 private constant _EIP712_DOMAIN_TYPEHASH =
-      keccak256(
-          "EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"
-      );
+    keccak256(
+      "EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"
+    );
   bytes32 private constant _TARGET_TYPEHASH =
-      keccak256("Target(uint256 chainId,address wallet)");
+    keccak256("Target(uint256 chainId,address wallet)");
   address private _validationSigner;
 
   // RAFFLE STATE
@@ -114,18 +114,18 @@ contract RaffleValidator is VRFConsumerBaseV2, Auth {
   bytes32 private _keyHash;
 
   constructor(
-      IFabricator _core,
-      address coordinator_,
-      address signer_,
-      uint256 raffleCost_,
-      uint256 id,
-      Authority auth,
-      uint32 raffleTrigger_
+    IFabricator _core,
+    address coordinator_,
+    address signer_,
+    uint256 raffleCost_,
+    uint256 id,
+    Authority auth,
+    uint32 raffleTrigger_
   )
-      VRFConsumerBaseV2(
-          coordinator_ // VRF Coordinator
-      )
-      Auth(msg.sender, auth)
+    VRFConsumerBaseV2(
+      coordinator_ // VRF Coordinator
+    )
+    Auth(msg.sender, auth)
   {
     _tokenId = id;
     _raffleCost = raffleCost_;
@@ -152,15 +152,12 @@ contract RaffleValidator is VRFConsumerBaseV2, Auth {
   /// @param r signature part 1
   /// @param s signature part 2
   function addDeposit(
-      Target calldata recipient,
-      uint8 v,
-      bytes32 r,
-      bytes32 s // bytes calldata signature
+    Target calldata recipient,
+    uint8 v,
+    bytes32 r,
+    bytes32 s // bytes calldata signature
   ) external payable {
-    require(
-      msg.value > _raffleCost,
-      "Sorry, that's not enough for the raffle"
-    );
+    require(msg.value > _raffleCost, "Sorry, that's not enough for the raffle");
     require(!_raffleEnded, "Sorry raffle has ended");
     address signatureSigner = _hash(recipient).recover(v, r, s);
     require(signatureSigner == _validationSigner, "Invalid Signature");
@@ -188,7 +185,6 @@ contract RaffleValidator is VRFConsumerBaseV2, Auth {
       count[recipient] += ticketCount;
     }
   }
-
 
   /// @notice Refund a series of raffle tickets
   /// @dev Neccesary to know what indices the tickets were added into
@@ -252,10 +248,10 @@ contract RaffleValidator is VRFConsumerBaseV2, Auth {
   }
 
   function setChainlink(
-      bytes32 keyHash_,
-      uint32 _callbackGasLimit,
-      uint16 _requestConfirmations,
-      uint64 _subscriptionId
+    bytes32 keyHash_,
+    uint32 _callbackGasLimit,
+    uint16 _requestConfirmations,
+    uint64 _subscriptionId
   ) public requiresAuth {
     _keyHash = keyHash_;
     callbackGasLimit = _callbackGasLimit;
@@ -267,107 +263,98 @@ contract RaffleValidator is VRFConsumerBaseV2, Auth {
   /// @dev Explain to a developer any extra details
   /// @param _count Number of winners to select
   function processRaffle(uint32 _count) public requiresAuth {
-      require(_runRaffle, "Must have enough to run raffle");
-      require(_winnersSelected + _count <= _raffleTrigger, "Too many winners would be selected");
-      require(
-          _awaitingRandomness == false,
-          "Wait until randomness has been processed to request more"
-      );
-      _coordinator.requestRandomWords(
-          _keyHash,
-          subscriptionId,
-          requestConfirmations,
-          callbackGasLimit,
-          _count
-      );
-      _awaitingRandomness = true;
+    require(_runRaffle, "Must have enough to run raffle");
+    require(
+      _winnersSelected + _count <= _raffleTrigger,
+      "Too many winners would be selected"
+    );
+    require(
+      _awaitingRandomness == false,
+      "Wait until randomness has been processed to request more"
+    );
+    _coordinator.requestRandomWords(
+      _keyHash,
+      subscriptionId,
+      requestConfirmations,
+      callbackGasLimit,
+      _count
+    );
+    _awaitingRandomness = true;
   }
 
   /// INTERNAL FUNCTIONS
 
   function _hash(Target memory recipient) internal view returns (bytes32) {
-      return
-          keccak256(
-              abi.encodePacked(
-                  "\x19\x01",
-                  _domainSeparator,
-                  _hashRecipient(recipient)
-              )
-          );
+    return
+      keccak256(
+        abi.encodePacked(
+          "\x19\x01",
+          _domainSeparator,
+          _hashRecipient(recipient)
+        )
+      );
   }
 
   function _hashRecipient(Target memory recipient)
-      internal
-      pure
-      returns (bytes32)
+    internal
+    pure
+    returns (bytes32)
   {
-      return
-          keccak256(
-              abi.encode(
-                  _TARGET_TYPEHASH,
-                  recipient.chainId,
-                  recipient.wallet
-              )
-          );
+    return
+      keccak256(
+        abi.encode(_TARGET_TYPEHASH, recipient.chainId, recipient.wallet)
+      );
   }
 
   function _removeDeposit(uint256 index) internal {
-      require(
-          msg.sender == _raffleTickets[index],
-          "Sorry you're requesting a refund for a ticket you didn't buy"
-      );
-      count[msg.sender] -= 1;
-      _raffleTickets[index] = _raffleTickets[_raffleTickets.length - 1];
-      _raffleTickets.pop();
+    require(
+      msg.sender == _raffleTickets[index],
+      "Sorry you're requesting a refund for a ticket you didn't buy"
+    );
+    count[msg.sender] -= 1;
+    _raffleTickets[index] = _raffleTickets[_raffleTickets.length - 1];
+    _raffleTickets.pop();
   }
 
-
-  
   // Extract eip721 into abstraction
   function _hashDomain(EIP712Domain memory eip712Domain)
-      private
-      pure
-      returns (bytes32)
+    private
+    pure
+    returns (bytes32)
   {
-      return
-          keccak256(
-              abi.encode(
-                  _EIP712_DOMAIN_TYPEHASH,
-                  keccak256(bytes(eip712Domain.name)),
-                  keccak256(bytes(eip712Domain.version)),
-                  eip712Domain.chainId,
-                  eip712Domain.verifyingContract
-              )
-          );
+    return
+      keccak256(
+        abi.encode(
+          _EIP712_DOMAIN_TYPEHASH,
+          keccak256(bytes(eip712Domain.name)),
+          keccak256(bytes(eip712Domain.version)),
+          eip712Domain.chainId,
+          eip712Domain.verifyingContract
+        )
+      );
   }
 
   function _getChainID() private view returns (uint256) {
-      uint256 id;
-      // solhint-disable-next-line no-inline-assembly
-      assembly {
-          id := chainid()
-      }
-      return id;
+    uint256 id;
+    // solhint-disable-next-line no-inline-assembly
+    assembly {
+      id := chainid()
+    }
+    return id;
   }
 
-  
   // solhint-disable-next-line
-  function fulfillRandomWords(uint256 , uint256[] memory randomWords)
-      internal
-      override
+  function fulfillRandomWords(uint256, uint256[] memory randomWords)
+    internal
+    override
   {
-    require(
-      _awaitingRandomness == true,
-      "Must trigger processRaffle first"
-    );
+    require(_awaitingRandomness == true, "Must trigger processRaffle first");
     // TODO: Confirm abscence of over/under flow states
     for (uint8 i; i < randomWords.length; i++) {
       uint256 winner = ((randomWords[i] % _raffleTickets.length) -
         _winnersSelected) + _winnersSelected;
       if (hasWon[_raffleTickets[winner]]) {
-        _raffleTickets[winner] = _raffleTickets[
-            _raffleTickets.length - 1
-        ];
+        _raffleTickets[winner] = _raffleTickets[_raffleTickets.length - 1];
         _raffleTickets.pop();
       } else {
         _raffleTickets[_winnersSelected] = _raffleTickets[winner];

@@ -3,9 +3,9 @@
 pragma solidity ^0.8.0;
 
 interface IXferHook {
-    function xferHook(
-        address from,
-        address to,
-        uint256 id
-    ) external;
+  function xferHook(
+    address from,
+    address to,
+    uint256 id
+  ) external;
 }

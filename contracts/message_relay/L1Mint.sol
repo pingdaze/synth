@@ -8,7 +8,7 @@ import "../interfaces/IBridge.sol";
 import "../interfaces/IMintValidator721.sol";
 
 contract L1Mint {
-    /*address public l2Target;
+  /*address public l2Target;
     IInbox public inbox;
 
     event RetryableTicketCreated(uint256 indexed ticketId);

@@ -54,83 +54,83 @@ import "@rari-capital/solmate/src/auth/Auth.sol";
 ///         has been in tracking
 /// @dev Plz don't use this it's not meant for you
 contract CheckerValidatorV2 is Context, IMintValidator, Auth {
-    // This is the token we "check" against. Understand that the collection you're point this to
-    // has a tremendous amount of control over the token ID this checker instance is registered with in core
-    IERC1155 public originalToken;
-    uint256 immutable _newId;
-    // initialize with token and track state there
-    mapping(uint256 => bool) public redeemed;
-    mapping(address => uint256) public remaining;
-    // This is the instance of core we call home to for the minty minty
-    IMintPipe public core;
+  // This is the token we "check" against. Understand that the collection you're point this to
+  // has a tremendous amount of control over the token ID this checker instance is registered with in core
+  IERC1155 public originalToken;
+  uint256 immutable _newId;
+  // initialize with token and track state there
+  mapping(uint256 => bool) public redeemed;
+  mapping(address => uint256) public remaining;
+  // This is the instance of core we call home to for the minty minty
+  IMintPipe public core;
 
-    /// @param _core we use this to trigger the token mints
-    /// @param _original Token whose balance we check for mints; implier 1;1 1155s plzz
-    /// @param newId_ This ID must be registered in core, 1155s of the old system will
-    constructor(
-        IMintPipe _core,
-        IERC1155 _original,
-        uint256 newId_,
-        Authority authority
-    ) Auth(msg.sender, authority) {
-        _newId = newId_;
-        core = _core;
-        originalToken = _original;
-    }
-    
-    function setCore(IMintPipe _core) public requiresAuth {
-        core = _core;
-    }
+  /// @param _core we use this to trigger the token mints
+  /// @param _original Token whose balance we check for mints; implier 1;1 1155s plzz
+  /// @param newId_ This ID must be registered in core, 1155s of the old system will
+  constructor(
+    IMintPipe _core,
+    IERC1155 _original,
+    uint256 newId_,
+    Authority authority
+  ) Auth(msg.sender, authority) {
+    _newId = newId_;
+    core = _core;
+    originalToken = _original;
+  }
 
-    function checkAllRedemption(uint256[] calldata ids)
-        external
-        view
-        returns (bool[] memory)
-    {
-        bool[] memory redemptionStatus = new bool[](ids.length);
-        for (uint256 i = 0; i < redemptionStatus.length; i++) {
-            redemptionStatus[i] = _checkRedemption(ids[i]);
-        }
-        return redemptionStatus;
-    }
+  function setCore(IMintPipe _core) public requiresAuth {
+    core = _core;
+  }
 
-    function _checkRedemption(uint256 id) internal view returns (bool) {
-        return redeemed[id];
+  function checkAllRedemption(uint256[] calldata ids)
+    external
+    view
+    returns (bool[] memory)
+  {
+    bool[] memory redemptionStatus = new bool[](ids.length);
+    for (uint256 i = 0; i < redemptionStatus.length; i++) {
+      redemptionStatus[i] = _checkRedemption(ids[i]);
     }
+    return redemptionStatus;
+  }
 
-    function redeemAll(uint256[] calldata ids) public {
-        for (uint256 i = 0; i < ids.length; i++) {
-            _redeem(ids[i], _msgSender());
-        }
-        _validate(_msgSender());
-    }
+  function _checkRedemption(uint256 id) internal view returns (bool) {
+    return redeemed[id];
+  }
 
-    function _redeem(uint256 id, address target) internal {
-        require(
-            originalToken.balanceOf(target, id) > 0,
-            "Sender must hold all tokens for migration"
-        );
-        require(redeemed[id] == false, "Token has already been redeemed");
-        redeemed[id] = true;
-        remaining[target] += 1;
+  function redeemAll(uint256[] calldata ids) public {
+    for (uint256 i = 0; i < ids.length; i++) {
+      _redeem(ids[i], _msgSender());
     }
+    _validate(_msgSender());
+  }
 
-    function validate(
-        address _recipient,
-        uint256, /* _dropId*/
-        uint256[] calldata, /* _qty*/
-        string calldata, /* _metadata*/
-        bytes memory /* _data*/
-    ) external override {
-        _validate(_recipient);
-    }
+  function _redeem(uint256 id, address target) internal {
+    require(
+      originalToken.balanceOf(target, id) > 0,
+      "Sender must hold all tokens for migration"
+    );
+    require(redeemed[id] == false, "Token has already been redeemed");
+    redeemed[id] = true;
+    remaining[target] += 1;
+  }
 
-    function _validate(address _recipient) internal {
-        uint256[] memory idReturn = new uint256[](1);
-        uint256[] memory quantityReturn = new uint256[](1);
-        idReturn[0] = _newId;
-        quantityReturn[0] = remaining[_recipient];
-        remaining[_recipient] = 0;
-        core.modularMintCallback(_recipient, idReturn, quantityReturn, "");
-    }
+  function validate(
+    address _recipient,
+    uint256, /* _dropId*/
+    uint256[] calldata, /* _qty*/
+    string calldata, /* _metadata*/
+    bytes memory /* _data*/
+  ) external override {
+    _validate(_recipient);
+  }
+
+  function _validate(address _recipient) internal {
+    uint256[] memory idReturn = new uint256[](1);
+    uint256[] memory quantityReturn = new uint256[](1);
+    idReturn[0] = _newId;
+    quantityReturn[0] = remaining[_recipient];
+    remaining[_recipient] = 0;
+    core.modularMintCallback(_recipient, idReturn, quantityReturn, "");
+  }
 }
