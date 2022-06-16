@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "CommonConstants",
+  "sourceName": "contracts/legacy/Common.sol",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820e6cd75364c49b5a960871ed1c28ad957b057cf487e20a3e274514a12c46ffbae0029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a72305820e6cd75364c49b5a960871ed1c28ad957b057cf487e20a3e274514a12c46ffbae0029",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

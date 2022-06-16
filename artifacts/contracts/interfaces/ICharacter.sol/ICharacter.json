@@ -1,0 +1,457 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ICharacter",
+  "sourceName": "contracts/interfaces/ICharacter.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_player",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "pillboosts",
+          "type": "address[]"
+        },
+        {
+          "internalType": "string[]",
+          "name": "traitsPlus",
+          "type": "string[]"
+        }
+      ],
+      "name": "addPlayer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "slotID",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_player",
+          "type": "address"
+        }
+      ],
+      "name": "equipOutfit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "slotID",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_player",
+          "type": "address"
+        }
+      ],
+      "name": "equipSkeleton",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenID",
+          "type": "uint256"
+        }
+      ],
+      "name": "getCharacter",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "characterId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "player",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "faction",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "class",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address[]",
+              "name": "pillboosts",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "attributes",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "string[]",
+              "name": "traitsPlus",
+              "type": "string[]"
+            }
+          ],
+          "internalType": "struct Character",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenID",
+          "type": "uint256"
+        }
+      ],
+      "name": "getOutfit",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "head",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "torso",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lArm",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "rArm",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "rLeg",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lLeg",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "floating",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Outfit",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenID",
+          "type": "uint256"
+        }
+      ],
+      "name": "getSkeleton",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "head",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "mouth",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "eyes",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "torso",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lArm",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "rArm",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "rLeg",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lLeg",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "color",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "marking",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "mask",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Skeleton",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_player",
+          "type": "address"
+        }
+      ],
+      "name": "removePlayer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenID",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "head",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "torso",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lArm",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "rArm",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "rLeg",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lLeg",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "floating",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Outfit",
+          "name": "outfit",
+          "type": "tuple"
+        }
+      ],
+      "name": "setOutfit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenID",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "head",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "mouth",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "eyes",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "torso",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lArm",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "rArm",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "rLeg",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lLeg",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "color",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "marking",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "mask",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Skeleton",
+          "name": "skeleton",
+          "type": "tuple"
+        }
+      ],
+      "name": "setSkeleton",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "slotID",
+          "type": "uint8"
+        },
+        {
+          "internalType": "address",
+          "name": "_player",
+          "type": "address"
+        }
+      ],
+      "name": "unequipOutfit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "slotID",
+          "type": "uint8"
+        },
+        {
+          "internalType": "address",
+          "name": "_player",
+          "type": "address"
+        }
+      ],
+      "name": "unequipSkeleton",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
