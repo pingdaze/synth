@@ -16,7 +16,7 @@ const amount = 1;
 
 
 
-describe.only("PaymentValidator", () => {
+describe("PaymentValidator", () => {
 
   describe("isValid", () => {
     let owner: SignerWithAddress, user1: SignerWithAddress;

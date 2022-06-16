@@ -112,19 +112,23 @@ contract CharacterValidator is Ownable {
         uint256 characterId
     ) internal {
         Skeleton memory newSkeleton;
+        uint256 cost = selectableOptions.getCostFromOption(traitsPlus[7]);
         if (_compareMem(traitsPlus[0], "Pepel")) {
-            newSkeleton.mouth = selectableOptions.validateOption(
+            newSkeleton.mouth = selectableOptions.validateOption{value:cost}(
                 traitsPlus,
                 7
             );
+            cost = selectableOptions.getCostFromOption(traitsPlus[8]);
             newSkeleton.eyes = selectableOptions.validateOption(
                 traitsPlus,
                 8
             );
+            cost = selectableOptions.getCostFromOption(traitsPlus[9]);
             newSkeleton.color = selectableOptions.validateOption(
                 traitsPlus,
                 9
             );
+            cost = selectableOptions.getCostFromOption(traitsPlus[10]);
             newSkeleton.marking = selectableOptions.validateOption(
                 traitsPlus,
                 10            );
@@ -133,6 +137,7 @@ contract CharacterValidator is Ownable {
                 traitsPlus,
                 7
             );
+            cost = selectableOptions.getCostFromOption(traitsPlus[8]);
             newSkeleton.color = selectableOptions.validateOption(
                 traitsPlus,
                 8

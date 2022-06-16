@@ -11,6 +11,7 @@ const id2 = 2;
 const id3 = 3;
 const id4 = 4;
 const amount = 1;
+const cost = ethers.utils.parseEther("1");
 
 
 // Replace magic numbers
@@ -20,7 +21,7 @@ describe("Characters Validator", () => {
   before(async () => {
       [owner, user1] = await ethers.getSigners();
     });
-  describe("isValid", () => {
+  describe.only("isValid", () => {
     let core721 : Core721;
     let core1155 : Core1155;
     let nift : Basic1155;
@@ -53,13 +54,21 @@ describe("Characters Validator", () => {
     it("Can mint an avatar", async () => {
         const pillboosts : string[] = [];
         const traitsplus: string[] = ["Pepel",1, 2, 3, 4, 5, 6, "Purple", "Orange", "Green", "Blue"] as string[];
-        options.addOption("Purple", "Mouth", 0, zeroAddress, 1);
-        options.addOption("Orange", "Eyes", 0, zeroAddress, 1);
-        options.addOption("Green", "Type", 0, zeroAddress, 1);
-        options.addOption("Blue", "Markings", 0, zeroAddress, 1);
+        await options.addOption("Purple", "Mouth", 1, 1);
+        await options.addOption("Orange", "Eyes", 2, 1);
+        await options.addOption("Green", "Type", 3, 1);
+        await options.addOption("Blue", "Markings", 4, 1);
         receipt = await characterValidator.createCharacter(pillboosts, traitsplus);
     });
-    it("Can mint an avatar with a paid in ETH upgrade", async () => {
+    it.only("Can mint an avatar with a paid in ETH upgrade", async () => {
+      const pillboosts : string[] = [];
+      const traitsplus: string[] = ["Pepel",1, 2, 3, 4, 5, 6, "Purple", "Orange", "Green", "Blue"] as string[];
+      await options.addOption("Purple", "Mouth", 1, 1);
+      await options.addOption("Orange", "Eyes", 2, 1);
+      await options.addOption("Green", "Type", 3, 1);
+      await options.addOption("Blue", "Markings", 4, 1);
+      await options.setEthRequirement(1, cost);
+      receipt = await characterValidator.createCharacter(pillboosts, traitsplus, {value: cost});
     });
     it("Can mint an avatar with a pill gated upgrade", async () => {
     });

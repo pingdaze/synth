@@ -18,10 +18,10 @@ contract SelectableOptions {
 
     // Extremely unwieldly struct; do better?
     struct Option {
-        uint8 id;
         uint8 req; // 1 = HAS ETH, 2 = HAS PILL, 3 = Has TRAIT, 4 = HAS NOT TRAIT
         uint8 form;
         string slot;
+        string option;
     }
     struct PillReq {
         address account;
@@ -37,14 +37,17 @@ contract SelectableOptions {
     mapping(uint8 => string) private _idToTraitReq;
 
     // Mapping between the string rep of the selected character option and the fully qualified option requirements
-    mapping(string => Option) private _options;
+    mapping(uint8 => Option) private _options;
+
+    mapping(string => uint8) private _optionToId;
 
     //
     function validateOption(
         string[] calldata options,
         uint256 index
     ) external payable returns (uint8) {
-        Option memory op = _options[options[index]];
+        uint8 id = _optionToId[options[index]];
+        Option memory op = _options[id];
         string memory form = forms[op.form]; // Hashmonk or Pepel
         require(_compareCall(options[0], form));
         // TODO: Is there a smarter/more efficient/more extensible version of this?
@@ -72,28 +75,28 @@ contract SelectableOptions {
         }
         // HAS ETH
         if (op.req == 1) {
-            _checkHasEth(op.id);
+            _checkHasEth(id);
         }
         // HAS PILL
         if (op.req == 2) {
-            _checkHasPill(op.id);
+            _checkHasPill(id);
         }
         // HAS TRAIT
         if (op.req == 3) {
-            _checkHasTrait(op.id, options);
+            _checkHasTrait(id, options);
         }
         // HAS NOT TRAIT
         if (op.req == 4) {
-            _checkHasNotTrait(op.id, options);
+            _checkHasNotTrait(id, options);
         }
-        return op.id;
+        return id;
     }
 
     function getOption(string calldata option)
         external
         returns (Option memory op)
     {
-        op = _options[option];
+        op = _options[_optionToId[option]];
     }
 
     // TODO: Put this somewhere better plx; memory vs calldata mismatch
@@ -134,26 +137,62 @@ contract SelectableOptions {
     }
 
     /*
-        string form;
+        uint8 req; // 1 = HAS ETH, 2 = HAS PILL, 3 = Has TRAIT, 4 = HAS NOT TRAIT
+        uint8 form;
         string slot;
-        uint256 req; // 1 = paid, 2 = 721 gated, 3 = 1155 gated, 4 = pill gated
-        address gate;
-        uint256 cost;
-        uint8 id;
+        string option;
     }
     */
     function addOption(
         string calldata option,
         string calldata slot,
         uint8 id,
-        uint8 req,
         uint8 form
     ) external {
-        _options[option] = Option(id, req, form, slot);
+        _optionToId[option] = id;
+        _options[id] = Option(0, form, slot, option);
+    }
+    function setEthRequirement(
+        uint8 id,
+        uint256 cost
+    ) external {
+        _options[id].req = 1;
+        _idToEthCost[id] = cost;
+    }
+    function setPillRequirement(
+        uint8 id,
+        address account,
+        uint256 reqId
+    ) external {
+        _options[id].req = 2;
+        _idToPillReq[id] = PillReq(account, reqId);
+    }
+    function setTraitRequirement(
+        uint8 id,
+        string calldata trait
+    ) external {
+        _options[id].req = 3;
+        _idToTraitReq[id] = trait;
+    }
+    function setNotTraitRequirement(
+        uint8 id,
+        string calldata trait
+    ) external {
+        _options[id].req = 4;
+        _idToTraitReq[id] = trait;
+    }
+
+    function getCostFromOption(string calldata option) external view returns (uint256) {
+        uint8 id = _optionToId[option];
+        Option memory optionStruct = _options[id];
+        if(optionStruct.req != 1) {
+            return 0;
+        }
+        return _idToEthCost[id];
     }
 
     function _checkHasEth(uint8 id) internal {
-        require(msg.value >= _idToEthCost[id]);
+        require(msg.value >= _idToEthCost[id], "not enough ETH");
     }
 
     function _checkHasPill(uint8 id) internal view {

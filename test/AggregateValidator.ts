@@ -22,9 +22,9 @@ const mintRole = 1;
 
 
 
-describe.only("AggregateValidator", () => {
+describe("AggregateValidator", () => {
 
-  describe.only("isValid", () => {
+  describe("isValid", () => {
     let owner: SignerWithAddress, user1: SignerWithAddress, checker : CheckerValidator, payments : PaymentValidator, authority : MultiRolesAuthority;
     let core: Core1155, validator : AggregateValidator, nift: Basic1155, receipt, initialBalance;
     before(async () => {
