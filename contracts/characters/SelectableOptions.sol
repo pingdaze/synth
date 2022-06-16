@@ -19,26 +19,37 @@ contract SelectableOptions {
     // Extremely unwieldly struct; do better?
     struct Option {
         uint8 id;
-        uint256 req; // 1 = paid, 2 = 721 gated, 3 = 1155 gated, 4 = pill gated
-        uint256 cost;
-        address gate;
-        string form;
+        uint8 req; // 1 = HAS ETH, 2 = HAS PILL, 3 = Has TRAIT, 4 = HAS NOT TRAIT
+        uint8 form;
         string slot;
     }
+    struct PillReq {
+        address account;
+        uint256 id;
+    }
+    string[] forms = [_HASHMONK_FORM, _PEPEL_FORM];
 
+    // For each option what exactly are we checking?
+    mapping(uint8 => uint256) private _idToEthCost;
+    // This is probably a little more complicated, we additionally need the ID no
+    mapping(uint8 => PillReq) private _idToPillReq;
+
+    mapping(uint8 => string) private _idToTraitReq;
+
+    // Mapping between the string rep of the selected character option and the fully qualified option requirements
     mapping(string => Option) private _options;
 
     //
     function validateOption(
-        string calldata option,
-        uint256 index,
-        string calldata form
+        string[] calldata options,
+        uint256 index
     ) external payable returns (uint8) {
-        Option memory op = _options[option];
-        require(_compareCall(form, op.form));
+        Option memory op = _options[options[index]];
+        string memory form = forms[op.form]; // Hashmonk or Pepel
+        require(_compareCall(options[0], form));
         // TODO: Is there a smarter/more efficient/more extensible version of this?
         // Can probably convert this to an ASS switch
-        if (_compareCall(form, _PEPEL_FORM)) {
+        if (_compareMem(form, _PEPEL_FORM)) {
             if (index == 7) {
                 require(_compareMem(op.slot, _MOUTH), "invalid mouth");
             } else if (index == 8) {
@@ -50,33 +61,30 @@ contract SelectableOptions {
             } else {
                 revert("invalid index");
             }
-        } else if (_compareCall(form, _HASHMONK_FORM)) {
+        } else if (_compareMem(form, _HASHMONK_FORM)) {
             if (index == 7) {
                 require(_compareMem(op.slot, _MASK));
-            }
-            if (index == 8) {
+            } else if (index == 8) {
                 require(_compareMem(op.slot, _TYPE));
             } else {
                 revert("invalid index");
             }
         }
+        // HAS ETH
         if (op.req == 1) {
-            require(msg.value > op.cost);
+            _checkHasEth(op.id);
         }
+        // HAS PILL
         if (op.req == 2) {
-            IToken token = IToken(op.gate);
-            require(token.balanceOf(msg.sender, op.id) > 0);
+            _checkHasPill(op.id);
         }
+        // HAS TRAIT
         if (op.req == 3) {
-            // Double Check
-            IToken token = IToken(op.gate);
-            require(token.balanceOf(msg.sender, op.id) > 0);
+            _checkHasTrait(op.id, options);
         }
+        // HAS NOT TRAIT
         if (op.req == 4) {
-            // Double Check
-            // There are two types of pills that we need to check for here
-            IToken token = IToken(op.gate);
-            require(token.balanceOf(msg.sender, op.id) > 0);
+            _checkHasNotTrait(op.id, options);
         }
         return op.id;
     }
@@ -112,6 +120,19 @@ contract SelectableOptions {
         }
     }
 
+
+    // TODO: Issue with overload? Potentially rename; has caused issues before
+    function _compareMem2Call(string memory a, string calldata b)
+        internal
+        returns (bool)
+    {
+        if (bytes(a).length != bytes(b).length) {
+            return false;
+        } else {
+            return keccak256(bytes(a)) == keccak256(bytes(b));
+        }
+    }
+
     /*
         string form;
         string slot;
@@ -123,13 +144,35 @@ contract SelectableOptions {
     */
     function addOption(
         string calldata option,
-        string calldata form,
         string calldata slot,
-        uint256 req,
-        address gate,
-        uint256 cost,
-        uint8 id
+        uint8 id,
+        uint8 req,
+        uint8 form
     ) external {
-        _options[option] = Option(id, req, cost, gate, form, slot );
+        _options[option] = Option(id, req, form, slot);
     }
+
+    function _checkHasEth(uint8 id) internal {
+        require(msg.value >= _idToEthCost[id]);
+    }
+
+    function _checkHasPill(uint8 id) internal view {
+        require(IToken(_idToPillReq[id].account).balanceOf(msg.sender, _idToPillReq[id].id) > 0, "You do not have the required pill");
+    }
+
+    function _checkHasTrait(uint8 id, string[] calldata options) internal {
+        require(_findTrait(id, options) == false, "You already have this trait");
+    }
+
+    function _checkHasNotTrait(uint8 id, string[] calldata options) internal {
+        require(!_findTrait(id, options) == false, "You already have this trait");
+    }
+
+    function _findTrait(uint8 id, string[] calldata options) internal returns(bool traitFound) {
+        string memory trait = _idToTraitReq[id];
+        for(uint8 i = 3; i< 6 && !traitFound; i++) {
+            traitFound = _compareMem2Call(trait, options[i]);
+        }
+    }
+
 }

@@ -114,35 +114,28 @@ contract CharacterValidator is Ownable {
         Skeleton memory newSkeleton;
         if (_compareMem(traitsPlus[0], "Pepel")) {
             newSkeleton.mouth = selectableOptions.validateOption(
-                traitsPlus[7],
-                7,
-                traitsPlus[0]
+                traitsPlus,
+                7
             );
             newSkeleton.eyes = selectableOptions.validateOption(
-                traitsPlus[8],
-                8,
-                traitsPlus[0]
+                traitsPlus,
+                8
             );
             newSkeleton.color = selectableOptions.validateOption(
-                traitsPlus[9],
-                9,
-                traitsPlus[0]
+                traitsPlus,
+                9
             );
             newSkeleton.marking = selectableOptions.validateOption(
-                traitsPlus[10],
-                10,
-                traitsPlus[0]
-            );
+                traitsPlus,
+                10            );
         } else if (_compareMem(traitsPlus[0], "Hashmonk")) {
             newSkeleton.mask = selectableOptions.validateOption(
-                traitsPlus[7],
-                7,
-                traitsPlus[0]
+                traitsPlus,
+                7
             );
             newSkeleton.color = selectableOptions.validateOption(
-                traitsPlus[8],
-                8,
-                traitsPlus[0]
+                traitsPlus,
+                8
             );
         } else {
             revert("Invalid form");
