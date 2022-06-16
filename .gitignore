@@ -4,3 +4,5 @@ cache
 typechain
 .env
 /public
+artifacts
+typechain
