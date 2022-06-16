@@ -30,6 +30,9 @@ const enableProduction = process.env.COMPILE_MODE === "production";
         version: "0.8.4"
       },
       {
+        version: "0.8.10"
+      },
+      {
         version: "0.5.5"
       },
       {

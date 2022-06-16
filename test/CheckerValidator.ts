@@ -2,9 +2,7 @@
 import {ethers} from "hardhat";
 import {expect} from "chai";
 
-import {Basic1155} from "../typechain-types/contracts/test/Basic1155";
-import {Core1155} from "../typechain-types/contracts/Core1155";
-import {CheckerValidator} from "../typechain-types/contracts/validators/CheckerValidator";
+import {Basic1155, Core1155, CheckerValidator} from "../typechain-types";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import {deployCheckerValidator, deployCore1155, deployMock1155} from "./shared/deploys";
 const zeroAddress = "0x0000000000000000000000000000000000000000";

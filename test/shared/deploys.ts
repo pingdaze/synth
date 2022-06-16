@@ -1,5 +1,5 @@
 import { ethers } from "hardhat";
-import {Core1155, LinkMock, VRFCoordinatorMock, Characters, SelectableOptions, WearablesValidator, AugmentsValidator, Core721, Basic1155, RolesAuthority, Authority, RandomnessRelayL2} from "../../typechain-types/";
+import {Core1155, IMintPipe, LinkMock, VRFCoordinatorMock, Characters, SelectableOptions, WearablesValidator, AugmentsValidator, Core721, Basic1155, RolesAuthority, Authority, RandomnessRelayL2} from "../../typechain-types/";
 
 
 export const zeroAddress = ethers.constants.AddressZero;
@@ -93,7 +93,15 @@ export const deployWearablesValidator = async (
     const WearablesValidator = await ethers.getContractFactory("WearablesValidator");
     return WearablesValidator.deploy(character.address, core.address, authority);
   };
-export const deployAugmentsValidator = async (
+export const deployAggregateValidator = async (
+      core: Core1155, id: number, supply: number, authority: Authority | string = zeroAddress
+  ) => {
+    const AggregateValidator = await ethers.getContractFactory("AggregateValidator");
+    return AggregateValidator.deploy(core.address, id, supply, getAuthAddr(authority));
+  };
+
+
+export const deployAugmentsValidator = async (   
       core: Core1155, character: Characters, authority: Authority | string = zeroAddress
   ) => {
     const AugmentsValidator = await ethers.getContractFactory("AugmentsValidator");
@@ -125,6 +133,15 @@ export const deployCheckerValidator = async (
     const CheckerValidator = await ethers.getContractFactory("CheckerValidator");
     return CheckerValidator.deploy(core.address, nift.address, _id);
   };
+export const deployCheckerValidatorV2 = async (
+      core: IMintPipe,
+      nift: Basic1155,
+      _id = 1,
+      authority: Authority | string = zeroAddress
+  ) => {
+    const CheckerValidator = await ethers.getContractFactory("CheckerValidatorV2");
+    return CheckerValidator.deploy(core.address, nift.address, _id, getAuthAddr(authority));
+  };
 
 export const deployPaymentValidator = async (
       core: Core1155,
@@ -135,6 +152,17 @@ export const deployPaymentValidator = async (
     const accounts = await ethers.getSigners();
     const PaymentValidator = await ethers.getContractFactory("PaymentValidator");
     return PaymentValidator.connect(accounts[3]).deploy(core.address, _id, _cost, _supply);
+  };
+export const deployPaymentValidatorV2 = async (
+      core: IMintPipe,
+      _id = 1,
+      _cost = ethers.utils.parseEther("1"),
+      _supply = 10000,
+      authority: Authority | string = zeroAddress
+  ) => {
+    const accounts = await ethers.getSigners();
+    const PaymentValidator = await ethers.getContractFactory("PaymentValidatorV2");
+    return PaymentValidator.connect(accounts[3]).deploy(core.address, _id, _cost, _supply, getAuthAddr(authority));
   };
 
 
@@ -164,6 +192,14 @@ export const deploySequenceValidator = async (
     const Validator = await ethers.getContractFactory("SequenceValidator")
     return Validator.deploy(core.address);
   }
+
+export const deployMultiAuth = async (
+  owner: string,
+  authority: Authority | string = zeroAddress
+) => {
+  const MultiRolesAuthority = await ethers.getContractFactory("MultiRolesAuthority")
+  return MultiRolesAuthority.deploy(owner, getAuthAddr(authority));
+}
   
   
 export const deployRequester = async (
