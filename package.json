@@ -13,6 +13,7 @@
     "goRinkeby": "hardhat run scripts/auction.js --network rinkeby",
     "payments-mainnet": "hardhat run scripts/payments.js --network mainnet",
     "buy": "hardhat run scripts/buy-pill.js --network mainnet",
+    "limit": "hardhat run scripts/set-limit.js --network mainnet",
     "collect": "hardhat run scripts/collect.js --network mainnet",
     "goMainnet": "hardhat run scripts/auction.js --network mainnet",
     "deployRinkeby": "hardhat run scripts/deploy.js --network rinkeby",
