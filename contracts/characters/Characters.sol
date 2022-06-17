@@ -136,6 +136,21 @@ contract Characters is Context, Auth {
   ) external onlyWearables {
     _setOutfitSlot(slotID, outfits[getIdFromAddress(_player)], id);
   }
+  function equipSkeletonAdmin(
+    uint256 slotID,
+    uint32 id,
+    address _player
+  ) external requiresAuth {
+    _setSkeletonSlot(slotID, skeletons[getIdFromAddress(_player)], id);
+  }
+
+  function equipOutfitAdmin(
+    uint256 slotID,
+    uint32 id,
+    address _player
+  ) external requiresAuth {
+    _setOutfitSlot(slotID, outfits[getIdFromAddress(_player)], id);
+  }
 
   function unequipSkeleton(uint256 slotID, address _player)
     external

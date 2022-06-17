@@ -15,6 +15,7 @@ contract WearablesValidator is Context, Auth {
   mapping(uint8 => uint8) public formToSlotCount;
   mapping(uint256 => bool) public wearableExists;
   uint8 public slotCount;
+  mapping(uint256 => uint256) public cid;
 
   // Change to initialize call
   constructor(
@@ -105,5 +106,9 @@ contract WearablesValidator is Context, Auth {
         mul(series, 0x1000000)
       )
     }
+  }
+
+  function setCID(uint256 id, uint256 _cid) external {
+    cid[id] = _cid;
   }
 }

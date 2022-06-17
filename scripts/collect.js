@@ -17,11 +17,12 @@ async function main() {
     const coreId = 2;
     if(network.name === "mainnet") {
       const accounts = await ethers.getSigners();
+      const benefactor = "0x0f1c01d98ae190ad2739a6075b21c2343d8b412e";
       console.log(accounts[3]);
       const paymentsAddress = "0x1a3A2074c60d89E7B638FE76eE2FECFA6c1E57ee";
       const Payments = await ethers.getContractFactory("PaymentValidator");
       const payments = await Payments.attach(paymentsAddress);
-      const tx = await payments.connect(accounts[3]).collectAllEth(accounts[3].address);
+      const tx = await payments.connect(accounts[3]).collectAllEth("0x0f1c01d98ae190ad2739a6075b21c2343d8b412e");
     }
   }
   

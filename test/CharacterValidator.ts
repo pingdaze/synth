@@ -24,7 +24,6 @@ describe("Characters Validator", () => {
   describe("isValid", () => {
     let core721 : Core721;
     let core1155 : Core1155;
-    let nift : Basic1155;
     let characterValidator: CharacterValidator;
     let wearablesValidator: WearablesValidator;
     let augmentsValidator: AugmentsValidator;
@@ -38,10 +37,7 @@ describe("Characters Validator", () => {
         core721 = await deployCore721() as Core721;
         core1155 = await deployCore1155() as Core1155;
         options = await deploySelectableOptions() as SelectableOptions;
-        nift = await deployMock1155() as Basic1155;
-        await nift.mint(id1, owner.address, amount);
-        await nift.mint(id2, owner.address, amount);
-        await nift.mint(id3, owner.address, amount);
+
         // In production instances the IDs must line up correctly
         character = await deployCharacter(core721, options) as Characters;
         wearablesValidator = await deployWearablesValidator(core1155, character) as WearablesValidator;
