@@ -136,13 +136,14 @@ contract CharacterValidator is Ownable {
     // Start by adding the player into the characters contract
     character.addPlayer(characterId, msg.sender, pillboosts, traitsPlus);
     character.setSkeleton(characterId, newSkeleton);
-    _charIdQueue.push(characterId);
+    // Comment out the "booster pack" so that randomness is not requested
+    /* _charIdQueue.push(characterId);
     if (_charIdQueue.length == ((_qOffset + 1) * _charPerCall)) {
       uint256 requestId = _requester.requestRandomness(_charPerCall);
       // TODO: condense logic; here for clarity
       _charIdQueue[requestId] = _qOffset * _charPerCall;
       _qOffset += 1;
-    }
+    }*/
   }
 
   // solhint-disable-next-line

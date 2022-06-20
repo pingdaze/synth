@@ -58,47 +58,75 @@ async function main() {
   if(network.name === "ropsten" || network.name === "rinkeby" ) {
     console.log("Testing deploy to " + network.name);
     //await deployToTestnet();
+    [owner, user1] = await ethers.getSigners();
+    console.log("Signing as " + owner.address);
     const registry = await deployRegistry() as MetadataRegistry;
+    await registry.deployed();
     console.log("Registry deployed to " + registry.address);
     core721 = await deployCore721("pills.game", registry.address) as Core721;
+    await core721.deployed();
     console.log("Core721 deployed to " + core721.address);
     core1155 = await deployCore1155("pills.game", registry.address) as Core1155;
+    await core1155.deployed();
     console.log("Core1155 deployed to " + core1155.address);
     options = await deploySelectableOptions() as SelectableOptions;
+    await options.deployed();
     console.log("SelectableOptions deployed to " + options.address);
 
     // In production instances the IDs must line up correctly
     character = await deployCharacter(core721, options) as Characters;
+    await character.deployed();
     console.log("Characters deployed to " + character.address);
     wearablesValidator = await deployWearablesValidator(core1155, character) as WearablesValidator;
+    await wearablesValidator.deployed();
     console.log("WearablesValidator deployed to " + wearablesValidator.address);
     augmentsValidator = await deployAugmentsValidator(core1155, character) as AugmentsValidator;
+    await augmentsValidator.deployed();
     console.log("AugmentsValidator deployed to " + augmentsValidator.address);
     requester = await deployRequester() as RandomnessRelayL2;
+    await requester.deployed();
     console.log("Requester deployed to " + requester.address);
     characterValidator = await deployCharacterValidator(core721, options, wearablesValidator, augmentsValidator, character, requester) as CharacterValidator;
+    await characterValidator.deployed();
     console.log("CharacterValidator deployed to " + characterValidator.address);
-    character.setValidator(characterValidator.address);
+    receipt = await character.setValidator(characterValidator.address);
+    await receipt.wait();
     receipt = await core721.addValidator(characterValidator.address, [coreId]);
+    await receipt.wait();
     console.log("Added CharacterValidator to Core721");
     const pillboosts : string[] = [];
     const traitsplus: string[] = ["Pepel",1, 2, 3, 4, 5, 6, "Purple", "Orange", "Green", "Blue"] as string[];
-    await options.addOption("Purple", "Mouth", 1, 1);
-    await options.addOption("Orange", "Eyes", 2, 1);
-    await options.addOption("Green", "Type", 3, 1);
-    await options.addOption("Blue", "Markings", 4, 1);
-    receipt = await characterValidator.createCharacter(pillboosts, traitsplus);
+    receipt = await options.addOption("Purple", "Mouth", 1, 1);
+    await receipt.wait();
+    receipt = await options.addOption("Orange", "Eyes", 2, 1);
+    await receipt.wait();
+    receipt = await options.addOption("Green", "Type", 3, 1);
+    await receipt.wait();
+    receipt = await options.addOption("Blue", "Markings", 4, 1);
+    await receipt.wait();
+    console.log("Added options to SelectableOptions");
+    receipt = await characterValidator.createCharacter(pillboosts, traitsplus, {gasLimit: 1000000});
+    await receipt.wait();
     console.log("Created character");
     const characterID = await character.playerAddr2Id(owner.address);
     console.log("Character ID: " + characterID);
-
-    for(let i = 0; i < 10; i++) {
-      await character.equipSkeletonAdmin(i, i+1, owner.address);
-      await augmentsValidator.setCID(i+1, augmentsCIDS[i].toString());
+    await character.equipSkeletonAdmin(0, 1, owner.address);
+    receipt = await augmentsValidator.setCID(1, augmentsCIDS[0]);
+    await receipt.wait();
+    console.log("Set CID for augment " + 0);
+    for(let i = 3; i < 8; i++) {
+      receipt = await character.equipSkeletonAdmin(i, i+1, owner.address);
+      await receipt.wait();
+      receipt = await augmentsValidator.setCID(i+1, augmentsCIDS[i]);
+      await receipt.wait();
+      console.log("Set CID for augment " + i);
     }
-    for(let i = 0; i < 10; i++) {
-      await character.equipOutfitAdmin(i, i+1, owner.address);
-      await wearablesValidator.setCID(i+1, wearablesCIDs[i].toString());
+    for(let i = 0; i < 7; i++) {
+      receipt = await character.equipOutfitAdmin(i, i+1, owner.address);
+      await receipt.wait();
+      receipt = await wearablesValidator.setCID(i+1, wearablesCIDs[i]);
+      await receipt.wait();
+      console.log("Set CID for augment " + i);
     }
     console.log("Deployments:",
       "core721:", core721.address,
