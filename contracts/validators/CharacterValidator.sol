@@ -190,7 +190,7 @@ contract CharacterValidator is Ownable {
     uint8 characterOptionNum;
     string memory optionString;
     uint8 rarity;
-    uint8 form = _compareMem(characterInstance.traitsPlus[0], "Pepel") ? 1 : 2;
+    uint8 form = _compareMem(characterInstance.form, "Pepel") ? 1 : 2;
     uint8 augmentSlots = augmentOptions.formToSlotCount(form);
     uint8 wearableSlots = wearableOptions.formToSlotCount(form);
     // set these to the bitshifted roll just to dodge the even/odd divider
@@ -212,7 +212,7 @@ contract CharacterValidator is Ownable {
       // Shift the chance so we evade the even check in the next statement
       // then get a character option ()
       characterOptionNum = 3 + ((roll >> 1) % 3);
-      optionString = characterInstance.traitsPlus[characterOptionNum];
+      optionString = getTraitFromIndex(characterOptionNum, characterInstance);
       rarity = _getRarityFromRoll(roll);
       if (roll % 2 == 0) {
         //You get an AUGMENT!
@@ -242,6 +242,22 @@ contract CharacterValidator is Ownable {
         );
       }
     }
+  }
+
+  function getTraitFromIndex(uint256 index, Character memory char) internal pure returns (string memory) {
+    if(index == 0) {
+      return char.origin;
+    }
+    if(index == 1) {
+      return char.upbringing;
+    }
+    if(index == 2) {
+      return char.gift;
+    }
+    if(index == 3) {
+      return char.faction;
+    }
+    return "";
   }
 
   function _getRarityFromRoll(uint8 roll) internal pure returns (uint8 rarity) {

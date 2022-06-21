@@ -1,7 +1,7 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import {  artifacts, web3, network, ethers } from "hardhat";
-import {MetadataRegistry, CharacterValidator, RandomnessRelayL2, WearablesValidator, Characters, SelectableOptions, Core1155, Core721, Basic1155, AugmentsValidator} from "../typechain-types";
-import {deployRegistry, deployCore721, deployCore1155, deploySelectableOptions, deployWearablesValidator, deployAugmentsValidator, deployCharacter, deployCharacterValidator, deployMock1155, deployRequester} from "../test/shared/deploys"
+import {MetadataRegistry, CharacterValidator, RandomnessRelayL2, WearablesValidator, Characters, SelectableOptions, Core1155, Core721, Basic1155, AugmentsValidator, CharacterGenMock} from "../typechain-types";
+import {deployRegistry, deployCore721, deployCore1155, deploySelectableOptions, deployWearablesValidator, deployAugmentsValidator, deployCharacterMock, deployCharacterValidator, deployMock1155, deployRequester} from "../test/shared/deploys"
 const zeroAddress = "0x0000000000000000000000000000000000000000";
 const coreId = 1;
 
@@ -46,7 +46,7 @@ async function main() {
   let wearablesValidator: WearablesValidator;
   let augmentsValidator: AugmentsValidator;
   let requester: RandomnessRelayL2;
-  let character: Characters;
+  let character: CharacterGenMock;
   let receipt;
   let options: SelectableOptions;
   // This is horribly inneficient, probably don't redeploy these each time?
@@ -74,7 +74,7 @@ async function main() {
     console.log("SelectableOptions deployed to " + options.address);
 
     // In production instances the IDs must line up correctly
-    character = await deployCharacter(core721, options) as Characters;
+    character = await deployCharacterMock(core721, options) as CharacterGenMock;
     await character.deployed();
     console.log("Characters deployed to " + character.address);
     wearablesValidator = await deployWearablesValidator(core1155, character) as WearablesValidator;

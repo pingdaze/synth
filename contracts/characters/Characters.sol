@@ -112,9 +112,7 @@ contract Characters is Context, Auth {
       traitsPlus[3],
       traitsPlus[4],
       traitsPlus[5],
-      pillboosts,
-      (new uint256[](0)),
-      traitsPlus
+      pillboosts
     );
   }
 
@@ -342,6 +340,7 @@ contract Characters is Context, Auth {
     // TODO: Put this somewhere better plx; memory vs calldata mismatch
   function _compareMem(string memory a, string memory b)
     internal
+    pure
     returns (bool)
   {
     if (bytes(a).length != bytes(b).length) {

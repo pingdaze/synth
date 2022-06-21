@@ -119,6 +119,16 @@ export const deployCharacter = async (
     }});
     return characters.deploy(core.address, options.address, authority);
   };
+export const deployCharacterMock = async (
+      core: Core721, options: SelectableOptions, authority: Authority | string = zeroAddress
+  ) => {
+    const library = await (await ethers.getContractFactory("CharacterLibrary")).deploy();
+    const characters = await ethers.getContractFactory("CharacterGenMock", {
+      libraries: {
+        CharacterLibrary: library.address
+    }});
+    return characters.deploy(core.address, options.address, authority);
+  };
   
 export const deploySelectableOptions = async () => {
       const Options = await ethers.getContractFactory("SelectableOptions");
