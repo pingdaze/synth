@@ -322,7 +322,7 @@ contract Characters is Context, Auth {
   }
 
   function getName(uint256 tokenID) public view returns (string memory) {
-    return _compareMem(characters[tokenID].name, "") ? defaultName :characters[tokenID].name ;
+    return _compareMem(characters[tokenID].name, "") ? defaultName :characters[tokenID].name;
   }
 
   function getCharacter(uint256 tokenID)
