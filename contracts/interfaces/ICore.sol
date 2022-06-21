@@ -3,6 +3,8 @@
 interface ICore {
   function ownerOf(uint256 id) external view returns (address);
 
+  function uri(uint256 id) external view returns (string memory);
+
   function modularMintInit(
     uint256 _dropId,
     address _to,

@@ -111,4 +111,8 @@ contract WearablesValidator is Context, Auth {
   function setCID(uint256 id, string calldata _cid) external {
     cid[id] = _cid;
   }
+
+  function uri(uint256 id) external view returns (string memory) {
+    return core.uri(id);
+  }
 }

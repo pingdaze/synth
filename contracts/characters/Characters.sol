@@ -23,6 +23,8 @@ contract Characters is Context, Auth {
   SelectableOptions public selectableOptions;
   uint256 private _nextId = 0;
   address private _validator;
+  string defaultDescription;
+  string defaultName;
   IEXP public exp;
   IREP public rep;
 
@@ -83,6 +85,13 @@ contract Characters is Context, Auth {
   /**
    * @dev Do we want to make this validator protected? onlyValidator
    */
+     // [0] = form
+  // [1] = class
+  // [2] = name
+  // [3] = origin
+  // [4] = upbringing
+  // [5] = gift
+  // [6] = faction
   function addPlayer(
     uint256 _id,
     address _player,
@@ -96,7 +105,13 @@ contract Characters is Context, Auth {
       _id,
       _player,
       CharacterLibrary.MAX_INT,
-      CharacterLibrary.MAX_INT,
+      "",
+      "",
+      "",
+      traitsPlus[0],
+      traitsPlus[3],
+      traitsPlus[4],
+      traitsPlus[5],
       pillboosts,
       (new uint256[](0)),
       traitsPlus
@@ -107,6 +122,14 @@ contract Characters is Context, Auth {
     // Give removing player XP
     // Reset the removed players XP
     playerAddr2Id[_player] = CharacterLibrary.MAX_INT;
+  }
+
+  function setDefaultDescription(string memory _description) public requiresAuth {
+    defaultDescription = _description;
+  }
+
+  function setDefaultName(string memory _name) public requiresAuth {
+    defaultName = _name;
   }
 
   /**
@@ -134,21 +157,6 @@ contract Characters is Context, Auth {
     uint32 id,
     address _player
   ) external onlyWearables {
-    _setOutfitSlot(slotID, outfits[getIdFromAddress(_player)], id);
-  }
-  function equipSkeletonAdmin(
-    uint256 slotID,
-    uint32 id,
-    address _player
-  ) external requiresAuth {
-    _setSkeletonSlot(slotID, skeletons[getIdFromAddress(_player)], id);
-  }
-
-  function equipOutfitAdmin(
-    uint256 slotID,
-    uint32 id,
-    address _player
-  ) external requiresAuth {
     _setOutfitSlot(slotID, outfits[getIdFromAddress(_player)], id);
   }
 
@@ -289,6 +297,36 @@ contract Characters is Context, Auth {
     return outfits[tokenID];
   }
 
+
+  function getOptions(uint256 tokenID)
+    external
+    view
+    returns (
+      string memory form,
+      string memory name,
+      string memory origin,
+      string memory upbringing,
+      string memory gift,
+      string memory faction
+    )
+  {
+    Character memory char =  characters[tokenID];
+    form = char.form;
+    name = getName(tokenID);
+    origin = char.origin;
+    upbringing = char.upbringing;
+    gift = char.gift;
+    faction = char.faction;
+  }
+
+  function getDescription(uint256 tokenID) external view returns (string memory) {
+    return _compareMem(characters[tokenID].description, "") ? defaultDescription : characters[tokenID].description;
+  }
+
+  function getName(uint256 tokenID) public view returns (string memory) {
+    return _compareMem(characters[tokenID].name, "") ? defaultName :characters[tokenID].name ;
+  }
+
   function getCharacter(uint256 tokenID)
     external
     view
@@ -299,5 +337,17 @@ contract Characters is Context, Auth {
 
   function getIdFromAddress(address _addr) public view returns (uint256) {
     return playerAddr2Id[_addr];
+  }
+
+    // TODO: Put this somewhere better plx; memory vs calldata mismatch
+  function _compareMem(string memory a, string memory b)
+    internal
+    returns (bool)
+  {
+    if (bytes(a).length != bytes(b).length) {
+      return false;
+    } else {
+      return keccak256(bytes(a)) == keccak256(bytes(b));
+    }
   }
 }

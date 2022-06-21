@@ -7,19 +7,15 @@ struct Player {
 struct Character {
   uint256 characterId;
   address player;
-  uint256 faction;
   uint256 class;
+  string faction;
+  string description;
+  string name;
+  string form;
+  string origin;
+  string upbringing;
+  string gift;
   address[] pillboosts;
-  // Can we get away with making this like uhhh uint8?
-  // TODO: Test if gas savings from uint8, shouldn't be but still check
-  // Check permutations and future numbers?? I think we're good tbh
-  uint256[] attributes;
-  // Traits format
-  // [0] = form
-  // [1] = class
-  // [2] = name
-  // [3-X] = traits
-  string[] traitsPlus;
 }
 // Note: We probably wantt o abstract out/push out the character logic from the validator logic and just have the single validator reach into the other state holding contracts
 // Can we create the 1155 asset the first time we _unequip_ the 1155?
