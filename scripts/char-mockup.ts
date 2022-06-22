@@ -12,25 +12,25 @@ const id4 = 4;
 const amount = 1;
 const cost = ethers.utils.parseEther("1");
 const wearablesCIDs = [
-  "bafybeifnnuumhdldv4tirlnpo5vfrrbam4bwgvmu7lg7s2shmmtw5xom6i", // head
-  "bafybeidmsf6xtldljztlocfzxnx747gws5lte6nvwvuycvq3vw3vtfjxfu", // torso
-  "bafybeieb45ngfae5bn57tkop7l2mgkvfaui2267a6xo5qa5drm5m3oi4aa", // lArm
-  "bafybeidemd4ccpr4ccv4rouyo4tyjk5gftzgxoj4zkda2irgxor5wda2pe", // rArm
-  "bafybeib327pud5vondqotlottzbuqz4ljxdyxmk7nghwnpt64tr7nzoeuu", // rleg
-  "bafybeia2vtsgzor2ihq4uqt6rd6dk7rxvr5cmaevznxjagrif2inazbzee", // lleg
-  "bafybeib27ucdzwmab6fj6njgua35tw6jjzfmmgcm3he6pyirai4xja65h4" // floating
+  "bafybeihuul5fzv7kyv64sbwf3qim4bem5ppibctmghwitndmfty76ahfv4", // head
+  "bafybeihjngzer4te6hgtdm2i3kvksq3as3zty3qmgbz446dkuzbgdhvfcy", // torso
+  "bafybeihxfawjedjbxcjbshc6qpldpcn3wti3jjndajskaerwhyuwalikpi", // lArm
+  "bafybeifineuengjnsnxudmuuy62zt2nrf54icg5shfaoeidizizfvz6c7a", // rArm
+  "bafybeih2f6gnog23obn4zwqwoqp6b7f3wn44gn2njloatpmy7als7gmp4y", // rleg
+  "bafybeidgly5dodid7ifwyi36nsk66mgqrwvphdex5w3nmkmqilx7wiswvy", // lleg
+  "bafybeibjg43m3qsouu5gyabgjvitktchho7nj4jrmfexwtqbdxyhacbmpq" // floating
 ];
 const augmentsCIDS = [
-  "bafybeicbgb3muvpuegispolgkqcw5zimrlaonot4ofulr47suwjs4fbbu4", // head
-  "bafybeihq3bnjymoiqefvag7octkwqpsk5ulztplgeq7ukvy6paqdwym52a", // mouth
-  "bafybeihoor6ocfomgkp5ubcfdu7kxrutcgq5f7s4sx37524svswivpi4dy", // eyes
-  "bafybeid4m4ii5qrb6yratt56nvyt2gfdy2wut3fv4do3565kha3gv44qui", // torso
-  "bafybeia2d52w5vaz5jpwvghmlct5k74ixx3tarxdihrqh7ochgzj5upa4q", // larm
-  "bafybeidqijtuhsjc55a4y3recjgqmnyivzckgzq6kjuwsionhbd33xzm6m", // rarm
-  "bafybeifnvnmvufmy6swi7g42ujxs65ytarqhdecjvajuoirhrt3clrighq", // rleg
-  "bafybeid4m4ii5qrb6yratt56nvyt2gfdy2wut3fv4do3565kha3gv44qui", // lleg
+  "bafybeihsaouxzrawwghyxily4q3q6ncnrr5zqmfax4a43acrgrpunz7yda", // head
+  "bafybeihyfsrugiutnmradxzvoyl4qmq2u2bzn4owmzijvyxrt64s5omkrq", // mouth
+  "bafybeih4wb7xscxxober65kwgdabtibpmcnsbfbosnx6rfu5kgz4mehxf4", // eyes
+  "bafybeihjvbla55sgg5powjd64mfq76vtqeig7sx4n663zhji73lo7yhzna", // torso
+  "bafybeihqaaowoheogsy5qze346rv6xlqz4qap3yu6wetzd2f2gaevwbczm", // larm
+  "bafybeigzmedasrb3pkn7zctjgnz5mmx5zhcmsenoydjhlotj3dmcbbzl6e", // rarm
+  "bafybeif3smc6fllv55yfspkwhdfch3q75mxeau6awr3tqqrrgzvzdqgcve", // rleg
+  "bafybeigzwyjc3mghq5mp32bizgyyowhi5jabdoed2je43pigkpgokuikre", // lleg
   "", // color
-  "bafybeieuluct3hb2vson76aia5n6wv6engzkosjysojg7lm5b7tkbnozge", // markings
+  "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu", // markings
   ""  // mask
 ];
 

@@ -1,40 +1,10 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
-import {  artifacts, web3, network, ethers } from "hardhat";
-import {MetadataRegistry, CharacterValidator, RandomnessRelayL2, WearablesValidator, Characters, SelectableOptions, Core1155, Core721, Basic1155, AugmentsValidator, CharacterGenMock} from "../typechain-types";
-import {deployRegistry, deployCore721, deployCore1155, deploySelectableOptions, deployWearablesValidator, deployAugmentsValidator, deployCharacterMock, deployCharacterValidator, deployMock1155, deployRequester} from "../test/shared/deploys"
+import { network, ethers } from "hardhat";
+import {CharacterValidator, RandomnessRelayL2, WearablesValidator, SelectableOptions, Core1155, Core721, AugmentsValidator, CharacterGenMock} from "../typechain-types";
 import charDeploymant from "./deploy-args/char-mock-deployment.json"
 
-const zeroAddress = "0x0000000000000000000000000000000000000000";
-const coreId = 1;
 
 const id1 = 1;
-const id2 = 2;
-const id3 = 3;
-const id4 = 4;
-const amount = 1;
-const cost = ethers.utils.parseEther("1");
-const wearablesCIDs = [
-  "bafybeifnnuumhdldv4tirlnpo5vfrrbam4bwgvmu7lg7s2shmmtw5xom6i", // head
-  "bafybeidmsf6xtldljztlocfzxnx747gws5lte6nvwvuycvq3vw3vtfjxfu", // torso
-  "bafybeieb45ngfae5bn57tkop7l2mgkvfaui2267a6xo5qa5drm5m3oi4aa", // lArm
-  "bafybeidemd4ccpr4ccv4rouyo4tyjk5gftzgxoj4zkda2irgxor5wda2pe", // rArm
-  "bafybeib327pud5vondqotlottzbuqz4ljxdyxmk7nghwnpt64tr7nzoeuu", // rleg
-  "bafybeia2vtsgzor2ihq4uqt6rd6dk7rxvr5cmaevznxjagrif2inazbzee", // lleg
-  "bafybeib27ucdzwmab6fj6njgua35tw6jjzfmmgcm3he6pyirai4xja65h4" // floating
-];
-const augmentsCIDS = [
-  "bafybeicbgb3muvpuegispolgkqcw5zimrlaonot4ofulr47suwjs4fbbu4", // head
-  "bafybeihq3bnjymoiqefvag7octkwqpsk5ulztplgeq7ukvy6paqdwym52a", // mouth
-  "bafybeihoor6ocfomgkp5ubcfdu7kxrutcgq5f7s4sx37524svswivpi4dy", // eyes
-  "bafybeid4m4ii5qrb6yratt56nvyt2gfdy2wut3fv4do3565kha3gv44qui", // torso
-  "bafybeia2d52w5vaz5jpwvghmlct5k74ixx3tarxdihrqh7ochgzj5upa4q", // larm
-  "bafybeidqijtuhsjc55a4y3recjgqmnyivzckgzq6kjuwsionhbd33xzm6m", // rarm
-  "bafybeifnvnmvufmy6swi7g42ujxs65ytarqhdecjvajuoirhrt3clrighq", // rleg
-  "bafybeid4m4ii5qrb6yratt56nvyt2gfdy2wut3fv4do3565kha3gv44qui", // lleg
-  "", // color
-  "bafybeieuluct3hb2vson76aia5n6wv6engzkosjysojg7lm5b7tkbnozge", // markings
-  ""  // mask
-];
 
 
 // Replace magic numbers
