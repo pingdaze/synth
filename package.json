@@ -16,6 +16,7 @@
     "limit": "hardhat run scripts/set-limit.js --network mainnet",
     "collect": "hardhat run scripts/collect.js --network mainnet",
     "char-mock-rink": "hardhat run scripts/char-mockup.ts --network rinkeby",
+    "minters-txt": "hardhat run scripts/get-all-minters.ts --network rinkeby",
     "char-mock-info": "hardhat run scripts/get-char-mock-info.ts --network rinkeby",
     "goMainnet": "hardhat run scripts/auction.js --network mainnet",
     "deployRinkeby": "hardhat run scripts/deploy.js --network rinkeby",
