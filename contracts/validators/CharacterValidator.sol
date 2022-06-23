@@ -25,7 +25,6 @@ contract CharacterValidator is Ownable {
   ICharacter public character;
   uint256 public nextId = 0;
 
-  bytes32 private _keyHash;
 
   uint256[] private _charIdQueue;
   uint32 private _charPerCall;
@@ -112,26 +111,21 @@ contract CharacterValidator is Ownable {
     uint256 characterId
   ) internal {
     Skeleton memory newSkeleton;
-    uint256 cost = selectableOptions.getCostFromOption(traitsPlus[7]);
     if (_compareMem(traitsPlus[0], "Pepel")) {
-      newSkeleton.mouth = selectableOptions.validateOption{value: cost}(
+      newSkeleton.mouth = selectableOptions.validateOption(
         traitsPlus,
-        7
+        7,
+        msg.value
       );
-      cost = selectableOptions.getCostFromOption(traitsPlus[8]);
-      newSkeleton.eyes = selectableOptions.validateOption(traitsPlus, 8);
-      cost = selectableOptions.getCostFromOption(traitsPlus[9]);
-      newSkeleton.color = selectableOptions.validateOption(traitsPlus, 9);
-      cost = selectableOptions.getCostFromOption(traitsPlus[10]);
-      newSkeleton.marking = selectableOptions.validateOption(traitsPlus, 10);
+      newSkeleton.eyes = selectableOptions.validateOption(traitsPlus, 8, msg.value);
+      newSkeleton.color = selectableOptions.validateOption(traitsPlus, 9, msg.value);
+      newSkeleton.marking = selectableOptions.validateOption(traitsPlus, 10, msg.value);
     } else if (_compareMem(traitsPlus[0], "Hashmonk")) {
-      newSkeleton.mask = selectableOptions.validateOption(traitsPlus, 7);
-      cost = selectableOptions.getCostFromOption(traitsPlus[8]);
-      newSkeleton.color = selectableOptions.validateOption(traitsPlus, 8);
+      newSkeleton.mask = selectableOptions.validateOption(traitsPlus, 7, msg.value);
+      newSkeleton.color = selectableOptions.validateOption(traitsPlus, 8, msg.value);
     } else {
       revert("Invalid form");
     }
-
     core.modularMintCallback(msg.sender, characterId, "");
     // Start by adding the player into the characters contract
     character.addPlayer(characterId, msg.sender, pillboosts, traitsPlus);
@@ -212,7 +206,7 @@ contract CharacterValidator is Ownable {
       // Shift the chance so we evade the even check in the next statement
       // then get a character option ()
       characterOptionNum = 3 + ((roll >> 1) % 3);
-      optionString = getTraitFromIndex(characterOptionNum, characterInstance);
+      optionString = _getTraitFromIndex(characterOptionNum, characterInstance);
       rarity = _getRarityFromRoll(roll);
       if (roll % 2 == 0) {
         //You get an AUGMENT!
@@ -244,7 +238,7 @@ contract CharacterValidator is Ownable {
     }
   }
 
-  function getTraitFromIndex(uint256 index, Character memory char) internal pure returns (string memory) {
+  function _getTraitFromIndex(uint256 index, Character memory char) internal pure returns (string memory) {
     if(index == 0) {
       return char.origin;
     }

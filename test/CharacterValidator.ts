@@ -1,22 +1,18 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import {  ethers } from "hardhat";
+import {expect} from "chai";
 import {CharacterValidator, RandomnessRelayL2, WearablesValidator, Characters, SelectableOptions, Core1155, Core721, Basic1155, AugmentsValidator} from "../typechain-types";
 import {deployCore721, deployCore1155, deploySelectableOptions, deployWearablesValidator, deployAugmentsValidator, deployCharacter, deployCharacterValidator, deployMock1155, deployRequester} from "./shared/deploys"
-const zeroAddress = "0x0000000000000000000000000000000000000000";
+import { ContractTransaction } from "ethers";
 
 const coreId = 1;
 
-const id1 = 1;
-const id2 = 2;
-const id3 = 3;
-const id4 = 4;
-const amount = 1;
 const cost = ethers.utils.parseEther("1");
 
 
 // Replace magic numbers
 
-describe("Characters Validator", () => {
+describe.only("Characters Validator", () => {
   let owner: SignerWithAddress, user1: SignerWithAddress;
   before(async () => {
       [owner, user1] = await ethers.getSigners();
@@ -29,7 +25,7 @@ describe("Characters Validator", () => {
     let augmentsValidator: AugmentsValidator;
     let requester: RandomnessRelayL2;
     let character: Characters;
-    let receipt;
+    let receipt: ContractTransaction;
     let options: SelectableOptions;
     // This is horribly inneficient, probably don't redeploy these each time?
     beforeEach(async () => {
@@ -65,6 +61,16 @@ describe("Characters Validator", () => {
       await options.addOption("Blue", "Markings", 4, 1);
       await options.setEthRequirement(1, cost);
       receipt = await characterValidator.createCharacter(pillboosts, traitsplus, {value: cost});
+    });
+    it("Fails to mint an avatar with paid upgrade and no value" , async () => {
+      const pillboosts : string[] = [];
+      const traitsplus: string[] = ["Pepel",1, 2, 3, 4, 5, 6, "Purple", "Orange", "Green", "Blue"] as string[];
+      await options.addOption("Purple", "Mouth", 1, 1);
+      await options.addOption("Orange", "Eyes", 2, 1);
+      await options.addOption("Green", "Type", 3, 1);
+      await options.addOption("Blue", "Markings", 4, 1);
+      await options.setEthRequirement(1, cost);
+      expect(characterValidator.createCharacter(pillboosts, traitsplus)).to.be.revertedWith("not enough ETH");
     });
     it("Can mint an avatar with a pill gated upgrade", async () => {
     });

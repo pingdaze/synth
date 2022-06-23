@@ -42,9 +42,8 @@ contract SelectableOptions {
   mapping(string => uint8) private _optionToId;
 
   //
-  function validateOption(string[] calldata options, uint256 index)
+  function validateOption(string[] calldata options, uint256 index, uint256 ethValue)
     external
-    payable
     returns (uint8)
   {
     uint8 id = _optionToId[options[index]];
@@ -76,7 +75,7 @@ contract SelectableOptions {
     }
     // HAS ETH
     if (op.req == 1) {
-      _checkHasEth(id);
+      _checkHasEth(id, ethValue);
     }
     // HAS PILL
     if (op.req == 2) {
@@ -190,8 +189,8 @@ contract SelectableOptions {
     return _idToEthCost[id];
   }
 
-  function _checkHasEth(uint8 id) internal {
-    require(msg.value >= _idToEthCost[id], "not enough ETH");
+  function _checkHasEth(uint8 id, uint256 ethValue) internal {
+    require(ethValue >= _idToEthCost[id], "not enough ETH");
   }
 
   function _checkHasPill(uint8 id) internal view {
