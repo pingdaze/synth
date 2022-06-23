@@ -1,4 +1,3 @@
-import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { ethers } from "hardhat";
 import { expect } from "chai";
 import {
@@ -29,11 +28,8 @@ const cost = ethers.utils.parseEther("1");
 
 // Replace magic numbers
 
-describe.only("Characters Validator", () => {
-  let owner: SignerWithAddress, user1: SignerWithAddress;
-  before(async () => {
-    [owner, user1] = await ethers.getSigners();
-  });
+describe("Characters Validator", () => {
+
   describe("isValid", () => {
     let core721: Core721;
     let core1155: Core1155;
