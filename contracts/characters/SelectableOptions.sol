@@ -42,10 +42,11 @@ contract SelectableOptions {
   mapping(string => uint8) private _optionToId;
 
   //
-  function validateOption(string[] calldata options, uint256 index, uint256 ethValue)
-    external
-    returns (uint8)
-  {
+  function validateOption(
+    string[] calldata options,
+    uint256 index,
+    uint256 ethValue
+  ) external returns (uint8) {
     uint8 id = _optionToId[options[index]];
     Option memory op = _options[id];
     string memory form = forms[op.form]; // Hashmonk or Pepel

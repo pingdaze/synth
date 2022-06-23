@@ -25,7 +25,6 @@ contract CharacterValidator is Ownable {
   ICharacter public character;
   uint256 public nextId = 0;
 
-
   uint256[] private _charIdQueue;
   uint32 private _charPerCall;
   uint256 private _qOffset;
@@ -117,12 +116,32 @@ contract CharacterValidator is Ownable {
         7,
         msg.value
       );
-      newSkeleton.eyes = selectableOptions.validateOption(traitsPlus, 8, msg.value);
-      newSkeleton.color = selectableOptions.validateOption(traitsPlus, 9, msg.value);
-      newSkeleton.marking = selectableOptions.validateOption(traitsPlus, 10, msg.value);
+      newSkeleton.eyes = selectableOptions.validateOption(
+        traitsPlus,
+        8,
+        msg.value
+      );
+      newSkeleton.color = selectableOptions.validateOption(
+        traitsPlus,
+        9,
+        msg.value
+      );
+      newSkeleton.marking = selectableOptions.validateOption(
+        traitsPlus,
+        10,
+        msg.value
+      );
     } else if (_compareMem(traitsPlus[0], "Hashmonk")) {
-      newSkeleton.mask = selectableOptions.validateOption(traitsPlus, 7, msg.value);
-      newSkeleton.color = selectableOptions.validateOption(traitsPlus, 8, msg.value);
+      newSkeleton.mask = selectableOptions.validateOption(
+        traitsPlus,
+        7,
+        msg.value
+      );
+      newSkeleton.color = selectableOptions.validateOption(
+        traitsPlus,
+        8,
+        msg.value
+      );
     } else {
       revert("Invalid form");
     }
@@ -238,17 +257,21 @@ contract CharacterValidator is Ownable {
     }
   }
 
-  function _getTraitFromIndex(uint256 index, Character memory char) internal pure returns (string memory) {
-    if(index == 0) {
+  function _getTraitFromIndex(uint256 index, Character memory char)
+    internal
+    pure
+    returns (string memory)
+  {
+    if (index == 0) {
       return char.origin;
     }
-    if(index == 1) {
+    if (index == 1) {
       return char.upbringing;
     }
-    if(index == 2) {
+    if (index == 2) {
       return char.gift;
     }
-    if(index == 3) {
+    if (index == 3) {
       return char.faction;
     }
     return "";

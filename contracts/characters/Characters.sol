@@ -85,7 +85,7 @@ contract Characters is Context, Auth {
   /**
    * @dev Do we want to make this validator protected? onlyValidator
    */
-     // [0] = form
+  // [0] = form
   // [1] = class
   // [2] = name
   // [3] = origin
@@ -122,7 +122,10 @@ contract Characters is Context, Auth {
     playerAddr2Id[_player] = CharacterLibrary.MAX_INT;
   }
 
-  function setDefaultDescription(string memory _description) public requiresAuth {
+  function setDefaultDescription(string memory _description)
+    public
+    requiresAuth
+  {
     defaultDescription = _description;
   }
 
@@ -295,7 +298,6 @@ contract Characters is Context, Auth {
     return outfits[tokenID];
   }
 
-
   function getOptions(uint256 tokenID)
     external
     view
@@ -308,7 +310,7 @@ contract Characters is Context, Auth {
       string memory faction
     )
   {
-    Character memory char =  characters[tokenID];
+    Character memory char = characters[tokenID];
     form = char.form;
     name = getName(tokenID);
     origin = char.origin;
@@ -317,12 +319,22 @@ contract Characters is Context, Auth {
     faction = char.faction;
   }
 
-  function getDescription(uint256 tokenID) external view returns (string memory) {
-    return _compareMem(characters[tokenID].description, "") ? defaultDescription : characters[tokenID].description;
+  function getDescription(uint256 tokenID)
+    external
+    view
+    returns (string memory)
+  {
+    return
+      _compareMem(characters[tokenID].description, "")
+        ? defaultDescription
+        : characters[tokenID].description;
   }
 
   function getName(uint256 tokenID) public view returns (string memory) {
-    return _compareMem(characters[tokenID].name, "") ? defaultName :characters[tokenID].name;
+    return
+      _compareMem(characters[tokenID].name, "")
+        ? defaultName
+        : characters[tokenID].name;
   }
 
   function getCharacter(uint256 tokenID)
@@ -337,7 +349,7 @@ contract Characters is Context, Auth {
     return playerAddr2Id[_addr];
   }
 
-    // TODO: Put this somewhere better plx; memory vs calldata mismatch
+  // TODO: Put this somewhere better plx; memory vs calldata mismatch
   function _compareMem(string memory a, string memory b)
     internal
     pure
