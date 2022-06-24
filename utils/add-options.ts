@@ -4,11 +4,24 @@ const { ethers } = require("hardhat");
 import {SelectableOptions, WearablesValidator, AugmentsValidator} from "../typechain-types/";
 import   {SKELETON_OPTIONS, SkeletonOption, Location, StepOption, STEP_OPTIONS_BY_TYPE } from "../data/airtable"
 
-const LegacyPillToId: { [key:string]: number; kirbonite: number; shadowpak: number; ratspill: number} = {
+const pillToId: { [key:string]: number; kirbonite: number; shadowpak: number; ratspill: number} = {
   "kirbonite": 0xC,
   "shadowpak": 0xD,
   "ratspill": 0xB,
+  "unipill":  0x4,
+  "tubbypill":  0x0,
+  "memricorn":  0x9,
+  "mirrorpill":  0xE,
+  "memfruit":  0x7,
+  "memsnake":  0xA,
+  "blitpill":  0x0,
+  "synth_memwraith":  0x8,
+  "0xpill":  0x0,
+  "wassiepill":  0x0,
+  "toadzpill":  0x0,
+  "runnerpill":  0x0,
 }
+
 
 export async function pushOptions(optionsAddress: string, wearablesAddress: string, augmentsAddress: string){
   // Grab the signers so we can drop them test tokens
@@ -39,6 +52,14 @@ function processStepOption(optionsContract: SelectableOptions, slot: string) { r
   let receipt;
   receipt = await optionsContract.addOption(option.name, option.name, slot, 2);
   receipt.wait();
+  if(option.prerequisite_type === "HAS TRAIT") {
+    const id = await optionsContract.getOptionId(option.name);
+    await optionsContract.setTraitRequirement(id, option.prerequisite_value!);
+  } else if (option.prerequisite_type === "HAS NOT TRAIT") {
+    const id = await optionsContract.getOptionId(option.name);
+    await optionsContract.setNotTraitRequirement(id, option.prerequisite_value!);
+  }
+  
 }}
 function processFactionOption(optionsContract: SelectableOptions, slot: string) { return async (option: StepOption) => {
   let receipt;
@@ -46,7 +67,9 @@ function processFactionOption(optionsContract: SelectableOptions, slot: string) 
   receipt.wait();
   const id = await optionsContract.getOptionId(option.name);
   if(option.prerequisite_type === "HAS PILL") {
-    await optionsContract.setLegacyPillRequirement(id, LegacyPillToId[option.prerequisite_value!])
+    const pillId = pillToId[option.prerequisite_value!];
+    if(pillId !== 0x0)
+      await optionsContract.setLegacyPillRequirement(id, pillId)
   }
 
 }}
@@ -69,6 +92,24 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
     if(slot !== "") {
       receipt = await optionsContract.addOption(option.uuid, option.name, slot, getFormUint(option.form));
       await receipt.wait();
+    }
+    if(option.prerequisite_type === "HAS TRAIT") {
+      const id = await optionsContract.getOptionId(option.name);
+      await optionsContract.setTraitRequirement(id, option.prerequisite_value!);
+    }    
+    else if (option.prerequisite_type === "HAS NOT TRAIT") {
+      const id = await optionsContract.getOptionId(option.name);
+      await optionsContract.setNotTraitRequirement(id, option.prerequisite_value!);
+    } else if (option.prerequisite_type === "HAS ETH") {
+      const id = await optionsContract.getOptionId(option.name);
+      await optionsContract.setEthRequirement(id, ethers.utils.parseEther(option.prerequisite_value!));      
+    } else if (option.prerequisite_type === "HAS PILL") {
+      const id = await optionsContract.getOptionId(option.name);
+      const pillId = pillToId[option.prerequisite_value!];
+      console.log(`Setting ${option.name} to require ${option.prerequisite_value} ID: ${pillId}`);
+      if(pillId && pillId !== 0x0) {
+        await optionsContract.setLegacyPillRequirement(id, pillId)
+      }
     }
     const rarity = option.rarity ? getRarityUint(option.rarity): 0
     const form = getFormUint(option.form);

@@ -42,7 +42,7 @@ const cost = ethers.utils.parseEther("1");
 
 // Replace magic numbers
 
-describe("Characters Validator", () => {
+describe.only("Characters Validator", () => {
   describe("isValid", () => {
     let core721: Core721;
     let core1155: Core1155;
@@ -265,7 +265,7 @@ describe("Characters Validator", () => {
         "Pepel",
         "Deepmem",
         "Doomskroler",
-        "Galaxy Brain",
+        "Gweibond",
         "Yearn",
         "reccgzz8BLpq1XSVp",
         "recdn3ki0VHcIWhc2",
