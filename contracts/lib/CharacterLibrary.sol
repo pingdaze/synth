@@ -15,7 +15,8 @@ struct Character {
   string origin;
   string upbringing;
   string gift;
-  address[] pillboosts;
+  uint256[] legacyPills;
+  uint256[] collabPills;
 }
 // Note: We probably wantt o abstract out/push out the character logic from the validator logic and just have the single validator reach into the other state holding contracts
 // Can we create the 1155 asset the first time we _unequip_ the 1155?

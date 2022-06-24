@@ -37,10 +37,7 @@ describe("AggregateValidator", () => {
       checker: CheckerValidator,
       payments: PaymentValidator,
       authority: MultiRolesAuthority;
-    let core: Core1155,
-      validator: AggregateValidator,
-      nift: Basic1155,
-      receipt;
+    let core: Core1155, validator: AggregateValidator, nift: Basic1155, receipt;
     before(async () => {
       [owner, user1] = await ethers.getSigners();
     });

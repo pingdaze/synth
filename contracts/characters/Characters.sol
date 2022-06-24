@@ -95,7 +95,8 @@ contract Characters is Context, Auth {
   function addPlayer(
     uint256 _id,
     address _player,
-    address[] calldata pillboosts,
+    uint256[] calldata legacyPills,
+    uint256[] calldata collabPills,
     string[] calldata traitsPlus
   ) public {
     // TODO: better checks here, probably don't want to fuck with like collisions or w/e here
@@ -112,7 +113,8 @@ contract Characters is Context, Auth {
       traitsPlus[3],
       traitsPlus[4],
       traitsPlus[5],
-      pillboosts
+      legacyPills,
+      collabPills
     );
   }
 

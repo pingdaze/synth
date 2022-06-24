@@ -22,7 +22,8 @@ interface ICharacter {
   function addPlayer(
     uint256 _id,
     address _player,
-    address[] calldata pillboosts,
+    uint256[] calldata legacyPills,
+    uint256[] calldata collabPills,
     string[] calldata traitsPlus
   ) external;
 

@@ -85,27 +85,32 @@ contract CharacterValidator is Ownable {
 
       We may need to further encode the traits slots to clarify backgrounds etc.
     /// @notice generate a character for PACE
-    /// @param pillboosts Array of the address of all pillboosts being used
+    /// @param legacyPills Array of the ID of all legacy pills being used
+    /// @param collabPills Array of the ID of all collab pills being used
     /// @param traitsPlus Every character option selected during character creation
   */
   function createCharacter(
-    address[] calldata pillboosts,
+    uint256[] calldata legacyPills,
+    uint256[] calldata collabPills,
     string[] calldata traitsPlus
   ) external payable {
-    _createCharacter(pillboosts, traitsPlus, ++nextId);
+    // Confirm address holds all the pills they claim to hold
+    _createCharacter(legacyPills, collabPills, traitsPlus, ++nextId);
   }
 
   function createCharacterL1(
-    address[] calldata pillboostsL1,
-    address[] calldata pillboostsL2,
+    uint256[] calldata legacyPills,
+    uint256[] calldata collabPills,
     string[] calldata traitsPlus
   ) external payable {
-    _createCharacter(pillboostsL2, traitsPlus, ++nextId);
+    // Confirm address holds all the COLLAB pills they claim to hold
+    _createCharacter(legacyPills, collabPills, traitsPlus, ++nextId);
   }
 
   // This is the part that needs to be converted to make the skeletons extensible
   function _createCharacter(
-    address[] calldata pillboosts,
+    uint256[] calldata legacyPills,
+    uint256[] calldata collabPills,
     string[] calldata traitsPlus,
     uint256 characterId
   ) internal {
@@ -147,7 +152,13 @@ contract CharacterValidator is Ownable {
     }
     core.modularMintCallback(msg.sender, characterId, "");
     // Start by adding the player into the characters contract
-    character.addPlayer(characterId, msg.sender, pillboosts, traitsPlus);
+    character.addPlayer(
+      characterId,
+      msg.sender,
+      legacyPills,
+      collabPills,
+      traitsPlus
+    );
     character.setSkeleton(characterId, newSkeleton);
     // Comment out the "booster pack" so that randomness is not requested
     /* _charIdQueue.push(characterId);
@@ -217,7 +228,7 @@ contract CharacterValidator is Ownable {
       i > 0 && roll >= chance;
       roll = _getSubRandom(i++, seed)
     ) {
-      if (i > characterInstance.pillboosts.length) {
+      if (i > characterInstance.legacyPills.length) {
         chance = 0;
       } else {
         chance = uint8(256 - (2**(3 + i)));

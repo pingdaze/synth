@@ -192,9 +192,12 @@ export const deployCharacterMock = async (
   return characters.deploy(core.address, options.address, authority);
 };
 
-export const deploySelectableOptions = async () => {
+export const deploySelectableOptions = async (
+  legacyAddr: string = zeroAddress,
+  collabAddr: string = zeroAddress
+) => {
   const Options = await ethers.getContractFactory("SelectableOptions");
-  return Options.deploy();
+  return Options.deploy(legacyAddr, collabAddr);
 };
 
 export const deployCheckerValidator = async (

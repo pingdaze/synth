@@ -1,4 +1,8 @@
-// write interface for
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+import "../lib/LegacyPills.sol";
+
 //Interface
 interface IToken {
   function balanceOf(address account, uint256 id)
@@ -16,9 +20,18 @@ contract SelectableOptions {
   string constant _MARKINGS = "Markings";
   string constant _MASK = "Mask";
 
+  enum Requirement {
+    None,
+    HasEth,
+    HasPillEgo,
+    HasPillSynth,
+    HasCollabPill,
+    HasTrait,
+    HasNotTrait
+  }
   // Extremely unwieldly struct; do better?
   struct Option {
-    uint8 req; // 1 = HAS ETH, 2 = HAS PILL, 3 = Has TRAIT, 4 = HAS NOT TRAIT
+    Requirement req; // 1 = HAS ETH, 2 = HAS PILL, 3 = Has TRAIT, 4 = HAS NOT TRAIT
     uint8 form;
     string slot;
     string option;
@@ -41,6 +54,14 @@ contract SelectableOptions {
 
   mapping(string => uint8) private _optionToId;
 
+  address private _legacyPills;
+  address private _collabPills;
+
+  constructor(address legacyPills_, address collabPills_) {
+    _legacyPills = legacyPills_;
+    _collabPills = collabPills_;
+  }
+
   //
   function validateOption(
     string[] calldata options,
@@ -49,6 +70,7 @@ contract SelectableOptions {
   ) external returns (uint8) {
     uint8 id = _optionToId[options[index]];
     Option memory op = _options[id];
+    Requirement req = Requirement(op.req);
     string memory form = forms[op.form]; // Hashmonk or Pepel
     require(_compareCall(options[0], form));
     // TODO: Is there a smarter/more efficient/more extensible version of this?
@@ -74,20 +96,29 @@ contract SelectableOptions {
         revert("invalid index");
       }
     }
+
     // HAS ETH
-    if (op.req == 1) {
+    if (req == Requirement.HasEth) {
       _checkHasEth(id, ethValue);
     }
+    // HAS PILL SYNTH
+    else if (req == Requirement.HasPillSynth) {
+      _checkHasPill(id);
+    }
+    // HAS PILL EGODEATH
+    else if (req == Requirement.HasPillEgo) {
+      _checkHasPill(id);
+    }
     // HAS PILL
-    if (op.req == 2) {
+    else if (req == Requirement.HasCollabPill) {
       _checkHasPill(id);
     }
     // HAS TRAIT
-    if (op.req == 3) {
+    else if (req == Requirement.HasTrait) {
       _checkHasTrait(id, options);
     }
     // HAS NOT TRAIT
-    if (op.req == 4) {
+    else if (req == Requirement.HasNotTrait) {
       _checkHasNotTrait(id, options);
     }
     return id;
@@ -150,30 +181,30 @@ contract SelectableOptions {
     uint8 form
   ) external {
     _optionToId[option] = id;
-    _options[id] = Option(0, form, slot, option);
+    _options[id] = Option(Requirement.None, form, slot, option);
   }
 
   function setEthRequirement(uint8 id, uint256 cost) external {
-    _options[id].req = 1;
+    _options[id].req = Requirement.HasEth;
     _idToEthCost[id] = cost;
   }
 
-  function setPillRequirement(
+  function setLegacyPillRequirementSynth(
     uint8 id,
     address account,
     uint256 reqId
   ) external {
-    _options[id].req = 2;
+    _options[id].req = Requirement.HasPillSynth;
     _idToPillReq[id] = PillReq(account, reqId);
   }
 
   function setTraitRequirement(uint8 id, string calldata trait) external {
-    _options[id].req = 3;
+    _options[id].req = Requirement.HasTrait;
     _idToTraitReq[id] = trait;
   }
 
   function setNotTraitRequirement(uint8 id, string calldata trait) external {
-    _options[id].req = 4;
+    _options[id].req = Requirement.HasNotTrait;
     _idToTraitReq[id] = trait;
   }
 
@@ -184,13 +215,13 @@ contract SelectableOptions {
   {
     uint8 id = _optionToId[option];
     Option memory optionStruct = _options[id];
-    if (optionStruct.req != 1) {
+    if (optionStruct.req != Requirement.HasEth) {
       return 0;
     }
     return _idToEthCost[id];
   }
 
-  function _checkHasEth(uint8 id, uint256 ethValue) internal {
+  function _checkHasEth(uint8 id, uint256 ethValue) internal view {
     require(ethValue >= _idToEthCost[id], "not enough ETH");
   }
 

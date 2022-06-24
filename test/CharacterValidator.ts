@@ -28,8 +28,7 @@ const cost = ethers.utils.parseEther("1");
 
 // Replace magic numbers
 
-describe("Characters Validator", () => {
-
+describe.only("Characters Validator", () => {
   describe("isValid", () => {
     let core721: Core721;
     let core1155: Core1155;
@@ -72,7 +71,8 @@ describe("Characters Validator", () => {
       ]);
     });
     it("Can mint an avatar", async () => {
-      const pillboosts: string[] = [];
+      const legacyPills: number[] = [];
+      const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
         1,
@@ -91,12 +91,14 @@ describe("Characters Validator", () => {
       await options.addOption("Green", "Type", 3, 1);
       await options.addOption("Blue", "Markings", 4, 1);
       receipt = await characterValidator.createCharacter(
-        pillboosts,
+        legacyPills,
+        collabPills,
         traitsplus
       );
     });
     it("Can mint an avatar with a paid in ETH upgrade", async () => {
-      const pillboosts: string[] = [];
+      const legacyPills: number[] = [];
+      const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
         1,
@@ -116,13 +118,15 @@ describe("Characters Validator", () => {
       await options.addOption("Blue", "Markings", 4, 1);
       await options.setEthRequirement(1, cost);
       receipt = await characterValidator.createCharacter(
-        pillboosts,
+        legacyPills,
+        collabPills,
         traitsplus,
         { value: cost }
       );
     });
     it("Fails to mint an avatar with paid upgrade and no value", async () => {
-      const pillboosts: string[] = [];
+      const legacyPills: number[] = [];
+      const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
         1,
@@ -142,10 +146,37 @@ describe("Characters Validator", () => {
       await options.addOption("Blue", "Markings", 4, 1);
       await options.setEthRequirement(1, cost);
       expect(
-        characterValidator.createCharacter(pillboosts, traitsplus)
+        characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
       ).to.be.revertedWith("not enough ETH");
     });
-    it("Can mint an avatar with a pill gated upgrade", async () => {});
+    it("Can mint an avatar with a pill gated upgrade", async () => {
+      const legacyPills: number[] = [];
+      const collabPills: number[] = [];
+      const traitsplus: string[] = [
+        "Pepel",
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        "Purple",
+        "Orange",
+        "Green",
+        "Blue",
+      ] as string[];
+      await options.addOption("Purple", "Mouth", 1, 1);
+      await options.addOption("Orange", "Eyes", 2, 1);
+      await options.addOption("Green", "Type", 3, 1);
+      await options.addOption("Blue", "Markings", 4, 1);
+      await options.setEthRequirement(1, cost);
+      receipt = await characterValidator.createCharacter(
+        legacyPills,
+        collabPills,
+        traitsplus,
+        { value: cost }
+      );
+    });
     it("Can mint an avatar with a collab pill gated upgrade", async () => {});
     it("Can mint an avatar with a trait gated upgrade", async () => {});
     it("Receives Boosterpack correctly", async () => {});
