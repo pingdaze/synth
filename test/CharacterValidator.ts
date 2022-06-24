@@ -52,7 +52,6 @@ describe.only("Characters Validator", () => {
     let nift: Basic1155;
     let owner: string;
     let optionID: number;
-    // This is horribly inneficient, probably don't redeploy these each time?
 
     before(async () => {
       owner = (await ethers.getSigners())[0].address;
