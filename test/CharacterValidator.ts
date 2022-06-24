@@ -1,6 +1,6 @@
 import { ethers } from "hardhat";
 import { expect } from "chai";
-import { BigNumber} from "@ethersproject/bignumber";
+import { BigNumber } from "@ethersproject/bignumber";
 import {
   CharacterValidator,
   RandomnessRelayL2,
@@ -10,7 +10,7 @@ import {
   Core1155,
   Core721,
   AugmentsValidator,
-  Basic1155
+  Basic1155,
 } from "../typechain-types";
 import {
   deployCore721,
@@ -21,14 +21,16 @@ import {
   deployCharacter,
   deployCharacterValidator,
   deployRequester,
-  deployMock1155
+  deployMock1155,
 } from "./shared/deploys";
 import { ContractTransaction } from "ethers";
 import { pushOptions } from "../utils/add-options";
-const coreIds = [1,2, 3, 4, 5, 6, 7, 8, 9 ,10];
+const coreIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const mockCollabId = 1;
-const mockLegacyId = ethers.BigNumber.from("0xE00000000000000940000000000000001");
-const mockLegacyIdReq = 0xE;
+const mockLegacyId = ethers.BigNumber.from(
+  "0xE00000000000000940000000000000001"
+);
+const mockLegacyIdReq = 0xe;
 const amount = 1;
 const BigZero = ethers.BigNumber.from("0");
 
@@ -62,7 +64,10 @@ describe.only("Characters Validator", () => {
       await nift.mint(mockLegacyId, owner, amount);
       core721 = (await deployCore721()) as Core721;
       core1155 = (await deployCore1155()) as Core1155;
-      options = (await deploySelectableOptions(nift.address, nift.address)) as SelectableOptions;
+      options = (await deploySelectableOptions(
+        nift.address,
+        nift.address
+      )) as SelectableOptions;
 
       // In production instances the IDs must line up correctly
       character = (await deployCharacter(core721, options)) as Characters;
@@ -85,7 +90,11 @@ describe.only("Characters Validator", () => {
       )) as CharacterValidator;
       character.setValidator(characterValidator.address);
       receipt = await core721.addValidator(characterValidator.address, coreIds);
-      await pushOptions(options.address, wearablesValidator.address, augmentsValidator.address);
+      await pushOptions(
+        options.address,
+        wearablesValidator.address,
+        augmentsValidator.address
+      );
       optionID = await options.getOptionId("reccgzz8BLpq1XSVp");
       console.log("optionID", optionID);
       await options.addOption("recca12da8BLpq1XSVp", "Green", "Type", 1);
@@ -97,7 +106,7 @@ describe.only("Characters Validator", () => {
       console.log("optionID", optionID);
     });
     it("Can mint an avatar", async () => {
-      const legacyPills: number[] = [0,0,0,0,0];
+      const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
@@ -119,7 +128,7 @@ describe.only("Characters Validator", () => {
       );
     });
     it("Can mint an avatar with a paid in ETH upgrade", async () => {
-      const legacyPills: number[] = [0,0,0,0,0];
+      const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
@@ -143,7 +152,7 @@ describe.only("Characters Validator", () => {
       );
     });
     it("Fails to mint an avatar with paid upgrade and no value", async () => {
-      const legacyPills: number[] = [0,0,0,0,0];
+      const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
@@ -164,7 +173,7 @@ describe.only("Characters Validator", () => {
       ).to.be.revertedWith("not enough ETH");
     });
     it("Fails to mint an avatar with a pill gated upgrade if not holding pill", async () => {
-      const legacyPills: number[] = [0,0,0,0,0];
+      const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
@@ -181,15 +190,17 @@ describe.only("Characters Validator", () => {
       ] as string[];
       await options.setLegacyPillRequirement(optionID, mockLegacyIdReq);
       expect(
-        characterValidator.createCharacter(
-          legacyPills,
-          collabPills,
-          traitsplus
-        )
+        characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
       ).to.be.revertedWith("You do not have the required pill");
     });
     it("Can mint an avatar with a pill gated upgrade if holding pill", async () => {
-      const legacyPills: BigNumber[] = [mockLegacyId,BigZero,BigZero,BigZero,BigZero];
+      const legacyPills: BigNumber[] = [
+        mockLegacyId,
+        BigZero,
+        BigZero,
+        BigZero,
+        BigZero,
+      ];
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
@@ -204,16 +215,19 @@ describe.only("Characters Validator", () => {
         "recca12da8BLpq1XSVp",
         "recQqOIfSneUOTNej",
       ] as string[];
-      receipt = await options.setLegacyPillRequirement(optionID, mockLegacyIdReq);
+      receipt = await options.setLegacyPillRequirement(
+        optionID,
+        mockLegacyIdReq
+      );
       await receipt.wait();
       receipt = await characterValidator.createCharacter(
-          legacyPills,
-          collabPills,
-          traitsplus
-        );
+        legacyPills,
+        collabPills,
+        traitsplus
+      );
     });
     it("Can mint an avatar with a collab pill gated upgrade", async () => {
-      const legacyPills: number[] = [0,0,0,0,0];
+      const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
@@ -237,7 +251,7 @@ describe.only("Characters Validator", () => {
       );
     });
     it("Can mint an avatar with a trait gated upgrade", async () => {
-      const legacyPills: number[] = [0,0,0,0,0];
+      const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
@@ -261,7 +275,7 @@ describe.only("Characters Validator", () => {
       );
     });
     it("Fails to mint an avatar with a trait gated upgrade if trait isn't present", async () => {
-      const legacyPills: number[] = [0,0,0,0,0];
+      const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
@@ -279,11 +293,7 @@ describe.only("Characters Validator", () => {
       receipt = await options.setTraitRequirement(optionID, "Galaxy Brain");
       await receipt.wait();
       expect(
-        characterValidator.createCharacter(
-          legacyPills,
-          collabPills,
-          traitsplus
-        )
+        characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
       ).to.be.revertedWith("You don't have the correct trait");
     });
   });
