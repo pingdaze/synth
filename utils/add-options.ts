@@ -119,7 +119,7 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
     }
 
     if(slot !== "") {
-      receipt = await optionsContract.addOption(option.uuid, option.name, slot, getFormUint(option.form));
+      receipt = await optionsContract.addOption(option._cid!, option.name, slot, getFormUint(option.form));
       await receipt.wait();
       console.log(`Added ${option.name} to ${slot}`);
     }
