@@ -62,7 +62,17 @@ contract SelectableOptions {
     _collabPills = collabPills_;
   }
 
-  //
+
+  function validateFaction(string calldata _faction, uint256 legacyPillId, address target) public view returns (bool) {
+    uint8 id = _optionToId[_faction];
+    require(id != 0, "Invalid faction");
+    if(_options[id].req == Requirement.HasLegacyPill){
+      _checkHasLegacyPill(id, legacyPillId, target);
+    }
+    return true;
+  }
+
+  // TODO: Slim this THE FUCK down; use split functions for each index this is trash
   function validateOption(
     string[] calldata options,
     uint256 index,

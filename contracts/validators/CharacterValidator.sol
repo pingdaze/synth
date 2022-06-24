@@ -120,33 +120,34 @@ contract CharacterValidator is Ownable {
     address target
   ) internal {
     Skeleton memory newSkeleton;
+    selectableOptions.validateFaction(traitsPlus[4], legacyPills[0], target);
     if (_compareMem(traitsPlus[0], "Pepel")) {
       newSkeleton.mouth = selectableOptions.validateOption(
         traitsPlus,
         5,
         msg.value,
-        legacyPills[0],
+        legacyPills[1],
         target
       );
       newSkeleton.eyes = selectableOptions.validateOption(
         traitsPlus,
         6,
         msg.value,
-        legacyPills[1],
+        legacyPills[2],
         target
       );
       newSkeleton.color = selectableOptions.validateOption(
         traitsPlus,
         7,
         msg.value,
-        legacyPills[2],
+        legacyPills[3],
         target
       );
       newSkeleton.marking = selectableOptions.validateOption(
         traitsPlus,
         8,
         msg.value,
-        legacyPills[3],
+        legacyPills[4],
         target
       );
     } else if (_compareMem(traitsPlus[0], "Hashmonk")) {
@@ -154,14 +155,14 @@ contract CharacterValidator is Ownable {
         traitsPlus,
         5,
         msg.value,
-        legacyPills[0],
+        legacyPills[1],
         target
       );
       newSkeleton.color = selectableOptions.validateOption(
         traitsPlus,
         6,
         msg.value,
-        legacyPills[1],
+        legacyPills[2],
         target
       );
     } else {

@@ -2,7 +2,7 @@
 /* eslint-disable prefer-reflect */
 const { ethers } = require("hardhat");
 import {SelectableOptions, WearablesValidator, AugmentsValidator} from "../typechain-types/";
-import   {SKELETON_OPTIONS, SkeletonOption, Location } from "../data/airtable"
+import   {SKELETON_OPTIONS, SkeletonOption, Location, StepOption, STEP_OPTIONS_BY_TYPE } from "../data/airtable"
 
 
 
@@ -12,12 +12,32 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   let wearables = await ethers.getContractAt('WearablesValidator', wearablesAddress) as WearablesValidator;
   let augments = await ethers.getContractAt('AugmentsValidator', augmentsAddress) as AugmentsValidator;
   // optionID -- name -- slot -- form
-  const processing = SKELETON_OPTIONS.map(processOption(options, wearables, augments));
+  let processing = SKELETON_OPTIONS.map(processSkeletonOption(options, wearables, augments));
   await Promise.all(processing);
-  console.log("Done");
+  console.log("Done processing skeleton options");
+  processing = STEP_OPTIONS_BY_TYPE.Faction.map(processStepOption(options, "Faction"));
+  await Promise.all(processing);
+  console.log("Done processing Faction options");
+  processing = STEP_OPTIONS_BY_TYPE.Upbringing.map(processStepOption(options, "Upbringing"));
+  await Promise.all(processing);
+  console.log("Done processing Upbringing options");
+  processing = STEP_OPTIONS_BY_TYPE.Gift.map(processStepOption(options, "Gift"));
+  await Promise.all(processing);
+  console.log("Done processing Gift options");
+  processing = STEP_OPTIONS_BY_TYPE.Origin.map(processStepOption(options, "Origin"));
+  await Promise.all(processing);
+  console.log("Done processing Origin options");
+  
+
 }
 
-function processOption(optionsContract: SelectableOptions, wearablesContract: WearablesValidator, augmentsContract: AugmentsValidator) { return async (option: SkeletonOption) => {
+function processStepOption(optionsContract: SelectableOptions, slot: string) { return async (option: StepOption) => {
+  let receipt;
+  receipt = await optionsContract.addOption(option.name, option.name, slot, 2);
+  receipt.wait();
+}}
+
+function processSkeletonOption(optionsContract: SelectableOptions, wearablesContract: WearablesValidator, augmentsContract: AugmentsValidator) { return async (option: SkeletonOption) => {
   let receipt;
   if(option._cid === null)
       return;
