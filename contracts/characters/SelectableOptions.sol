@@ -70,7 +70,7 @@ contract SelectableOptions {
     Option memory op = _options[id];
     Requirement req = Requirement(op.req);
     string memory form = _forms[op.form]; // Hashmonk or Pepel
-    require(_compareCall(options[0], form));
+    require(_compareCall(options[0], form), "Forms don't match");
     // TODO: Is there a smarter/more efficient/more extensible version of this?
     // Can probably convert this to an ASS switch
     if (_compareMem(form, _PEPEL_FORM)) {
@@ -250,11 +250,11 @@ contract SelectableOptions {
   }
 
   function _checkHasTrait(uint8 id, string[] calldata options) internal {
-    require(_findTrait(id, options) == false, "You already have this trait");
+    require(_findTrait(id, options) == true, "You don't have the correct trait");
   }
 
   function _checkHasNotTrait(uint8 id, string[] calldata options) internal {
-    require(!_findTrait(id, options) == false, "You already have this trait");
+    require(_findTrait(id, options) == false, "You have an incompatible trait");
   }
 
   function _findTrait(uint8 id, string[] calldata options)

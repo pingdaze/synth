@@ -247,7 +247,6 @@ describe.only("Characters Validator", () => {
       await options.addOption("Green", "Type", 3, 1);
       await options.addOption("Blue", "Markings", 4, 1);
       receipt = await options.setCollabPillRequirement(1, mockCollabId);
-      console.log("balance", await nift.balanceOf(owner, mockCollabId));
       await receipt.wait();
       receipt = await characterValidator.createCharacter(
         legacyPills,
@@ -256,7 +255,62 @@ describe.only("Characters Validator", () => {
       );
     });
     it("Can mint an avatar with a trait gated upgrade", async () => {
-      
+      const legacyPills: number[] = [0,0,0,0,0];
+      const collabPills: number[] = [];
+      const traitsplus: string[] = [
+        "Pepel",
+        "",
+        "",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "Shadowpakt",
+        "Purple",
+        "Third Eye",
+        "Green",
+        "Blue",
+      ] as string[];
+      await options.addOption("Purple", "Mouth", 1, 1);
+      await options.addOption("Third Eye", "Eyes", 2, 1);
+      await options.addOption("Green", "Type", 3, 1);
+      await options.addOption("Blue", "Markings", 4, 1);
+      receipt = await options.setTraitRequirement(2, "Galaxy Brain");
+      await receipt.wait();
+      receipt = await characterValidator.createCharacter(
+        legacyPills,
+        collabPills,
+        traitsplus
+      );
+    });
+    it("Fails to mint an avatar with a trait gated upgrade if trait isn't present", async () => {
+      const legacyPills: number[] = [0,0,0,0,0];
+      const collabPills: number[] = [];
+      const traitsplus: string[] = [
+        "Pepel",
+        "",
+        "",
+        "Deepmem",
+        "Doomskroler",
+        "Apeblood",
+        "Shadowpakt",
+        "Purple",
+        "Third Eye",
+        "Green",
+        "Blue",
+      ] as string[];
+      await options.addOption("Purple", "Mouth", 1, 1);
+      await options.addOption("Third Eye", "Eyes", 2, 1);
+      await options.addOption("Green", "Type", 3, 1);
+      await options.addOption("Blue", "Markings", 4, 1);
+      receipt = await options.setTraitRequirement(2, "Galaxy Brain");
+      await receipt.wait();
+      expect(
+        characterValidator.createCharacter(
+          legacyPills,
+          collabPills,
+          traitsplus
+        )
+      ).to.be.revertedWith("You don't have the correct trait");
     });
   });
 });
