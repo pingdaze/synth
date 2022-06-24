@@ -49,6 +49,11 @@ const enableProduction = process.env.COMPILE_MODE === "production";
   networks: {
     hardhat: {
       blockGasLimit: 10000000,
+      forking: {
+        url: "https://eth-mainnet.alchemyapi.io/v2/" + process.env.ALCHEMY_API_KEY,
+        blockNumber: 15015151
+      },
+      accounts: accounts('hardhat'),
     },rinkeby: {
       url: node_url('rinkeby'),
       accounts: accounts('rinkeby'),
@@ -63,13 +68,13 @@ const enableProduction = process.env.COMPILE_MODE === "production";
     mainnet: {
       url: node_url('mainnet'),
       accounts: accounts('mainnet'),
-    },
+    }
   },
   gasReporter: {
     enabled: enableGasReport,
     currency: "USD",
     gasPrice: 60,
-    coinmarketcap: "5beae4a9-4201-44d5-951d-91a3b68d92c4",
+    coinmarketcap: process.env.COINTMARKETCAP_API_KEY,
     outputFile: process.env.CI ? "gas-report.txt" : undefined,
   },
 

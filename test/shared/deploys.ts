@@ -193,10 +193,17 @@ export const deployCharacterMock = async (
 };
 
 export const deploySelectableOptions = async (
-  legacyAddr: string = zeroAddress,
+  legacyAddr: string = "0x33a4cfc925ad40e5bb2b9b2462d7a1a5a5da4476",
   collabAddr: string = zeroAddress
 ) => {
-  const Options = await ethers.getContractFactory("SelectableOptions");
+  const library = await (
+    await ethers.getContractFactory("LegacyPills")
+  ).deploy();
+  const Options = await ethers.getContractFactory("SelectableOptions", {
+    libraries: {
+      LegacyPills: library.address,
+    },
+  });
   return Options.deploy(legacyAddr, collabAddr);
 };
 

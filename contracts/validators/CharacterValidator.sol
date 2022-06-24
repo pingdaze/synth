@@ -119,33 +119,39 @@ contract CharacterValidator is Ownable {
       newSkeleton.mouth = selectableOptions.validateOption(
         traitsPlus,
         7,
-        msg.value
+        msg.value,
+        legacyPills[0]
       );
       newSkeleton.eyes = selectableOptions.validateOption(
         traitsPlus,
         8,
-        msg.value
+        msg.value,
+        legacyPills[1]
       );
       newSkeleton.color = selectableOptions.validateOption(
         traitsPlus,
         9,
-        msg.value
+        msg.value,
+        legacyPills[2]
       );
       newSkeleton.marking = selectableOptions.validateOption(
         traitsPlus,
         10,
-        msg.value
+        msg.value,
+        legacyPills[3]
       );
     } else if (_compareMem(traitsPlus[0], "Hashmonk")) {
       newSkeleton.mask = selectableOptions.validateOption(
         traitsPlus,
         7,
-        msg.value
+        msg.value,
+        legacyPills[0]
       );
       newSkeleton.color = selectableOptions.validateOption(
         traitsPlus,
         8,
-        msg.value
+        msg.value,
+        legacyPills[1]
       );
     } else {
       revert("Invalid form");

@@ -23,8 +23,7 @@ contract SelectableOptions {
   enum Requirement {
     None,
     HasEth,
-    HasPillEgo,
-    HasPillSynth,
+    HasLegacyPill,
     HasCollabPill,
     HasTrait,
     HasNotTrait
@@ -36,16 +35,13 @@ contract SelectableOptions {
     string slot;
     string option;
   }
-  struct PillReq {
-    address account;
-    uint256 id;
-  }
-  string[] forms = [_HASHMONK_FORM, _PEPEL_FORM];
+
+  string[] private _forms = [_HASHMONK_FORM, _PEPEL_FORM];
 
   // For each option what exactly are we checking?
   mapping(uint8 => uint256) private _idToEthCost;
-  // This is probably a little more complicated, we additionally need the ID no
-  mapping(uint8 => PillReq) private _idToPillReq;
+  mapping(uint8 => uint256) private _idToLegacyPillReq;
+  mapping(uint8 => uint256) private _idToCollabPillReq;
 
   mapping(uint8 => string) private _idToTraitReq;
 
@@ -66,12 +62,13 @@ contract SelectableOptions {
   function validateOption(
     string[] calldata options,
     uint256 index,
-    uint256 ethValue
+    uint256 ethValue,
+    uint256 legacyPillId
   ) external returns (uint8) {
     uint8 id = _optionToId[options[index]];
     Option memory op = _options[id];
     Requirement req = Requirement(op.req);
-    string memory form = forms[op.form]; // Hashmonk or Pepel
+    string memory form = _forms[op.form]; // Hashmonk or Pepel
     require(_compareCall(options[0], form));
     // TODO: Is there a smarter/more efficient/more extensible version of this?
     // Can probably convert this to an ASS switch
@@ -101,17 +98,13 @@ contract SelectableOptions {
     if (req == Requirement.HasEth) {
       _checkHasEth(id, ethValue);
     }
-    // HAS PILL SYNTH
-    else if (req == Requirement.HasPillSynth) {
-      _checkHasPill(id);
+    // HAS LEGACY PILL
+    else if (req == Requirement.HasLegacyPill) {
+      _checkHasLegacyPill(id, legacyPillId);
     }
-    // HAS PILL EGODEATH
-    else if (req == Requirement.HasPillEgo) {
-      _checkHasPill(id);
-    }
-    // HAS PILL
+    // HAS COLLAB PILL
     else if (req == Requirement.HasCollabPill) {
-      _checkHasPill(id);
+      _checkHasCollabPill(id);
     }
     // HAS TRAIT
     else if (req == Requirement.HasTrait) {
@@ -189,13 +182,20 @@ contract SelectableOptions {
     _idToEthCost[id] = cost;
   }
 
-  function setLegacyPillRequirementSynth(
+  function setLegacyPillRequirement(
     uint8 id,
-    address account,
     uint256 reqId
   ) external {
-    _options[id].req = Requirement.HasPillSynth;
-    _idToPillReq[id] = PillReq(account, reqId);
+    _options[id].req = Requirement.HasLegacyPill;
+    _idToLegacyPillReq[id] = reqId;
+  }
+
+  function setCollabPillRequirement(
+    uint8 id,
+    uint256 reqId
+  ) external {
+    _options[id].req = Requirement.HasCollabPill;
+    _idToCollabPillReq[id] = reqId;
   }
 
   function setTraitRequirement(uint8 id, string calldata trait) external {
@@ -225,12 +225,24 @@ contract SelectableOptions {
     require(ethValue >= _idToEthCost[id], "not enough ETH");
   }
 
-  function _checkHasPill(uint8 id) internal view {
+  function _checkHasCollabPill(uint8 id) internal view {
+    // Could be optimized
     require(
-      IToken(_idToPillReq[id].account).balanceOf(
+      IToken(_collabPills).balanceOf(
         msg.sender,
-        _idToPillReq[id].id
+        _idToCollabPillReq[id]
       ) > 0,
+      "You do not have the required pill"
+    );
+  }
+
+  function _checkHasLegacyPill(uint8 id, uint256 legacyPillId) internal view {
+    // Could be optimized
+    require(
+      IToken(_legacyPills).balanceOf(
+        msg.sender,
+        legacyPillId
+      ) > 0 && _idToLegacyPillReq[id] == LegacyPills.getTypeFromId(legacyPillId),
       "You do not have the required pill"
     );
   }
