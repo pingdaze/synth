@@ -3,6 +3,7 @@
 pragma solidity ^0.8.0;
 import "../lib/LegacyPills.sol";
 import "hardhat/console.sol";
+
 //Interface
 interface IToken {
   function balanceOf(address account, uint256 id)
@@ -12,13 +13,13 @@ interface IToken {
 }
 
 contract SelectableOptions {
-  string constant private _HASHMONK_FORM = "Hashmonk";
-  string constant private _PEPEL_FORM = "Pepel";
-  string constant private _MOUTH = "Mouth";
-  string constant private _EYES = "Eyes";
-  string constant private _TYPE = "Type";
-  string constant private _MARKINGS = "Markings";
-  string constant private _MASK = "Mask";
+  string private constant _HASHMONK_FORM = "Hashmonk";
+  string private constant _PEPEL_FORM = "Pepel";
+  string private constant _MOUTH = "Mouth";
+  string private constant _EYES = "Eyes";
+  string private constant _TYPE = "Type";
+  string private constant _MARKINGS = "Markings";
+  string private constant _MASK = "Mask";
 
   enum Requirement {
     None,
@@ -128,11 +129,7 @@ contract SelectableOptions {
     op = _options[_optionToId[option]];
   }
 
-  function getOptionId(string calldata option)
-    external
-    view
-    returns (uint8)
-  {
+  function getOptionId(string calldata option) external view returns (uint8) {
     return _optionToId[option];
   }
 
@@ -189,10 +186,16 @@ contract SelectableOptions {
     uint8 form
   ) external {
     unchecked {
-      _optionCount = _optionCount+1;
+      _optionCount = _optionCount + 1;
     }
-    _optionToId[optionID] = _optionCount;     
-    _options[_optionCount] = Option(Requirement.None, form, name, slot, optionID);
+    _optionToId[optionID] = _optionCount;
+    _options[_optionCount] = Option(
+      Requirement.None,
+      form,
+      name,
+      slot,
+      optionID
+    );
   }
 
   function setEthRequirement(uint8 id, uint256 cost) external {
@@ -200,18 +203,12 @@ contract SelectableOptions {
     _idToEthCost[id] = cost;
   }
 
-  function setLegacyPillRequirement(
-    uint8 id,
-    uint256 reqId
-  ) external {
+  function setLegacyPillRequirement(uint8 id, uint256 reqId) external {
     _options[id].req = Requirement.HasLegacyPill;
     _idToLegacyPillReq[id] = reqId;
   }
 
-  function setCollabPillRequirement(
-    uint8 id,
-    uint256 reqId
-  ) external {
+  function setCollabPillRequirement(uint8 id, uint256 reqId) external {
     _options[id].req = Requirement.HasCollabPill;
     _idToCollabPillReq[id] = reqId;
   }
@@ -244,33 +241,37 @@ contract SelectableOptions {
   }
 
   function _checkHasCollabPill(uint8 id, address target) internal view {
-
     //Could be optimized
     require(
-      IToken(_collabPills).balanceOf(
-        target,
-        _idToCollabPillReq[id]
-      ) > 0,
+      IToken(_collabPills).balanceOf(target, _idToCollabPillReq[id]) > 0,
       "You do not have the required collab pill"
     );
   }
 
-  function _checkHasLegacyPill(uint8 id, uint256 legacyPillId, address target) internal view {
+  function _checkHasLegacyPill(
+    uint8 id,
+    uint256 legacyPillId,
+    address target
+  ) internal view {
     // Could be optimized
     require(
-      IToken(_legacyPills).balanceOf(
-        target,
-        legacyPillId
-      ) > 0 && _idToLegacyPillReq[id] == LegacyPills.getTypeFromId(legacyPillId),
+      IToken(_legacyPills).balanceOf(target, legacyPillId) > 0 &&
+        _idToLegacyPillReq[id] == LegacyPills.getTypeFromId(legacyPillId),
       "You do not have the required Legacy pill"
     );
   }
 
   function _checkHasTrait(uint8 id, string[] calldata options) internal view {
-    require(_findTrait(id, options) == true, "You don't have the correct trait");
+    require(
+      _findTrait(id, options) == true,
+      "You don't have the correct trait"
+    );
   }
 
-  function _checkHasNotTrait(uint8 id, string[] calldata options) internal view {
+  function _checkHasNotTrait(uint8 id, string[] calldata options)
+    internal
+    view
+  {
     require(_findTrait(id, options) == false, "You have an incompatible trait");
   }
 

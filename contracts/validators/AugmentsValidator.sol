@@ -73,7 +73,7 @@ contract AugmentsValidator is Context, Auth {
     uint8 form,
     uint8 rarity
   ) external requiresAuth {
-    augmentExists[convertToAugmentUUID(series, slot, form, rarity )] = false;
+    augmentExists[convertToAugmentUUID(series, slot, form, rarity)] = false;
   }
 
   function _setOption(string calldata optionString, uint32 series)

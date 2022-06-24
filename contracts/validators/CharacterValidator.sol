@@ -95,7 +95,13 @@ contract CharacterValidator is Ownable {
     string[] calldata traitsPlus
   ) external payable {
     // Confirm address holds all the pills they claim to hold
-    _createCharacter(legacyPills, collabPills, traitsPlus, ++nextId, msg.sender);
+    _createCharacter(
+      legacyPills,
+      collabPills,
+      traitsPlus,
+      ++nextId,
+      msg.sender
+    );
   }
 
   function createCharacterL1(
