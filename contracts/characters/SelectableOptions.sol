@@ -265,6 +265,9 @@ contract SelectableOptions {
     address target
   ) internal view {
     // Could be optimized
+    console.log("legacyPillId", legacyPillId);
+    console.log("Req", _idToLegacyPillReq[id]);
+    console.log("type", LegacyPills.getTypeFromId(legacyPillId));
     require(
       IToken(_legacyPills).balanceOf(target, legacyPillId) > 0 &&
         _idToLegacyPillReq[id] == LegacyPills.getTypeFromId(legacyPillId),

@@ -30,7 +30,11 @@ const mockCollabId = 1;
 const mockLegacyId = ethers.BigNumber.from(
   "0xE00000000000000940000000000000001"
 );
-const mockLegacyIdReq = 0xe;
+const mockShadowPaktPill = ethers.BigNumber.from(
+  "0xD00000000000000940000000000000001"
+);
+const mockLegacyIdReq = ethers.BigNumber.from(0xe);
+const mockShadowReq = ethers.BigNumber.from(0xd);
 const amount = 1;
 const BigZero = ethers.BigNumber.from("0");
 
@@ -95,14 +99,8 @@ describe.only("Characters Validator", () => {
         augmentsValidator.address
       );
       optionID = await options.getOptionId("reccgzz8BLpq1XSVp");
-      console.log("optionID", optionID);
       await options.addOption("recca12da8BLpq1XSVp", "Green", "Type", 1);
       optionID = await options.getOptionId("recca12da8BLpq1XSVp");
-      console.log("optionID", optionID);
-      optionID = await options.getOptionId("recKSmX6HY5GD6E2V");
-      console.log("optionID", optionID);
-      optionID = await options.getOptionId("recudapdQnZXdAoLv");
-      console.log("optionID", optionID);
     });
     it("Can mint an avatar", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
@@ -112,7 +110,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Shadowpakt",
+        "Yearn",
         "reccgzz8BLpq1XSVp",
         "recdn3ki0VHcIWhc2",
         "recca12da8BLpq1XSVp",
@@ -132,7 +130,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Shadowpakt",
+        "Yearn",
         "reccgzz8BLpq1XSVp",
         "recdn3ki0VHcIWhc2",
         "recca12da8BLpq1XSVp",
@@ -154,14 +152,14 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Shadowpakt",
+        "Yearn",
         "reccgzz8BLpq1XSVp",
         "recdn3ki0VHcIWhc2",
         "recca12da8BLpq1XSVp",
         "recQqOIfSneUOTNej",
       ] as string[];
       await options.setEthRequirement(optionID, cost);
-      expect(
+      await expect(
         characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
       ).to.be.revertedWith("not enough ETH");
     });
@@ -173,23 +171,23 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Shadowpakt",
+        "Yearn",
         "reccgzz8BLpq1XSVp",
         "recdn3ki0VHcIWhc2",
         "recca12da8BLpq1XSVp",
         "recQqOIfSneUOTNej",
       ] as string[];
       await options.setLegacyPillRequirement(optionID, mockLegacyIdReq);
-      expect(
+      await expect(
         characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
-      ).to.be.revertedWith("You do not have the required pill");
+      ).to.be.revertedWith("You do not have the required Legacy pill");
     });
-    it("Can mint an avatar with a pill gated upgrade if holding pill", async () => {
+    it.only("Can mint an avatar with a pill gated upgrade if holding pill", async () => {
       const legacyPills: BigNumber[] = [
         mockLegacyId,
         BigZero,
         BigZero,
-        BigZero,
+        mockShadowPaktPill,
         BigZero,
       ];
       const collabPills: number[] = [];
@@ -198,7 +196,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Shadowpakt",
+        "Yearn",
         "reccgzz8BLpq1XSVp",
         "recdn3ki0VHcIWhc2",
         "recca12da8BLpq1XSVp",
@@ -206,8 +204,9 @@ describe.only("Characters Validator", () => {
       ] as string[];
       receipt = await options.setLegacyPillRequirement(
         optionID,
-        mockLegacyIdReq
+        mockShadowReq
       );
+      receipt = await nift.mint(mockShadowPaktPill, owner, amount);
       await receipt.wait();
       receipt = await characterValidator.createCharacter(
         legacyPills,
@@ -223,7 +222,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Shadowpakt",
+        "Yearn",
         "reccgzz8BLpq1XSVp",
         "recdn3ki0VHcIWhc2",
         "recca12da8BLpq1XSVp",
@@ -245,7 +244,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Shadowpakt",
+        "Yearn",
         "reccgzz8BLpq1XSVp",
         "recdn3ki0VHcIWhc2",
         "recca12da8BLpq1XSVp",
@@ -267,7 +266,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Shadowpakt",
+        "Yearn",
         "reccgzz8BLpq1XSVp",
         "recdn3ki0VHcIWhc2",
         "recca12da8BLpq1XSVp",
@@ -275,9 +274,55 @@ describe.only("Characters Validator", () => {
       ] as string[];
       receipt = await options.setTraitRequirement(optionID, "Galaxy Brain");
       await receipt.wait();
-      expect(
+      await expect(
         characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
       ).to.be.revertedWith("You don't have the correct trait");
+    });
+    it("Fails to mint an avatar with a gated faction if not holding the legacy pill", async () => {
+      const legacyPills: number[] = [0, 0, 0, 0, 0];
+      const collabPills: number[] = [];
+      const traitsplus: string[] = [
+        "Pepel",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "Shadowpakt",
+        "reccgzz8BLpq1XSVp",
+        "recdn3ki0VHcIWhc2",
+        "recca12da8BLpq1XSVp",
+        "recQqOIfSneUOTNej",
+      ] as string[];
+      await expect(
+        characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
+      ).to.be.revertedWith("You do not have the required Legacy pill");
+    });
+    it("Can mint an avatar with a gated faction if holding the correctlegacy pill", async () => {
+      const legacyPills: BigNumber[] = [
+        mockShadowPaktPill,
+        BigZero,
+        BigZero,
+        BigZero,
+        BigZero,
+      ];
+      const collabPills: number[] = [];
+      const traitsplus: string[] = [
+        "Pepel",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "Shadowpakt",
+        "reccgzz8BLpq1XSVp",
+        "recdn3ki0VHcIWhc2",
+        "recca12da8BLpq1XSVp",
+        "recQqOIfSneUOTNej",
+      ] as string[];
+      receipt = await nift.mint(mockShadowPaktPill, owner, amount);
+      await receipt.wait();
+      receipt = await characterValidator.createCharacter(
+        legacyPills,
+        collabPills,
+        traitsplus
+      );
     });
   });
 });

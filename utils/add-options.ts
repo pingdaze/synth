@@ -4,7 +4,11 @@ const { ethers } = require("hardhat");
 import {SelectableOptions, WearablesValidator, AugmentsValidator} from "../typechain-types/";
 import   {SKELETON_OPTIONS, SkeletonOption, Location, StepOption, STEP_OPTIONS_BY_TYPE } from "../data/airtable"
 
-
+const LegacyPillToId: { [key:string]: number; kirbonite: number; shadowpak: number; ratspill: number} = {
+  "kirbonite": 0xC,
+  "shadowpak": 0xD,
+  "ratspill": 0xB,
+}
 
 export async function pushOptions(optionsAddress: string, wearablesAddress: string, augmentsAddress: string){
   // Grab the signers so we can drop them test tokens
@@ -15,7 +19,7 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   let processing = SKELETON_OPTIONS.map(processSkeletonOption(options, wearables, augments));
   await Promise.all(processing);
   console.log("Done processing skeleton options");
-  processing = STEP_OPTIONS_BY_TYPE.Faction.map(processStepOption(options, "Faction"));
+  processing = STEP_OPTIONS_BY_TYPE.Faction.map(processFactionOption(options, "Faction"));
   await Promise.all(processing);
   console.log("Done processing Faction options");
   processing = STEP_OPTIONS_BY_TYPE.Upbringing.map(processStepOption(options, "Upbringing"));
@@ -35,6 +39,16 @@ function processStepOption(optionsContract: SelectableOptions, slot: string) { r
   let receipt;
   receipt = await optionsContract.addOption(option.name, option.name, slot, 2);
   receipt.wait();
+}}
+function processFactionOption(optionsContract: SelectableOptions, slot: string) { return async (option: StepOption) => {
+  let receipt;
+  receipt = await optionsContract.addOption(option.name, option.name, slot, 2);
+  receipt.wait();
+  const id = await optionsContract.getOptionId(option.name);
+  if(option.prerequisite_type === "HAS PILL") {
+    await optionsContract.setLegacyPillRequirement(id, LegacyPillToId[option.prerequisite_value!])
+  }
+
 }}
 
 function processSkeletonOption(optionsContract: SelectableOptions, wearablesContract: WearablesValidator, augmentsContract: AugmentsValidator) { return async (option: SkeletonOption) => {
