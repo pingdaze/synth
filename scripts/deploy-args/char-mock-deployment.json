@@ -1,11 +1,23 @@
 {
-    "Registry": "0xa0dE82c7E54581DBc8d846A8D2a74eA78c138d40",
-    "Core721": "0x9D3c8117f82A23D87d384f97b76d869ADAa9e02b",
-    "Core1155": "0x1f2d46b644FEcd7AE9b8D31AC990751302ba1ca0",
-    "SelectableOptions": "0xa20579Bd4744d74bDA20D8a055478128AbEfca9c",
-    "Characters": "0x18cE5Ae8a09DCB49181d8d1E2F96ecE785eC84BD",
-    "WearablesValidator": "0x5F50D28f8E456EA24A74C35002b4d0AC35B0F171",
-    "AugmentsValidator": "0xa4a957144b90187e6b698dab25D06713Cb770F1E",
-    "Requester": "0x9A828aE945100b26A1eC7f29c9F6d012fDA53f3A",
-    "CharacterValidator": "0xf28d36A411B86b9Ff1491d855153Ac491a45a850"
+    "Rinkeby": {
+        "Registry": "0xa0dE82c7E54581DBc8d846A8D2a74eA78c138d40",
+        "Core721": "0x9D3c8117f82A23D87d384f97b76d869ADAa9e02b",
+        "Core1155": "0x1f2d46b644FEcd7AE9b8D31AC990751302ba1ca0",
+        "SelectableOptions": "0xa20579Bd4744d74bDA20D8a055478128AbEfca9c",
+        "Characters": "0x18cE5Ae8a09DCB49181d8d1E2F96ecE785eC84BD",
+        "WearablesValidator": "0x5F50D28f8E456EA24A74C35002b4d0AC35B0F171",
+        "AugmentsValidator": "0xa4a957144b90187e6b698dab25D06713Cb770F1E",
+        "Requester": "0x9A828aE945100b26A1eC7f29c9F6d012fDA53f3A",
+        "CharacterValidator": "0xf28d36A411B86b9Ff1491d855153Ac491a45a850"
+    },
+    "ArbRinkeby": {
+        "Core721":  "0x96c43355c01cB80213E91399dcb9968F807f4380",
+        "Core1155":  "0x1307D5e3A1F2F084dCD3AE413A7207b243D06BFa",
+        "SelectableOptions":  "0x14513f8C6cDEaf47FD68E87f4B2085515DF2ce97",
+        "Characters":  "0x757cd22D039fd1018543592DFd22cEd021aA2b09",
+        "WearablesValidator":  "0xfb2eCe6BD34F68a8380aBF40a1a7f00918d45ffF",
+        "AugmentsValidator":  "0xFE5eeb94377d9BbA6af88CA1FeA02209aF9D8Ac7",
+        "Requester":  "0xAc532C0172C6422bd5d3F8dD529dA632e44147E6",
+        "CharacterValidator":  "0xA01227215aA92686B315E64fD2C095531d4A5cC1"
+    }
 }

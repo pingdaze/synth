@@ -49,6 +49,7 @@ async function main() {
   let options: SelectableOptions;
   let nift: Basic1155;
   let owner: string;
+  // TODO: Turn this into a cute lil' reusable function
   console.log("Network: " + network.name);
   owner = (await ethers.getSigners())[0].address;
   console.log("owner", owner);
