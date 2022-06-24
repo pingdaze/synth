@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.0;
 import "../lib/LegacyPills.sol";
-
+import "hardhat/console.sol";
 //Interface
 interface IToken {
   function balanceOf(address account, uint256 id)
@@ -63,7 +63,8 @@ contract SelectableOptions {
     string[] calldata options,
     uint256 index,
     uint256 ethValue,
-    uint256 legacyPillId
+    uint256 legacyPillId,
+    address target
   ) external returns (uint8) {
     uint8 id = _optionToId[options[index]];
     Option memory op = _options[id];
@@ -100,11 +101,11 @@ contract SelectableOptions {
     }
     // HAS LEGACY PILL
     else if (req == Requirement.HasLegacyPill) {
-      _checkHasLegacyPill(id, legacyPillId);
+      _checkHasLegacyPill(id, legacyPillId, target);
     }
     // HAS COLLAB PILL
     else if (req == Requirement.HasCollabPill) {
-      _checkHasCollabPill(id);
+      _checkHasCollabPill(id, target);
     }
     // HAS TRAIT
     else if (req == Requirement.HasTrait) {
@@ -225,25 +226,26 @@ contract SelectableOptions {
     require(ethValue >= _idToEthCost[id], "not enough ETH");
   }
 
-  function _checkHasCollabPill(uint8 id) internal view {
-    // Could be optimized
+  function _checkHasCollabPill(uint8 id, address target) internal view {
+
+    //Could be optimized
     require(
       IToken(_collabPills).balanceOf(
-        msg.sender,
+        target,
         _idToCollabPillReq[id]
       ) > 0,
-      "You do not have the required pill"
+      "You do not have the required collab pill"
     );
   }
 
-  function _checkHasLegacyPill(uint8 id, uint256 legacyPillId) internal view {
+  function _checkHasLegacyPill(uint8 id, uint256 legacyPillId, address target) internal view {
     // Could be optimized
     require(
       IToken(_legacyPills).balanceOf(
-        msg.sender,
+        target,
         legacyPillId
       ) > 0 && _idToLegacyPillReq[id] == LegacyPills.getTypeFromId(legacyPillId),
-      "You do not have the required pill"
+      "You do not have the required Legacy pill"
     );
   }
 

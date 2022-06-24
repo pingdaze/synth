@@ -95,16 +95,17 @@ contract CharacterValidator is Ownable {
     string[] calldata traitsPlus
   ) external payable {
     // Confirm address holds all the pills they claim to hold
-    _createCharacter(legacyPills, collabPills, traitsPlus, ++nextId);
+    _createCharacter(legacyPills, collabPills, traitsPlus, ++nextId, msg.sender);
   }
 
   function createCharacterL1(
     uint256[] calldata legacyPills,
     uint256[] calldata collabPills,
-    string[] calldata traitsPlus
+    string[] calldata traitsPlus,
+    address target
   ) external payable {
     // Confirm address holds all the COLLAB pills they claim to hold
-    _createCharacter(legacyPills, collabPills, traitsPlus, ++nextId);
+    _createCharacter(legacyPills, collabPills, traitsPlus, ++nextId, target);
   }
 
   // This is the part that needs to be converted to make the skeletons extensible
@@ -112,7 +113,8 @@ contract CharacterValidator is Ownable {
     uint256[] calldata legacyPills,
     uint256[] calldata collabPills,
     string[] calldata traitsPlus,
-    uint256 characterId
+    uint256 characterId,
+    address target
   ) internal {
     Skeleton memory newSkeleton;
     if (_compareMem(traitsPlus[0], "Pepel")) {
@@ -120,38 +122,44 @@ contract CharacterValidator is Ownable {
         traitsPlus,
         7,
         msg.value,
-        legacyPills[0]
+        legacyPills[0],
+        target
       );
       newSkeleton.eyes = selectableOptions.validateOption(
         traitsPlus,
         8,
         msg.value,
-        legacyPills[1]
+        legacyPills[1],
+        target
       );
       newSkeleton.color = selectableOptions.validateOption(
         traitsPlus,
         9,
         msg.value,
-        legacyPills[2]
+        legacyPills[2],
+        target
       );
       newSkeleton.marking = selectableOptions.validateOption(
         traitsPlus,
         10,
         msg.value,
-        legacyPills[3]
+        legacyPills[3],
+        target
       );
     } else if (_compareMem(traitsPlus[0], "Hashmonk")) {
       newSkeleton.mask = selectableOptions.validateOption(
         traitsPlus,
         7,
         msg.value,
-        legacyPills[0]
+        legacyPills[0],
+        target
       );
       newSkeleton.color = selectableOptions.validateOption(
         traitsPlus,
         8,
         msg.value,
-        legacyPills[1]
+        legacyPills[1],
+        target
       );
     } else {
       revert("Invalid form");
