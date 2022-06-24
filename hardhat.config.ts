@@ -68,6 +68,10 @@ const enableProduction = process.env.COMPILE_MODE === "production";
     mainnet: {
       url: node_url('mainnet'),
       accounts: accounts('mainnet'),
+    },
+    arbrinkeby: {
+      url: node_url('arbrinkeby'),
+      accounts: accounts('arbrinkeby'),
     }
   },
   gasReporter: {
