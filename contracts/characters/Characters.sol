@@ -68,12 +68,10 @@ contract Characters is Context, Auth {
    * @dev Do we want to make this validator protected? onlyValidator
    */
   // [0] = form
-  // [1] = class
-  // [2] = name
-  // [3] = origin
-  // [4] = upbringing
-  // [5] = gift
-  // [6] = faction
+  // [1] = origin
+  // [2] = upbringing
+  // [3] = gift
+  // [4] = faction
   function addPlayer(
     uint256 _id,
     address _player,
@@ -92,9 +90,9 @@ contract Characters is Context, Auth {
       "",
       "",
       traitsPlus[0],
+      traitsPlus[1],
+      traitsPlus[2],
       traitsPlus[3],
-      traitsPlus[4],
-      traitsPlus[5],
       legacyPills,
       collabPills
     );

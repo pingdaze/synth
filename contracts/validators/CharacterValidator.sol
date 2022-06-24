@@ -9,6 +9,7 @@ import "../interfaces/IAugments.sol";
 import "../interfaces/ICharacter.sol";
 import "../interfaces/ICore.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "../lib/CharacterLibrary.sol";
 
 // TODO: Put these in a single place, these are also located in the Characters contract
 
@@ -62,24 +63,20 @@ contract CharacterValidator is Ownable {
       getting fucked by the compiler. When I have a better solution I'll implement it. For now this is the format:
 
       [0] = form
-      [1] = class
-      [2] = name
-      [3-X] = traits
+      [1-X] = traits
       [Y-Z] = character selectable options
 
       For Launch this looks something like...
 
       [0] = form
-      [1] = class
-      [2] = name
-      [3] = origin
-      [4] = upbringing
-      [5] = gift
-      [6] = faction
-      [7] = mask[hashmonk] or mouth[pepel]
-      [8] = water type[hashmonk] or eyes[pepel]
-      [9] = frog type[pepel]
-      [10] = marking type[pepel]
+      [1] = origin
+      [2] = upbringing
+      [3] = gift
+      [4] = faction
+      [5] = mask[hashmonk] or mouth[pepel]
+      [6] = water type[hashmonk] or eyes[pepel]
+      [7] = frog type[pepel]
+      [8] = marking type[pepel]
 
       Need a "termination" string for the traits?
 
@@ -126,28 +123,28 @@ contract CharacterValidator is Ownable {
     if (_compareMem(traitsPlus[0], "Pepel")) {
       newSkeleton.mouth = selectableOptions.validateOption(
         traitsPlus,
-        7,
+        5,
         msg.value,
         legacyPills[0],
         target
       );
       newSkeleton.eyes = selectableOptions.validateOption(
         traitsPlus,
-        8,
+        6,
         msg.value,
         legacyPills[1],
         target
       );
       newSkeleton.color = selectableOptions.validateOption(
         traitsPlus,
-        9,
+        7,
         msg.value,
         legacyPills[2],
         target
       );
       newSkeleton.marking = selectableOptions.validateOption(
         traitsPlus,
-        10,
+        8,
         msg.value,
         legacyPills[3],
         target
@@ -155,14 +152,14 @@ contract CharacterValidator is Ownable {
     } else if (_compareMem(traitsPlus[0], "Hashmonk")) {
       newSkeleton.mask = selectableOptions.validateOption(
         traitsPlus,
-        7,
+        5,
         msg.value,
         legacyPills[0],
         target
       );
       newSkeleton.color = selectableOptions.validateOption(
         traitsPlus,
-        8,
+        6,
         msg.value,
         legacyPills[1],
         target

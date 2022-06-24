@@ -8,16 +8,18 @@ struct Character {
   uint256 characterId;
   address player;
   uint256 class;
-  string faction;
   string description;
   string name;
   string form;
   string origin;
   string upbringing;
   string gift;
+  string faction;
   uint256[] legacyPills;
   uint256[] collabPills;
 }
+
+
 // Note: We probably wantt o abstract out/push out the character logic from the validator logic and just have the single validator reach into the other state holding contracts
 // Can we create the 1155 asset the first time we _unequip_ the 1155?
 // TODO: Probably need to change this from a uint8, is 256 really enough?

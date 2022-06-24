@@ -2,6 +2,7 @@
 
 pragma solidity ^0.8.0;
 import "../lib/LegacyPills.sol";
+import "../lib/CharacterLibrary.sol";
 import "hardhat/console.sol";
 
 //Interface
@@ -77,21 +78,21 @@ contract SelectableOptions {
     // TODO: Is there a smarter/more efficient/more extensible version of this?
     // Can probably convert this to an ASS switch
     if (_compareMem(form, _PEPEL_FORM)) {
-      if (index == 7) {
+      if (index == 5) {
         require(_compareMem(op.slot, _MOUTH), "invalid mouth");
-      } else if (index == 8) {
+      } else if (index == 6) {
         require(_compareMem(op.slot, _EYES), "invlaid eyes");
-      } else if (index == 9) {
+      } else if (index == 7) {
         require(_compareMem(op.slot, _TYPE), "invlaid type");
-      } else if (index == 10) {
+      } else if (index == 8) {
         require(_compareMem(op.slot, _MARKINGS), "invlaid markings");
       } else {
         revert("invalid index");
       }
     } else if (_compareMem(form, _HASHMONK_FORM)) {
-      if (index == 7) {
+      if (index == 5) {
         require(_compareMem(op.slot, _MASK));
-      } else if (index == 8) {
+      } else if (index == 6) {
         require(_compareMem(op.slot, _TYPE));
       } else {
         revert("invalid index");

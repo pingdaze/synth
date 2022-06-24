@@ -109,8 +109,6 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        "",
-        "",
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
@@ -131,8 +129,6 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        "",
-        "",
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
@@ -155,8 +151,6 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        "",
-        "",
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
@@ -176,8 +170,6 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        "",
-        "",
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
@@ -203,8 +195,6 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        "",
-        "",
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
@@ -230,8 +220,6 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        "",
-        "",
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
@@ -254,8 +242,6 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        "",
-        "",
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
@@ -278,8 +264,6 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        "",
-        "",
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
