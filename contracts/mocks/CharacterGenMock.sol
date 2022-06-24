@@ -16,7 +16,7 @@ contract CharacterGenMock is Characters {
   ) Characters(_core, _selectableOptions, auth) {}
 
   function equipOutfitAdmin(
-    uint256 slotID,
+    uint16 slotID,
     uint32 id,
     address _player
   ) external requiresAuth {
@@ -24,7 +24,7 @@ contract CharacterGenMock is Characters {
   }
 
   function equipSkeletonAdmin(
-    uint256 slotID,
+    uint16 slotID,
     uint32 id,
     address _player
   ) external requiresAuth {

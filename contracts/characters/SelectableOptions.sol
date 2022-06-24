@@ -12,13 +12,13 @@ interface IToken {
 }
 
 contract SelectableOptions {
-  string constant _HASHMONK_FORM = "Hashmonk";
-  string constant _PEPEL_FORM = "Pepel";
-  string constant _MOUTH = "Mouth";
-  string constant _EYES = "Eyes";
-  string constant _TYPE = "Type";
-  string constant _MARKINGS = "Markings";
-  string constant _MASK = "Mask";
+  string constant private _HASHMONK_FORM = "Hashmonk";
+  string constant private _PEPEL_FORM = "Pepel";
+  string constant private _MOUTH = "Mouth";
+  string constant private _EYES = "Eyes";
+  string constant private _TYPE = "Type";
+  string constant private _MARKINGS = "Markings";
+  string constant private _MASK = "Mask";
 
   enum Requirement {
     None,
@@ -32,6 +32,7 @@ contract SelectableOptions {
   struct Option {
     Requirement req; // 1 = HAS ETH, 2 = HAS PILL, 3 = Has TRAIT, 4 = HAS NOT TRAIT
     uint8 form;
+    string name;
     string slot;
     string option;
   }
@@ -49,6 +50,7 @@ contract SelectableOptions {
   mapping(uint8 => Option) private _options;
 
   mapping(string => uint8) private _optionToId;
+  uint8 private _optionCount;
 
   address private _legacyPills;
   address private _collabPills;
@@ -65,7 +67,7 @@ contract SelectableOptions {
     uint256 ethValue,
     uint256 legacyPillId,
     address target
-  ) external returns (uint8) {
+  ) external view returns (uint8) {
     uint8 id = _optionToId[options[index]];
     Option memory op = _options[id];
     Requirement req = Requirement(op.req);
@@ -120,14 +122,24 @@ contract SelectableOptions {
 
   function getOption(string calldata option)
     external
+    view
     returns (Option memory op)
   {
     op = _options[_optionToId[option]];
   }
 
+  function getOptionId(string calldata option)
+    external
+    view
+    returns (uint8)
+  {
+    return _optionToId[option];
+  }
+
   // TODO: Put this somewhere better plx; memory vs calldata mismatch
   function _compareCall(string calldata a, string memory b)
     internal
+    pure
     returns (bool)
   {
     if (bytes(a).length != bytes(b).length) {
@@ -140,6 +152,7 @@ contract SelectableOptions {
   // TODO: Issue with overload? Potentially rename; has caused issues before
   function _compareMem(string memory a, string memory b)
     internal
+    pure
     returns (bool)
   {
     if (bytes(a).length != bytes(b).length) {
@@ -152,6 +165,7 @@ contract SelectableOptions {
   // TODO: Issue with overload? Potentially rename; has caused issues before
   function _compareMem2Call(string memory a, string calldata b)
     internal
+    pure
     returns (bool)
   {
     if (bytes(a).length != bytes(b).length) {
@@ -169,13 +183,16 @@ contract SelectableOptions {
     }
     */
   function addOption(
-    string calldata option,
+    string calldata optionID,
+    string calldata name,
     string calldata slot,
-    uint8 id,
     uint8 form
   ) external {
-    _optionToId[option] = id;
-    _options[id] = Option(Requirement.None, form, slot, option);
+    unchecked {
+      _optionCount = _optionCount+1;
+    }
+    _optionToId[optionID] = _optionCount;     
+    _options[_optionCount] = Option(Requirement.None, form, name, slot, optionID);
   }
 
   function setEthRequirement(uint8 id, uint256 cost) external {
@@ -249,16 +266,17 @@ contract SelectableOptions {
     );
   }
 
-  function _checkHasTrait(uint8 id, string[] calldata options) internal {
+  function _checkHasTrait(uint8 id, string[] calldata options) internal view {
     require(_findTrait(id, options) == true, "You don't have the correct trait");
   }
 
-  function _checkHasNotTrait(uint8 id, string[] calldata options) internal {
+  function _checkHasNotTrait(uint8 id, string[] calldata options) internal view {
     require(_findTrait(id, options) == false, "You have an incompatible trait");
   }
 
   function _findTrait(uint8 id, string[] calldata options)
     internal
+    view
     returns (bool traitFound)
   {
     string memory trait = _idToTraitReq[id];

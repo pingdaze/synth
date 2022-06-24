@@ -4,20 +4,20 @@ import "../lib/CharacterLibrary.sol";
 
 interface ICharacter {
   function equipSkeleton(
-    uint8 slotID,
+    uint16 slotID,
     uint256 id,
     address _player
   ) external;
 
   function equipOutfit(
-    uint8 slotID,
+    uint16 slotID,
     uint256 id,
     address _player
   ) external;
 
-  function unequipSkeleton(uint8 slotID, address _player) external;
+  function unequipSkeleton(uint16 slotID, address _player) external;
 
-  function unequipOutfit(uint8 slotID, address _player) external;
+  function unequipOutfit(uint16 slotID, address _player) external;
 
   function addPlayer(
     uint256 _id,

@@ -27,8 +27,8 @@ contract WearablesValidator is Context, Auth {
     character = _character;
   }
 
-  function equipSkeleton(uint256 id, uint8 slotID) external {
-    require(uint8(id) == uint8(slotID), "This doesn't fit in this slot");
+  function equipSkeleton(uint256 id, uint16 slotID) external {
+    require(uint16(id) == slotID, "This doesn't fit in this slot");
     character.equipSkeleton(slotID, id, msg.sender);
   }
 
@@ -38,42 +38,42 @@ contract WearablesValidator is Context, Auth {
 
   function getWearableIDByOption(
     string memory option,
+    uint16 slot,
     uint8 form,
-    uint8 rarity,
-    uint8 slot
+    uint8 rarity
   ) external view returns (uint256 id) {
     uint32 series = optionStringToSeries[option];
     require(series != 0, "Sorry the requested option does not exist");
-    id = convertToWearableUUID(series, form, rarity, slot);
+    id = convertToWearableUUID(series, slot, form, rarity);
     require(wearableExists[id], "Sorry the requested wearable doesn't exist");
   }
 
   function getWearableIDBySeries(
     uint32 series,
+    uint16 slot,
     uint8 form,
-    uint8 rarity,
-    uint8 slot
+    uint8 rarity
   ) external view returns (uint256 id) {
-    id = convertToWearableUUID(series, form, rarity, slot);
+    id = convertToWearableUUID(series, slot, form, rarity);
     require(wearableExists[id], "Sorry the requested wearable doesn't exist");
   }
 
   function addWearable(
     uint32 series,
+    uint16 slot,
     uint8 form,
-    uint8 rarity,
-    uint8 slot
+    uint8 rarity
   ) external requiresAuth {
-    wearableExists[convertToWearableUUID(series, form, rarity, slot)] = true;
+    wearableExists[convertToWearableUUID(series, slot, form, rarity)] = true;
   }
 
   function removeWearable(
     uint32 series,
+    uint16 slot,
     uint8 form,
-    uint8 rarity,
-    uint8 slot
+    uint8 rarity
   ) external requiresAuth {
-    wearableExists[convertToWearableUUID(series, form, rarity, slot)] = false;
+    wearableExists[convertToWearableUUID(series, slot, form, rarity)] = false;
   }
 
   function _setOption(string calldata optionString, uint32 series)
@@ -94,9 +94,9 @@ contract WearablesValidator is Context, Auth {
   // Unclear if slot should be at the top, or the bottom of this config?
   function convertToWearableUUID(
     uint32 series,
+    uint16 slot,
     uint8 form,
-    uint8 rarity,
-    uint8 slot
+    uint8 rarity
   ) public pure returns (uint256 id) {
     //solhint-disable-next-line
     assembly {

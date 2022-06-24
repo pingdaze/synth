@@ -1,13 +1,16 @@
-// @ts-check
 import Airtable from "airtable";
+import type { Attachment } from "airtable/lib/attachment";
+import type { FieldSet } from "airtable/lib/field_set";
+import type { Records } from "airtable/lib/records";
 import _ from "lodash";
-import fetch from "node-fetch";
-import { existsSync } from "node:fs";
-import { writeFile, mkdir } from "node:fs/promises";
-import { isPresent } from "ts-extras";
-import 'dotenv/config';
+import { writeFile } from "node:fs/promises";
+require("dotenv").config();
 
-const BASE_ID = "app8uieQgz940fFXZ";
+function isPresent<T>(value: T): value is NonNullable<T> {
+  return value !== null && value !== undefined;
+}
+
+const BASE_ID = "appgnY0QGepc16iWb";
 
 const TABLE_SKELETON = "Skeleton";
 const TABLE_SKELETON_VIEW = "[DO NOT EDIT] Script View";
@@ -17,7 +20,7 @@ const VIEW_DEFAULT = "Default";
 
 const TABLE_PILLBOOST_WEARABLES = "Pillboost Wearables";
 const TABLE_PILLBOOST_WEARABLES_VIEW = "Default";
-console.log(process.env)
+
 const airtable = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY });
 
 const base = airtable.base(BASE_ID);
@@ -56,12 +59,12 @@ async function generatePillboostWearablesData() {
   const data = await Promise.all(
     filtered.map(async (record) => {
       const items = await Promise.all(
-        record.linked_item.map(async (id) => {
+        record.linked_item.map(async (id: string) => {
           const item = await base(TABLE_PILLBOOST_WEARABLES).find(id);
 
           if (item.get("Image")) {
-            const fileName = item.get("Image")[0].filename;
-            const image = item.get("Image")[0].url;
+            const fileName = (item.get("Image") as Attachment[])[0].filename;
+            const image = (item.get("Image") as Attachment[])[0].url;
 
             return {
               name: item.get("Name"),
@@ -90,7 +93,7 @@ async function generatePillboostWearablesData() {
   console.log(`Writing: pillboost-wearables.json`);
 
   await writeFile(
-    "data/_generated/pillboost-wearables.json",
+    "data/pillboost-wearables.json",
     JSON.stringify(data, null, 2)
   );
 }
@@ -104,7 +107,7 @@ async function generateSkeletonOptionsData() {
 
   const data = buildObjectFromRecords(raw, [
     "Name",
-    "UINT",
+    "UUID",
     "Image",
     "Description",
     "Form",
@@ -117,6 +120,7 @@ async function generateSkeletonOptionsData() {
     "Rarity",
     "Prerequisite Type",
     "Prerequisite Value",
+    "_cid"
   ])
     .filter((record) => isPresent(record.name))
     .filter((record) => isPresent(record.form))
@@ -136,25 +140,9 @@ async function generateSkeletonOptionsData() {
   console.log(`Writing: skeleton-options.json`);
 
   await writeFile(
-    "data/_generated/skeleton-options.json",
+    "data/skeleton-options.json",
     JSON.stringify(data, null, 2)
   );
-
-  if (!existsSync("public/images/_generated")) {
-    console.log(
-      "Folder 'public/images/_generated' Does Not Exist, Creating..."
-    );
-
-    await mkdir("public/images/_generated");
-  }
-
-  for (const item of data.filter((item) => item.image && item.fileName)) {
-    await download(
-      item.image,
-      item.fileName,
-      `public/images/_generated/${item.fileName}`
-    );
-  }
 }
 
 async function generateStepOptionsData() {
@@ -285,10 +273,7 @@ async function generateStepOptionsData() {
 
   console.log(`Writing: step-options.json`);
 
-  await writeFile(
-    "data/_generated/step-options.json",
-    JSON.stringify(data, null, 2)
-  );
+  await writeFile("data/step-options.json", JSON.stringify(data, null, 2));
 }
 
 async function main() {
@@ -301,38 +286,10 @@ async function main() {
 
 main();
 
-/**
- * @param {string} url
- * @param {string} fileName
- * @param {string} pathLike
- */
-const download = async (url, fileName, pathLike) => {
-  try {
-    if (existsSync(pathLike)) {
-      return console.log(`${fileName} Exists. Skipping Download.`);
-    }
-
-    console.log(`Downloading: ${fileName}`);
-
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-
-    const buffer = await response.buffer();
-
-    await writeFile(pathLike, buffer);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-/**
- * @param {import("airtable").Records<import("airtable").FieldSet>} records
- * @param {string[]} columns
- */
-const buildObjectFromRecords = (records, columns) => {
+const buildObjectFromRecords = (
+  records: Records<FieldSet>,
+  columns: string[]
+) => {
   return records.map((record) => {
     const entries = columns.map((columnName) => {
       const key = columnName.toLowerCase().replace(" ", "_");
@@ -341,12 +298,7 @@ const buildObjectFromRecords = (records, columns) => {
 
       if (
         Array.isArray(valueForField) &&
-        valueForField.some(
-          /**
-           * @param {import("airtable").Attachment} elem
-           */
-          (elem) => typeof elem.url === "string"
-        )
+        valueForField.some((elem: Attachment) => typeof elem.url === "string")
       ) {
         return [
           key,

@@ -75,12 +75,12 @@
       "description": "A giant block drifting on the edge of Chainspace, constructed by a forerunner society dedicated to the study of the blocks, the blockworms, and the end of space. It is now a Temple and site of study and analysis."
     },
     {
-      "name": "Azshtttrokk, The Host",
+      "name": "Azshtttrokk",
       "type": "Origin",
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
-      "description": "A city built and grown within the carcass of an ancient Blockworm and home to many of the Blockeater Tribes"
+      "description": "AKA, The Host. A city built and grown within the carcass of an ancient Blockworm and home to many of the Blockeater Tribes"
     },
     {
       "name": "Hued Forests",
@@ -111,7 +111,7 @@
       "type": "Origin",
       "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "Egodeth Portalpill",
+      "prerequisite_value": "egodeth_portalpill",
       "description": "The vast construct whose explosion released the Genesis Pills and seeded the creation of all Chainspace."
     },
     {
@@ -157,7 +157,7 @@
   ],
   "Upbringing": [
     {
-      "name": "Space Traveler",
+      "name": "Interstellar Nomad",
       "type": "Upbringing",
       "rarity": "Standard",
       "prerequisite_type": null,
@@ -218,7 +218,7 @@
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
-      "description": "Your are self-proclaimed nobility, living at the edges of the universe."
+      "description": "You are self-proclaimed nobility, living at the edges of the universe."
     },
     {
       "name": "Operator",
@@ -234,7 +234,7 @@
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
-      "description": "You grew up amongst Patchers, a wandering mechanics traveling between worlds to construct and tend to the yield engines communities rely on to boost their farm's yields"
+      "description": "You grew up amongst Patchers, nomadic mechanics traveling between worlds to construct and tend to the yield engines communities rely on to boost their farm's yields"
     }
   ],
   "Gift": [
@@ -350,7 +350,7 @@
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
-      "description": "The Wayfarers. They of the Formless Mountain who seek to achieve a way of transcendence by collectively embodying a pure-state stability, which has long been thought of as impossible. Their metaphysical journey takes the members through a series of ranks, from \"1,1\" to \"3,3\" and to \"9,9\" beyond."
+      "description": "The Wayfarers. They of the Formless Mountain who seek to achieve a way of transcendence by collectively embodying a pure-state stability, which has long been thought of as impossible."
     },
     {
       "name": "Yearn",
@@ -390,40 +390,40 @@
       "name": "Coral",
       "type": "Water Type",
       "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
+      "prerequisite_type": "HAS NOT TRAIT",
+      "prerequisite_value": "Shadowpakt",
       "description": "You are made from the waters that ebb and flow through the coral regions, close to the Mempool's island archipelagos"
     },
     {
       "name": "Sunstrider",
       "type": "Water Type",
       "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
+      "prerequisite_type": "HAS NOT TRAIT",
+      "prerequisite_value": "Shadowpakt",
       "description": "You are made from the sunkissed waterways that flow within the Mempool's islands"
     },
     {
       "name": "Arctic",
       "type": "Water Type",
       "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
+      "prerequisite_type": "HAS NOT TRAIT",
+      "prerequisite_value": "Shadowpakt",
       "description": "You are made from the frigid waters at the Mempool's fringes."
     },
     {
       "name": "Tropic",
       "type": "Water Type",
       "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
+      "prerequisite_type": "HAS NOT TRAIT",
+      "prerequisite_value": "Shadowpakt",
       "description": "You are made from the warm waters that flow near the Mempool's center"
     },
     {
       "name": "Shadowmarked",
       "type": "Water Type",
-      "rarity": "Pillboost",
-      "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "shadowpak",
+      "rarity": "Special",
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Shadowpakt",
       "description": "Your are made from ashen waters corrupted by the Shadowchain's touch."
     }
   ],
@@ -477,7 +477,7 @@
       "type": "Mouth"
     },
     {
-      "name": "Frogseers",
+      "name": "Broodmouth",
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
@@ -688,9 +688,9 @@
     },
     {
       "name": "Loomsight",
-      "rarity": "Pillboost",
-      "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "wassiepill",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
       "description": "The Pepelian skin condition known as Loompox has colonized your eyes. Your vision is now filtered through these strange sentient creatures.. probably not for the better",
       "type": "Eyes"
     },
@@ -1157,6 +1157,14 @@
       "prerequisite_value": "Egodeth Portalpill",
       "description": "A head made from the ancient matter of the Genesis Cube and depicting The Guardian: the mysterious, metaphysical entity that watched over the Cube until its eventual destruction",
       "type": "Hashmonk Head"
+    },
+    {
+      "name": "Gategremplin",
+      "rarity": "Special",
+      "prerequisite_type": "HAS PILL",
+      "prerequisite_value": "toadzpill",
+      "description": null,
+      "type": "Hashmonk Head"
     }
   ],
   "Hashmonk Left Arm": [
@@ -1470,9 +1478,9 @@
     },
     {
       "name": "Nullface",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
+      "rarity": "Pillboost",
+      "prerequisite_type": "HAS PILL",
+      "prerequisite_value": "ghiblipill",
       "description": "A mask depicting the shapeshifting Nullform creatures of the Nullwastes.",
       "type": "Hashmonk Mask"
     },
@@ -1545,15 +1553,23 @@
       "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "0xpill",
-      "description": null,
+      "description": "You have sacrificed a pill to one of the Great Old 0xmons, and they have forged this mask in the Prophet's image",
       "type": "Hashmonk Mask"
     },
     {
       "name": "Tubbymask",
       "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "Tubbypill",
+      "prerequisite_value": "tubbypill",
       "description": "Your mask is an ode to Tubbycats everywhere",
+      "type": "Hashmonk Mask"
+    },
+    {
+      "name": "Skrolmask",
+      "rarity": "Special",
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Doomskroler",
+      "description": "One of several common designs popular with the Doomskrolers",
       "type": "Hashmonk Mask"
     }
   ],

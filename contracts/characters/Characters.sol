@@ -23,8 +23,8 @@ contract Characters is Context, Auth {
   SelectableOptions public selectableOptions;
   uint256 private _nextId = 0;
   address private _validator;
-  string defaultDescription;
-  string defaultName;
+  string private _defaultDescription;
+  string private _defaultName;
   IEXP public exp;
   IREP public rep;
 
@@ -128,11 +128,11 @@ contract Characters is Context, Auth {
     public
     requiresAuth
   {
-    defaultDescription = _description;
+    _defaultDescription = _description;
   }
 
   function setDefaultName(string memory _name) public requiresAuth {
-    defaultName = _name;
+    _defaultName = _name;
   }
 
   /**
@@ -148,22 +148,22 @@ contract Characters is Context, Auth {
   }
 
   function equipSkeleton(
-    uint256 slotID,
     uint32 id,
+    uint16 slotID,
     address _player
   ) external onlyWearables {
     _setSkeletonSlot(slotID, skeletons[getIdFromAddress(_player)], id);
   }
 
   function equipOutfit(
-    uint256 slotID,
     uint32 id,
+    uint16 slotID,
     address _player
   ) external onlyWearables {
     _setOutfitSlot(slotID, outfits[getIdFromAddress(_player)], id);
   }
 
-  function unequipSkeleton(uint256 slotID, address _player)
+  function unequipSkeleton(uint16 slotID, address _player)
     external
     onlyWearables
     returns (uint256 returnID)
@@ -173,7 +173,7 @@ contract Characters is Context, Auth {
     _setSkeletonSlot(slotID, skeleton, 0);
   }
 
-  function unequipOutfit(uint256 slotID, address _player)
+  function unequipOutfit(uint16 slotID, address _player)
     external
     onlyWearables
     returns (uint256 returnID)
@@ -184,7 +184,7 @@ contract Characters is Context, Auth {
   }
 
   function _setSkeletonSlot(
-    uint256 slotID,
+    uint16 slotID,
     Skeleton storage skeleton,
     uint32 value
   ) internal {
@@ -225,7 +225,7 @@ contract Characters is Context, Auth {
   }
 
   function _setOutfitSlot(
-    uint256 slotID,
+    uint16 slotID,
     Outfit storage outfit,
     uint32 value
   ) internal {
@@ -328,14 +328,14 @@ contract Characters is Context, Auth {
   {
     return
       _compareMem(characters[tokenID].description, "")
-        ? defaultDescription
+        ? _defaultDescription
         : characters[tokenID].description;
   }
 
   function getName(uint256 tokenID) public view returns (string memory) {
     return
       _compareMem(characters[tokenID].name, "")
-        ? defaultName
+        ? _defaultName
         : characters[tokenID].name;
   }
 

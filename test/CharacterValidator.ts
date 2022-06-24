@@ -24,8 +24,8 @@ import {
   deployMock1155
 } from "./shared/deploys";
 import { ContractTransaction } from "ethers";
-
-const coreId = 1;
+import { pushOptions } from "../utils/add-options";
+const coreIds = [1,2, 3, 4, 5, 6, 7, 8, 9 ,10];
 const mockCollabId = 1;
 const mockLegacyId = ethers.BigNumber.from("0xE00000000000000940000000000000001");
 const mockLegacyIdReq = 0xE;
@@ -49,6 +49,7 @@ describe.only("Characters Validator", () => {
     let options: SelectableOptions;
     let nift: Basic1155;
     let owner: string;
+    let optionID: number;
     // This is horribly inneficient, probably don't redeploy these each time?
 
     before(async () => {
@@ -59,9 +60,6 @@ describe.only("Characters Validator", () => {
       nift = (await deployMock1155()) as Basic1155;
       await nift.mint(mockCollabId, owner, amount);
       await nift.mint(mockLegacyId, owner, amount);
-    });
-    beforeEach(async () => {
-      // We get the contract to deploy
       core721 = (await deployCore721()) as Core721;
       core1155 = (await deployCore1155()) as Core1155;
       options = (await deploySelectableOptions(nift.address, nift.address)) as SelectableOptions;
@@ -86,30 +84,34 @@ describe.only("Characters Validator", () => {
         requester
       )) as CharacterValidator;
       character.setValidator(characterValidator.address);
-      receipt = await core721.addValidator(characterValidator.address, [
-        coreId,
-      ]);
+      receipt = await core721.addValidator(characterValidator.address, coreIds);
+      await pushOptions(options.address, wearablesValidator.address, augmentsValidator.address);
+      optionID = await options.getOptionId("reccgzz8BLpq1XSVp");
+      console.log("optionID", optionID);
+      await options.addOption("recca12da8BLpq1XSVp", "Green", "Type", 1);
+      optionID = await options.getOptionId("recca12da8BLpq1XSVp");
+      console.log("optionID", optionID);
+      optionID = await options.getOptionId("recKSmX6HY5GD6E2V");
+      console.log("optionID", optionID);
+      optionID = await options.getOptionId("recudapdQnZXdAoLv");
+      console.log("optionID", optionID);
     });
     it("Can mint an avatar", async () => {
       const legacyPills: number[] = [0,0,0,0,0];
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        "Purple",
-        "Orange",
-        "Green",
-        "Blue",
+        "",
+        "",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "Shadowpakt",
+        "reccgzz8BLpq1XSVp",
+        "recdn3ki0VHcIWhc2",
+        "recca12da8BLpq1XSVp",
+        "recQqOIfSneUOTNej",
       ] as string[];
-      await options.addOption("Purple", "Mouth", 1, 1);
-      await options.addOption("Orange", "Eyes", 2, 1);
-      await options.addOption("Green", "Type", 3, 1);
-      await options.addOption("Blue", "Markings", 4, 1);
       receipt = await characterValidator.createCharacter(
         legacyPills,
         collabPills,
@@ -121,22 +123,18 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        "Purple",
-        "Orange",
-        "Green",
-        "Blue",
+        "",
+        "",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "Shadowpakt",
+        "reccgzz8BLpq1XSVp",
+        "recdn3ki0VHcIWhc2",
+        "recca12da8BLpq1XSVp",
+        "recQqOIfSneUOTNej",
       ] as string[];
-      await options.addOption("Purple", "Mouth", 1, 1);
-      await options.addOption("Orange", "Eyes", 2, 1);
-      await options.addOption("Green", "Type", 3, 1);
-      await options.addOption("Blue", "Markings", 4, 1);
-      await options.setEthRequirement(1, cost);
+      await options.setEthRequirement(optionID, cost);
       receipt = await characterValidator.createCharacter(
         legacyPills,
         collabPills,
@@ -149,22 +147,18 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        "Purple",
-        "Orange",
-        "Green",
-        "Blue",
+        "",
+        "",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "Shadowpakt",
+        "reccgzz8BLpq1XSVp",
+        "recdn3ki0VHcIWhc2",
+        "recca12da8BLpq1XSVp",
+        "recQqOIfSneUOTNej",
       ] as string[];
-      await options.addOption("Purple", "Mouth", 1, 1);
-      await options.addOption("Orange", "Eyes", 2, 1);
-      await options.addOption("Green", "Type", 3, 1);
-      await options.addOption("Blue", "Markings", 4, 1);
-      await options.setEthRequirement(1, cost);
+      await options.setEthRequirement(optionID, cost);
       expect(
         characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
       ).to.be.revertedWith("not enough ETH");
@@ -174,22 +168,18 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        "Purple",
-        "Orange",
-        "Green",
-        "Blue",
+        "",
+        "",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "Shadowpakt",
+        "reccgzz8BLpq1XSVp",
+        "recdn3ki0VHcIWhc2",
+        "recca12da8BLpq1XSVp",
+        "recQqOIfSneUOTNej",
       ] as string[];
-      await options.addOption("Purple", "Mouth", 1, 1);
-      await options.addOption("Orange", "Eyes", 2, 1);
-      await options.addOption("Green", "Type", 3, 1);
-      await options.addOption("Blue", "Markings", 4, 1);
-      await options.setLegacyPillRequirement(1, mockLegacyIdReq);
+      await options.setLegacyPillRequirement(optionID, mockLegacyIdReq);
       expect(
         characterValidator.createCharacter(
           legacyPills,
@@ -203,22 +193,18 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        "Purple",
-        "Orange",
-        "Green",
-        "Blue",
+        "",
+        "",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "Shadowpakt",
+        "reccgzz8BLpq1XSVp",
+        "recdn3ki0VHcIWhc2",
+        "recca12da8BLpq1XSVp",
+        "recQqOIfSneUOTNej",
       ] as string[];
-      await options.addOption("Purple", "Mouth", 1, 1);
-      await options.addOption("Orange", "Eyes", 2, 1);
-      await options.addOption("Green", "Type", 3, 1);
-      await options.addOption("Blue", "Markings", 4, 1);
-      receipt = await options.setLegacyPillRequirement(1, mockLegacyIdReq);
+      receipt = await options.setLegacyPillRequirement(optionID, mockLegacyIdReq);
       await receipt.wait();
       receipt = await characterValidator.createCharacter(
           legacyPills,
@@ -231,22 +217,18 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        "Purple",
-        "Orange",
-        "Green",
-        "Blue",
+        "",
+        "",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "Shadowpakt",
+        "reccgzz8BLpq1XSVp",
+        "recdn3ki0VHcIWhc2",
+        "recca12da8BLpq1XSVp",
+        "recQqOIfSneUOTNej",
       ] as string[];
-      await options.addOption("Purple", "Mouth", 1, 1);
-      await options.addOption("Orange", "Eyes", 2, 1);
-      await options.addOption("Green", "Type", 3, 1);
-      await options.addOption("Blue", "Markings", 4, 1);
-      receipt = await options.setCollabPillRequirement(1, mockCollabId);
+      receipt = await options.setCollabPillRequirement(optionID, mockCollabId);
       await receipt.wait();
       receipt = await characterValidator.createCharacter(
         legacyPills,
@@ -265,16 +247,12 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Shadowpakt",
-        "Purple",
-        "Third Eye",
-        "Green",
-        "Blue",
+        "reccgzz8BLpq1XSVp",
+        "recdn3ki0VHcIWhc2",
+        "recca12da8BLpq1XSVp",
+        "recQqOIfSneUOTNej",
       ] as string[];
-      await options.addOption("Purple", "Mouth", 1, 1);
-      await options.addOption("Third Eye", "Eyes", 2, 1);
-      await options.addOption("Green", "Type", 3, 1);
-      await options.addOption("Blue", "Markings", 4, 1);
-      receipt = await options.setTraitRequirement(2, "Galaxy Brain");
+      receipt = await options.setTraitRequirement(optionID, "Galaxy Brain");
       await receipt.wait();
       receipt = await characterValidator.createCharacter(
         legacyPills,
@@ -291,18 +269,14 @@ describe.only("Characters Validator", () => {
         "",
         "Deepmem",
         "Doomskroler",
-        "Apeblood",
+        "Galaxy Brain",
         "Shadowpakt",
-        "Purple",
-        "Third Eye",
-        "Green",
-        "Blue",
+        "reccgzz8BLpq1XSVp",
+        "recdn3ki0VHcIWhc2",
+        "recca12da8BLpq1XSVp",
+        "recQqOIfSneUOTNej",
       ] as string[];
-      await options.addOption("Purple", "Mouth", 1, 1);
-      await options.addOption("Third Eye", "Eyes", 2, 1);
-      await options.addOption("Green", "Type", 3, 1);
-      await options.addOption("Blue", "Markings", 4, 1);
-      receipt = await options.setTraitRequirement(2, "Galaxy Brain");
+      receipt = await options.setTraitRequirement(optionID, "Galaxy Brain");
       await receipt.wait();
       expect(
         characterValidator.createCharacter(

@@ -24,13 +24,13 @@ struct Character {
 // TODO: This should just be a fucking array? Am I crazy? That's more flexible
 struct Skeleton {
   uint256 head;
-  uint256 mouth;
-  uint256 eyes;
   uint256 torso;
   uint256 lArm;
   uint256 rArm;
-  uint256 rLeg;
   uint256 lLeg;
+  uint256 rLeg;
+  uint256 mouth;
+  uint256 eyes;
   uint256 color;
   uint256 marking;
   uint256 mask;
@@ -40,8 +40,8 @@ struct Outfit {
   uint256 torso;
   uint256 lArm;
   uint256 rArm;
-  uint256 rLeg;
   uint256 lLeg;
+  uint256 rLeg;
   uint256 floating;
 }
 
@@ -56,19 +56,19 @@ library CharacterLibrary {
     if (slotID == 0) {
       return skeleton.head;
     } else if (slotID == 1) {
-      return skeleton.mouth;
-    } else if (slotID == 2) {
-      return skeleton.eyes;
-    } else if (slotID == 3) {
       return skeleton.torso;
-    } else if (slotID == 4) {
+    } else if (slotID == 2) {
       return skeleton.lArm;
-    } else if (slotID == 5) {
+    } else if (slotID == 3) {
       return skeleton.rArm;
-    } else if (slotID == 6) {
-      return skeleton.rLeg;
-    } else if (slotID == 7) {
+    } else if (slotID == 4) {
       return skeleton.lLeg;
+    } else if (slotID == 5) {
+      return skeleton.rLeg;
+    } else if (slotID == 6) {
+      return skeleton.mouth;
+    } else if (slotID == 7) {
+      return skeleton.eyes;
     } else if (slotID == 8) {
       return skeleton.color;
     } else if (slotID == 9) {
@@ -93,9 +93,9 @@ library CharacterLibrary {
     } else if (slotID == 3) {
       return outfit.rArm;
     } else if (slotID == 4) {
-      return outfit.rLeg;
-    } else if (slotID == 5) {
       return outfit.lLeg;
+    } else if (slotID == 5) {
+      return outfit.rLeg;
     } else if (slotID == 6) {
       return outfit.floating;
     }
