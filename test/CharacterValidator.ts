@@ -42,7 +42,7 @@ const cost = ethers.utils.parseEther("1");
 
 // Replace magic numbers
 
-describe.only("Characters Validator", () => {
+describe("Characters Validator", () => {
   describe("isValid", () => {
     let core721: Core721;
     let core1155: Core1155;
@@ -182,7 +182,7 @@ describe.only("Characters Validator", () => {
         characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
       ).to.be.revertedWith("You do not have the required Legacy pill");
     });
-    it.only("Can mint an avatar with a pill gated upgrade if holding pill", async () => {
+    it("Can mint an avatar with a pill gated upgrade if holding pill", async () => {
       const legacyPills: BigNumber[] = [
         mockLegacyId,
         BigZero,
