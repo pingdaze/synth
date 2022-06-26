@@ -11,14 +11,14 @@
         "CharacterValidator": "0xf28d36A411B86b9Ff1491d855153Ac491a45a850"
     },
     "ArbRinkeby": {
-        "Core721":  "0x96c43355c01cB80213E91399dcb9968F807f4380",
-        "Core1155":  "0x1307D5e3A1F2F084dCD3AE413A7207b243D06BFa",
-        "SelectableOptions":  "0x14513f8C6cDEaf47FD68E87f4B2085515DF2ce97",
-        "Characters":  "0x757cd22D039fd1018543592DFd22cEd021aA2b09",
-        "WearablesValidator":  "0xfb2eCe6BD34F68a8380aBF40a1a7f00918d45ffF",
-        "AugmentsValidator":  "0xFE5eeb94377d9BbA6af88CA1FeA02209aF9D8Ac7",
-        "Requester":  "0xAc532C0172C6422bd5d3F8dD529dA632e44147E6",
-        "CharacterValidator":  "0xA01227215aA92686B315E64fD2C095531d4A5cC1",
-        "BalanceHook":  "0x40883d7d99a2dfecf6f59a3ac234afcd020dd285"
+        "Core721":  "0x8Ec730d93ae6b0311D6B7A6cED742D2C57A23fb6",
+        "Core1155":  "0xC88Accbb1FB251A90C492EB7bc20127E7a3b6aB5",
+        "SelectableOptions":  "0x8E2a8cbFc69E9822D861Cf9dbf8921c036fdaEa4",
+        "Characters":  "0x696C3a58b5BD637994F0a3Be869e735BBA55A12D",
+        "WearablesValidator":  "0xAC95393e751A7E7c8bc3a5ed0e3ca18ee11fF092",
+        "AugmentsValidator":  "0x47C7738E96f344a1c59749fB449e510599618aA0",
+        "Requester":  "0xb7000a83C0773216523B3a7872327f4b6cD9B186",
+        "CharacterValidator":  "0xff3C1Ef79a09C4D85201f927FB97817Db27C775c",
+        "BalanceHook":  "N/A"
     }
 }
