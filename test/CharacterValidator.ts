@@ -55,7 +55,7 @@ describe.only("Characters Validator", () => {
     let options: SelectableOptions;
     let nift: Basic1155;
     let owner: string;
-    let optionID: number;
+    let optionID: BigNumber;
 
     before(async () => {
       owner = (await ethers.getSigners())[0].address;
@@ -98,9 +98,10 @@ describe.only("Characters Validator", () => {
         wearablesValidator.address,
         augmentsValidator.address
       );
-      optionID = await options.getOptionId("reccgzz8BLpq1XSVp");
-      await options.addOption("recca12da8BLpq1XSVp", "Green", "Type", 1);
-      optionID = await options.getOptionId("recca12da8BLpq1XSVp");
+      await options.addOption("lime", "lime", "Type", 1);
+      optionID = await options.getOptionId("lime");
+
+      
     });
     it("Can mint an avatar", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
@@ -111,16 +112,45 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "reccgzz8BLpq1XSVp",
-        "recdn3ki0VHcIWhc2",
-        "recca12da8BLpq1XSVp",
-        "recQqOIfSneUOTNej",
+        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
+        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "lime",
+        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
       ] as string[];
       receipt = await characterValidator.createCharacter(
         legacyPills,
         collabPills,
         traitsplus
       );
+    });
+
+    it.only("Can retrieve a CID from a character ID", async () => {
+      const legacyPills: number[] = [0, 0, 0, 0, 0];
+      const collabPills: number[] = [];
+      const traitsplus: string[] = [
+        "Pepel",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "Yearn",
+        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
+        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "lime",
+        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+      ] as string[];
+      receipt = await characterValidator.createCharacter(
+        legacyPills,
+        collabPills,
+        traitsplus
+      );
+      const uintID = await options.getOptionId("bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q");
+      console.log("UINTID", uintID);
+      const cid = await augmentsValidator.cid(uintID);
+      console.log("CID", cid);
+      const id = await augmentsValidator.id(cid); 
+      console.log("ID:", id);
+      expect(id).to.equal(uintID);
+      //const skeleton 
     });
     it("Can mint an avatar with a paid in ETH upgrade", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
@@ -131,10 +161,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "reccgzz8BLpq1XSVp",
-        "recdn3ki0VHcIWhc2",
-        "recca12da8BLpq1XSVp",
-        "recQqOIfSneUOTNej",
+        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
+        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "lime",
+        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
       ] as string[];
       await options.setEthRequirement(optionID, cost);
       receipt = await characterValidator.createCharacter(
@@ -153,10 +183,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "reccgzz8BLpq1XSVp",
-        "recdn3ki0VHcIWhc2",
-        "recca12da8BLpq1XSVp",
-        "recQqOIfSneUOTNej",
+        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
+        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "lime",
+        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
       ] as string[];
       await options.setEthRequirement(optionID, cost);
       await expect(
@@ -172,10 +202,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "reccgzz8BLpq1XSVp",
-        "recdn3ki0VHcIWhc2",
-        "recca12da8BLpq1XSVp",
-        "recQqOIfSneUOTNej",
+        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
+        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "lime",
+        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
       ] as string[];
       await options.setLegacyPillRequirement(optionID, mockLegacyIdReq);
       await expect(
@@ -197,10 +227,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "reccgzz8BLpq1XSVp",
-        "recdn3ki0VHcIWhc2",
-        "recca12da8BLpq1XSVp",
-        "recQqOIfSneUOTNej",
+        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
+        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "lime",
+        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
       ] as string[];
       receipt = await options.setLegacyPillRequirement(
         optionID,
@@ -223,10 +253,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "reccgzz8BLpq1XSVp",
-        "recdn3ki0VHcIWhc2",
-        "recca12da8BLpq1XSVp",
-        "recQqOIfSneUOTNej",
+        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
+        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "lime",
+        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
       ] as string[];
       receipt = await options.setCollabPillRequirement(optionID, mockCollabId);
       await receipt.wait();
@@ -245,10 +275,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "reccgzz8BLpq1XSVp",
-        "recdn3ki0VHcIWhc2",
-        "recca12da8BLpq1XSVp",
-        "recQqOIfSneUOTNej",
+        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
+        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "lime",
+        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
       ] as string[];
       receipt = await options.setTraitRequirement(optionID, "Galaxy Brain");
       await receipt.wait();
@@ -267,10 +297,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Gweibond",
         "Yearn",
-        "reccgzz8BLpq1XSVp",
-        "recdn3ki0VHcIWhc2",
-        "recca12da8BLpq1XSVp",
-        "recQqOIfSneUOTNej",
+        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
+        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "lime",
+        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
       ] as string[];
       receipt = await options.setTraitRequirement(optionID, "Galaxy Brain");
       await receipt.wait();
@@ -287,10 +317,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Shadowpakt",
-        "reccgzz8BLpq1XSVp",
-        "recdn3ki0VHcIWhc2",
-        "recca12da8BLpq1XSVp",
-        "recQqOIfSneUOTNej",
+        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
+        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "lime",
+        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
       ] as string[];
       await expect(
         characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
@@ -311,10 +341,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Shadowpakt",
-        "reccgzz8BLpq1XSVp",
-        "recdn3ki0VHcIWhc2",
-        "recca12da8BLpq1XSVp",
-        "recQqOIfSneUOTNej",
+        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
+        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "lime",
+        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
       ] as string[];
       receipt = await nift.mint(mockShadowPaktPill, owner, amount);
       await receipt.wait();
