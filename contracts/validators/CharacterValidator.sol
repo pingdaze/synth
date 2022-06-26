@@ -13,6 +13,28 @@ import "../lib/CharacterLibrary.sol";
 
 // TODO: Put these in a single place, these are also located in the Characters contract
 
+
+//Slot to ID mapping
+// SKELETON
+// Head = 1
+// Torso = 2
+// larm = 3
+// rarm = 4
+// lleg = 5
+// rleg = 6
+// mouth = 7
+// eyes = 8
+// color = 9
+// marking = 10
+// mask = 11
+// OUTFIT
+// Head = 33
+// Torso = 34
+// larm = 35
+// rarm = 36
+// lleg = 37
+// rleg = 38
+// floating = 39
 contract CharacterValidator is Ownable {
   uint256 public constant MAX_INT = 2**256 - 1;
 
@@ -30,7 +52,12 @@ contract CharacterValidator is Ownable {
   uint32 private _charPerCall;
   uint256 private _qOffset;
   mapping(uint256 => uint256) private _request2Offset;
-
+  Skeleton public defaultSkeleton = Skeleton(
+    1,2,3,4,5,6,7,8,9,10,11
+  );
+  Outfit public defaultOutfit = Outfit(
+    33,34,35,36,37,38,39
+  );
   /**
    * @dev
    */
@@ -119,7 +146,7 @@ contract CharacterValidator is Ownable {
     uint256 characterId,
     address target
   ) internal {
-    Skeleton memory newSkeleton;
+    Skeleton memory newSkeleton = defaultSkeleton;
     selectableOptions.validateFaction(traitsPlus[4], legacyPills[0], target);
     if (_compareMem(traitsPlus[0], "Pepel")) {
       newSkeleton.mouth = selectableOptions.validateOption(
