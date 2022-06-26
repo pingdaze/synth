@@ -81,7 +81,11 @@ const enableProduction = process.env.COMPILE_MODE === "production";
     coinmarketcap: process.env.COINTMARKETCAP_API_KEY,
     outputFile: process.env.CI ? "gas-report.txt" : undefined,
   },
-
+  etherscan: {
+    apiKey:  {
+      arbitrumTestnet: process.env.ARBSCAN_API
+    }
+  },
   watcher: {
     compilation: {
       tasks: ["compile"],
