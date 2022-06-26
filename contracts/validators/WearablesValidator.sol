@@ -16,6 +16,7 @@ contract WearablesValidator is Context, Auth {
   mapping(uint256 => bool) public wearableExists;
   uint8 public slotCount;
   mapping(uint256 => string) public cid;
+  mapping(string => uint256) public id;
 
   // Change to initialize call
   constructor(
@@ -108,8 +109,9 @@ contract WearablesValidator is Context, Auth {
     }
   }
 
-  function setCID(uint256 id, string calldata _cid) external {
-    cid[id] = _cid;
+  function setCID(uint256 _id, string calldata _cid) external {
+    cid[_id] = _cid;
+    id[_cid] = _id;
   }
 
   function uri(uint256 id) external view returns (string memory) {
