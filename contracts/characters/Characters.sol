@@ -88,11 +88,11 @@ contract Characters is Context, Auth {
       CharacterLibrary.MAX_INT,
       "",
       "",
-      "",
       traitsPlus[0],
       traitsPlus[1],
       traitsPlus[2],
       traitsPlus[3],
+      traitsPlus[4],
       legacyPills,
       collabPills
     );
