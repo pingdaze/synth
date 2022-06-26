@@ -27,7 +27,8 @@ async function main() {
   character = await ethers.getContractAt('Characters', charDeploymant.ArbRinkeby.Characters) as Characters;
   options = await ethers.getContractAt('SelectableOptions', charDeploymant.ArbRinkeby.SelectableOptions) as SelectableOptions;
   if(network.name === "arbrinkeby" ) {
-    await options.addOption("recca12da8BLpq1XSVp", "Green", "Type", 1);      
+    await options.addOption("lime", "lime", "Type", 1, {gasPrice: 10000000000});
+    console.log("Option Added");     
     const legacyPills: number[] = [0, 0, 0, 0, 0];
     const collabPills: number[] = [];
     const traitsplus: string[] = [
@@ -36,10 +37,10 @@ async function main() {
       "Doomskroler",
       "Galaxy Brain",
       "Yearn",
-      "reccgzz8BLpq1XSVp",
-      "recdn3ki0VHcIWhc2",
-      "recca12da8BLpq1XSVp",
-      "recQqOIfSneUOTNej",
+      "bafybeihyfsrugiutnmradxzvoyl4qmq2u2bzn4owmzijvyxrt64s5omkrq",
+      "bafybeih4wb7xscxxober65kwgdabtibpmcnsbfbosnx6rfu5kgz4mehxf4",
+      "lime",
+      "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
     ] as string[];
     receipt = await characterValidator.createCharacter(
       legacyPills,
