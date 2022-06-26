@@ -123,7 +123,34 @@ describe.only("Characters Validator", () => {
         traitsplus
       );
     });
-
+    it.only("Avatars default to having the correct CIDs", async () => {
+      const legacyPills: number[] = [0, 0, 0, 0, 0];
+      const collabPills: number[] = [];
+      const traitsplus: string[] = [
+        "Pepel",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "Yearn",
+        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
+        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "lime",
+        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+      ] as string[];
+      receipt = await characterValidator.createCharacter(
+        legacyPills,
+        collabPills,
+        traitsplus
+      );
+      const characterID = await character.getCharacter(1);
+      const skeleton = await character.getSkeleton(1);
+      // skeleton.forEach(async (element) => {
+      //   console.log(await wearablesValidator.cid(element));
+      // });
+      // console.log(skeleton);
+      // console.log(characterID);
+      //const skeleton 
+    });
     it.only("Can retrieve a CID from a character ID", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [];
