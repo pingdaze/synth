@@ -33,7 +33,7 @@ contract SelectableOptions {
   // Extremely unwieldly struct; do better?
   struct Option {
     Requirement req; // 1 = HAS ETH, 2 = HAS PILL, 3 = Has TRAIT, 4 = HAS NOT TRAIT
-    uint8 form;
+    uint256 form;
     string name;
     string slot;
     string option;
@@ -42,17 +42,18 @@ contract SelectableOptions {
   string[] private _forms = [_HASHMONK_FORM, _PEPEL_FORM];
 
   // For each option what exactly are we checking?
-  mapping(uint8 => uint256) private _idToEthCost;
-  mapping(uint8 => uint256) private _idToLegacyPillReq;
-  mapping(uint8 => uint256) private _idToCollabPillReq;
+  mapping(uint256 => uint256) private _idToEthCost;
+  mapping(uint256 => uint256) private _idToLegacyPillReq;
+  mapping(uint256 => uint256) private _idToCollabPillReq;
 
-  mapping(uint8 => string) private _idToTraitReq;
+  mapping(uint256 => string) private _idToTraitReq;
 
   // Mapping between the string rep of the selected character option and the fully qualified option requirements
-  mapping(uint8 => Option) private _options;
+  mapping(uint256 => Option) private _options;
 
-  mapping(string => uint8) private _optionToId;
-  uint8 private _optionCount;
+  mapping(string => uint256) private _optionToId;
+  uint256 private _optionCount;
+  uint256 private _optionIndex = 65;
 
   address private _legacyPills;
   address private _collabPills;
@@ -64,7 +65,7 @@ contract SelectableOptions {
 
 
   function validateFaction(string calldata _faction, uint256 legacyPillId, address target) public view returns (bool) {
-    uint8 id = _optionToId[_faction];
+    uint256 id = _optionToId[_faction];
     require(id != 0, "Invalid faction");
     if(_options[id].req == Requirement.HasLegacyPill){
       _checkHasLegacyPill(id, legacyPillId, target);
@@ -79,8 +80,8 @@ contract SelectableOptions {
     uint256 ethValue,
     uint256 legacyPillId,
     address target
-  ) external view returns (uint8) {
-    uint8 id = _optionToId[options[index]];
+  ) external view returns (uint256) {
+    uint256 id = _optionToId[options[index]];
     Option memory op = _options[id];
     Requirement req = Requirement(op.req);
     string memory form = _forms[op.form]; // Hashmonk or Pepel
@@ -140,7 +141,7 @@ contract SelectableOptions {
     op = _options[_optionToId[option]];
   }
 
-  function getOptionId(string calldata option) external view returns (uint8) {
+  function getOptionId(string calldata option) external view returns (uint256) {
     return _optionToId[option];
   }
 
@@ -183,24 +184,38 @@ contract SelectableOptions {
     }
   }
 
-  /*
-        uint8 req; // 1 = HAS ETH, 2 = HAS PILL, 3 = Has TRAIT, 4 = HAS NOT TRAIT
-        uint8 form;
-        string slot;
-        string option;
-    }
-    */
-  function addOption(
-    string calldata optionID,
+  function addOptionWithId(
+    string calldata option,
+    uint256 id,
     string calldata name,
     string calldata slot,
-    uint8 form
-  ) external {
-    unchecked {
-      _optionCount = _optionCount + 1;
+    uint256 form
+  ) public {
+    _addOption(option, id, name, slot, form);
+  }
+
+  function addOption(
+    string calldata option,
+    string calldata name,
+    string calldata slot,
+    uint256 form
+  ) public {
+      unchecked {
+      _optionIndex = _optionIndex + 1;
     }
-    _optionToId[optionID] = _optionCount;
-    _options[_optionCount] = Option(
+    _addOption(option, _optionIndex, name, slot, form);
+
+  }
+
+  function _addOption(
+    string calldata optionID,
+    uint256 id,
+    string calldata name,
+    string calldata slot,
+    uint256 form
+  ) internal {
+    _optionToId[optionID] = id;
+    _options[id] = Option(
       Requirement.None,
       form,
       name,
@@ -209,27 +224,27 @@ contract SelectableOptions {
     );
   }
 
-  function setEthRequirement(uint8 id, uint256 cost) external {
+  function setEthRequirement(uint256 id, uint256 cost) external {
     _options[id].req = Requirement.HasEth;
     _idToEthCost[id] = cost;
   }
 
-  function setLegacyPillRequirement(uint8 id, uint256 reqId) external {
+  function setLegacyPillRequirement(uint256 id, uint256 reqId) external {
     _options[id].req = Requirement.HasLegacyPill;
     _idToLegacyPillReq[id] = reqId;
   }
 
-  function setCollabPillRequirement(uint8 id, uint256 reqId) external {
+  function setCollabPillRequirement(uint256 id, uint256 reqId) external {
     _options[id].req = Requirement.HasCollabPill;
     _idToCollabPillReq[id] = reqId;
   }
 
-  function setTraitRequirement(uint8 id, string calldata trait) external {
+  function setTraitRequirement(uint256 id, string calldata trait) external {
     _options[id].req = Requirement.HasTrait;
     _idToTraitReq[id] = trait;
   }
 
-  function setNotTraitRequirement(uint8 id, string calldata trait) external {
+  function setNotTraitRequirement(uint256 id, string calldata trait) external {
     _options[id].req = Requirement.HasNotTrait;
     _idToTraitReq[id] = trait;
   }
@@ -239,7 +254,7 @@ contract SelectableOptions {
     view
     returns (uint256)
   {
-    uint8 id = _optionToId[option];
+    uint256 id = _optionToId[option];
     Option memory optionStruct = _options[id];
     if (optionStruct.req != Requirement.HasEth) {
       return 0;
@@ -247,11 +262,11 @@ contract SelectableOptions {
     return _idToEthCost[id];
   }
 
-  function _checkHasEth(uint8 id, uint256 ethValue) internal view {
+  function _checkHasEth(uint256 id, uint256 ethValue) internal view {
     require(ethValue >= _idToEthCost[id], "not enough ETH");
   }
 
-  function _checkHasCollabPill(uint8 id, address target) internal view {
+  function _checkHasCollabPill(uint256 id, address target) internal view {
     //Could be optimized
     require(
       IToken(_collabPills).balanceOf(target, _idToCollabPillReq[id]) > 0,
@@ -260,7 +275,7 @@ contract SelectableOptions {
   }
 
   function _checkHasLegacyPill(
-    uint8 id,
+    uint256 id,
     uint256 legacyPillId,
     address target
   ) internal view {
@@ -275,27 +290,27 @@ contract SelectableOptions {
     );
   }
 
-  function _checkHasTrait(uint8 id, string[] calldata options) internal view {
+  function _checkHasTrait(uint256 id, string[] calldata options) internal view {
     require(
       _findTrait(id, options) == true,
       "You don't have the correct trait"
     );
   }
 
-  function _checkHasNotTrait(uint8 id, string[] calldata options)
+  function _checkHasNotTrait(uint256 id, string[] calldata options)
     internal
     view
   {
     require(_findTrait(id, options) == false, "You have an incompatible trait");
   }
 
-  function _findTrait(uint8 id, string[] calldata options)
+  function _findTrait(uint256 id, string[] calldata options)
     internal
     view
     returns (bool traitFound)
   {
     string memory trait = _idToTraitReq[id];
-    for (uint8 i = 3; i < 6 && !traitFound; i++) {
+    for (uint256 i = 3; i < 6 && !traitFound; i++) {
       traitFound = _compareMem2Call(trait, options[i]);
     }
   }
