@@ -4,7 +4,7 @@ const { ethers } = require("hardhat");
 import {SelectableOptions, WearablesValidator, AugmentsValidator} from "../typechain-types/";
 import   {SKELETON_OPTIONS, SkeletonOption, Location, StepOption, STEP_OPTIONS_BY_TYPE } from "../data/airtable"
 
-const pillToId: { [key:string]: number; kirbonite: number; shadowpak: number; ratspill: number} = {
+const pillToId: { [key:string]: number} = {
   "kirbonite": 0xC,
   "shadowpak": 0xD,
   "ratspill": 0xB,
@@ -20,6 +20,19 @@ const pillToId: { [key:string]: number; kirbonite: number; shadowpak: number; ra
   "wassiepill":  0x0,
   "toadzpill":  0x0,
   "runnerpill":  0x0,
+}
+
+const nameToId: { [key:string]: number} = {
+  "Pepelian Head": 1,
+  "Pepelian Torso": 2,
+  "Pepelian Left Arm": 3,
+  "Pepelian Right Arm": 4,
+  "Pepelian Left Leg": 5,
+  "Pepelian Right Leg": 6,
+  "Pepelian Mouth": 7,
+  "Pepelian Eyes": 8,
+  "Pepelian Color": 9,
+  "Pepelian Marking": 10
 }
 
 
@@ -118,13 +131,26 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
       slot = "Mask";
     }
 
-    if(slot !== "") {
+  if(slot !== "") {
+    if(option.name.includes("Pepelian")) {
+      receipt = await optionsContract.addOptionWithId(option._cid!, nameToId[option.name], option.name, slot, getFormUint(option.form));
+      console.log(`Added \nName:${option.name} \nCID:${option._cid}`);
+    } else {
       receipt = await optionsContract.addOption(option._cid!, option.name, slot, getFormUint(option.form));
-      await receipt.wait();
-      console.log(`Added ${option.name} to ${slot}`);
     }
+    const id = await optionsContract.getOptionId(option._cid!);
+    await receipt.wait();
+    if(option.skeleton === "base") {
+      receipt = await augmentsContract.setCID(id, option._cid!);
+      await receipt.wait();
+      console.log(`Added ${option.name} with id ${id} to Augments with CID: ${option._cid}`);
+    } else if (option.skeleton === "wearable") {
+      receipt = await wearablesContract.setCID(id, option._cid!)
+      await receipt.wait();
+      console.log(`Added ${option.name} with id ${id}  to Wearables with CID: ${option._cid}`);
+    }
+    console.log(`Added ${option.name} to ${slot}`);
     if(option.prerequisite_type === "HAS TRAIT") {
-      const id = await optionsContract.getOptionId(option.name);
       receipt = await optionsContract.setTraitRequirement(id, option.prerequisite_value!);
       await receipt.wait();
       console.log(`Set ${option.name} to have trait ${option.prerequisite_value}`);
@@ -161,6 +187,7 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
       await receipt.wait();
       console.log(`Added ${option.name} to wearables`);
     }
+  }
 } }
 
 function getFormUint(form: string){
