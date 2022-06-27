@@ -20,7 +20,7 @@ contract SelectableOptions {
   string private constant _EYES = "Eyes";
   string private constant _TYPE = "Type";
   string private constant _MARKINGS = "Markings";
-  string private constant _MASK = "Mask";
+  string private constant _CROWN = "Crown";
 
   enum Requirement {
     None,
@@ -102,7 +102,11 @@ contract SelectableOptions {
       }
     } else if (_compareMem(form, _HASHMONK_FORM)) {
       if (index == 5) {
-        require(_compareMem(op.slot, _MASK));
+        require(_compareMem(op.slot, _CROW/// @notice Explain to an end user what this does
+        /// @dev Explain to a developer any extra details
+        /// @param Documents a parameter just like in doxygen (must be followed by parameter name)
+        /// @return Documents the return variables of a contract’s function state variable
+        /// @inheritdoc	Copies all missing tags from the base function (must be followed by the contract name)));
       } else if (index == 6) {
         require(_compareMem(op.slot, _TYPE));
       } else {
@@ -192,6 +196,18 @@ contract SelectableOptions {
     uint256 form
   ) public {
     _addOption(option, id, name, slot, form);
+  }
+
+  function getOptionStringFromId(uint256 id) external view returns (string memory op) {
+    op = _options[id].option;
+  }
+
+  function getSlotFromId(uint256 id) external view returns (string memory op) {
+    op = _options[id].slot;
+  }
+
+  function getFormFromId(uint256 id) external view returns (uint256 op) {
+    op = _options[id].form;
   }
 
   function addOption(

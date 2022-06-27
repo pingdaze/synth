@@ -35,7 +35,7 @@ struct Skeleton {
   uint256 eyes;
   uint256 color;
   uint256 marking;
-  uint256 mask;
+  uint256 crown;
 }
 struct Outfit {
   uint256 head;
@@ -76,7 +76,7 @@ library CharacterLibrary {
     } else if (slotID == 9) {
       return skeleton.marking;
     } else if (slotID == 10) {
-      return skeleton.mask;
+      return skeleton.crown;
     }
     return MAX_INT;
   }

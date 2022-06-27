@@ -290,7 +290,7 @@ function getSlotUint(location: string[]){
       case "marking":
         slotUint += 512;
         break;
-      case "mask":
+      case "crown":
         slotUint += 1024;
         break;
     }

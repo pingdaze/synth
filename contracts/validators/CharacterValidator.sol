@@ -26,7 +26,7 @@ import "../lib/CharacterLibrary.sol";
 // eyes = 8
 // color = 9
 // marking = 10
-// mask = 11
+// crown = 11
 // OUTFIT
 // Head = 33
 // Torso = 34
@@ -181,49 +181,56 @@ contract CharacterValidator is Ownable {
     } else if (_compareMem(traitsPlus[0], "Hashmonk")) {
       newSkeleton.head = selectableOptions.validateOption(
         traitsPlus,
-        0,
+        5,
         msg.value,
         legacyPills[1],
         target
       );
       newSkeleton.torso = selectableOptions.validateOption(
         traitsPlus,
-        1,
+        6,
         msg.value,
         legacyPills[2],
         target
       );
       newSkeleton.lArm = selectableOptions.validateOption(
         traitsPlus,
-        2,
+        7,
         msg.value,
         legacyPills[0],
         target
       );
       newSkeleton.rArm = selectableOptions.validateOption(
         traitsPlus,
-        3,
+        8,
         msg.value,
         legacyPills[0],
         target
       );
       newSkeleton.lLeg = selectableOptions.validateOption(
         traitsPlus,
-        4,
+        9,
         msg.value,
         legacyPills[0],
         target
       );
       newSkeleton.rLeg = selectableOptions.validateOption(
         traitsPlus,
-        5,
+        10,
         msg.value,
         legacyPills[0],
         target
       );
-      newSkeleton.mask = selectableOptions.validateOption(
+      newSkeleton.color = selectableOptions.validateOption(
         traitsPlus,
-        6,
+        11,
+        msg.value,
+        legacyPills[1],
+        target
+      );
+      newSkeleton.crown = selectableOptions.validateOption(
+        traitsPlus,
+        12,
         msg.value,
         legacyPills[3],
         target

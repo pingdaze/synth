@@ -199,8 +199,8 @@ contract Characters is Context, Auth {
       require(skeleton.marking == 0, "Slot must be empty to equip into");
       skeleton.marking = value;
     } else if (slotID == 10) {
-      require(skeleton.mask == 0, "Slot must be empty to equip into");
-      skeleton.mask = value;
+      require(skeleton.crown == 0, "Slot must be empty to equip into");
+      skeleton.crown = value;
     }
   }
 
