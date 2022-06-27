@@ -10,10 +10,10 @@ function isPresent<T>(value: T): value is NonNullable<T> {
   return value !== null && value !== undefined;
 }
 
-const BASE_ID = "appgnY0QGepc16iWb";
+const BASE_ID = "appIOMZK6xarWr1uX";
 
-const TABLE_SKELETON = "Skeleton";
-const TABLE_SKELETON_VIEW = "[DO NOT EDIT] Script View";
+const TABLE_SKELETON = "Groups";
+const TABLE_SKELETON_VIEW = "Default";
 
 const TABLE_TRAITS = "Traits";
 const VIEW_DEFAULT = "Default";
@@ -100,43 +100,40 @@ async function generatePillboostWearablesData() {
 
 async function generateSkeletonOptionsData() {
   console.log(`Generating: skeleton-options.json`);
-
-  const raw = await base(TABLE_SKELETON)
+  const table =  base(TABLE_SKELETON);
+  const raw = await table
     .select({ view: TABLE_SKELETON_VIEW })
     .all();
 
-  const data = buildObjectFromRecords(raw, [
-    "Name",
-    "UUID",
-    "Image",
-    "Description",
-    "Form",
-    "Skeleton",
-    "Location",
-    "Category",
-    "Color",
-    "Position",
-    "Conflict",
-    "Rarity",
-    "Prerequisite Type",
-    "Prerequisite Value",
-    "_cid"
-  ])
-    .filter((record) => isPresent(record.name))
-    .filter((record) => isPresent(record.form))
-    .filter((record) => isPresent(record.location))
-    .map((record) => {
-      if (record.image) {
-        return {
-          ...record,
-          image: record.image.url,
-          fileName: record.image.filename,
+  const data = await Promise.all(raw
+
+    .map(async (group) => {
+      const name = group.get("GroupName");
+      const location = group.get("Location");
+      const _cid = group.get("CID");
+      const [skeleton] = group.get("Skeleton") as string[];      
+        const [itemID] = group.get("Group") as string[];
+        const item = await table.find(itemID);
+        const form = item.get("Form");
+        const category = item.get("Category");
+        const rarity = item.get("Rarity");
+        const prerequisite_type = item.get("Prerequisite Type");
+        const prerequisite_value = item.get("Prerequisite Value");
+        const returnObj = {
+          name,
+          _cid,
+          skeleton,
+          location,
+          form,
+          category,
+          rarity: rarity ? rarity : null,
+          prerequisite_type: prerequisite_type ? prerequisite_type : null,
+          prerequisite_value: prerequisite_value ? prerequisite_value : null,
         };
-      }
+        return returnObj;
 
-      return record;
-    });
-
+    }));
+    console.log(data)
   console.log(`Writing: skeleton-options.json`);
 
   await writeFile(
