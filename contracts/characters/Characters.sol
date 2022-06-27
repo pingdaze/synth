@@ -292,6 +292,26 @@ contract Characters is Context, Auth {
     faction = char.faction;
   }
 
+  function getForm(uint256 tokenID) external view returns (string memory) {
+    return characters[tokenID].form;
+  }
+
+  function getOrigin(uint256 tokenID) external view returns (string memory) {
+    return characters[tokenID].origin;
+  }
+
+  function getUpbringing(uint256 tokenID) external view returns (string memory) {
+    return characters[tokenID].upbringing;
+  }
+
+  function getGift(uint256 tokenID) external view returns (string memory) {
+    return characters[tokenID].gift;
+  }
+
+  function getFaction(uint256 tokenID) external view returns (string memory) {
+    return characters[tokenID].faction;
+  }
+
   function getDescription(uint256 tokenID)
     external
     view
