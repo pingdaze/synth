@@ -98,10 +98,6 @@ describe.only("Characters Validator", () => {
         wearablesValidator.address,
         augmentsValidator.address
       );
-      await options.addOption("lime", "lime", "Type", 1);
-      optionID = await options.getOptionId("lime");
-
-      
     });
     it("Can mint an avatar", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
@@ -112,10 +108,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
-        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
+        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
         "lime",
-        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
       ] as string[];
       receipt = await characterValidator.createCharacter(
         legacyPills,
@@ -132,10 +128,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
-        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
+        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
         "lime",
-        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
       ] as string[];
       receipt = await characterValidator.createCharacter(
         legacyPills,
@@ -144,12 +140,11 @@ describe.only("Characters Validator", () => {
       );
       const characterID = await character.getCharacter(1);
       const skeleton = await character.getSkeleton(1);
-      // skeleton.forEach(async (element) => {
-      //   console.log(await wearablesValidator.cid(element));
-      // });
-      // console.log(skeleton);
-      // console.log(characterID);
-      //const skeleton 
+      skeleton.forEach(async (element) => {
+        console.log("CID:", await augmentsValidator.cid(element), "For:", element);
+      });
+      console.log("Skeleton:", skeleton);
+      console.log("Skeleton:", characterID);
     });
     it.only("Can retrieve a CID from a character ID", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
@@ -160,22 +155,20 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
-        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
+        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
         "lime",
-        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
       ] as string[];
       receipt = await characterValidator.createCharacter(
         legacyPills,
         collabPills,
         traitsplus
       );
-      const uintID = await options.getOptionId("bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q");
-      console.log("UINTID", uintID);
+      const uintID = await options.getOptionId("bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki");
+      //TODO: add some more intermediary checks in here
       const cid = await augmentsValidator.cid(uintID);
-      console.log("CID", cid);
       const id = await augmentsValidator.id(cid); 
-      console.log("ID:", id);
       expect(id).to.equal(uintID);
       //const skeleton 
     });
@@ -188,10 +181,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
-        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
+        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
         "lime",
-        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
       ] as string[];
       await options.setEthRequirement(optionID, cost);
       receipt = await characterValidator.createCharacter(
@@ -210,10 +203,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
-        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
+        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
         "lime",
-        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
       ] as string[];
       await options.setEthRequirement(optionID, cost);
       await expect(
@@ -229,10 +222,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
-        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
+        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
         "lime",
-        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
       ] as string[];
       await options.setLegacyPillRequirement(optionID, mockLegacyIdReq);
       await expect(
@@ -254,10 +247,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
-        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
+        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
         "lime",
-        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
       ] as string[];
       receipt = await options.setLegacyPillRequirement(
         optionID,
@@ -280,10 +273,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
-        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
+        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
         "lime",
-        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
       ] as string[];
       receipt = await options.setCollabPillRequirement(optionID, mockCollabId);
       await receipt.wait();
@@ -302,10 +295,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
-        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
+        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
         "lime",
-        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
       ] as string[];
       receipt = await options.setTraitRequirement(optionID, "Galaxy Brain");
       await receipt.wait();
@@ -324,10 +317,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Gweibond",
         "Yearn",
-        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
-        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
+        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
         "lime",
-        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
       ] as string[];
       receipt = await options.setTraitRequirement(optionID, "Galaxy Brain");
       await receipt.wait();
@@ -344,10 +337,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Shadowpakt",
-        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
-        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
+        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
         "lime",
-        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
       ] as string[];
       await expect(
         characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
@@ -368,10 +361,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Shadowpakt",
-        "bafybeigtjxqp63jeir4xhznd6skg6dhwwhwq5cxbkibffsoqv3evkdjt4q",
-        "bafybeidawa6pty4w4aug7odgnf6geodeyu6wvlkh2lfvktllwmyhihllw4",
+        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
+        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
         "lime",
-        "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
       ] as string[];
       receipt = await nift.mint(mockShadowPaktPill, owner, amount);
       await receipt.wait();
