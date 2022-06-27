@@ -1,4 +1,8 @@
+
+
 import { network, ethers } from "hardhat";
+import charDeploymant from "./deploy-args/char-mock-deployment.json"
+
 import {
   CharacterValidator,
   RandomnessRelayL2,
@@ -13,7 +17,6 @@ import {
 import {
   deployCore721,
   deployCore1155,
-  deploySelectableOptions,
   deployWearablesValidator,
   deployAugmentsValidator,
   deployCharacter,
@@ -22,8 +25,7 @@ import {
   deployMock1155,
 } from "../test/shared/deploys";
 import { ContractTransaction } from "ethers";
-import { pushOptions } from "../utils/add-options";
-const coreIds = Array.from(Array(10).keys());
+const coreIds = Array.from(Array(1200).keys());
 const mockCollabId = 1;
 
 
@@ -67,11 +69,7 @@ async function main() {
     core1155 = (await deployCore1155()) as Core1155;
     await core1155.deployed();
     console.log("Core1155 address: ", core1155.address);
-    options = (await deploySelectableOptions(
-      legacyPillsAddr,
-      nift.address
-    )) as SelectableOptions;
-    await options.deployed();
+    options = await ethers.getContractAt('SelectableOptions', charDeploymant.ArbRinkeby.SelectableOptions) as SelectableOptions;
     console.log("SelectableOptions address: ", options.address);
     // In production instances the IDs must line up correctly
     character = (await deployCharacter(core721, options)) as Characters;
@@ -107,11 +105,6 @@ async function main() {
     receipt = await core721.addValidator(characterValidator.address, coreIds);
     await receipt.wait();
     console.log("Character Validator Installed");
-    await pushOptions(
-      options.address,
-      wearablesValidator.address,
-      augmentsValidator.address
-    );
   }
 }
   
