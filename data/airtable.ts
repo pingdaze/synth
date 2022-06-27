@@ -92,7 +92,7 @@ export interface SkeletonOption {
   rarity: Rarity | null;
   prerequisite_type: PrerequisiteType | null;
   prerequisite_value: null | string;
-  _cid?: string;
+  cid?: string;
 }
 
 export enum Color {

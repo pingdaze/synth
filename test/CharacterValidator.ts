@@ -108,10 +108,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
-        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
-        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
       receipt = await characterValidator.createCharacter(
         legacyPills,
@@ -128,10 +128,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
-        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
-        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
       receipt = await characterValidator.createCharacter(
         legacyPills,
@@ -155,17 +155,17 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
-        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
-        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
       receipt = await characterValidator.createCharacter(
         legacyPills,
         collabPills,
         traitsplus
       );
-      const uintID = await options.getOptionId("bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki");
+      const uintID = await options.getOptionId("bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4");
       //TODO: add some more intermediary checks in here
       const cid = await augmentsValidator.cid(uintID);
       const id = await augmentsValidator.id(cid); 
@@ -181,10 +181,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
-        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
-        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
       await options.setEthRequirement(optionID, cost);
       receipt = await characterValidator.createCharacter(
@@ -203,10 +203,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
-        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
-        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
       await options.setEthRequirement(optionID, cost);
       await expect(
@@ -222,10 +222,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
-        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
-        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
       await options.setLegacyPillRequirement(optionID, mockLegacyIdReq);
       await expect(
@@ -247,10 +247,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
-        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
-        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
       receipt = await options.setLegacyPillRequirement(
         optionID,
@@ -273,10 +273,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
-        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
-        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
       receipt = await options.setCollabPillRequirement(optionID, mockCollabId);
       await receipt.wait();
@@ -295,10 +295,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Yearn",
-        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
-        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
-        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
       receipt = await options.setTraitRequirement(optionID, "Galaxy Brain");
       await receipt.wait();
@@ -317,10 +317,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Gweibond",
         "Yearn",
-        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
-        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
-        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
       receipt = await options.setTraitRequirement(optionID, "Galaxy Brain");
       await receipt.wait();
@@ -337,10 +337,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Shadowpakt",
-        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
-        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
-        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
       await expect(
         characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
@@ -361,10 +361,10 @@ describe.only("Characters Validator", () => {
         "Doomskroler",
         "Galaxy Brain",
         "Shadowpakt",
-        "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
-        "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
-        "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
       receipt = await nift.mint(mockShadowPaktPill, owner, amount);
       await receipt.wait();

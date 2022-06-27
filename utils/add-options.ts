@@ -141,7 +141,7 @@ function processFactionOption(optionsContract: SelectableOptions, slot: string) 
 
 function processSkeletonOption(optionsContract: SelectableOptions, wearablesContract: WearablesValidator, augmentsContract: AugmentsValidator) { return async (option: SkeletonOption) => {
   let receipt;
-  if(option._cid === null)
+  if(option.cid === null)
       return;
   let slot = "";
   if(option.skeleton === "marking"){
@@ -167,25 +167,25 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
   }
   if(slot !== "") {
     if(option.name.includes("Pepelian") && !option.name.includes("Mutagenic")) {
-      console.log(`Adding \nName:${option.name} \nCID:${option._cid}`);
-      receipt = await optionsContract.addOptionWithId(option._cid!, nameToId[option.name], option.name, slot, getFormUint(option.form));
-      console.log(`Added \nName:${option.name} \nCID:${option._cid}`);
+      console.log(`Adding \nName:${option.name} \nCID:${option.cid}`);
+      receipt = await optionsContract.addOptionWithId(option.cid!, nameToId[option.name], option.name, slot, getFormUint(option.form));
+      console.log(`Added \nName:${option.name} \nCID:${option.cid}`);
     } else {
-      receipt = await optionsContract.addOption(option._cid!, option.name, slot, getFormUint(option.form));
+      receipt = await optionsContract.addOption(option.cid!, option.name, slot, getFormUint(option.form));
     }
-    const id = await optionsContract.getOptionId(option._cid!);
+    const id = await optionsContract.getOptionId(option.cid!);
     if(option.name.includes("Pepelian") && !option.name.includes("Mutagenic")) {
       console.log(id)
     }
     await receipt.wait();
     if(option.skeleton === "base" || option.skeleton === "marking") {
-      receipt = await augmentsContract.setCID(id, option._cid!);
+      receipt = await augmentsContract.setCID(id, option.cid!);
       await receipt.wait();
-      console.log(`Added ${option.name} with id ${id} to Augments with CID: ${option._cid}`);
+      console.log(`Added ${option.name} with id ${id} to Augments with CID: ${option.cid}`);
     } else if (option.skeleton === "wearable") {
-      receipt = await wearablesContract.setCID(id, option._cid!)
+      receipt = await wearablesContract.setCID(id, option.cid!)
       await receipt.wait();
-      console.log(`Added ${option.name} with id ${id}  to Wearables with CID: ${option._cid}`);
+      console.log(`Added ${option.name} with id ${id}  to Wearables with CID: ${option.cid}`);
     }
     console.log(`Added ${option.name} to ${slot}`);
     if(option.prerequisite_type === "HAS TRAIT") {

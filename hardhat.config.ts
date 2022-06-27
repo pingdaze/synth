@@ -86,6 +86,9 @@ const enableProduction = process.env.COMPILE_MODE === "production";
       arbitrumTestnet: process.env.ARBSCAN_API
     }
   },
+  mocha: {
+    timeout: 100000000
+  },
   watcher: {
     compilation: {
       tasks: ["compile"],

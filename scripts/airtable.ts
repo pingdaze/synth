@@ -2,18 +2,20 @@ import Airtable from "airtable";
 import type { Attachment } from "airtable/lib/attachment";
 import type { FieldSet } from "airtable/lib/field_set";
 import type { Records } from "airtable/lib/records";
-import _ from "lodash";
+import _, { snakeCase } from "lodash";
 import { writeFile } from "node:fs/promises";
-require("dotenv").config();
+import type { Replace } from "type-fest";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 function isPresent<T>(value: T): value is NonNullable<T> {
   return value !== null && value !== undefined;
 }
 
-const BASE_ID = "appIOMZK6xarWr1uX";
+const BASE_ID = "app8uieQgz940fFXZ";
 
-const TABLE_SKELETON = "Groups";
-const TABLE_SKELETON_VIEW = "Default";
+const TABLE_SKELETON = "Skeleton";
+const TABLE_SKELETON_VIEW = "[DO NOT EDIT] Script View";
 
 const TABLE_TRAITS = "Traits";
 const VIEW_DEFAULT = "Default";
@@ -28,23 +30,10 @@ const base = airtable.base(BASE_ID);
 async function generatePillboostWearablesData() {
   console.log(`Generating: pillboost-wearables.json`);
 
-  /**
-   * @typedef {Object} PillboostWearable
-   * @property {string} name
-   * @property {string[]} category
-   * @property {string[]} linked_item
-   * @property {string[]} form
-   * @property {string[]} locations
-   * @property {string[]} pill_type
-   */
-
   const raw = await base(TABLE_PILLBOOST_WEARABLES)
     .select({ view: TABLE_PILLBOOST_WEARABLES_VIEW })
     .all();
 
-  /**
-   * @type {PillboostWearable[]}
-   */
   const records = buildObjectFromRecords(raw, [
     "Name",
     "Category",
@@ -58,35 +47,39 @@ async function generatePillboostWearablesData() {
 
   const data = await Promise.all(
     filtered.map(async (record) => {
-      const items = await Promise.all(
-        record.linked_item.map(async (id: string) => {
-          const item = await base(TABLE_PILLBOOST_WEARABLES).find(id);
+      if (Array.isArray(record.linked_item)) {
+        const items = await Promise.all(
+          record.linked_item.map(async (id: string) => {
+            const item = await base(TABLE_PILLBOOST_WEARABLES).find(id);
 
-          if (item.get("Image")) {
-            const fileName = (item.get("Image") as Attachment[])[0].filename;
-            const image = (item.get("Image") as Attachment[])[0].url;
+            if (item.get("Image")) {
+              const fileName = (item.get("Image") as Attachment[])[0].filename;
+              const image = (item.get("Image") as Attachment[])[0].url;
+
+              return {
+                name: item.get("Name"),
+                location: item.get("Location"),
+                fileName,
+                image,
+              };
+            }
 
             return {
               name: item.get("Name"),
               location: item.get("Location"),
-              fileName,
-              image,
+              fileName: null,
+              image: null,
             };
-          }
+          })
+        );
 
-          return {
-            name: item.get("Name"),
-            location: item.get("Location"),
-            fileName: null,
-            image: null,
-          };
-        })
-      );
+        return {
+          ...record,
+          items,
+        };
+      }
 
-      return {
-        ...record,
-        items,
-      };
+      return record;
     })
   );
 
@@ -100,45 +93,69 @@ async function generatePillboostWearablesData() {
 
 async function generateSkeletonOptionsData() {
   console.log(`Generating: skeleton-options.json`);
-  const table =  base(TABLE_SKELETON);
-  const raw = await table
+
+  const raw = await base(TABLE_SKELETON)
     .select({ view: TABLE_SKELETON_VIEW })
     .all();
 
-  const data = await Promise.all(raw
-
-    .map(async (group) => {
-      const name = group.get("GroupName");
-      const location = group.get("Location");
-      const _cid = group.get("CID");
-      const [skeleton] = group.get("Skeleton") as string[];      
-        const [itemID] = group.get("Group") as string[];
-        const item = await table.find(itemID);
-        const form = item.get("Form");
-        const category = item.get("Category");
-        const rarity = item.get("Rarity");
-        const prerequisite_type = item.get("Prerequisite Type");
-        const prerequisite_value = item.get("Prerequisite Value");
-        const returnObj = {
-          name,
-          _cid,
-          skeleton,
-          location,
-          form,
-          category,
-          rarity: rarity ? rarity : null,
-          prerequisite_type: prerequisite_type ? prerequisite_type : null,
-          prerequisite_value: prerequisite_value ? prerequisite_value : null,
+  const data = buildObjectFromRecords(raw, [
+    "Name",
+    "UUID",
+    "Image",
+    "Description",
+    "Form",
+    "Skeleton",
+    "Location",
+    "Category",
+    "Color",
+    "Position",
+    "Conflict",
+    "Rarity",
+    "Prerequisite Type",
+    "Prerequisite Value",
+    "Linked Groups",
+  ])
+    .filter((record) => isPresent(record.name))
+    .filter((record) => isPresent(record.form))
+    .filter((record) => isPresent(record.location))
+    .map((record) => {
+      if (record.image instanceof Object && !Array.isArray(record.image)) {
+        return {
+          ...record,
+          image: record.image.url,
+          fileName: record.image.filename,
         };
-        return returnObj;
+      }
 
-    }));
-    console.log(data)
+      return record;
+    });
+    const linkResolvedData  = data;
+    console.log(data[0]["linked_groups"]);
+    /*
+  const linkResolvedData = await Promise.all(
+    data.map(async (record) => {
+      if (Array.isArray(record["linked_groups"])) {
+        const linkedGroup = await base(TABLE_SKELETON).find(
+          record["linked_groups"][0]
+        );
+
+        const cid = linkedGroup.get("CID") as string;
+
+        return {
+          ...record,
+          cid,
+        };
+      }
+
+      return record;
+    })
+  );*/
+
   console.log(`Writing: skeleton-options.json`);
 
   await writeFile(
     "data/skeleton-options.json",
-    JSON.stringify(data, null, 2)
+    JSON.stringify(linkResolvedData, null, 2)
   );
 }
 
@@ -161,10 +178,6 @@ async function generateStepOptionsData() {
     "Prerequisite Value",
     "Description",
   ]).filter((record) => isPresent(record.name));
-
-  const cleanedTraitsRecords = traitsRecords.filter((record) =>
-    isPresent(record.name)
-  );
 
   const skeletonRecords = buildObjectFromRecords(rawSkeletonRecords, [
     "Name",
@@ -199,53 +212,62 @@ async function generateStepOptionsData() {
 
         case record.selectable &&
           record.form === "pepel" &&
+          Array.isArray(record.location) &&
           record.location.includes("mouth"):
           return { ...record, type: "Mouth" };
 
         case record.selectable &&
           record.form === "pepel" &&
+          Array.isArray(record.location) &&
           record.location.includes("eyes"):
           return { ...record, type: "Eyes" };
 
         case record.selectable &&
           record.form === "hashmonk" &&
           record.skeleton === "base" &&
+          Array.isArray(record.location) &&
           record.location.includes("torso"):
           return { ...record, type: "Hashmonk Torso" };
 
         case record.selectable &&
           record.form === "hashmonk" &&
           record.skeleton === "base" &&
+          Array.isArray(record.location) &&
           record.location.includes("head"):
           return { ...record, type: "Hashmonk Head" };
 
         case record.selectable &&
           record.form === "hashmonk" &&
           record.skeleton === "base" &&
+          Array.isArray(record.location) &&
           record.location.includes("crown"):
           return { ...record, type: "Hashmonk Crown" };
 
         case record.selectable &&
           record.form === "hashmonk" &&
           record.skeleton === "base" &&
+          Array.isArray(record.location) &&
           record.location.includes("right-arm"):
           return { ...record, type: "Hashmonk Right Arm" };
 
         case record.selectable &&
           record.form === "hashmonk" &&
           record.skeleton === "base" &&
+          Array.isArray(record.location) &&
           record.location.includes("left-arm"):
           return { ...record, type: "Hashmonk Left Arm" };
 
         case record.selectable &&
           record.form === "hashmonk" &&
           record.skeleton === "base" &&
+          Array.isArray(record.location) &&
           record.location.includes("right-leg"):
           return { ...record, type: "Hashmonk Right Leg" };
 
         case record.selectable &&
           record.form === "hashmonk" &&
           record.skeleton === "base" &&
+          Array.isArray(record.location) &&
           record.location.includes("left-leg"):
           return { ...record, type: "Hashmonk Left Leg" };
 
@@ -257,7 +279,7 @@ async function generateStepOptionsData() {
     .map(({ category, location, skeleton, form, selectable, ...rest }) => rest);
 
   const groupedData = _.groupBy(
-    [...cleanedTraitsRecords, ...cleanedSkeletonRecords],
+    [...traitsRecords, ...cleanedSkeletonRecords],
     "type"
   );
 
@@ -283,13 +305,21 @@ async function main() {
 
 main();
 
-const buildObjectFromRecords = (
+interface AttachmentObject {
+  url: string;
+  filename: string;
+}
+
+const buildObjectFromRecords = <T extends string>(
   records: Records<FieldSet>,
-  columns: string[]
-) => {
+  columns: T[]
+): Record<
+  Replace<Lowercase<T>, " ", "_", { all: true }>,
+  string | string[] | AttachmentObject
+>[] => {
   return records.map((record) => {
     const entries = columns.map((columnName) => {
-      const key = columnName.toLowerCase().replace(" ", "_");
+      const key = snakeCase(columnName);
 
       const valueForField = record.get(columnName) ?? null;
 
