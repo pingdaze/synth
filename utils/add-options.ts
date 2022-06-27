@@ -35,6 +35,23 @@ const nameToId: { [key:string]: number} = {
   "Pepelian Marking": 10
 }
 
+const pepelColors  = [
+  "blue",
+  "dark",
+  "deepgreen",
+  "lime",
+  "orange",
+  "pale",
+  "yellow"
+]
+
+const hashmonkColors  = [
+  "arctic",
+  "coral",
+  "shadowmarked",
+  "sunstrider",
+  "tropical"
+]
 
 
 export async function pushOptions(optionsAddress: string, wearablesAddress: string, augmentsAddress: string){
@@ -84,7 +101,12 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   }
   console.log("Done processing Origin options");
   
-
+  pepelColors.forEach(async (color) => {
+    await options.addOption(color, color, "Type", 1);
+   });
+   hashmonkColors.forEach(async (color) => {
+    await options.addOption(color, color, "Type", 1);
+   });
 }
 
 function processStepOption(optionsContract: SelectableOptions, slot: string) { return async (option: StepOption) => {
