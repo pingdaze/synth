@@ -84,20 +84,14 @@ export const STEP_OPTIONS = Object.values(STEP_OPTIONS_BY_TYPE).flat(Infinity);
  */
 export interface SkeletonOption {
   name: string;
-  uuid: string;
-  image?: string;
-  description: null | string;
   form: Form;
   skeleton: Skeleton;
   location: Location[];
   category: string;
   color: Color | null;
-  position: Position | null;
-  conflict: Conflict[] | null;
   rarity: Rarity | null;
   prerequisite_type: PrerequisiteType | null;
   prerequisite_value: null | string;
-  fileName?: string;
   _cid?: string;
 }
 
