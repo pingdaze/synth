@@ -30,10 +30,11 @@ const nameToId: { [key:string]: number} = {
   "Pepelian Left Leg": 5,
   "Pepelian Right Leg": 6,
   "Pepelian Mouth": 7,
-  "Pepelian Eyes": 8,
+  "Pepelian Eye": 8,
   "Pepelian Color": 9,
   "Pepelian Marking": 10
 }
+
 
 
 export async function pushOptions(optionsAddress: string, wearablesAddress: string, augmentsAddress: string){
@@ -120,27 +121,42 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
   let receipt;
   if(option._cid === null)
       return;
-    let slot = "";
-    if(option.skeleton === "marking"){
-      slot = "Markings";
-    } else if (option.location.includes(Location["Eyes"])){
-      slot = "Eyes";
-    } else if (option.location.includes(Location["Mouth"])){
-      slot = "Mouth";
-    } else if (option.category === "mask"){
-      slot = "Mask";
-    }
-
+  let slot = "";
+  if(option.skeleton === "marking"){
+    slot = "Markings";
+  } else if (option.location.includes(Location["Head"])){
+    slot = "Head";
+  } else if (option.location.includes(Location["Torso"])){
+    slot = "Torso";
+  } else if (option.location.includes(Location["LeftArm"])){
+    slot = "LeftArm";
+  } else if (option.location.includes(Location["RightArm"])){
+    slot = "RightArm";
+  } else if (option.location.includes(Location["LeftLeg"])){
+    slot = "LeftLeg";
+  } else if (option.location.includes(Location["RightLeg"])){
+    slot = "RightLeg";
+  } else if (option.location.includes(Location["Mouth"])){
+    slot = "Mouth";
+  } else if (option.location.includes(Location["Eyes"])){
+    slot = "Eyes";
+  } else if (option.category === "mask"){
+    slot = "Mask";
+  }
   if(slot !== "") {
-    if(option.name.includes("Pepelian")) {
+    if(option.name.includes("Pepelian") && !option.name.includes("Mutagenic")) {
+      console.log(`Adding \nName:${option.name} \nCID:${option._cid}`);
       receipt = await optionsContract.addOptionWithId(option._cid!, nameToId[option.name], option.name, slot, getFormUint(option.form));
       console.log(`Added \nName:${option.name} \nCID:${option._cid}`);
     } else {
       receipt = await optionsContract.addOption(option._cid!, option.name, slot, getFormUint(option.form));
     }
     const id = await optionsContract.getOptionId(option._cid!);
+    if(option.name.includes("Pepelian") && !option.name.includes("Mutagenic")) {
+      console.log(id)
+    }
     await receipt.wait();
-    if(option.skeleton === "base") {
+    if(option.skeleton === "base" || option.skeleton === "marking") {
       receipt = await augmentsContract.setCID(id, option._cid!);
       await receipt.wait();
       console.log(`Added ${option.name} with id ${id} to Augments with CID: ${option._cid}`);
