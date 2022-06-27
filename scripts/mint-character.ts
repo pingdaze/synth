@@ -33,14 +33,14 @@ async function main() {
     const collabPills: number[] = [];
     const traitsplus: string[] = [
       "Pepel",
-      "Deepmem",
-      "Doomskroler",
-      "Galaxy Brain",
-      "Yearn",
-      "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
-      "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
+      "Aateos",
+      "Interstellar Nomad",
+      "Diamond Hands",
+      "Aave",
+      "bafybeieback55fctuhhyh42tavz623xtuxk4pwrdn2jvatr6zzonui2jpa",
+      "bafybeicdchpng53briinhnrqq54ozr2vmyd7cvwu2wndtcz4sfiugdvyxm",
       "lime",
-      "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
+      "bafybeiavzoy6bqsgvpxbargktrh26dq2jwy6sjioa5qwch4sbdlryw7vw4"
     ] as string[];
     receipt = await characterValidator.createCharacter(
       legacyPills,

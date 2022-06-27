@@ -83,7 +83,8 @@ const enableProduction = process.env.COMPILE_MODE === "production";
   },
   etherscan: {
     apiKey:  {
-      arbitrumTestnet: process.env.ARBSCAN_API
+      arbitrumTestnet: process.env.ARBSCAN_API,
+      mainnet: process.env.ETHERSCAN_API
     }
   },
   mocha: {

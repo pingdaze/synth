@@ -106,14 +106,14 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [];
       const traitsplus: string[] = [
         "Pepel",
-        "Deepmem",
-        "Doomskroler",
-        "Galaxy Brain",
-        "Yearn",
-        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
-        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
+        "Aateos",
+        "Interstellar Nomad",
+        "Diamond Hands",
+        "Aave",
+        "bafybeieback55fctuhhyh42tavz623xtuxk4pwrdn2jvatr6zzonui2jpa",
+        "bafybeicdchpng53briinhnrqq54ozr2vmyd7cvwu2wndtcz4sfiugdvyxm",
         "lime",
-        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
+        "bafybeiavzoy6bqsgvpxbargktrh26dq2jwy6sjioa5qwch4sbdlryw7vw4"
       ] as string[];
       receipt = await characterValidator.createCharacter(
         legacyPills,
