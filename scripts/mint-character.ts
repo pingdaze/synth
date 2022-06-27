@@ -37,10 +37,10 @@ async function main() {
       "Doomskroler",
       "Galaxy Brain",
       "Yearn",
-      "bafybeihyfsrugiutnmradxzvoyl4qmq2u2bzn4owmzijvyxrt64s5omkrq",
-      "bafybeih4wb7xscxxober65kwgdabtibpmcnsbfbosnx6rfu5kgz4mehxf4",
+      "bafybeih6gmsc5qqc4kpj64bwjz5ous6oh7jq67z7prwxowwu5wwiqcdjki",
+      "bafybeigv3zvxjrbdh37ebfznamvgo6gdaq3luipcnptcq6xj37xvui77wi",
       "lime",
-      "bafybeihxuhvxcaz2lcqudxhdegqfjkdklhaq6xeavml6kbkrstlitwbkmu",
+      "bafybeibb5y5kd5zus5655rv2cbcndezhyk7acy5vbhiexjvnq2isc422ta",
     ] as string[];
     receipt = await characterValidator.createCharacter(
       legacyPills,
