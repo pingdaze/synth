@@ -119,7 +119,7 @@ describe.only("Characters Validator", () => {
         traitsplus
       );
     });
-    it.only("Avatars default to having the correct CIDs", async () => {
+    it("Avatars default to having the correct CIDs", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [];
       const traitsplus: string[] = [
@@ -146,7 +146,7 @@ describe.only("Characters Validator", () => {
       console.log("Skeleton:", skeleton);
       console.log("Skeleton:", characterID);
     });
-    it.only("Can retrieve a CID from a character ID", async () => {
+    it("Can retrieve a CID from a character ID", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [];
       const traitsplus: string[] = [
