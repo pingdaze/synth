@@ -75,17 +75,9 @@ async function main() {
     character = (await deployCharacter(core721, options)) as Characters;
     await character.deployed();
     console.log("Characters address: ", character.address);
-    wearablesValidator = (await deployWearablesValidator(
-      core1155,
-      character
-    )) as WearablesValidator;
-    await wearablesValidator.deployed();
+    wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbRinkeby.WearablesValidator) as WearablesValidator;  
     console.log("WearablesValidator address: ", wearablesValidator.address);
-    augmentsValidator = (await deployAugmentsValidator(
-      core1155,
-      character
-    )) as AugmentsValidator;
-    await augmentsValidator.deployed();
+    augmentsValidator = await ethers.getContractAt('AugmentsValidator', charDeploymant.ArbRinkeby.AugmentsValidator) as AugmentsValidator;
     console.log("AugmentsValidator address: ", augmentsValidator.address);
     requester = (await deployRequester()) as RandomnessRelayL2;
     await requester.deployed();
