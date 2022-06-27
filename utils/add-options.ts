@@ -61,7 +61,6 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   let wearables = await ethers.getContractAt('WearablesValidator', wearablesAddress) as WearablesValidator;
   let augments = await ethers.getContractAt('AugmentsValidator', augmentsAddress) as AugmentsValidator;
   // optionID -- name -- slot -- form
-
   // let processing = SKELETON_OPTIONS.map(processSkeletonOption(options, wearables, augments));
   // await Promise.all(processing);
   for(let option of SKELETON_OPTIONS) {
@@ -101,13 +100,14 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
     console.log(`Added ${option.name}`);
   }
   console.log("Done processing Origin options");
-  
-  pepelColors.forEach(async (color) => {
+ for(let color of pepelColors) {
     await options.addOption(color, color, "Type", 1);
-   });
-   hashmonkColors.forEach(async (color) => {
-    await options.addOption(color, color, "Type", 1);
-   });
+    console.log(`Added ${color}`);
+   };
+   for(let color of hashmonkColors) {
+    await options.addOption(color, color, "Type", 0);
+    console.log(`Added ${color}`);
+  };
 }
 
 function processStepOption(optionsContract: SelectableOptions, slot: string) { return async (option: StepOption) => {
