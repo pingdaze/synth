@@ -98,6 +98,8 @@ describe.only("Characters Validator", () => {
         wearablesValidator.address,
         augmentsValidator.address
       );
+      optionID = await options.getOptionId("lime");
+
     });
     it("Can mint an avatar", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
