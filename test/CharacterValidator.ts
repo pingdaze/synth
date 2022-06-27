@@ -145,8 +145,6 @@ describe.only("Characters Validator", () => {
       skeleton.forEach(async (element) => {
         console.log("CID:", await augmentsValidator.cid(element), "For:", element);
       });
-      console.log("Skeleton:", skeleton);
-      console.log("Skeleton:", characterID);
     });
     it("Can retrieve a CID from a character ID", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
