@@ -92,23 +92,19 @@ contract SelectableOptions {
       if (index == 5) {
         require(_compareMem(op.slot, _MOUTH), "invalid mouth");
       } else if (index == 6) {
-        require(_compareMem(op.slot, _EYES), "invlaid eyes");
+        require(_compareMem(op.slot, _EYES), "invalid eyes");
       } else if (index == 7) {
-        require(_compareMem(op.slot, _TYPE), "invlaid type");
+        require(_compareMem(op.slot, _TYPE), "invalid type");
       } else if (index == 8) {
-        require(_compareMem(op.slot, _MARKINGS), "invlaid markings");
+        require(_compareMem(op.slot, _MARKINGS), "invalid markings");
       } else {
         revert("invalid index");
       }
     } else if (_compareMem(form, _HASHMONK_FORM)) {
       if (index == 5) {
-        require(_compareMem(op.slot, _CROW/// @notice Explain to an end user what this does
-        /// @dev Explain to a developer any extra details
-        /// @param Documents a parameter just like in doxygen (must be followed by parameter name)
-        /// @return Documents the return variables of a contract’s function state variable
-        /// @inheritdoc	Copies all missing tags from the base function (must be followed by the contract name)));
+        require(_compareMem(op.slot, _CROWN), "invalid crown");
       } else if (index == 6) {
-        require(_compareMem(op.slot, _TYPE));
+        require(_compareMem(op.slot, _TYPE), "invalid type or markings");
       } else {
         revert("invalid index");
       }
