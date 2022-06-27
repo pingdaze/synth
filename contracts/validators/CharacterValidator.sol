@@ -146,9 +146,10 @@ contract CharacterValidator is Ownable {
     uint256 characterId,
     address target
   ) internal {
-    Skeleton memory newSkeleton = defaultSkeleton;
+    Skeleton memory newSkeleton;
     selectableOptions.validateFaction(traitsPlus[4], legacyPills[0], target);
     if (_compareMem(traitsPlus[0], "Pepel")) {
+      newSkeleton = defaultSkeleton;
       newSkeleton.mouth = selectableOptions.validateOption(
         traitsPlus,
         5,
@@ -178,18 +179,53 @@ contract CharacterValidator is Ownable {
         target
       );
     } else if (_compareMem(traitsPlus[0], "Hashmonk")) {
-      newSkeleton.mask = selectableOptions.validateOption(
+      newSkeleton.head = selectableOptions.validateOption(
         traitsPlus,
-        5,
+        0,
         msg.value,
         legacyPills[1],
         target
       );
-      newSkeleton.color = selectableOptions.validateOption(
+      newSkeleton.torso = selectableOptions.validateOption(
+        traitsPlus,
+        1,
+        msg.value,
+        legacyPills[2],
+        target
+      );
+      newSkeleton.lArm = selectableOptions.validateOption(
+        traitsPlus,
+        2,
+        msg.value,
+        legacyPills[0],
+        target
+      );
+      newSkeleton.rArm = selectableOptions.validateOption(
+        traitsPlus,
+        3,
+        msg.value,
+        legacyPills[0],
+        target
+      );
+      newSkeleton.lLeg = selectableOptions.validateOption(
+        traitsPlus,
+        4,
+        msg.value,
+        legacyPills[0],
+        target
+      );
+      newSkeleton.rLeg = selectableOptions.validateOption(
+        traitsPlus,
+        5,
+        msg.value,
+        legacyPills[0],
+        target
+      );
+      newSkeleton.mask = selectableOptions.validateOption(
         traitsPlus,
         6,
         msg.value,
-        legacyPills[2],
+        legacyPills[3],
         target
       );
     } else {
