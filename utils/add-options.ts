@@ -3,6 +3,7 @@
 const { ethers } = require("hardhat");
 import {SelectableOptions, WearablesValidator, AugmentsValidator} from "../typechain-types/";
 import   {SKELETON_OPTIONS, SkeletonOption, Location, StepOption, STEP_OPTIONS_BY_TYPE } from "../data/airtable"
+import { BigNumber } from "ethers";
 
 const pillToId: { [key:string]: number} = {
   "kirbonite": 0xC,
@@ -141,8 +142,9 @@ function processFactionOption(optionsContract: SelectableOptions, slot: string) 
 
 function processSkeletonOption(optionsContract: SelectableOptions, wearablesContract: WearablesValidator, augmentsContract: AugmentsValidator) { return async (option: SkeletonOption) => {
   let receipt;
-  if(option.cid === null)
+  if(option.cid === null || (await optionsContract.getOptionId(option.cid!)).toNumber() !== 0) {
       return;
+  }
   let slot = "";
   if(option.skeleton === "marking"){
     slot = "Markings";
