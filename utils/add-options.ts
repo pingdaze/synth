@@ -68,7 +68,7 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
     await processSkeletonOption(options, wearables, augments)(option);
   }
   console.log("Done processing skeleton options");
-  /*
+
   // processing = STEP_OPTIONS_BY_TYPE.Faction.map(processFactionOption(options, "Faction"));
   // await Promise.all(processing);
   for(let option of STEP_OPTIONS_BY_TYPE.Faction) {
@@ -108,7 +108,6 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
     await options.addOption(color, color, "Type", 0);
     console.log(`Added ${color}`);
   };
-  */
 }
 
 function processStepOption(optionsContract: SelectableOptions, slot: string) { return async (option: StepOption) => {
@@ -170,10 +169,8 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
   } else if (option.category === "mask"){
     slot = "Mask";
   }
-  if(slot !== "Crown") {
-    return;
-  }
-  //if(slot !== "") {
+
+  if(slot !== "") {
     if((option.name.includes("Pepelian") || option.name.includes("Unadorned")) && !option.name.includes("Mutagenic")) {
       console.log(`Adding \nName:${option.name} \nCID:${option.cid}`);
       receipt = await optionsContract.addOptionWithId(option.cid!, nameToId[option.name], option.name, slot, getFormUint(option.form));
@@ -233,7 +230,7 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
       await receipt.wait();
       console.log(`Added ${option.name} to wearables`);
     }
-  //}
+  }
 } }
 
 function getFormUint(form: string){
