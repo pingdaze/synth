@@ -20,6 +20,12 @@ contract SelectableOptions {
   string private constant _TYPE = "Type";
   string private constant _MARKINGS = "Markings";
   string private constant _CROWN = "Crown";
+  string private constant _HEAD = "Head";
+  string private constant _TORSO = "Torso";
+  string private constant _LARM = "LeftArm";
+  string private constant _RARM = "RightArm";
+  string private constant _LLEG = "LeftLeg";
+  string private constant _RLEG = "RightLeg";
 
   enum Requirement {
     None,
@@ -101,9 +107,21 @@ contract SelectableOptions {
       }
     } else if (_compareMem(form, _HASHMONK_FORM)) {
       if (index == 5) {
-        require(_compareMem(op.slot, _CROWN), "invalid crown");
+        require(_compareMem(op.slot, _HEAD), "invalid head");
       } else if (index == 6) {
-        require(_compareMem(op.slot, _TYPE), "invalid type or markings");
+        require(_compareMem(op.slot, _TORSO), "invalid torso");
+      } else if (index == 7) {
+        require(_compareMem(op.slot, _LARM), "invalid left arm");
+      } else if (index == 8) {
+        require(_compareMem(op.slot, _RARM), "invalid right arm");
+      } else if (index == 9) {
+        require(_compareMem(op.slot, _LLEG), "invalid left leg");
+      } else if (index == 10) {
+        require(_compareMem(op.slot, _RLEG), "invalid right leg");
+      } else if (index == 11) {
+        require(_compareMem(op.slot, _TYPE), "invalid color");
+      } else if (index == 12) {
+        require(_compareMem(op.slot, _CROWN), "invalid crown");
       } else {
         revert("invalid index");
       }

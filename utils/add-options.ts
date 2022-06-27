@@ -33,7 +33,8 @@ const nameToId: { [key:string]: number} = {
   "Pepelian Mouth": 7,
   "Pepelian Eye": 8,
   "Pepelian Color": 9,
-  "Pepelian Marking": 10
+  "Pepelian Marking": 10,
+  "Unadorned": 11
 }
 
 const pepelColors  = [
@@ -65,10 +66,9 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   // await Promise.all(processing);
   for(let option of SKELETON_OPTIONS) {
     await processSkeletonOption(options, wearables, augments)(option);
-    console.log(`Added ${option.name}`);
   }
   console.log("Done processing skeleton options");
-  
+  /*
   // processing = STEP_OPTIONS_BY_TYPE.Faction.map(processFactionOption(options, "Faction"));
   // await Promise.all(processing);
   for(let option of STEP_OPTIONS_BY_TYPE.Faction) {
@@ -108,6 +108,7 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
     await options.addOption(color, color, "Type", 0);
     console.log(`Added ${color}`);
   };
+  */
 }
 
 function processStepOption(optionsContract: SelectableOptions, slot: string) { return async (option: StepOption) => {
@@ -164,11 +165,16 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
     slot = "Mouth";
   } else if (option.location.includes(Location["Eyes"])){
     slot = "Eyes";
+  } else if (option.location.includes(Location["Crown"])){
+    slot = "Crown";
   } else if (option.category === "mask"){
     slot = "Mask";
   }
-  if(slot !== "") {
-    if(option.name.includes("Pepelian") && !option.name.includes("Mutagenic")) {
+  if(slot !== "Crown") {
+    return;
+  }
+  //if(slot !== "") {
+    if((option.name.includes("Pepelian") || option.name.includes("Unadorned")) && !option.name.includes("Mutagenic")) {
       console.log(`Adding \nName:${option.name} \nCID:${option.cid}`);
       receipt = await optionsContract.addOptionWithId(option.cid!, nameToId[option.name], option.name, slot, getFormUint(option.form));
       console.log(`Added \nName:${option.name} \nCID:${option.cid}`);
@@ -227,7 +233,7 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
       await receipt.wait();
       console.log(`Added ${option.name} to wearables`);
     }
-  }
+  //}
 } }
 
 function getFormUint(form: string){

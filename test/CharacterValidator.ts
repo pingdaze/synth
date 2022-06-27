@@ -101,7 +101,7 @@ describe.only("Characters Validator", () => {
       optionID = await options.getOptionId("lime");
 
     });
-    it("Can mint an avatar", async () => {
+    it("Can mint a pepel", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [];
       const traitsplus: string[] = [
@@ -114,6 +114,30 @@ describe.only("Characters Validator", () => {
         "bafybeicdchpng53briinhnrqq54ozr2vmyd7cvwu2wndtcz4sfiugdvyxm",
         "lime",
         "bafybeiavzoy6bqsgvpxbargktrh26dq2jwy6sjioa5qwch4sbdlryw7vw4"
+      ] as string[];
+      receipt = await characterValidator.createCharacter(
+        legacyPills,
+        collabPills,
+        traitsplus
+      );
+    });
+    it("Can mint a hashmonk", async () => {
+      const legacyPills: number[] = [0, 0, 0, 0, 0];
+      const collabPills: number[] = [];
+      const traitsplus: string[] = [
+        "Hashmonk",
+        "Aateos",
+        "Interstellar Nomad",
+        "Diamond Hands",
+        "Aave",
+        "bafybeid5jm436ecxh7ig2qwgcl3biyhwbgdu6ltzirjsjv3w5l4rbekbxe", // head
+        "bafybeibg5bmwhq3ojlobeo3y7ho637wwzopqjgwlywbpqeil7jsanpnmpq", // torso
+        "bafybeibat3eowgbdsx3dzciq335h6lxkdpobb4guplyymy5oqxl4hdbryy", // larm
+        "bafybeigahfafrfgdaaoqcsql3b2gz34zsppgjj6pbmnyb36vpn4y64vhjq", // rarm
+        "bafybeiabtufdf7g54zcg7o4kqazasoqth4qxr2ivqutt6t2j5445znynje", // lleg
+        "bafybeifcye2t5kty6gohmwmr7iizdu3jp5imzriszxpglxi4r4d6mmjbne", // rleg
+        "arctic", // color
+        "bafybeih7il4wy626fvsk7fzm74noo7d5awppo6smfwpcmmy3uaf7t3q7iq", // crown
       ] as string[];
       receipt = await characterValidator.createCharacter(
         legacyPills,
