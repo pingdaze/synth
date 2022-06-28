@@ -52,7 +52,7 @@ const hashmonkColors  = [
   "coral",
   "shadowmarked",
   "sunstrider",
-  "tropical"
+  "tropic"
 ]
 
 
