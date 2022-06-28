@@ -17,8 +17,6 @@ import {
 import {
   deployCore721,
   deployCore1155,
-  deployWearablesValidator,
-  deployAugmentsValidator,
   deployCharacter,
   deployCharacterValidator,
   deployRequester,

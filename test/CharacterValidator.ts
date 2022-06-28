@@ -138,6 +138,7 @@ describe.only("Characters Validator", () => {
         "bafybeifcye2t5kty6gohmwmr7iizdu3jp5imzriszxpglxi4r4d6mmjbne", // rleg
         "arctic", // color
         "bafybeih7il4wy626fvsk7fzm74noo7d5awppo6smfwpcmmy3uaf7t3q7iq", // crown
+        "bafybeibz6d6h2reybjauchsgetmtjp7f3boruxwjbtx35ehtnootk4gmky", // mask
       ] as string[];
       receipt = await characterValidator.createCharacter(
         legacyPills,

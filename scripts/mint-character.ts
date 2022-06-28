@@ -32,15 +32,20 @@ async function main() {
     const legacyPills: number[] = [0, 0, 0, 0, 0];
     const collabPills: number[] = [];
     const traitsplus: string[] = [
-      "Pepel",
+      "Hashmonk",
       "Aateos",
       "Interstellar Nomad",
       "Diamond Hands",
-      "Aave",
-      "bafybeieback55fctuhhyh42tavz623xtuxk4pwrdn2jvatr6zzonui2jpa",
-      "bafybeicdchpng53briinhnrqq54ozr2vmyd7cvwu2wndtcz4sfiugdvyxm",
-      "lime",
-      "bafybeiavzoy6bqsgvpxbargktrh26dq2jwy6sjioa5qwch4sbdlryw7vw4"
+      "None",
+      "bafybeiap7phjnmfjicslxtfaulye6bhdxovwnnomfazxllh4steeytv6ey",
+      "bafybeid3ng4tq3nyzwzwemyt2ju3djvkw2c5wanfx4rr23aqgvjkt3rzni",
+      "bafybeibat3eowgbdsx3dzciq335h6lxkdpobb4guplyymy5oqxl4hdbryy",
+      "bafybeigahfafrfgdaaoqcsql3b2gz34zsppgjj6pbmnyb36vpn4y64vhjq",
+      "bafybeiabtufdf7g54zcg7o4kqazasoqth4qxr2ivqutt6t2j5445znynje",
+      "bafybeihx37wpm2bins2zltikjsikgjcgepboqub7yumydleelddospkswi",
+      "arctic",
+      "bafybeih7il4wy626fvsk7fzm74noo7d5awppo6smfwpcmmy3uaf7t3q7iq",
+      "bafybeiab7wr5ynymlxqx4ja2kc4t5lnqne37aifcsihyz4qclazimdm3kq"
     ] as string[];
     receipt = await characterValidator.createCharacter(
       legacyPills,
