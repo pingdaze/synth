@@ -41,4 +41,8 @@ interface ICharacter {
   function setSkeleton(uint256 tokenID, Skeleton calldata skeleton) external;
 
   function setOutfit(uint256 tokenID, Outfit calldata outfit) external;
+  function setOutfitSlot(
+    uint256 _characterID,
+    uint16 slotID,
+    uint32 value) external;
 }

@@ -233,6 +233,14 @@ contract Characters is Context, Auth {
     }
   }
 
+  function setOutfitSlot(
+    uint256 _characterID,
+    uint16 slotID,
+    uint32 value
+  ) external onlyValidator {
+    _setOutfitSlot(slotID, outfits[_characterID], value);
+  }
+
   function setOutfit(uint256 _characterID, Outfit calldata outfit)
     external
     onlyValidator

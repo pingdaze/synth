@@ -235,6 +235,7 @@ contract CharacterValidator is Ownable {
         legacyPills[3],
         target
       );
+      
     } else {
       revert("Invalid form");
     }
@@ -247,6 +248,9 @@ contract CharacterValidator is Ownable {
       collabPills,
       traitsPlus
     );
+    if (_compareMem(traitsPlus[0], "Hashmonk")){
+      character.setOutfitSlot(characterId, 0, uint32(selectableOptions.getOptionId(traitsPlus[13])));
+    }
     character.setSkeleton(characterId, newSkeleton);
     // Comment out the "booster pack" so that randomness is not requested
     /* _charIdQueue.push(characterId);
