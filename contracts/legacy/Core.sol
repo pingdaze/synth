@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "../interfaces/IMintValidator.sol";
 import "../interfaces/IFabricator.sol";
-import "../MetadataRegistry.sol";
+import "../interfaces/IReadMetadata.sol";
 
 // write interface for
 //Interface

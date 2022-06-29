@@ -9,8 +9,6 @@ import "../interfaces/ICore.sol";
 import "../interfaces/IEXP.sol";
 import "../interfaces/IREP.sol";
 import "../interfaces/IWearables.sol";
-
-import "../MetadataRegistry.sol";
 import "./SelectableOptions.sol";
 import "../lib/CharacterLibrary.sol";
 import "@rari-capital/solmate/src/auth/Auth.sol";

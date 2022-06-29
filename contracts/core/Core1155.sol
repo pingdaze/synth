@@ -7,9 +7,9 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./interfaces/IMintValidator.sol";
-import "./interfaces/IFabricator.sol";
-import "./MetadataRegistry.sol";
+import "../interfaces/IMintValidator.sol";
+import "../interfaces/IFabricator.sol";
+import "../registries/MetadataRegistry.sol";
 import "@rari-capital/solmate/src/auth/Auth.sol";
 
 // write interface for

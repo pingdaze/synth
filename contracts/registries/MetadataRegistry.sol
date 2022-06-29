@@ -5,10 +5,7 @@ pragma solidity ^0.8.0;
 //pragma abicoder v2;
 
 import "@rari-capital/solmate/src/auth/Auth.sol";
-
-interface IReadMetadata {
-  function get(uint256 _id) external view returns (string memory metadata);
-}
+import "../interfaces/IReadMetadata.sol";
 
 contract MetadataRegistry is IReadMetadata, Auth {
   event Register(uint256 id, string metadata);

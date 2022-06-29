@@ -6,11 +6,12 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 // Experiment with solmate 721?
-import "./tokens/abstract/ERC721.sol";
-import "./interfaces/IMintValidator721.sol";
-import "./interfaces/IXferHook.sol";
-import "./interfaces/IFabricator721.sol";
-import "./MetadataRegistry.sol";
+import "../tokens/abstract/ERC721.sol";
+import "../interfaces/IMintValidator721.sol";
+import "../interfaces/IXferHook.sol";
+import "../interfaces/IFabricator721.sol";
+import "../interfaces/IReadMetadata.sol";
+
 import "@rari-capital/solmate/src/auth/Auth.sol";
 
 /// @title Core721
