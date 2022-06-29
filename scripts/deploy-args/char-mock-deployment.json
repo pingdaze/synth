@@ -19,6 +19,7 @@
         "AugmentsValidator":  "0x32A27bD137a8E4f38239462b47A68Fa4375C2134",
         "Requester":  "0x7d434E908871CEBb80955AADE254198b861C83E0",
         "CharacterValidator":  "0xe627cD7D3987EEe520f70536F95B25369c643D31",
+        "Registry":  "0x4F5eC8E477e53a02634D5632769c79137B04cdE3",
         "BalanceHook":  "N/A"
     }
 }
