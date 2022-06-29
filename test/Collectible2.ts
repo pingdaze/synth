@@ -1,224 +1,189 @@
+export {};
 /* global artifacts, it, assert */
 /* eslint-disable prefer-reflect */
-const { artifacts, web3, contract } = require("hardhat");
-import { assert } from "chai";
-const { expectEvent, expectRevert } = require("@openzeppelin/test-helpers");
-const Collectible = artifacts.require("Collectible2.sol");
-const BoolValidator = artifacts.require("BoolValidator.sol");
-const HolderContract = artifacts.require("CollectibleHolder.sol");
-const Registry = artifacts.require("MetadataRegistry.sol");
 
-const zeroAddress = "0x0000000000000000000000000000000000000000";
-const burnerAddress = "0x0000000000000000000000000000000000000001";
+import { ethers } from "hardhat";
+import { expect } from "chai";
+import { Core1155 } from "../typechain-types/contracts/Core1155";
+import { BasicValidator } from "../typechain-types/contracts/test/BasicValidator";
+import { MetadataRegistry } from "../typechain-types/contracts/MetadataRegistry.sol";
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
+import {
+  deployCore1155,
+  deployBasicValidator,
+  deployHolder,
+  deployRegistry,
+} from "./shared/deploys";
 
-const toBN = (x) => web3.utils.toBN(x);
+const zeroAddress = ethers.constants.AddressZero;
 
 const amount = 5;
-const id = 0;
+const id1 = 0;
+const id2 = 1;
+const id3 = 2;
+const id4 = 3;
+const badID = 10;
 
-contract("Collectible2", (addresses) => {
-  const user1 = addresses[0];
-  const deploy = async (
-    original = zeroAddress,
-    baseUri = "",
-    registry = zeroAddress
-  ) => {
-    return Collectible.new(original, baseUri, registry);
-  };
+describe("Core", () => {
+  let user2: SignerWithAddress, user1: SignerWithAddress;
+  let validator: BasicValidator;
+  let registry: MetadataRegistry;
+  before(async () => {
+    [user1, user2] = await ethers.getSigners();
+  });
+
   describe("Deployment", () => {
     it("deploys", async () => {
-      const C = await deploy();
-      const original = await C.originalToken();
-      assert.equal(original, zeroAddress);
+      const core = await deployCore1155();
       // sanity check
-      assert.notEqual(await C.owner(), zeroAddress);
+      expect(core.owner()).not.to.equal(zeroAddress);
     });
   });
   describe("Validators", () => {
-    let C, T;
+    let core: Core1155;
+    let validator: BasicValidator;
     before(async () => {
-      C = await deploy();
-      T = await BoolValidator.new(true);
+      core = (await deployCore1155()) as Core1155;
+      // We create this validator with ID3 as the first two tests don't require
+      // actual minting
+      validator = (await deployBasicValidator(id3, core)) as BasicValidator;
     });
     it("can add a validator", async () => {
-      const receipt = await C.addValidator(T.address);
-      expectEvent(receipt, "Validator", { validator: T.address, active: true });
-      assert.equal(await C.isValidator(T.address), true);
+      const tx = await core.addValidator(validator.address, [id1]);
+      const receipt = await tx.wait();
+      expect(core.addValidator(validator.address, [id1]))
+        .to.emit(core, "Validator")
+        .withArgs(validator.address, true);
+      expect(await core.isValidator(validator.address)).to.equal(true);
     });
     it("can remove a validator", async () => {
-      assert.equal(await C.isValidator(T.address), true);
-      const receipt = await C.removeValidator(T.address);
-      expectEvent(receipt, "Validator", {
-        validator: T.address,
-        active: false,
-      });
-      assert.equal(await C.isValidator(T.address), false);
+      expect(await core.isValidator(validator.address)).to.equal(true);
+      expect(core.removeValidator(validator.address))
+        .to.emit(validator, "Validator")
+        .withArgs(validator.address, false);
+      expect(await core.isValidator(validator.address)).to.equal(false);
     });
     describe("modular mint", () => {
       const amount = 5;
       const id = 0;
       it("reverts if passed an inactive Validator Address", async () => {
-        await expectRevert(
-          C.modularMint(id, user1, amount, 0x0, zeroAddress, ""),
-          "BAD_VALIDATOR"
-        );
+        expect(
+          core.modularMintInit(id, user1.address, [amount], "", zeroAddress, "")
+        ).to.be.revertedWith("BAD_VALIDATOR");
       });
       it("reverts if the validator doesn't succeed", async () => {
-        const F = await BoolValidator.new(false);
-        await C.addValidator(F.address);
-        await expectRevert(
-          C.modularMint(id, user1, amount, 0x0, F.address, ""),
-          "INVALID_MINT"
-        );
+        const badValidator = await deployBasicValidator(badID, core);
+        await core.addValidator(badValidator.address, [id2]);
+        expect(
+          core.modularMintInit(
+            badID,
+            user1.address,
+            [amount],
+            "",
+            badValidator.address,
+            ""
+          )
+        ).to.be.revertedWith("INVALID_MINT");
       });
       it("mints tokens to a contract", async () => {
-        const H = await HolderContract.new();
-        await C.addValidator(T.address);
-        const initialMintedQuantity = await C.quantityMinted(id);
-        const receipt = await C.modularMint(
-          id,
-          H.address,
-          amount,
-          0x0,
-          T.address,
-          ""
-        );
-        const balance = await C.balanceOf(H.address, id);
-        expectEvent(receipt, "TransferSingle", {
-          from: zeroAddress,
-          to: H.address,
-          id: toBN(0),
-          value: toBN(amount),
-        });
-        assert.equal(balance, amount);
-        const updatedMintedQuantity = await C.quantityMinted(id);
+        const holder = await deployHolder();
+        await core.addValidator(validator.address, [id3]);
+        const initialMintedQuantity = await core.quantityMinted(id3);
+        await expect(
+          core.modularMintInit(
+            id3,
+            holder.address,
+            [amount],
+            ethers.constants.HashZero,
+            validator.address,
+            ""
+          )
+        )
+          .to.emit(core, "TransferBatch")
+          .withArgs(
+            validator.address,
+            zeroAddress,
+            holder.address,
+            [id3],
+            [amount]
+          );
+        /*
+        const balance = await core.balanceOf(holder.address, id3);
+        expect(balance).to.equal(amount);
+        const updatedMintedQuantity = await core.quantityMinted(id3);
         const newlyMintedQuantity =
-          updatedMintedQuantity - initialMintedQuantity;
-        assert.equal(newlyMintedQuantity, amount);
+          updatedMintedQuantity.sub(initialMintedQuantity);
+        expect(newlyMintedQuantity).to.equal(amount);*/
       });
       it("mints tokens to an EOA", async () => {
-        const initialMintedQuantity = await C.quantityMinted(id);
-        const receipt = await C.modularMint(
-          id,
-          user1,
-          amount,
-          0x0,
-          T.address,
-          ""
+        const initialMintedQuantity = await core.quantityMinted(id3);
+
+        const tx = await expect(
+          core.modularMintInit(
+            id3,
+            user1.address,
+            [amount],
+            ethers.constants.HashZero,
+            validator.address,
+            ""
+          )
+        )
+          .to.emit(core, "TransferBatch")
+          .withArgs(
+            validator.address,
+            zeroAddress,
+            user1.address,
+            [id3],
+            [amount]
+          );
+
+        const balance = await core.balanceOf(user1.address, id3);
+        expect(balance).to.equal(amount);
+        const updatedMintedQuantity = await core.quantityMinted(id3);
+        const newlyMintedQuantity = updatedMintedQuantity.sub(
+          initialMintedQuantity
         );
-        const balance = await C.balanceOf(user1, id);
-        expectEvent(receipt, "TransferSingle", {
-          from: zeroAddress,
-          to: user1,
-          id: toBN(0), //new BN(id),
-          value: toBN(amount),
-        });
-        assert.equal(balance, amount);
-        const updatedMintedQuantity = await C.quantityMinted(id);
-        const newlyMintedQuantity =
-          updatedMintedQuantity - initialMintedQuantity;
-        assert.equal(newlyMintedQuantity, amount);
+        expect(newlyMintedQuantity).to.equal(amount);
       });
-    });
-  });
-  describe("migrate", () => {
-    it("accepts migrated tokens", async () => {
-      const oldToken = await deploy();
-      const T = await BoolValidator.new(true);
-      await oldToken.addValidator(T.address);
-      const newToken = await deploy(oldToken.address, "");
-      const receipt = await oldToken.modularMint(
-        id,
-        user1,
-        amount,
-        0x0,
-        T.address,
-        ""
-      );
-      const balance = await oldToken.balanceOf(user1, id);
-      expectEvent(receipt, "TransferSingle", {
-        from: zeroAddress,
-        to: user1,
-        id: toBN(0), //new BN(id),
-        value: toBN(amount),
-      });
-      assert.equal(balance, amount);
-      const receipt1 = await oldToken.setApprovalForAll(
-        newToken.address,
-        true,
-        {
-          from: user1,
-        }
-      );
-      expectEvent(receipt1, "ApprovalForAll", {
-        account: user1,
-        operator: newToken.address,
-        approved: true,
-      });
-      const initialMintedQuantity = await newToken.quantityMinted(id);
-      const receipt2 = await newToken.migrate([id], [amount], { from: user1 });
-      expectEvent(receipt2, "TransferBatch", {
-        operator: newToken.address,
-        from: user1,
-        to: burnerAddress,
-        ids: [toBN(id)],
-        values: [toBN(amount)],
-      });
-      expectEvent(receipt2, "TransferBatch", {
-        operator: user1,
-        from: zeroAddress,
-        to: user1,
-        ids: [toBN(id)],
-        values: [toBN(amount)],
-      });
-      assert.equal(await oldToken.balanceOf(burnerAddress, id), amount);
-      const updatedMintedQuantity = await newToken.quantityMinted(id);
-      const newlyMintedQuantity = updatedMintedQuantity - initialMintedQuantity;
-      assert.equal(newlyMintedQuantity, amount);
     });
   });
   describe("batch minting", () => {
     it("can mint batches of tokens", async () => {
-      const C = await deploy();
-      const receipt = await C.mintBatch(user1, [id], [amount], 0);
-      expectEvent(receipt, "TransferBatch", {
-        from: zeroAddress,
-        to: user1,
-        ids: [toBN(id)],
-        values: [toBN(amount)],
-      });
-      assert.equal(await C.balanceOf(user1, id), 5);
+      const core = await deployCore1155();
+      const tx = await expect(core.mintBatch(user1.address, [id4], [amount], 0))
+        .to.emit(core, "TransferBatch")
+        .withArgs(user1.address, zeroAddress, user1.address, [id4], [amount]);
+
+      expect(await core.balanceOf(user1.address, id4)).to.equal(5);
     });
     it("can only be utilized by owners", async () => {
-      const C = await deploy();
-      await expectRevert(
-        C.mintBatch(user1, [id], [amount], 0, { from: user1 }),
-        "Ownable: caller is not the owner"
-      );
+      const core = await deployCore1155();
+      expect(
+        core.connect(user2).mintBatch(user1.address, [id4], [amount], 0)
+      ).to.be.revertedWith("Ownable: caller is not the owner");
     });
   });
   describe("uri", () => {
     it("reverts without a valid registry", async () => {
-      const C = await deploy();
-      await expectRevert.unspecified(C.uri(0));
+      const core = await deployCore1155();
+      expect(core.uri(0)).to.be.reverted;
     });
     it("reverts if metadata is not set", async () => {
-      const registry = await Registry.new();
-      const C = await deploy(
-        zeroAddress,
+      registry = (await deployRegistry()) as MetadataRegistry;
+      const core = await deployCore1155(
         "https://pillz.club/",
         registry.address
       );
-      await expectRevert(registry.get(0), "MISSING_URI");
+      expect(registry.get(0)).to.be.revertedWith("MISSING_URI");
     });
     it("can get a valid URI entry", async () => {
       const base = "https://pillz.club/";
       const metadata = "abc123";
-      const registry = await Registry.new();
+      const registry = await deployRegistry();
       await registry.set(0, metadata);
-      const C = await deploy(zeroAddress, base, registry.address);
-      const uri = await C.uri(0);
-      assert.equal(uri, base + metadata);
+      const core = await deployCore1155(base, registry.address);
+      const uri = await core.uri(0);
+      expect(uri).to.equal(base + metadata);
     });
   });
 });

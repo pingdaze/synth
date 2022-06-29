@@ -1,4 +1,13 @@
 node_modules
-artifacts
 cache
 **/*.log
+typechain
+.env
+/public
+/artifacts
+typechain
+typechain-types
+artifacts
+
+
+scripts/minters.txt

@@ -1,12 +1,20 @@
 const fs = require("fs");
 const path = require("path");
 
-require("@nomiclabs/hardhat-truffle5");
-require("@nomiclabs/hardhat-web3");
-require("@nomiclabs/hardhat-solhint");
-require("solidity-coverage");
-require("hardhat-gas-reporter");
-require("hardhat-watcher");
+import * as dotenv from "dotenv";
+import { HardhatUserConfig } from "hardhat/config";
+import "@nomiclabs/hardhat-etherscan";
+import "@nomiclabs/hardhat-solhint";
+import "@nomiclabs/hardhat-web3";
+import "@nomiclabs/hardhat-waffle";
+import "@typechain/hardhat";
+import "hardhat-gas-reporter";
+import "hardhat-watcher";
+import "solidity-coverage";
+
+dotenv.config();
+
+import {node_url, accounts} from './utils/network';
 
 for (const f of fs.readdirSync(path.join(__dirname, "hardhat"))) {
   require(path.join(__dirname, "hardhat", f));
@@ -14,12 +22,23 @@ for (const f of fs.readdirSync(path.join(__dirname, "hardhat"))) {
 
 const enableGasReport = !!process.env.ENABLE_GAS_REPORT;
 const enableProduction = process.env.COMPILE_MODE === "production";
-/**
- * @type import('hardhat/config').HardhatUserConfig
- */
-module.exports = {
+
+ const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.3",
+    compilers: [
+      {
+        version: "0.8.4"
+      },
+      {
+        version: "0.8.10"
+      },
+      {
+        version: "0.5.5"
+      },
+      {
+        version: "0.6.11"
+      }
+    ],
     settings: {
       optimizer: {
         enabled: enableGasReport || enableProduction || true,
@@ -30,14 +49,47 @@ module.exports = {
   networks: {
     hardhat: {
       blockGasLimit: 10000000,
+      forking: {
+        url: "https://eth-mainnet.alchemyapi.io/v2/" + process.env.ALCHEMY_API_KEY,
+        blockNumber: 15015151
+      },
+      accounts: accounts('hardhat'),
+    },rinkeby: {
+      url: node_url('rinkeby'),
+      accounts: accounts('rinkeby'),
+    },gorli: {
+      url: node_url('gorli'),
+      accounts: accounts('gorli'),
     },
+    ropsten: {
+      url: node_url('ropsten'),
+      accounts: accounts('ropsten'),
+    },
+    mainnet: {
+      url: node_url('mainnet'),
+      accounts: accounts('mainnet'),
+    },
+    arbrinkeby: {
+      url: node_url('arbrinkeby'),
+      accounts: accounts('arbrinkeby'),
+    }
   },
   gasReporter: {
-    enable: enableGasReport,
+    enabled: enableGasReport,
     currency: "USD",
+    gasPrice: 60,
+    coinmarketcap: process.env.COINTMARKETCAP_API_KEY,
     outputFile: process.env.CI ? "gas-report.txt" : undefined,
   },
-
+  etherscan: {
+    apiKey:  {
+      arbitrumTestnet: process.env.ARBSCAN_API ? process.env.ARBSCAN_API : "",
+      mainnet: process.env.ETHERSCAN_API ? process.env.ETHERSCAN_API : "",
+    }
+  },
+  mocha: {
+    timeout: 100000000
+  },
   watcher: {
     compilation: {
       tasks: ["compile"],
@@ -49,7 +101,7 @@ module.exports = {
           params: {
             noCompile: false,
             testFiles: [
-              "test/Collectible2.ts",
+              "test/Core.ts",
               "test/MetadataRegistry.ts",
               "test/SequenceValidator.ts",
             ],
@@ -61,3 +113,6 @@ module.exports = {
     },
   },
 };
+
+export default config;
+

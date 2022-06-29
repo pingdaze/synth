@@ -1,0 +1,764 @@
+[
+  {
+    "name": "Jumpers",
+    "category": [
+      "degenerators",
+      "degenerators"
+    ],
+    "form": [
+      "pepel",
+      "pepel"
+    ],
+    "locations": [
+      "left-leg",
+      "right-leg"
+    ],
+    "pill_type": [
+      "kirbonite",
+      "kirbonite"
+    ],
+    "items": [
+      {
+        "name": "Jumper, Left Leg",
+        "location": [
+          "left-leg"
+        ],
+        "fileName": "Legs-Pirate-Gear-L.png",
+        "url": "https://dl.airtable.com/.attachments/12cbdba074a760f6f448a7946db37320/c92537c4/Legs-Pirate-Gear-L.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=d3d546d95c71b3f6"
+      },
+      {
+        "name": "Jumper, Right Leg",
+        "location": [
+          "right-leg"
+        ],
+        "fileName": "Legs-Pirate-Gear-R.png",
+        "url": "https://dl.airtable.com/.attachments/82cb79c4822edcb750d185e9f828c936/f40a0404/Legs-Pirate-Gear-R.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=8ae211d41c0a495e"
+      }
+    ]
+  },
+  {
+    "name": "Kirbojet Jumpers",
+    "category": [
+      "degenerators",
+      "degenerators"
+    ],
+    "form": [
+      "hashmonk",
+      "hashmonk"
+    ],
+    "locations": [
+      "right-leg",
+      "left-leg"
+    ],
+    "pill_type": [
+      "kirbonite",
+      "kirbonite"
+    ],
+    "items": [
+      {
+        "name": "Kirbojet Jumpers, Right Leg",
+        "location": [
+          "right-leg"
+        ],
+        "fileName": "r-pirate-leg-v.png",
+        "url": "https://dl.airtable.com/.attachments/a9f4995778c212a0bbba873152243374/50dfece4/r-pirate-leg-v.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=4089ae93e69d2950"
+      },
+      {
+        "name": "Kirbojet Jumpers, Left Leg",
+        "location": [
+          "left-leg"
+        ],
+        "fileName": "r.png",
+        "url": "https://dl.airtable.com/.attachments/4bf62e92b6659dbad0abf7300cdd9438/c3705d82/r.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=98a7a17892ce89b3"
+      }
+    ]
+  },
+  {
+    "name": "Shadowpakt Flamer",
+    "category": [
+      "shadowpakt",
+      "shadowpakt"
+    ],
+    "form": [
+      "pepel",
+      "pepel"
+    ],
+    "locations": [
+      "torso",
+      "right-arm",
+      "left-arm",
+      "left-leg",
+      "right-leg",
+      "head"
+    ],
+    "pill_type": [
+      "shadowpak",
+      "shadowpak"
+    ],
+    "items": [
+      {
+        "name": "Shadowpakt Flamer Suit",
+        "location": [
+          "torso",
+          "right-arm",
+          "left-arm",
+          "left-leg",
+          "right-leg"
+        ],
+        "fileName": "-wearable---shadowpak---fullbody---flamersuit.png",
+        "url": "https://dl.airtable.com/.attachments/3c0351e4c7d21e76920d05b78d0c46a3/a0f6823e/-wearable---shadowpak---fullbody---flamersuit.png?ts=1656345602&userId=usrSLDM6Ci8RrQAMi&cs=bd56ba902dd791a2"
+      },
+      {
+        "name": "Shadowpakt Flamer Helmet",
+        "location": [
+          "head"
+        ],
+        "fileName": "-wearable---shadowpakt---head-flamerhelmet-default.png",
+        "url": "https://dl.airtable.com/.attachments/e60e1a446ef31ee2b78906ed486b3514/ce84dbe8/-wearable---shadowpakt---head-flamerhelmet-default.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=62928888ae8fe60e"
+      }
+    ]
+  },
+  {
+    "name": "Shadowpakt Hunter",
+    "category": [
+      "shadowpakt",
+      "shadowpakt"
+    ],
+    "form": [
+      "pepel",
+      "pepel"
+    ],
+    "locations": [
+      "torso",
+      "right-arm",
+      "left-arm",
+      "left-leg",
+      "right-leg",
+      "head"
+    ],
+    "pill_type": [
+      "shadowpak",
+      "shadowpak"
+    ],
+    "items": [
+      {
+        "name": "Shadowpakt Hunter Suit",
+        "location": [
+          "torso",
+          "right-arm",
+          "left-arm",
+          "left-leg",
+          "right-leg"
+        ],
+        "fileName": "-wearable---shadowpak---fullbody---huntersuit.png",
+        "url": "https://dl.airtable.com/.attachments/2b5a28762a1728ea18960eb435e76dc5/a63f82b5/-wearable---shadowpak---fullbody---huntersuit.png?ts=1656345602&userId=usrSLDM6Ci8RrQAMi&cs=9afe66894a252443"
+      },
+      {
+        "name": "Shadowpakt Hunter Helmet",
+        "location": [
+          "head"
+        ],
+        "fileName": "-wearable---shadowpakt---head-hunterhelmet-default.png",
+        "url": "https://dl.airtable.com/.attachments/130b6980c0479b8d462468f13fb61c2a/e459bf47/-wearable---shadowpakt---head-hunterhelmet-default.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=af48bef38c8f60ef"
+      }
+    ]
+  },
+  {
+    "name": "Memfruit Arm",
+    "category": [
+      "symbiote"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "right-arm"
+    ],
+    "pill_type": [
+      "memfruit"
+    ],
+    "items": [
+      {
+        "name": "Memfruit Symbiote",
+        "location": [
+          "right-arm"
+        ],
+        "fileName": "R-Memfruit-Arm.png",
+        "url": "https://dl.airtable.com/.attachments/1cd760a3a8636458398c165f8f5b8012/27b676e8/R-Memfruit-Arm.png?ts=1656345602&userId=usrSLDM6Ci8RrQAMi&cs=fa9ab1b3e9c04fa9"
+      }
+    ]
+  },
+  {
+    "name": "RATStribe Artist Cloak",
+    "category": [
+      "ratstribe",
+      "ratstribe",
+      "ratstribe"
+    ],
+    "form": [
+      "pepel",
+      "pepel",
+      "pepel"
+    ],
+    "locations": [
+      "head",
+      "torso",
+      "torso"
+    ],
+    "pill_type": [
+      "ratspill",
+      "ratspill",
+      "ratspill"
+    ],
+    "items": [
+      {
+        "name": "Artist's Ratscloak Headdress",
+        "location": [
+          "head"
+        ],
+        "fileName": "-wearable---ratstribe---head---rathead-artist-.png",
+        "url": "https://dl.airtable.com/.attachments/36eaab8853f09e73cddacb044e01311f/a0301f67/-wearable---ratstribe---head---rathead-artist-.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=8080f4ae02d0ffee"
+      },
+      {
+        "name": "Artist's Ratcloak",
+        "location": [
+          "torso"
+        ],
+        "fileName": "-wearable---ratstribe---torso---ratneck-artist-.png",
+        "url": "https://dl.airtable.com/.attachments/1b3f311e7e6d26a05bb16647e544dafc/73e1abf0/-wearable---ratstribe---torso---ratneck-artist-.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=df5f99d8abb81fc6"
+      },
+      {
+        "name": "Artist's Ratcloak",
+        "location": [
+          "torso"
+        ],
+        "fileName": "-wearable---ratstribe---torso---ratcloak-artist-.png",
+        "url": "https://dl.airtable.com/.attachments/1156da4b6935d0ce3903bdfce19454c3/ea6f4b46/-wearable---ratstribe---torso---ratcloak-artist-.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=f199d16ccbbccb0d"
+      }
+    ]
+  },
+  {
+    "name": "RATStribe Shaman Cloak",
+    "category": [
+      "ratstribe",
+      "ratstribe",
+      "ratstribe"
+    ],
+    "form": [
+      "pepel",
+      "pepel",
+      "pepel"
+    ],
+    "locations": [
+      "head",
+      "torso",
+      "torso"
+    ],
+    "pill_type": [
+      "ratspill",
+      "ratspill",
+      "ratspill"
+    ],
+    "items": [
+      {
+        "name": "Shaman's Ratscloak Headdress",
+        "location": [
+          "head"
+        ],
+        "fileName": "-wearable---ratstribe---head---rathead-shaman-.png",
+        "url": "https://dl.airtable.com/.attachments/40f6398639fe73d736785fe1af6578c1/b031b0b4/-wearable---ratstribe---head---rathead-shaman-.png?ts=1656345602&userId=usrSLDM6Ci8RrQAMi&cs=d03603b63917d708"
+      },
+      {
+        "name": "Shaman's Ratcloak",
+        "location": [
+          "torso"
+        ],
+        "fileName": "-wearable---ratstribe---torso---ratcloak-shaman-.png",
+        "url": "https://dl.airtable.com/.attachments/bcac9eb4c470772e2571434d216520f4/dc1f98f6/-wearable---ratstribe---torso---ratcloak-shaman-.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=fbe3a4efbd32ce32"
+      },
+      {
+        "name": "Shaman's Ratcloak",
+        "location": [
+          "torso"
+        ],
+        "fileName": "-wearable---ratstribe---torso---ratneck-shaman-.png",
+        "url": "https://dl.airtable.com/.attachments/beece0ba70e3a07873c9ae0bce887390/7f3bdc4f/-wearable---ratstribe---torso---ratneck-shaman-.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=f9505f1bffc3204a"
+      }
+    ]
+  },
+  {
+    "name": "Swapper",
+    "category": [
+      "cybernetic"
+    ],
+    "form": [
+      "pepel"
+    ],
+    "locations": [
+      "left-arm"
+    ],
+    "pill_type": [
+      "memricorn"
+    ],
+    "items": [
+      {
+        "name": "Swapper",
+        "location": [
+          "left-arm"
+        ],
+        "fileName": "Mempill-swapper-Hand.png",
+        "url": "https://dl.airtable.com/.attachments/4ece21e3b1df719b7be5a1a738f5360a/4a2e7d76/Mempill-swapper-Hand.png?ts=1656345602&userId=usrSLDM6Ci8RrQAMi&cs=bd9ed391664ca21c"
+      }
+    ]
+  },
+  {
+    "name": "Mirrorpill Portalmaker",
+    "category": [
+      "cybernetic"
+    ],
+    "form": [
+      "pepel"
+    ],
+    "locations": [
+      "left-arm"
+    ],
+    "pill_type": [
+      "mirrorpill"
+    ],
+    "items": [
+      {
+        "name": "Portalmaker",
+        "location": [
+          "left-arm"
+        ],
+        "fileName": "Mirror-portal-Hand.png",
+        "url": "https://dl.airtable.com/.attachments/940f6c90e08b14802de5d4cc242df59e/344a6891/Mirror-portal-Hand.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=8947523d3f8bb598"
+      }
+    ]
+  },
+  {
+    "name": "Memsnake Mask",
+    "category": [
+      "mask"
+    ],
+    "form": [
+      "hashmonk"
+    ],
+    "locations": [
+      "head"
+    ],
+    "pill_type": [
+      "memsnake"
+    ],
+    "items": [
+      {
+        "name": "Memsnake Mask",
+        "location": [
+          "head"
+        ],
+        "fileName": "snakepill-mask-c.png",
+        "url": "https://dl.airtable.com/.attachments/657ee7d2e833b90242d0d6ce18b2fb42/6fd8f2b1/snakepill-mask-c.png?ts=1656345602&userId=usrSLDM6Ci8RrQAMi&cs=57a4f4fba06c2dc4"
+      }
+    ]
+  },
+  {
+    "name": "Memsnake Scouter",
+    "category": [
+      "crontech"
+    ],
+    "form": [
+      "pepel"
+    ],
+    "locations": [
+      "head"
+    ],
+    "pill_type": [
+      "memsnake"
+    ],
+    "items": [
+      {
+        "name": "Memsnake Scouter",
+        "location": [
+          "head"
+        ],
+        "fileName": "Scouter-Helmet-v2.png",
+        "url": "https://dl.airtable.com/.attachments/7a9a5717eceef5888a971b685c9ea3ca/ba757231/Scouter-Helmet-v2.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=90bf68596dbe2aaf"
+      }
+    ]
+  },
+  {
+    "name": "Unigod Mask",
+    "category": [
+      "mask"
+    ],
+    "form": [
+      "hashmonk"
+    ],
+    "locations": [
+      "head"
+    ],
+    "pill_type": [
+      "unipill"
+    ],
+    "items": [
+      {
+        "name": "Mask of the Unigod",
+        "location": [
+          "head"
+        ],
+        "fileName": "mask-unigod-eye-c.png",
+        "url": "https://dl.airtable.com/.attachments/3ccefbefccefa0cf55a6564e718b162a/ec069b10/mask-unigod-eye-c.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=96cf9a87956e9cf7"
+      }
+    ]
+  },
+  {
+    "name": "Unicorn Furhead",
+    "category": [
+      "furhead"
+    ],
+    "form": [
+      "pepel"
+    ],
+    "locations": [
+      "head"
+    ],
+    "pill_type": [
+      "unipill"
+    ],
+    "items": [
+      {
+        "name": "Furhead of the Unicorn",
+        "location": [
+          "head"
+        ],
+        "fileName": "-wearable---furhead---head---unicorn.png",
+        "url": "https://dl.airtable.com/.attachments/61a2a5e332fdcdf51d4e18b91585ed92/87ef17ee/-wearable---furhead---head---unicorn.png?ts=1656345602&userId=usrSLDM6Ci8RrQAMi&cs=d8448c65321decf5"
+      }
+    ]
+  },
+  {
+    "name": "Synth Genesispet",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "synth_genesis"
+    ],
+    "items": [
+      {
+        "name": "Synth Genesispet",
+        "location": [
+          "floating"
+        ],
+        "fileName": "genesis-pet-synth-4-v.png",
+        "url": "https://dl.airtable.com/.attachments/97988c7c86af8ffb7bddd60dbb5eb449/fcc0f869/genesis-pet-synth-4-v.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=a9f2b35024cad062"
+      }
+    ]
+  },
+  {
+    "name": "Egodeth Genesispet 01",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "egodeth_genesis"
+    ],
+    "items": [
+      {
+        "name": "Genesis Egodeth Pet 01",
+        "location": [
+          "floating"
+        ],
+        "fileName": "genesis-pet-egodeath-1-c.png",
+        "url": "https://dl.airtable.com/.attachments/d4dc8f52668bf2dbd5b67a35fd42434f/fa6cba76/genesis-pet-egodeath-1-c.png?ts=1656345602&userId=usrSLDM6Ci8RrQAMi&cs=487220c7c3b60276"
+      }
+    ]
+  },
+  {
+    "name": "Egodeth Genesispet 02",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "egodeth_genesis"
+    ],
+    "items": [
+      {
+        "name": "Genesis Egodeth Pet 02",
+        "location": [
+          "floating"
+        ],
+        "fileName": "genesis-pet-egodeath-2-c.png",
+        "url": "https://dl.airtable.com/.attachments/489db58223ef36082f9e249392b7282b/277ac0b7/genesis-pet-egodeath-2-c.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=445e397f391d5482"
+      }
+    ]
+  },
+  {
+    "name": "Egodeth Genesispet 03",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "egodeth_genesis"
+    ],
+    "items": [
+      {
+        "name": "Genesis Egodeth Pet 03",
+        "location": [
+          "floating"
+        ],
+        "fileName": "genesis-pet-egodeath-3-c.png",
+        "url": "https://dl.airtable.com/.attachments/a560670fd7e46e15d9f8aee4baef5ec6/7ca86d7f/genesis-pet-egodeath-3-c.png?ts=1656345602&userId=usrSLDM6Ci8RrQAMi&cs=df38749c26eda5b2"
+      }
+    ]
+  },
+  {
+    "name": "Egodeth Genesispet 04",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "egodeth_genesis"
+    ],
+    "items": [
+      {
+        "name": "Genesis Egodeth Pet 04",
+        "location": [
+          "floating"
+        ],
+        "fileName": "genesis-pet-egodeath-4-c.png",
+        "url": "https://dl.airtable.com/.attachments/40bf4a4b90755b3010fd617b89baf088/4bd42580/genesis-pet-egodeath-4-c.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=7ef4738b33f402b1"
+      }
+    ]
+  },
+  {
+    "name": "Egodeth Genesispet 05",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "egodeth_genesis"
+    ],
+    "items": [
+      {
+        "name": "Genesis Egodeth Pet 05",
+        "location": [
+          "floating"
+        ],
+        "fileName": "genesis-pet-egodeath-5-c.png",
+        "url": "https://dl.airtable.com/.attachments/92e385fe10456f85a6dfa609c389f1a1/7814ea95/genesis-pet-egodeath-5-c.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=4a942cfba8da4410"
+      }
+    ]
+  },
+  {
+    "name": "Egodeth Genesispet 06",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "egodeth_genesis"
+    ],
+    "items": [
+      {
+        "name": "Genesis Egodeth Pet 06",
+        "location": [
+          "floating"
+        ],
+        "fileName": "genesis-pet-egodeath-6-c.png",
+        "url": "https://dl.airtable.com/.attachments/893a99172b97e988242bd395b3a713fc/a202ff6e/genesis-pet-egodeath-6-c.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=f0ef3224594ccc10"
+      }
+    ]
+  },
+  {
+    "name": "Egodeth Genesispet 07",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "egodeth_genesis"
+    ],
+    "items": [
+      {
+        "name": "Genesis Egodeth Pet 07",
+        "location": [
+          "floating"
+        ],
+        "fileName": "genesis-pet-egodeath-7-c.png",
+        "url": "https://dl.airtable.com/.attachments/7040def10c82cc716eff8f3c56bed893/c59569fc/genesis-pet-egodeath-7-c.png?ts=1656345602&userId=usrSLDM6Ci8RrQAMi&cs=2a9e82773a97bdea"
+      }
+    ]
+  },
+  {
+    "name": "Egodeth Genesispet 08",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "egodeth_genesis"
+    ],
+    "items": [
+      {
+        "name": "Genesis Egodeth Pet 08",
+        "location": [
+          "floating"
+        ],
+        "fileName": "genesis-pet-egodeath-8-c.png",
+        "url": "https://dl.airtable.com/.attachments/297cdcb5f5be27763038d67b4c396d1a/f45459dd/genesis-pet-egodeath-8-c.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=5660ebf7fcb99e5e"
+      }
+    ]
+  },
+  {
+    "name": "Egodeth Genesispet 09",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "egodeth_genesis"
+    ],
+    "items": [
+      {
+        "name": "Genesis Egodeth Pet 09",
+        "location": [
+          "floating"
+        ],
+        "fileName": "genesis-pet-egodeath-9-c.png",
+        "url": "https://dl.airtable.com/.attachments/c846065af56d3d635befd18cf31749bb/b41d47d5/genesis-pet-egodeath-9-c.png?ts=1656345602&userId=usrSLDM6Ci8RrQAMi&cs=01ed4297c101c3d9"
+      }
+    ]
+  },
+  {
+    "name": "Egodeth Genesispet 10",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "egodeth_genesis"
+    ],
+    "items": [
+      {
+        "name": "Genesis Egodeth Pet 10",
+        "location": [
+          "floating"
+        ],
+        "fileName": "genesis-pet-egodeath-10-c.png",
+        "url": "https://dl.airtable.com/.attachments/51834a8a9c9906fd1bbbcaad000186b9/34a0591b/genesis-pet-egodeath-10-c.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=2125f5ca6472c7c5"
+      }
+    ]
+  },
+  {
+    "name": "Synth Memwraith",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "synth_memwraith"
+    ],
+    "items": [
+      {
+        "name": "Synth Memwraith",
+        "location": [
+          "floating"
+        ],
+        "fileName": "Memwraith-Synth-Mask-copy.png",
+        "url": "https://dl.airtable.com/.attachments/5e1e3d96e9b49dd855f4ce86d80711a9/1dde103d/Memwraith-Synth-Mask-copy.png?ts=1656345602&userId=usrSLDM6Ci8RrQAMi&cs=2db75867b522c48c"
+      }
+    ]
+  },
+  {
+    "name": "Egodeth Memwraith",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "egodeath_memwraith"
+    ],
+    "items": [
+      {
+        "name": "Egodeth Memwraith",
+        "location": [
+          "floating"
+        ],
+        "fileName": "Memwraith-Egodeath-Mask-1-copy.png",
+        "url": "https://dl.airtable.com/.attachments/5ce45561ab91051a454d0978005a4578/7932d66f/Memwraith-Egodeath-Mask-1-copy.png?ts=1656345601&userId=usrSLDM6Ci8RrQAMi&cs=1f8ba334b0f81ee3"
+      }
+    ]
+  }
+]
