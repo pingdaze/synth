@@ -1,4 +1,5 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: AGPL-3.0
+
 // An example of a consumer contract that also owns and manages the subscription
 pragma solidity ^0.8.0;
 

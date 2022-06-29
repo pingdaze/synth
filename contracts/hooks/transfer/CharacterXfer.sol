@@ -1,4 +1,5 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: AGPL-3.0
+
 import "../../interfaces/ICharacter.sol";
 import "../../interfaces/IXferHook.sol";
 

@@ -1,4 +1,5 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: AGPL-3.0
+
 // Creator: Chiru Labs
 
 pragma solidity ^0.8.4;
