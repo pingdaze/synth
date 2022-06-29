@@ -1,3 +1,28 @@
+# Notes on Reviewing
+
+Hello!
+
+This repo is still very much in flux, but some key pieces are relatively set in place. At this time, we're most concerned with
+the defensibility of the Core instances ``contracts/core/Core1155.sol`` && ``contracts/core/Core1155.sol``.
+
+These are where we hold most of the main bussiness logic for token balances, and where any token compromising vulnerabilities would likely live.
+
+It has been suggested that we simplify the Core721 and Core1155 interfacing to allow for 1 interface, so we may revise this, and some other small naming tweaks but the core logic should be good.
+
+Much of the other character minting logic occurs between the ``contracts/validators/CharacterValidator.sol`` and ``contracts/characters/SelectableOptions.sol`` which is where the majority of the individual character options are held.
+
+For a more explicit and detailed run-through of how a character is minted your best entry point will likely be the character tests (``test/CharacterValidator.ts``)
+
+We rely on Auth quite a bit, and in quite a few different places. The overall vision is to be progressively permissionless, so over time the ability to upgrade logic, and control options, character minting, and all of the other features we've placed auth guards on
+can be handed over, but we're aware that initially the ``Owner`` will have quite a bit of control in the system. This compromise is made in order to deliver the complexity of the Pills system.
+
+For Asset storage, we use CIDs stored on chain to retrieve and "stitch" character avatars. This architecture is the best compromise between fully on-chain, and completly off-chain. We refer to this verifiably-on-chain approach to data as a hybrid-on-chain asset model. We'll have more information on the metadata server we use in the future, and all of that code will be opensourced.
+
+For a look into how we pull the asset information from our CDS and push links on-chain see ``/utils/add-options.ts``
+
+For any other questions during the review process please feel free to reach out,
+
+- Ping (@pingdaze)
 
 # Synth Overview
 
@@ -5,7 +30,7 @@ The SYNTH system is composed of two foundational building blocks, Fabricators, a
 
 Fabricators are the _CORE_ of Synth, and enable the tracking and transfer of various asset classes (ERC20, ERC721, ERC1155)
 
-Validators are contracts that are responsible for verifying, or initiating minting on a token. This lets up dis-integrate minting logic into an upgradable plugin that can be responsible for additional logic. This way the main accounting for the tokens can be seperated from more dynamic behaviors the token may have without a need to make the base balances upgradable contracts. This also allows us to initiate minting on a collection from 2 seperate chains through seperate validators and message passing.
+Validators are contracts that are responsible for verifying, or initiating minting on a token. This lets us dis-integrate minting logic into an upgradable plugin that can be responsible for additional logic. This way the main accounting for the tokens can be seperated from more dynamic behaviors the token may have without a need to make the base balances upgradable contracts. This also allows us to initiate minting on a collection from 2 seperate chains through seperate validators and message passing.
 
 
 ## Synth & Pills
