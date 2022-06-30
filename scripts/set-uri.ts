@@ -13,7 +13,7 @@ async function main() {
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network.name);
   core721 = await ethers.getContractAt('Core721', charDeploymant.ArbRinkeby.Core721) as Core721;
-  core721.setBaseURI(`https://image.pills.host/api/v0/${network.config.chainId}/characters/metadata/`);
+  await core721.setBaseURI(`https://image.pills.host/api/v0/characters/metadata/`);
 }
 
   
