@@ -214,7 +214,7 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
       console.log(`Setting ${option.name} to require ${option.prerequisite_value} ID: ${pillId}`);
       if(option.skeleton === "wearable" && pillId ) {
         console.log(`Setting ${option.name} to require ${option.prerequisite_value} ID: ${pillId}`);
-        await wearablesContract.setLegacyPill(BigNumber.from(pillId), option.name);
+        await wearablesContract.setLegacyPill(BigNumber.from(pillId), option.cid!);
       }
       if(pillId && pillId !== 0x0) {
         receipt = await optionsContract.setLegacyPillRequirement(id, pillId)

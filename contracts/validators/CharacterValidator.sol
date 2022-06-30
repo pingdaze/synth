@@ -118,9 +118,9 @@ contract CharacterValidator is Ownable {
     uint256[] calldata legacyPills,
     uint256[] calldata collabPills,
     string[] calldata traitsPlus
-  ) external payable {
+  ) external payable returns(uint256) {
     // Confirm address holds all the pills they claim to hold
-    _createCharacter(
+    return _createCharacter(
       legacyPills,
       collabPills,
       traitsPlus,
@@ -146,7 +146,7 @@ contract CharacterValidator is Ownable {
     string[] calldata traitsPlus,
     uint256 characterId,
     address target
-  ) internal {
+  ) internal returns (uint256){
     Skeleton memory newSkeleton;
     selectableOptions.validateFaction(traitsPlus[4], legacyPills[0], target);
     if (_compareMem(traitsPlus[0], "Pepel")) {
@@ -253,6 +253,7 @@ contract CharacterValidator is Ownable {
       character.setOutfitSlot(characterId, 0, uint32(selectableOptions.getOptionId(traitsPlus[13])));
     }
     character.setSkeleton(characterId, newSkeleton);
+    return characterId;
     // Comment out the "booster pack" so that randomness is not requested
     /* _charIdQueue.push(characterId);
     if (_charIdQueue.length == ((_qOffset + 1) * _charPerCall)) {
