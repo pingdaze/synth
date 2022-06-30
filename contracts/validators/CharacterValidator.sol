@@ -371,7 +371,7 @@ contract CharacterValidator is Ownable {
           equipment[i] = (wearableOptions.getEquipmentFromPill(LegacyPills.getTypeFromId(legacyPills[i])));
         }
         if(collabPills[i] != 0){
-          //equipment[i+5] = (wearables.getEquipmentFromPill(collabPills[i]));
+          equipment[i+5] = (wearables.getEquipmentFromPill(collabPills[i]));
         }
       }
   }
