@@ -56,7 +56,7 @@ const hashmonkColors  = [
 ]
 
 
-export async function pushOptions(optionsAddress: string, wearablesAddress: string, augmentsAddress: string){
+export async function pushOptions(optionsAddress: string, wearablesAddress: string, augmentsAddress: string, index: number = 0){
   // Grab the signers so we can drop them test tokens
   let options = await ethers.getContractAt('SelectableOptions', optionsAddress) as SelectableOptions;
   let wearables = await ethers.getContractAt('WearablesValidator', wearablesAddress) as WearablesValidator;
@@ -64,7 +64,9 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   // optionID -- name -- slot -- form
   // let processing = SKELETON_OPTIONS.map(processSkeletonOption(options, wearables, augments));
   // await Promise.all(processing);
-  for(let option of SKELETON_OPTIONS) {
+  for(let i = index; i< SKELETON_OPTIONS.length; i++) {
+    const option = SKELETON_OPTIONS[i];
+    console.log(i);
     await processSkeletonOption(options, wearables, augments)(option);
   }
   console.log("Done processing skeleton options");
