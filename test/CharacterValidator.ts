@@ -42,7 +42,7 @@ const cost = ethers.utils.parseEther("1");
 
 // Replace magic numbers
 
-describe("Characters Validator", () => {
+describe.only("Characters Validator", () => {
   describe("isValid", () => {
     let core721: Core721;
     let core1155: Core1155;
@@ -311,7 +311,7 @@ describe("Characters Validator", () => {
         traitsplus
       );
     });
-    it("Can mint an avatar with a trait gated upgrade", async () => {
+    it("Can mint a Pepel with a trait gated upgrade", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [];
       const traitsplus: string[] = [
@@ -327,6 +327,31 @@ describe("Characters Validator", () => {
       ] as string[];
       receipt = await options.setTraitRequirement(optionID, "Galaxy Brain");
       await receipt.wait();
+      receipt = await characterValidator.createCharacter(
+        legacyPills,
+        collabPills,
+        traitsplus
+      );
+    });
+    it("Can mint a Hashmonk with a trait gated upgrade", async () => {
+      const legacyPills: number[] = [0, 0, 0, 0, 0];
+      const collabPills: number[] = [];
+      const traitsplus: string[] = [
+        "Hashmonk",
+        "Deepmem",
+        "Bearbarian",
+        "Frontrunner",
+        "Alchemix",
+        "bafybeierppjhuh63eeaekfrtintwzz6swvongraj7bieryjpumhu7kt6ey",
+        "bafybeid3ng4tq3nyzwzwemyt2ju3djvkw2c5wanfx4rr23aqgvjkt3rzni",
+        "bafybeibat3eowgbdsx3dzciq335h6lxkdpobb4guplyymy5oqxl4hdbryy",
+        "bafybeigahfafrfgdaaoqcsql3b2gz34zsppgjj6pbmnyb36vpn4y64vhjq",
+        "bafybeiabtufdf7g54zcg7o4kqazasoqth4qxr2ivqutt6t2j5445znynje",
+        "bafybeihx37wpm2bins2zltikjsikgjcgepboqub7yumydleelddospkswi",
+        "tropic",
+        "bafybeih7il4wy626fvsk7fzm74noo7d5awppo6smfwpcmmy3uaf7t3q7iq",
+        "bafybeiab7wr5ynymlxqx4ja2kc4t5lnqne37aifcsihyz4qclazimdm3kq"
+      ] as string[];
       receipt = await characterValidator.createCharacter(
         legacyPills,
         collabPills,
