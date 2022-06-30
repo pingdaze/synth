@@ -23,7 +23,7 @@ import {
 } from "../test/shared/deploys";
 import { ContractTransaction } from "ethers";
 import { pushOptions } from "../utils/add-options";
-const coreIds = Array.from(Array(10).keys());
+const coreIds = Array.from(Array(1200).keys());
 const mockCollabId = 1;
 
 
