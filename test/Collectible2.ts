@@ -4,9 +4,7 @@ export {};
 
 import { ethers } from "hardhat";
 import { expect } from "chai";
-import { Core1155 } from "../typechain-types/contracts/Core1155";
-import { BasicValidator } from "../typechain-types/contracts/test/BasicValidator";
-import { MetadataRegistry } from "../typechain-types/contracts/MetadataRegistry.sol";
+import { Core1155, BasicValidator, MetadataRegistry } from "../typechain-types";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import {
   deployCore1155,

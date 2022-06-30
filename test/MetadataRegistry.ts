@@ -1,6 +1,6 @@
 import { ethers } from "hardhat";
 import { expect, assert } from "chai";
-import { MetadataRegistry } from "../typechain-types/contracts/MetadataRegistry.sol";
+import { MetadataRegistry } from "../typechain-types";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { deployRegistry } from "./shared/deploys";
 

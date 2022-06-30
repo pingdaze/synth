@@ -1,8 +1,7 @@
 import { ethers } from "hardhat";
 import { expect } from "chai";
-import { SequenceValidator } from "../typechain-types/contracts/validators/SequenceValidator";
+import { SequenceValidator, Core1155 } from "../typechain-types";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
-import { Core1155 } from "../typechain-types/contracts/Core1155";
 import { deploySequenceValidator, deployCore1155 } from "./shared/deploys";
 
 const id = 1;
