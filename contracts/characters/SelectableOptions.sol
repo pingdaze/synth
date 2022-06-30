@@ -351,7 +351,7 @@ contract SelectableOptions {
     returns (bool traitFound)
   {
     string memory trait = _idToTraitReq[id];
-    for (uint256 i = 1; i < 5 && !traitFound; i++) {
+    for (uint256 i = 0; i < 5 && !traitFound; i++) {
       traitFound = _compareMem2Call(trait, options[i]);
     }
   }
