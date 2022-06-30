@@ -94,8 +94,8 @@ contract WearablesValidator is Context, Auth {
     _setOption(optionString, 0);
   }
 
-  function setLegacyPill(uint256 pillId, string calldata optionString) external {
-    legacyPill[pillId] = optionString;
+  function setLegacyPill(uint256 pillId, string calldata cid) external {
+    legacyPill[pillId] = cid;
   }
 
   function getEquipmentFromPill(uint256 pillId) public view returns (string memory) {

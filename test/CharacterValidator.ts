@@ -199,7 +199,7 @@ describe.only("Characters Validator", () => {
         collabPills,
         traitsplus
       );
-      expect(await characterValidator.getEquipment(1)).to.include("Kirbojet Jumpers, Left Leg");
+      expect(await characterValidator.getEquipment(1)).to.include("bafybeid5kzylu7gbo7fxvcsikju6brsjccciovgbggn43xsdm2ky5yewcm");
     });
     it("Can retrieve a CID from a character ID", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
