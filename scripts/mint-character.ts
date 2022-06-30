@@ -1,8 +1,16 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { network, ethers } from "hardhat";
+import { BigNumber } from "@ethersproject/bignumber";
 import {CharacterValidator, WearablesValidator, SelectableOptions, Core1155, Core721, AugmentsValidator, Characters} from "../typechain-types";
 import charDeploymant from "./deploy-args/char-mock-deployment.json"
 
+const mockShadowPaktPill = ethers.BigNumber.from(
+  "0xD00000000000000940000000000000001"
+);
+const mockKirbonitePill = ethers.BigNumber.from(
+  "0xC00000000000000650000000000000001"
+);
+const BigZero = ethers.BigNumber.from("0");
 
 async function main() {
 
@@ -26,12 +34,54 @@ async function main() {
   augmentsValidator = await ethers.getContractAt('AugmentsValidator', charDeploymant.ArbRinkeby.AugmentsValidator) as AugmentsValidator;
   character = await ethers.getContractAt('Characters', charDeploymant.ArbRinkeby.Characters) as Characters;
   options = await ethers.getContractAt('SelectableOptions', charDeploymant.ArbRinkeby.SelectableOptions) as SelectableOptions;
-  if(network.name === "arbrinkeby" ) {
-    await options.addOption("lime", "lime", "Type", 1, {gasPrice: 10000000000});
-    console.log("Option Added");     
-    const legacyPills: number[] = [0, 0, 0, 0, 0];
-    const collabPills: number[] = [];
-    const traitsplus: string[] = [
+  if(network.name === "arbrinkeby" ) {   
+
+    let legacyPills: BigNumber[] = [
+      mockShadowPaktPill,
+      mockKirbonitePill,
+      BigZero,
+      BigZero,
+      BigZero,
+    ];
+    let collabPills: BigNumber[] = [
+      BigZero,
+      BigZero,
+      BigZero,
+      BigZero,
+      BigZero,
+    ];
+    let traitsplus: string[] = [
+      "Pepel",
+      "Aateos",
+      "Doomskroler",
+      "Galaxy Brain",
+      "Yearn",
+      "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+      "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
+      "lime",
+      "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
+    ] as string[];
+    receipt = await characterValidator.createCharacter(
+      legacyPills,
+      collabPills,
+      traitsplus,
+      {gasPrice: 10000000000}
+    );
+    legacyPills = [
+      BigZero,
+      BigZero,
+      BigZero,
+      BigZero,
+      BigZero,
+    ];
+    collabPills = [
+      BigZero,
+      BigZero,
+      BigZero,
+      BigZero,
+      BigZero,
+    ];
+    traitsplus = [
       "Hashmonk",
       "Aateos",
       "Interstellar Nomad",
@@ -47,12 +97,6 @@ async function main() {
       "bafybeih7il4wy626fvsk7fzm74noo7d5awppo6smfwpcmmy3uaf7t3q7iq",
       "bafybeiab7wr5ynymlxqx4ja2kc4t5lnqne37aifcsihyz4qclazimdm3kq"
     ] as string[];
-    receipt = await characterValidator.createCharacter(
-      legacyPills,
-      collabPills,
-      traitsplus,
-      {gasPrice: 10000000000}
-    );
   }
 }
 
