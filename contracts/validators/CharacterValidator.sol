@@ -10,7 +10,7 @@ import "../interfaces/IAugments.sol";
 import "../interfaces/ICharacter.sol";
 import "../interfaces/ICore.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "../lib/CharacterLibrary.sol";
+import "../lib/LegacyPills.sol";
 
 // TODO: Put these in a single place, these are also located in the Characters contract
 
@@ -360,6 +360,23 @@ contract CharacterValidator is Ownable {
       }
     }
   }
+
+  function getEquipment(uint256 characterId) external view returns (string[] memory equipment){
+      Character memory characterInstance = character.getCharacter(characterId);
+      equipment = new string[](10);
+      uint256[] memory legacyPills = characterInstance.legacyPills;
+      uint256[] memory collabPills = characterInstance.collabPills;
+      for(uint32 i = 0; i < 5; i++){
+        if(legacyPills[i] != 0){
+          equipment[i] = (wearableOptions.getEquipmentFromPill(LegacyPills.getTypeFromId(legacyPills[i])));
+        }
+        if(collabPills[i] != 0){
+          //equipment[i+5] = (wearables.getEquipmentFromPill(collabPills[i]));
+        }
+      }
+  }
+
+
 
   function _getTraitFromIndex(uint256 index, Character memory char)
     internal

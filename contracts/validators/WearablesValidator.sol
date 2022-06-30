@@ -18,6 +18,7 @@ contract WearablesValidator is Context, Auth {
   uint8 public slotCount;
   mapping(uint256 => string) public cid;
   mapping(string => uint256) public id;
+  mapping(uint256 => string) public legacyPill;
 
   // Change to initialize call
   constructor(
@@ -91,6 +92,14 @@ contract WearablesValidator is Context, Auth {
 
   function removeOption(string calldata optionString) external {
     _setOption(optionString, 0);
+  }
+
+  function setLegacyPill(uint256 pillId, string calldata optionString) external {
+    legacyPill[pillId] = optionString;
+  }
+
+  function getEquipmentFromPill(uint256 pillId) public view returns (string memory) {
+    return legacyPill[pillId];
   }
 
   // Unclear if slot should be at the top, or the bottom of this config?

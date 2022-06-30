@@ -109,8 +109,16 @@ export const deployCharacterValidator = async (
   requester: RandomnessRelayL2,
   charCount = 10
 ) => {
+
+  const library = await (
+    await ethers.getContractFactory("LegacyPills")
+  ).deploy();
   const CharacterValidator = await ethers.getContractFactory(
-    "CharacterValidator"
+    "CharacterValidator", {
+      libraries: {
+        LegacyPills: library.address,
+      },
+    }
   );
   return CharacterValidator.deploy(
     core.address,

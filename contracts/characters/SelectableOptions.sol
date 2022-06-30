@@ -50,7 +50,9 @@ contract SelectableOptions {
   // For each option what exactly are we checking?
   mapping(uint256 => uint256) private _idToEthCost;
   mapping(uint256 => uint256) private _idToLegacyPillReq;
+  mapping(uint256 => uint256) public legacyPillToId;
   mapping(uint256 => uint256) private _idToCollabPillReq;
+  mapping(uint256 => uint256) private collabPillToId;
 
   mapping(uint256 => string) private _idToTraitReq;
 
@@ -212,7 +214,7 @@ contract SelectableOptions {
     _addOption(option, id, name, slot, form);
   }
 
-  function getOptionStringFromId(uint256 id) external view returns (string memory op) {
+  function getOptionStringFromId(uint256 id) public view returns (string memory op) {
     op = _options[id].option;
   }
 
@@ -262,11 +264,13 @@ contract SelectableOptions {
   function setLegacyPillRequirement(uint256 id, uint256 reqId) external {
     _options[id].req = Requirement.HasLegacyPill;
     _idToLegacyPillReq[id] = reqId;
+    legacyPillToId[reqId] = id;
   }
 
   function setCollabPillRequirement(uint256 id, uint256 reqId) external {
     _options[id].req = Requirement.HasCollabPill;
     _idToCollabPillReq[id] = reqId;
+    collabPillToId[reqId] = id;
   }
 
   function setTraitRequirement(uint256 id, string calldata trait) external {
@@ -315,6 +319,16 @@ contract SelectableOptions {
         _idToLegacyPillReq[id] == LegacyPills.getTypeFromId(legacyPillId),
       "You do not have the required Legacy pill"
     );
+  }
+
+  function getStringFromLegacyPill(uint256 pillId) external view returns (string memory) {
+    uint256 pillType = LegacyPills.getTypeFromId(pillId);
+    uint256 id = legacyPillToId[pillType];
+    return getOptionStringFromId(id);
+  }
+  
+  function getStringFromCollabPill(uint256 pillId) external view returns (string memory) {
+    return getOptionStringFromId(collabPillToId[pillId]);
   }
 
   function _checkHasTrait(uint256 id, string[] calldata options) internal view {

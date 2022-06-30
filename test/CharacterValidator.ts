@@ -33,6 +33,9 @@ const mockLegacyId = ethers.BigNumber.from(
 const mockShadowPaktPill = ethers.BigNumber.from(
   "0xD00000000000000940000000000000001"
 );
+const mockKirbonitePill = ethers.BigNumber.from(
+  "0xC00000000000000650000000000000001"
+);
 const mockLegacyIdReq = ethers.BigNumber.from(0xe);
 const mockShadowReq = ethers.BigNumber.from(0xd);
 const amount = 1;
@@ -103,7 +106,7 @@ describe.only("Characters Validator", () => {
     });
     it("Can mint a pepel", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Pepel",
         "Aateos",
@@ -123,7 +126,7 @@ describe.only("Characters Validator", () => {
     });
     it("Can mint a hashmonk", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Hashmonk",
         "Aateos",
@@ -148,7 +151,7 @@ describe.only("Characters Validator", () => {
     });
     it("Avatars default to having the correct CIDs", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Pepel",
         "Deepmem",
@@ -171,9 +174,36 @@ describe.only("Characters Validator", () => {
         console.log("CID:", await augmentsValidator.cid(element), "For:", element);
       });
     });
+    it.only("Can get avatar equipment", async () => {
+      const legacyPills: BigNumber[] = [
+        mockShadowPaktPill,
+        mockKirbonitePill,
+        BigZero,
+        BigZero,
+        BigZero,
+      ];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
+      const traitsplus: string[] = [
+        "Pepel",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "Yearn",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
+        "lime",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
+      ] as string[];
+      receipt = await characterValidator.createCharacter(
+        legacyPills,
+        collabPills,
+        traitsplus
+      );
+      expect(await characterValidator.getEquipment(1)).to.include("Kirbojet Jumpers, Left Leg");
+    });
     it("Can retrieve a CID from a character ID", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Pepel",
         "Deepmem",
@@ -199,7 +229,7 @@ describe.only("Characters Validator", () => {
     });
     it("Can mint an avatar with a paid in ETH upgrade", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Pepel",
         "Deepmem",
@@ -221,7 +251,7 @@ describe.only("Characters Validator", () => {
     });
     it("Fails to mint an avatar with paid upgrade and no value", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Pepel",
         "Deepmem",
@@ -240,7 +270,7 @@ describe.only("Characters Validator", () => {
     });
     it("Fails to mint an avatar with a pill gated upgrade if not holding pill", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Pepel",
         "Deepmem",
@@ -265,7 +295,7 @@ describe.only("Characters Validator", () => {
         mockShadowPaktPill,
         BigZero,
       ];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Pepel",
         "Deepmem",
@@ -291,7 +321,7 @@ describe.only("Characters Validator", () => {
     });
     it("Can mint an avatar with a collab pill gated upgrade", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Pepel",
         "Deepmem",
@@ -313,7 +343,7 @@ describe.only("Characters Validator", () => {
     });
     it("Can mint a Pepel with a trait gated upgrade", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Pepel",
         "Deepmem",
@@ -335,7 +365,7 @@ describe.only("Characters Validator", () => {
     });
     it("Can mint a Hashmonk with a trait gated upgrade", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Hashmonk",
         "Deepmem",
@@ -360,7 +390,7 @@ describe.only("Characters Validator", () => {
     });
     it("Fails to mint an avatar with a trait gated upgrade if trait isn't present", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Pepel",
         "Deepmem",
@@ -380,7 +410,7 @@ describe.only("Characters Validator", () => {
     });
     it("Fails to mint an avatar with a gated faction if not holding the legacy pill", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Pepel",
         "Deepmem",
@@ -404,7 +434,7 @@ describe.only("Characters Validator", () => {
         BigZero,
         BigZero,
       ];
-      const collabPills: number[] = [];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Pepel",
         "Deepmem",

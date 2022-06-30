@@ -20,4 +20,7 @@ interface IWearables {
     returns (uint32);
 
   function formToSlotCount(uint8 form) external view returns (uint8);
+  
+  function getEquipmentFromPill(uint256 pillId) external view returns (string memory);
+  
 }
