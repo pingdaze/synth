@@ -223,6 +223,13 @@ export const deployCheckerValidator = async (
   const CheckerValidator = await ethers.getContractFactory("CheckerValidator");
   return CheckerValidator.deploy(core.address, nift.address, _id);
 };
+export const deployAirdropValidator = async (
+  core: Core1155,
+  authority: Authority | string = zeroAddress
+) => {
+  const AirdropValidator = await ethers.getContractFactory("AirdropValidator");
+  return AirdropValidator.deploy(core.address, getAuthAddr(authority));
+};
 export const deployCheckerValidatorV2 = async (
   core: IMintPipe,
   nift: Basic1155,
