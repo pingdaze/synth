@@ -8,6 +8,10 @@
       "outDir": "dist",
       "declaration": true,
       "resolveJsonModule": true,
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["*"]
+      }  
     },
     "include": ["./scripts", "./test", "./typechain"],
     "files": ["./hardhat.config.ts"],
