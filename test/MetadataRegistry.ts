@@ -30,14 +30,12 @@ describe("MetadataRegistry", async () => {
       "Ownable: caller is not the owner"
     );
   });
-  describe("setMultiple", () => {
-    it("accepts multiple entries", async () => {
-      const keys = [1, 2, 3, 4];
-      const values = ["Hi", "mom", "from", "space"];
-      await registry.setMultiple(keys, values);
-      keys.forEach(async (k, i) => {
-        expect(await registry.get(k)).to.equal(values[i]);
-      });
+  it("accepts multiple entries", async () => {
+    const keys = [1, 2, 3, 4];
+    const values = ["Hi", "mom", "from", "space"];
+    await registry.setMultiple(keys, values);
+    keys.forEach(async (k, i) => {
+      expect(await registry.get(k)).to.equal(values[i]);
     });
   });
 });
