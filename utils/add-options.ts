@@ -6,21 +6,36 @@ import   {SKELETON_OPTIONS, SkeletonOption, Location, StepOption, STEP_OPTIONS_B
 import { BigNumber } from "ethers";
 
 const pillToId: { [key:string]: number} = {
+  "genesis": 0x1,
+  "payback pill": 0x2,
+  "prodpill": 0x3,
+  "unipill":  0x4,
+  "hypepill":  0x5,
+  "rektpill":  0x6,
+  "memfruit":  0x7,
+  "synth_memwraith":  0x8,
+  "memricorn":  0x9,
+  "memsnake":  0xA,
+  "ratspill": 0xB,
   "kirbonite": 0xC,
   "shadowpak": 0xD,
-  "ratspill": 0xB,
-  "unipill":  0x4,
-  "tubbypill":  0x0,
-  "memricorn":  0x9,
   "mirrorpill":  0xE,
-  "memfruit":  0x7,
-  "memsnake":  0xA,
-  "blitpill":  0x0,
-  "synth_memwraith":  0x8,
-  "0xpill":  0x0,
-  "wassiepill":  0x0,
-  "toadzpill":  0x0,
-  "runnerpill":  0x0,
+  "runnerpill":  0x1,
+  "0xpill":  0x2,
+  "toadzpill":  0x3,
+  "blitpill":  0x4,
+  "wassiepill":  0x5,
+  "tubbypill":  0x6,
+}
+
+const projectToId: { [key:string]: number} = {
+  "chainrunners": 0x1,
+  "0xmons": 0x2,
+  "cryptoadz": 0x3,
+  "blitmap": 0x4,
+  "blitnauts": 0x4,
+  "wassies": 0x5,
+  "tubbycats": 0x6,
 }
 
 const nameToId: { [key:string]: number} = {
