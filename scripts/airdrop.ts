@@ -7,6 +7,7 @@ import {
   deployAirdropValidator,
   deployCore1155,
   deployRegistry,
+  zeroAddress,
 } from "../test/shared/deploys";
 
 
@@ -31,22 +32,23 @@ async function main() {
 
   let core: Core1155, nift: Basic1155, validator: AirdropValidator, receipt;
   const owner = (await ethers.getSigners())[0].address;
+  const accounts = await ethers.getSigners();
   console.log("owner", owner);
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network.name);
 // This is horribly inneficient, probably don't redeploy these each time?
   // We get the contract to deploy
-  const registry = await deployRegistry() as MetadataRegistry;
+  const Registry = await ethers.getContractFactory("MetadataRegistry");
+  const registry =  await Registry.connect(accounts[3]).deploy(zeroAddress) as MetadataRegistry;
   await registry.deployed();
   console.log("Registry deployed to " + registry.address);
-  core = (await deployCore1155("https://ipfs.pills.host/", registry.address)) as Core1155;
-
+  const Collectible = await ethers.getContractFactory("Core1155");
+  core = await Collectible.connect(accounts[3]).deploy("https://ipfs.pills.host/", registry.address, zeroAddress) as Core1155;
   // In production instances the IDs must line up correctly
-  validator = (await deployAirdropValidator(
-    core
-  )) as AirdropValidator;
-  const tx = await core.addValidator(validator.address, ids);
+  const AirdropValidator = await ethers.getContractFactory("AirdropValidator");
+  validator = await  AirdropValidator.connect(accounts[3]).deploy(core.address, ethers.constants.AddressZero) as AirdropValidator;
+  const tx = await core.connect(accounts[3]).addValidator(validator.address, ids);
   console.log("Validator deployed to " + validator.address);
   let runnersDrop: dropInfo[] = [];
   let oxDrop: dropInfo[] = [];
@@ -54,7 +56,7 @@ async function main() {
   let blitDrop: dropInfo[] = [];
   let wassieDrop: dropInfo[] = [];
   let tubbyDrop: dropInfo[] = [];
-  const metadata = ["Qmbd4EZ29Xhrg8xxFvL4mVaCLZ1tAzXB45DL4B8jBDfG4G","","","","", "QmSa5d5rJmPfnVXpUFoMa9MVt8PKDSeCxjsEdFmiff1cq2"];
+  const metadata = ["QmaM3P9vYiXQX1rNFFJ2fat17q86SCQR8ixFTbWQaWoX1r","QmQtgUMAqjAD2JrN1VEMoUKv4wYAgcs4h1yFFwXLrNVMVP","QmYbThwj2rWwZ2GgGm9Wg27BE23e495azXZrDSj9X9Mctd","Qmee3nukSthSn6ehckxVwG6XXiCQGZNfNtAxHLkFMajbm7","QmX1HMcGCGjeWKrCEdkLzwbiRNwTBYjKAMXSWVDCza1ZD3", "QmSa5d5rJmPfnVXpUFoMa9MVt8PKDSeCxjsEdFmiff1cq2" ];
 
 
   data.forEach(element => {
@@ -79,7 +81,7 @@ async function main() {
   receipt = await receipt.wait();
   console.log(`Dropped ${runnersDrop.length} runners`);
   console.log(oxDrop.length);
-  
+
   receipt = await validator.drop(oxDrop.map((element) => element.address), oxDrop.map(element => element.amount), 0x2);
   receipt = await receipt.wait();
   receipt = await registry.set(2, metadata[1]);
@@ -104,9 +106,9 @@ async function main() {
   receipt = await receipt.wait();
   console.log(`Dropped ${wassieDrop.length} wassie`);
 
-  receipt = await validator.drop(tubbyDrop.map((element) => element.address), tubbyDrop.map(element => element.amount), 0x6);
+  receipt = await validator.connect(accounts[3]).drop(tubbyDrop.map((element) => element.address), tubbyDrop.map(element => element.amount), 0x6);
   receipt = await receipt.wait();
-  receipt = await registry.set(6, metadata[5]);
+  receipt = await registry.connect(accounts[3]).set(6, metadata[5]);
   receipt = await receipt.wait();
   console.log(`Dropped ${tubbyDrop.length} tubby`);
 
