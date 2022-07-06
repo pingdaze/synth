@@ -163,28 +163,28 @@ contract CharacterValidator is Ownable {
         traitsPlus,
         5,
         msg.value,
-        legacyPills[1],
+        legacyPills,
         target
       );
       newSkeleton.eyes = selectableOptions.validateOption(
         traitsPlus,
         6,
         msg.value,
-        legacyPills[2],
+        legacyPills,
         target
       );
       newSkeleton.color = selectableOptions.validateOption(
         traitsPlus,
         7,
         msg.value,
-        legacyPills[3],
+        legacyPills,
         target
       );
       newSkeleton.marking = selectableOptions.validateOption(
         traitsPlus,
         8,
         msg.value,
-        legacyPills[4],
+        legacyPills,
         target
       );
     } else if (_compareMem(traitsPlus[0], "Hashmonk")) {
@@ -192,56 +192,56 @@ contract CharacterValidator is Ownable {
         traitsPlus,
         5,
         msg.value,
-        legacyPills[1],
+        legacyPills,
         target
       );
       newSkeleton.torso = selectableOptions.validateOption(
         traitsPlus,
         6,
         msg.value,
-        legacyPills[2],
+        legacyPills,
         target
       );
       newSkeleton.lArm = selectableOptions.validateOption(
         traitsPlus,
         7,
         msg.value,
-        legacyPills[0],
+        legacyPills,
         target
       );
       newSkeleton.rArm = selectableOptions.validateOption(
         traitsPlus,
         8,
         msg.value,
-        legacyPills[0],
+        legacyPills,
         target
       );
       newSkeleton.lLeg = selectableOptions.validateOption(
         traitsPlus,
         9,
         msg.value,
-        legacyPills[0],
+        legacyPills,
         target
       );
       newSkeleton.rLeg = selectableOptions.validateOption(
         traitsPlus,
         10,
         msg.value,
-        legacyPills[0],
+        legacyPills,
         target
       );
       newSkeleton.color = selectableOptions.validateOption(
         traitsPlus,
         11,
         msg.value,
-        legacyPills[1],
+        legacyPills,
         target
       );
       newSkeleton.crown = selectableOptions.validateOption(
         traitsPlus,
         12,
         msg.value,
-        legacyPills[3],
+        legacyPills,
         target
       );
       

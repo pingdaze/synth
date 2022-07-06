@@ -76,7 +76,11 @@ contract SelectableOptions {
     uint256 id = _optionToId[_faction];
     require(id != 0, "Invalid faction");
     if(_options[id].req == Requirement.HasLegacyPill){
-      _checkHasLegacyPill(id, legacyPillId, target);
+          require(
+            IToken(_legacyPills).balanceOf(target, legacyPillId) > 0 &&
+              _idToLegacyPillReq[id] == LegacyPills.getTypeFromId(legacyPillId),
+            "You do not have the required Legacy pill"
+          );
     }
     return true;
   }
@@ -86,7 +90,7 @@ contract SelectableOptions {
     string[] calldata options,
     uint256 index,
     uint256 ethValue,
-    uint256 legacyPillId,
+    uint256[] calldata legacyPillId,
     address target
   ) external view returns (uint256) {
     uint256 id = _optionToId[options[index]];
@@ -310,15 +314,17 @@ contract SelectableOptions {
 
   function _checkHasLegacyPill(
     uint256 id,
-    uint256 legacyPillId,
+    uint256[] calldata legacyPillId,
     address target
   ) internal view {
     // Could be optimized
-    require(
-      IToken(_legacyPills).balanceOf(target, legacyPillId) > 0 &&
-        _idToLegacyPillReq[id] == LegacyPills.getTypeFromId(legacyPillId),
-      "You do not have the required Legacy pill"
-    );
+    bool found = false;
+    for (uint256 index = 0; index < legacyPillId.length && found==false; index++) {
+      // TODO: move the balance check/transfer higher up in the function processing
+      found = IToken(_legacyPills).balanceOf(target, legacyPillId[index]) > 0 &&
+        _idToLegacyPillReq[id] == LegacyPills.getTypeFromId(legacyPillId[index]);
+    }
+    require(found, "You do not have the required Legacy pill");
   }
 
   function getStringFromLegacyPill(uint256 pillId) external view returns (string memory) {
