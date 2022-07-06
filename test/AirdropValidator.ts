@@ -2,7 +2,6 @@ import { ethers } from "hardhat";
 import { expect } from "chai";
 
 import { Basic1155, Core1155, AirdropValidator } from "../typechain-types";
-import {getLegacyPillsBalances} from "../utils/pills";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import {
   deployAirdropValidator,
@@ -51,7 +50,6 @@ describe.only("AirdropValidator", () => {
     it("can airdrop 1155", async () => {
       receipt = await validator.drop([owner.address], [1], id1);
       expect(await core.balanceOf(owner.address, coreId)).to.equal(1);
-      console.log(await getLegacyPillsBalances("0x3aD353E2845B96fB1B58C1Ca6CdA46B870dE8D6f", ethers.getDefaultProvider()))
     });
   });
 });
