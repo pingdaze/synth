@@ -21,6 +21,7 @@ import {
   deployCharacterValidator,
   deployRequester,
 } from "./shared/deploys";
+
 import { ContractTransaction } from "ethers";
 import { pushOptions } from "../utils/add-options";
 const coreIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -262,6 +263,19 @@ describe.only("Characters Validator", () => {
       
       const endingBalance = await ethers.provider.getBalance(owner);
       expect (startingBalance.sub(endingBalance.add(gasUsed))).to.equal(cost);
+    });
+    it.only("Can recover ETH sent for paid upgrades", async () => {
+      const startingBalance = await ethers.provider.getBalance(owner);
+
+      tx = await characterValidator.collectAllEth(
+        owner
+      );
+      const receipt = await tx.wait();
+      const gasUsed = receipt.cumulativeGasUsed.mul(receipt.effectiveGasPrice) ;
+      console.log("gas used", gasUsed.toNumber());
+      
+      const endingBalance = await ethers.provider.getBalance(owner);
+      expect (endingBalance.add(gasUsed).sub(startingBalance)).to.equal(cost);
     });
     it.only("Fails to mint an avatar with paid upgrade and no value", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];

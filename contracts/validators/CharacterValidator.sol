@@ -374,6 +374,24 @@ contract CharacterValidator is Ownable {
     }
   }
 
+  /// @notice Collects and sends an amount of ETH to the selected target from this validator
+  /// @param target Address to send requested ETH to
+  /// @param value Amount of ETH (in wei) to transfer
+  function collectEth(address target, uint256 value) external onlyOwner {
+    _sendEth(target, value);
+  }
+
+  /// @notice Collects all ETH to the selected target from this validator
+  /// @param target Address to send requested ETH to
+  function collectAllEth(address target) external onlyOwner {
+    _sendEth(target, address(this).balance);
+  }
+
+  function _sendEth(address target, uint256 value) internal {
+    (bool success, ) = target.call{value: value}("");
+    require(success, "Transfer failed.");
+  }
+
   function getEquipment(uint256 characterId) external view returns (string[] memory equipment){
       Character memory characterInstance = character.getCharacter(characterId);
       equipment = new string[](10);
