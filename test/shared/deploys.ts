@@ -107,6 +107,8 @@ export const deployCharacterValidator = async (
   augmentsValidator: AugmentsValidator,
   character: Characters,
   requester: RandomnessRelayL2,
+  collab: Core1155,
+  legacy: Core1155,
   charCount = 10
 ) => {
 
@@ -127,7 +129,9 @@ export const deployCharacterValidator = async (
     augmentsValidator.address,
     character.address,
     charCount,
-    requester.address
+    requester.address,
+    collab.address,
+    legacy.address
   );
 };
 

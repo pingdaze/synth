@@ -25,8 +25,9 @@ import {
 } from "./shared/deploys";
 import { ContractTransaction } from "ethers";
 import { pushOptions } from "../utils/add-options";
-const coreIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const mockCollabId = 1;
+import { core } from "../typechain-types/contracts";
+const coreIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+const mockCollabId = 32;
 const mockLegacyId = ethers.BigNumber.from(
   "0xE00000000000000940000000000000001"
 );
@@ -45,7 +46,7 @@ const cost = ethers.utils.parseEther("1");
 
 // Replace magic numbers
 
-describe("Characters Validator", () => {
+describe.only("Characters Validator", () => {
   describe("isValid", () => {
     let core721: Core721;
     let core1155: Core1155;
@@ -56,7 +57,7 @@ describe("Characters Validator", () => {
     let character: Characters;
     let receipt: ContractTransaction;
     let options: SelectableOptions;
-    let nift: Basic1155;
+    let nift: Core1155;
     let owner: string;
     let optionID: BigNumber;
 
@@ -65,16 +66,13 @@ describe("Characters Validator", () => {
       console.log("owner", owner);
       const balance = await ethers.provider.getBalance(owner);
       console.log("Owner balance: ", ethers.utils.formatEther(balance));
-      nift = (await deployMock1155()) as Basic1155;
-      await nift.mint(mockCollabId, owner, amount);
-      await nift.mint(mockLegacyId, owner, amount);
+      nift = (await deployCore1155()) as Core1155;
       core721 = (await deployCore721()) as Core721;
       core1155 = (await deployCore1155()) as Core1155;
       options = (await deploySelectableOptions(
         nift.address,
         nift.address
       )) as SelectableOptions;
-
       // In production instances the IDs must line up correctly
       character = (await deployCharacter(core721, options)) as Characters;
       wearablesValidator = (await deployWearablesValidator(
@@ -92,8 +90,11 @@ describe("Characters Validator", () => {
         wearablesValidator,
         augmentsValidator,
         character,
-        requester
+        requester,
+        nift,
+        nift
       )) as CharacterValidator;
+      nift.setApprovalForAll(characterValidator.address, true);
       character.setValidator(characterValidator.address);
       receipt = await core721.addValidator(characterValidator.address, coreIds);
       await pushOptions(
@@ -175,6 +176,10 @@ describe("Characters Validator", () => {
       });
     });
     it("Can get avatar equipment", async () => {
+      receipt = await nift.mintBatch(owner, [mockKirbonitePill], [1], ethers.constants.HashZero);
+      await receipt.wait();
+      receipt = await nift.mintBatch(owner, [mockShadowPaktPill], [1], ethers.constants.HashZero);
+      await receipt.wait();
       const legacyPills: BigNumber[] = [
         mockShadowPaktPill,
         mockKirbonitePill,
@@ -199,7 +204,11 @@ describe("Characters Validator", () => {
         collabPills,
         traitsplus
       );
-      expect(await characterValidator.getEquipment(1)).to.include("bafybeid5kzylu7gbo7fxvcsikju6brsjccciovgbggn43xsdm2ky5yewcm");
+      console.log(receipt);
+      await receipt.wait();
+      const equipment = await characterValidator.getEquipment(4);
+      console.log(equipment);
+      expect(equipment).to.include("bafybeid5kzylu7gbo7fxvcsikju6brsjccciovgbggn43xsdm2ky5yewcm");
     });
     it("Can retrieve a CID from a character ID", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
@@ -288,11 +297,15 @@ describe("Characters Validator", () => {
       ).to.be.revertedWith("You do not have the required Legacy pill");
     });
     it("Can mint an avatar with a pill gated upgrade if holding pill", async () => {
+      receipt = await nift.mintBatch(owner, [mockLegacyId], [1], ethers.constants.HashZero);
+      await receipt.wait();
+      receipt = await nift.mintBatch(owner, [mockShadowPaktPill], [1], ethers.constants.HashZero);
+      await receipt.wait();
       const legacyPills: BigNumber[] = [
+        BigZero,
+        BigZero,
+        BigZero,
         mockLegacyId,
-        BigZero,
-        BigZero,
-        mockShadowPaktPill,
         BigZero,
       ];
       const collabPills: number[] = [0, 0, 0, 0, 0];
@@ -307,11 +320,6 @@ describe("Characters Validator", () => {
         "lime",
         "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
-      receipt = await options.setLegacyPillRequirement(
-        optionID,
-        mockShadowReq
-      );
-      receipt = await nift.mint(mockShadowPaktPill, owner, amount);
       await receipt.wait();
       receipt = await characterValidator.createCharacter(
         legacyPills,
@@ -320,8 +328,10 @@ describe("Characters Validator", () => {
       );
     });
     it("Can mint an avatar with a collab pill gated upgrade", async () => {
+      receipt = await nift.mintBatch(owner, [mockCollabId], [1], ethers.constants.HashZero);
+
       const legacyPills: number[] = [0, 0, 0, 0, 0];
-      const collabPills: number[] = [0, 0, 0, 0, 0];
+      const collabPills: number[] = [0, 0, 0, mockCollabId, 0];
       const traitsplus: string[] = [
         "Pepel",
         "Deepmem",
@@ -427,6 +437,7 @@ describe("Characters Validator", () => {
       ).to.be.revertedWith("You do not have the required Legacy pill");
     });
     it("Can mint an avatar with a gated faction if holding the correctlegacy pill", async () => {
+      receipt = await nift.mintBatch(owner, [mockShadowPaktPill], [1], ethers.constants.HashZero);
       const legacyPills: BigNumber[] = [
         mockShadowPaktPill,
         BigZero,
@@ -446,7 +457,6 @@ describe("Characters Validator", () => {
         "lime",
         "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
-      receipt = await nift.mint(mockShadowPaktPill, owner, amount);
       await receipt.wait();
       receipt = await characterValidator.createCharacter(
         legacyPills,

@@ -84,8 +84,6 @@ abstract contract ERC721 {
   ) public virtual {
     require(from == ownerOf[id], "WRONG_FROM");
 
-    require(to != address(0), "INVALID_RECIPIENT");
-
     require(
       msg.sender == from ||
         msg.sender == getApproved[id] ||

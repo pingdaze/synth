@@ -17,7 +17,7 @@ const id3 = 3;
 const id4 = 4;
 const amount = 1;
 
-describe.only("AirdropValidator", () => {
+describe("AirdropValidator", () => {
   describe("isValid", () => {
     let owner: SignerWithAddress, user1: SignerWithAddress;
     let core: Core1155, nift: Basic1155, validator: AirdropValidator, receipt;

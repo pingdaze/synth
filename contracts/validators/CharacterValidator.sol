@@ -9,8 +9,10 @@ import "../interfaces/IWearables.sol";
 import "../interfaces/IAugments.sol";
 import "../interfaces/ICharacter.sol";
 import "../interfaces/ICore.sol";
+import "../interfaces/IERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "../lib/LegacyPills.sol";
+import "hardhat/console.sol";
 
 // TODO: Put these in a single place, these are also located in the Characters contract
 
@@ -38,7 +40,7 @@ import "../lib/LegacyPills.sol";
 // floating = 39
 contract CharacterValidator is Ownable {
   uint256 public constant MAX_INT = 2**256 - 1;
-
+  address private _zeroAddress = 0x0000000000000000000000000000000000000000;
   VRFRequester _requester;
   // Instance of core
   ICore public core;
@@ -47,6 +49,8 @@ contract CharacterValidator is Ownable {
   IWearables public wearableOptions;
   IAugments public augmentOptions;
   ICharacter public character;
+  IERC1155 private _collabPills;
+  IERC1155 private _legacyPills;
   uint256 public nextId = 0;
 
   uint256[] private _charIdQueue;
@@ -69,7 +73,9 @@ contract CharacterValidator is Ownable {
     IAugments _augmentOptions,
     ICharacter _character,
     uint32 charPerCall_,
-    address requester_
+    address requester_,
+    IERC1155 collabPills_,
+    IERC1155 legacyPills_
   ) {
     // TODO: create setter for this, otherwise we could have some #BadVibes with the gassage
     core = _core;
@@ -79,6 +85,8 @@ contract CharacterValidator is Ownable {
     augmentOptions = _augmentOptions;
     character = _character;
     _requester = VRFRequester(requester_);
+    _collabPills = collabPills_;
+    _legacyPills = legacyPills_;
   }
 
   /**
@@ -253,15 +261,19 @@ contract CharacterValidator is Ownable {
       character.setOutfitSlot(characterId, 0, uint32(selectableOptions.getOptionId(traitsPlus[13])));
     }
     character.setSkeleton(characterId, newSkeleton);
+    for (uint256 index = 0; index < legacyPills.length; index++) {
+      if(legacyPills[index] != 0){
+        console.log(legacyPills[index]);
+        console.log(msg.sender);
+        _legacyPills.safeTransferFrom(msg.sender, _zeroAddress, legacyPills[index], 1, "");
+      }
+      if(collabPills[index] != 0) {
+        console.log(collabPills[index]);
+        console.log(msg.sender);
+        _collabPills.safeTransferFrom(msg.sender, _zeroAddress, collabPills[index], 1, "");
+      }
+    }
     return characterId;
-    // Comment out the "booster pack" so that randomness is not requested
-    /* _charIdQueue.push(characterId);
-    if (_charIdQueue.length == ((_qOffset + 1) * _charPerCall)) {
-      uint256 requestId = _requester.requestRandomness(_charPerCall);
-      // TODO: condense logic; here for clarity
-      _charIdQueue[requestId] = _qOffset * _charPerCall;
-      _qOffset += 1;
-    }*/
   }
 
   // solhint-disable-next-line
