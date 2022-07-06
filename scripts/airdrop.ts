@@ -10,6 +10,8 @@ import {
   zeroAddress,
 } from "../test/shared/deploys";
 
+import charDeploymant from "./deploy-args/char-mock-deployment.json"
+
 
 import data from "../data/airdrop.json"
 const ids = [1,2,3,4,5,6];
@@ -30,33 +32,22 @@ type dropInfo = {
 }
 async function main() {
 
-  let core: Core1155, nift: Basic1155, validator: AirdropValidator, receipt;
+  let core: Core1155, nift: Basic1155, validator: AirdropValidator, receipt, registry: MetadataRegistry;
   const owner = (await ethers.getSigners())[0].address;
   const accounts = await ethers.getSigners();
   console.log("owner", owner);
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network.name);
-// This is horribly inneficient, probably don't redeploy these each time?
-  // We get the contract to deploy
-  const Registry = await ethers.getContractFactory("MetadataRegistry");
-  const registry =  await Registry.connect(accounts[3]).deploy(zeroAddress) as MetadataRegistry;
-  await registry.deployed();
-  console.log("Registry deployed to " + registry.address);
-  const Collectible = await ethers.getContractFactory("Core1155");
-  core = await Collectible.connect(accounts[3]).deploy("https://ipfs.pills.host/", registry.address, zeroAddress) as Core1155;
-  // In production instances the IDs must line up correctly
-  const AirdropValidator = await ethers.getContractFactory("AirdropValidator");
-  validator = await  AirdropValidator.connect(accounts[3]).deploy(core.address, ethers.constants.AddressZero) as AirdropValidator;
-  const tx = await core.connect(accounts[3]).addValidator(validator.address, ids);
-  console.log("Validator deployed to " + validator.address);
+  registry =  await ethers.getContractAt("MetadataRegistry", charDeploymant.ArbMainnet.Registry) as MetadataRegistry;
+  validator = ethers.getContractAt("AirdropValidator", charDeploymant.ArbMainnet.Core1155) as AirdropValidator;
   let runnersDrop: dropInfo[] = [];
   let oxDrop: dropInfo[] = [];
   let toadzDrop: dropInfo[] = [];
   let blitDrop: dropInfo[] = [];
   let wassieDrop: dropInfo[] = [];
   let tubbyDrop: dropInfo[] = [];
-  const metadata = ["QmaM3P9vYiXQX1rNFFJ2fat17q86SCQR8ixFTbWQaWoX1r","QmQtgUMAqjAD2JrN1VEMoUKv4wYAgcs4h1yFFwXLrNVMVP","QmYbThwj2rWwZ2GgGm9Wg27BE23e495azXZrDSj9X9Mctd","Qmee3nukSthSn6ehckxVwG6XXiCQGZNfNtAxHLkFMajbm7","QmX1HMcGCGjeWKrCEdkLzwbiRNwTBYjKAMXSWVDCza1ZD3", "QmSa5d5rJmPfnVXpUFoMa9MVt8PKDSeCxjsEdFmiff1cq2" ];
+  const metadata = ["QmaM3P9vYiXQX1rNFFJ2fat17q86SCQR8ixFTbWQaWoX1r","QmQtgUMAqjAD2JrN1VEMoUKv4wYAgcs4h1yFFwXLrNVMVP","QmYbThwj2rWwZ2GgGm9Wg27BE23e495azXZrDSj9X9Mctd","Qmee3nukSthSn6ehckxVwG6XXiCQGZNfNtAxHLkFMajbm7","QmX1HMcGCGjeWKrCEdkLzwbiRNwTBYjKAMXSWVDCza1ZD3", "QmfQhVJFwXmk7amnsWRwAqcDqXRtDLYm8yRb3qj1DARwsU" ];
 
 
   data.forEach(element => {

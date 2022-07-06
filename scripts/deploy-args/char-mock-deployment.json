@@ -21,5 +21,11 @@
         "CharacterValidator":  "0x35900eeF38dA1c5392915F8B354c54bB4d9B27Bc",
         "Registry":  "0x4F5eC8E477e53a02634D5632769c79137B04cdE3",
         "BalanceHook":  "N/A"
+    },
+    "ArbMainnet": {
+        "Core1155":  "0xEA635dDc046eEc4906911fce889C15376A4f6889",
+        "AirdropValidator":  "0x7cDdf5Bb7FF0ad7412A425eE57E815e7C8Ee5389",
+        "Registry":  "0x773f0a1A43D3aB24CEd36aE46B0811DDfAAe9d08",
+        "BalanceHook":  "N/A"
     }
 }
