@@ -4,8 +4,8 @@
 pragma solidity ^0.8.0;
 import "../lib/LegacyPills.sol";
 import "../lib/CharacterLibrary.sol";
-
 //Interface
+
 interface IToken {
   function balanceOf(address account, uint256 id)
     external
@@ -95,7 +95,7 @@ contract SelectableOptions {
   ) external view returns (uint256) {
     uint256 id = _optionToId[options[index]];
     Option memory op = _options[id];
-    Requirement req = Requirement(op.req);
+    Requirement req = op.req;
     string memory form = _forms[op.form]; // Hashmonk or Pepel
     require(_compareCall(options[0], form), "Forms don't match");
     // TODO: Is there a smarter/more efficient/more extensible version of this?
