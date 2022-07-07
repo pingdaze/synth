@@ -37,8 +37,8 @@ async function main() {
   if(network.name === "arbrinkeby" ) {   
 
     let legacyPills: BigNumber[] = [
-      mockShadowPaktPill,
-      mockKirbonitePill,
+      BigZero,
+      BigZero,
       BigZero,
       BigZero,
       BigZero,
@@ -67,6 +67,7 @@ async function main() {
       traitsplus,
       {gasPrice: 10000000000}
     );
+    console.log("Character minted: ", receipt.hash);
     legacyPills = [
       BigZero,
       BigZero,
@@ -97,6 +98,13 @@ async function main() {
       "bafybeih7il4wy626fvsk7fzm74noo7d5awppo6smfwpcmmy3uaf7t3q7iq",
       "bafybeiab7wr5ynymlxqx4ja2kc4t5lnqne37aifcsihyz4qclazimdm3kq"
     ] as string[];
+    receipt = await characterValidator.createCharacter(
+      legacyPills,
+      collabPills,
+      traitsplus,
+      {gasPrice: 10000000000}
+    );
+    console.log("Character minted: ", receipt.hash);
   }
 }
 
