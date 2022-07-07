@@ -25,6 +25,14 @@ const projectToId: { [key:string]: number} = {
   "wassies": 0x5,
   "tubbycats": 0x6,
 }
+const pillToId: { [key:string]: number} = {
+  "runnerpill": 0x1,
+  "0xpill": 0x2,
+  "toadzpill": 0x3,
+  "blitpill": 0x4,
+  "wassiepill": 0x5,
+  "tubbypill": 0x6,
+}
 
 type dropInfo = {
   address: string,

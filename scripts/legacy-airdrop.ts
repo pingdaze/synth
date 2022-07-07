@@ -12,7 +12,9 @@ const testAccounts = [
   "0x3aD353E2845B96fB1B58C1Ca6CdA46B870dE8D6f",
   "0x1425C88ce0780E5bcE5f405333C81f9336dC52eA",
   "0xe003644d10d4ac0e7651c288305bc593c3f62804",
-  "0x0f1c01d98ae190ad2739a6075b21c2343d8b412e"
+  "0x0f1c01d98ae190ad2739a6075b21c2343d8b412e",
+  "0xc6665eb39d2106fb1DBE54bf19190F82FD535c19",
+  "0x053E2aD328147a438d2B136637a213E068200fC7"
 ]
 
 async function main() {
@@ -35,7 +37,7 @@ async function main() {
       pillIDs = pillIDs.concat(pill.ids.map(id => BigNumber.from(id)));
     });
     const amounts = Array(pillIDs.length).fill(1);
-    core.mintBatch(testAccounts[i], pillIDs, amounts, ethers.constants.HashZero);
+    await core.mintBatch(testAccounts[i], pillIDs, amounts, ethers.constants.HashZero);
     console.log("Minted", pillIDs.length, "pills for", testAccounts[i]);
   }
   console.log("Core1155 deployed to " + core.address);
