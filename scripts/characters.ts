@@ -23,6 +23,8 @@ import {
 } from "../test/shared/deploys";
 import { ContractTransaction } from "ethers";
 import { pushOptions } from "../utils/add-options";
+import charDeploymant from "./deploy-args/char-mock-deployment.json"
+
 const coreIds = Array.from(Array(1200).keys());
 const mockCollabId = 1;
 
@@ -92,13 +94,17 @@ async function main() {
     requester = (await deployRequester()) as RandomnessRelayL2;
     await requester.deployed();
     console.log("Requester address: ", requester.address);
+    const pills1155 = await ethers.getContractAt("Core1155", charDeploymant.ArbRinkeby.Pills1155) as Core1155;
+
     characterValidator = (await deployCharacterValidator(
       core721,
       options,
       wearablesValidator,
       augmentsValidator,
       character,
-      requester
+      requester,
+      pills1155,
+      pills1155
     )) as CharacterValidator;
     await characterValidator.deployed();
     console.log("CharacterValidator address: ", characterValidator.address);

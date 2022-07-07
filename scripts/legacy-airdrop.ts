@@ -24,19 +24,21 @@ async function main() {
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network.name);
-  core = await ethers.getContractAt("Core1155", charDeploymant.ArbRinkeby.Core1155) as Core1155;
+  core = await ethers.getContractAt("Core1155", charDeploymant.ArbRinkeby.Pills1155) as Core1155;
 
 
   let pillIDs: BigNumber[] = [];
   for(let i = 0; i < testAccounts.length; i++) {
-    const pills = await getLegacyPillsBalances(testAccounts[i], ethers.getDefaultProvider());
+    const pills = await getLegacyPillsBalances(testAccounts[i], ethers.getDefaultProvider('mainnet'));
+    console.log(pills);
     pills.forEach(pill => {
-      pillIDs.concat(pill.ids.map(id => BigNumber.from(id)));
+      pillIDs = pillIDs.concat(pill.ids.map(id => BigNumber.from(id)));
     });
     const amounts = Array(pillIDs.length).fill(1);
-    core.mintBatch(testAccounts[i], pillIDs, amounts, "");
+    core.mintBatch(testAccounts[i], pillIDs, amounts, ethers.constants.HashZero);
     console.log("Minted", pillIDs.length, "pills for", testAccounts[i]);
   }
+  console.log("Core1155 deployed to " + core.address);
 
 }
 

@@ -39,9 +39,9 @@ async function main() {
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network);
-  registry =  await ethers.getContractAt("MetadataRegistry", charDeploymant.ArbMainnet.Registry) as MetadataRegistry;
-  core =  await ethers.getContractAt("Core1155", charDeploymant.ArbMainnet.Core1155) as Core1155;
-  validator = await ethers.getContractAt("AirdropValidator", charDeploymant.ArbMainnet.AirdropValidator) as AirdropValidator;
+  registry =  await ethers.getContractAt("MetadataRegistry", charDeploymant.ArbRinkeby.Registry) as MetadataRegistry;
+  core =  await ethers.getContractAt("Core1155", charDeploymant.ArbRinkeby.Core1155) as Core1155;
+  validator = await ethers.getContractAt("AirdropValidator", charDeploymant.ArbRinkeby.AirdropValidator) as AirdropValidator;
   let runnersDrop: dropInfo[] = [];
   let oxDrop: dropInfo[] = [];
   let toadzDrop: dropInfo[] = [];
@@ -52,13 +52,13 @@ async function main() {
 
 
   data.forEach(element => {
-    if (element.Project === "ChainRunnersXR") {
+    if (element.Project.toLowerCase() === "chainRunnersxr" || element.Project.toLowerCase() === "chainrunners") {
       runnersDrop.push({address: element.Address, amount: parseInt(element["Eligible Tokens"])})
     } else if (element.Project.toLowerCase() === "0xmons") {
       oxDrop.push({address: element.Address, amount: parseInt(element["Eligible Tokens"])})
     }  else if (element.Project.toLowerCase() === "cryptoadz") {
       toadzDrop.push({address: element.Address, amount: parseInt(element["Eligible Tokens"])})
-    }  else if (element.Project.toLowerCase() === "blitnauts") {
+    }  else if (element.Project.toLowerCase() === "blitnauts" || element.Project.toLowerCase() === "blitmap") {
       blitDrop.push({address: element.Address, amount: parseInt(element["Eligible Tokens"])})
     }  else if (element.Project.toLowerCase() === "wassies") {
       wassieDrop.push({address: element.Address, amount: parseInt(element["Eligible Tokens"])})
@@ -96,40 +96,15 @@ async function main() {
   receipt = await receipt.wait();
   receipt = await registry.connect(accounts[3]).set(5, metadata[4]);
   receipt = await receipt.wait();
-  console.log(`Dropped ${wassieDrop.length} wassie`);
-  let totalDropped = 0;
-  let supposedDrop = 0;
-  let totalOwners = 0;
-  const tubby2: dropInfo[] = [];
-  for(let i = 0; i < tubbyDrop.length; i++) {
-    const element =  tubbyDrop[i];
-    const balance = await core.balanceOf(element.address, 6);
-    if(balance.eq(0)){
-      console.log(`${element.address} has no tokens`);
-    }
-    supposedDrop += element.amount;
-    totalDropped += balance.toNumber();
-    const newAmount = element.amount - balance.toNumber();
-    if(newAmount > 0) {
-      tubby2.push({address: element.address, amount: newAmount});
-    } else {
-      console.log(`${element.address} has ${balance.toNumber()} tokens and should have ${element.amount}`);
-    }
-  }
-
-  console.log("TubbyDrop:", tubbyDrop);
-  console.log("TubbyDrop2:", tubby2);
-  console.log("Total Dropped:", totalDropped);
-  console.log("Supposed Drop:", supposedDrop);
+  console.log(`Dropped ${wassieDrop.length} wassie`); 
   
   
   
-  
-  receipt = await validator.connect(accounts[3]).drop(tubby2.map((element) => element.address), tubby2.map(element => element.amount), 0x6);
+  receipt = await validator.connect(accounts[3]).drop(tubbyDrop.map((element) => element.address), tubbyDrop.map(element => element.amount), 0x6);
   receipt = await receipt.wait();
   receipt = await registry.connect(accounts[3]).set(6, metadata[5]);
   receipt = await receipt.wait();
-  console.log(`Dropped ${tubby2.length} tubby`);
+  console.log(`Dropped ${tubbyDrop.length} tubby`);
 
 }
 

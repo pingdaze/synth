@@ -81,8 +81,8 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   // await Promise.all(processing);
   for(let i = index; i< SKELETON_OPTIONS.length; i++) {
     const option = SKELETON_OPTIONS[i];
-    //console.log(i);
     await processSkeletonOption(options, wearables, augments)(option);
+    console.log(`Processed:${i}#${option.name}`);
   }
   //console.log("Done processing skeleton options");
 
@@ -225,7 +225,7 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
       const id = await optionsContract.getOptionId(option.cid!);
       receipt = await optionsContract.setEthRequirement(id, ethers.utils.parseEther(option.prerequisite_value!));      
       await receipt.wait();
-      console.log(`Set ${option.name}:${id} to have ETH ${option.prerequisite_value}`);
+      // console.log(`Set ${option.name}:${id} to have ETH ${option.prerequisite_value}`);
     } else if (option.prerequisite_type === "HAS PILL") {
       const id = await optionsContract.getOptionId(option.cid!);
       const pillId = pillToId[option.prerequisite_value!];

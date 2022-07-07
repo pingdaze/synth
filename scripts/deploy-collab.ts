@@ -20,15 +20,15 @@ async function main() {
 // This is horribly inneficient, probably don't redeploy these each time?
   // We get the contract to deploy
   const Registry = await ethers.getContractFactory("MetadataRegistry");
-  const registry =  await Registry.connect(accounts[3]).deploy(zeroAddress) as MetadataRegistry;
+  const registry =  await Registry.deploy(zeroAddress) as MetadataRegistry;
   await registry.deployed();
   console.log("Registry deployed to " + registry.address);
   const Collectible = await ethers.getContractFactory("Core1155");
-  core = await Collectible.connect(accounts[3]).deploy("https://ipfs.pills.host/", registry.address, zeroAddress) as Core1155;
+  core = await Collectible.deploy("https://ipfs.pills.host/", registry.address, zeroAddress) as Core1155;
   // In production instances the IDs must line up correctly
   const AirdropValidator = await ethers.getContractFactory("AirdropValidator");
-  validator = await  AirdropValidator.connect(accounts[3]).deploy(core.address, ethers.constants.AddressZero) as AirdropValidator;
-  const tx = await core.connect(accounts[3]).addValidator(validator.address, ids);
+  validator = await  AirdropValidator.deploy(core.address, ethers.constants.AddressZero) as AirdropValidator;
+  const tx = await core.addValidator(validator.address, ids);
   console.log("Validator deployed to " + validator.address);
 }
 
