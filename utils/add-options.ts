@@ -70,7 +70,17 @@ const hashmonkColors  = [
   "tropic"
 ]
 
-
+export async function refreshCIDs(optionsAddress: string, wearablesAddress: string, augmentsAddress: string, index: number = 0){
+  // Grab the signers so we can drop them test tokens
+  let options = await ethers.getContractAt('SelectableOptions', optionsAddress) as SelectableOptions;
+  let wearables = await ethers.getContractAt('WearablesValidator', wearablesAddress) as WearablesValidator;
+  let augments = await ethers.getContractAt('AugmentsValidator', augmentsAddress) as AugmentsValidator;
+  for(let i = index; i< SKELETON_OPTIONS.length; i++) {
+    const option = SKELETON_OPTIONS[i];
+    await processCIDs(options, wearables, augments)(option);
+    console.log(`Processed:${i}#${option.name}`);
+  }
+}
 export async function pushOptions(optionsAddress: string, wearablesAddress: string, augmentsAddress: string, index: number = 0){
   // Grab the signers so we can drop them test tokens
   let options = await ethers.getContractAt('SelectableOptions', optionsAddress) as SelectableOptions;
@@ -157,6 +167,32 @@ function processFactionOption(optionsContract: SelectableOptions, slot: string) 
 
 }}
 
+function processCIDs(optionsContract: SelectableOptions, wearablesContract: WearablesValidator, augmentsContract: AugmentsValidator) { return async (option: SkeletonOption) => {
+  if(option.cid === null) {
+    return;
+  }
+  let receipt;
+  const id = (await optionsContract.getOptionId(option.cid!)).toNumber();
+  if(id !== 0) {
+    if(option.skeleton === "base" || option.skeleton === "marking") {
+      if((await augmentsContract.cid(id)) == '') {
+        receipt = await augmentsContract.setCID(id, option.cid!);
+        await receipt.wait();
+        console.log(`Added ${option.name} with id ${id} to Augments with CID: ${option.cid}`);
+      }
+    } else if (option.skeleton === "wearable") {
+      if((await augmentsContract.cid(id)) == '') {
+        receipt = await wearablesContract.setCID(id, option.cid!)
+        await receipt.wait();
+        // console.log(`Added ${option.name} with id ${id}  to Wearables with CID: ${option.cid}`);
+      }
+    }
+  }
+  else {
+    console.log(`Could not find id for ${option.name}`);
+  }
+}}
+
 function processSkeletonOption(optionsContract: SelectableOptions, wearablesContract: WearablesValidator, augmentsContract: AugmentsValidator) { return async (option: SkeletonOption) => {
   let receipt;
   if(option.cid === null || (await optionsContract.getOptionId(option.cid!)).toNumber() !== 0) {
@@ -191,20 +227,20 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
     if((option.name.includes("Pepelian") || option.name.includes("Unadorned")) && !option.name.includes("Mutagenic")) {
       //console.log(`Adding \nName:${option.name} \nCID:${option.cid}`);
       receipt = await optionsContract.addOptionWithId(option.cid!, nameToId[option.name], option.name, slot, getFormUint(option.form));
-      //console.log(`Added \nName:${option.name} \nCID:${option.cid}`);
+      console.log(`Added \nName:${option.name} \nCID:${option.cid}`);
+      const tx = await receipt.wait();
     } else {
       receipt = await optionsContract.addOption(option.cid!, option.name, slot, getFormUint(option.form));
       await receipt.wait();
     }
     const id = await optionsContract.getOptionId(option.cid!);
     if(option.name.includes("Pepelian") && !option.name.includes("Mutagenic")) {
-      //console.log(id)
     }
     await receipt.wait();
     if(option.skeleton === "base" || option.skeleton === "marking") {
       receipt = await augmentsContract.setCID(id, option.cid!);
       await receipt.wait();
-      //console.log(`Added ${option.name} with id ${id} to Augments with CID: ${option.cid}`);
+      console.log(`Added ${option.name} with id ${id} to Augments with CID: ${option.cid}`);
     } else if (option.skeleton === "wearable") {
       receipt = await wearablesContract.setCID(id, option.cid!)
       await receipt.wait();
