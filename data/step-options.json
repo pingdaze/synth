@@ -86,24 +86,24 @@
       "name": "Hued Forests",
       "type": "Origin",
       "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Hashmonk",
       "description": "A lush landscape floating atop the Mempool, and littered with many waterways."
     },
     {
       "name": "Deepmem",
       "type": "Origin",
       "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Hashmonk",
       "description": "A region in the vast depths of the Mempool that is so deep as to transmute water into crystal."
     },
     {
       "name": "Loclouds",
       "type": "Origin",
       "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Hashmonk",
       "description": "The cloudy regions at the Mempool's outer bounds. Responsible for facilitating the Mempool's continual rejuvenation."
     },
     {
@@ -297,70 +297,6 @@
       "description": "You owe allegiance to no one, content to navigate your own way through Chainspace."
     },
     {
-      "name": "Aave",
-      "type": "Faction",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "The Protectors. The Aave faction both inhabit and protect V'alta K'unta, otherwise known as the Ghostlands, an odd reality fermenting in the belly of an ancient memwraith."
-    },
-    {
-      "name": "Alchemix",
-      "type": "Faction",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "The Cloners. Alchemix deals in all sorts of trade and services, but their main source of income comes through cloning. They offer the people of Chainspace loans in return for an exact clone that can serve them until the debt is paid off."
-    },
-    {
-      "name": "Badger",
-      "type": "Faction",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "The Smugglers. Badger deals in smuggling things across the Great Expanse by using their bridges, this includes the fractured pieces of Gods. Right now, the efforts of Badger are focussed on smuggling the fractured remains of the bitcoin godchain into the Etherchain"
-    },
-    {
-      "name": "Uniswap",
-      "type": "Faction",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "The Tinkerers. Stalwart followers of the Unigod, the agents of Uniswap believe that a balance must be maintained between centralization and decentralization, and that only through the guidance of the Unigod, such a thing is achievable."
-    },
-    {
-      "name": "Sushi",
-      "type": "Faction",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "The Alchemists. Sushi believes that a single entity, like the Unigod, should not be responsible for the decentralization of Chainspace. Instead, unlike their rivals Uniswap, they believe the Unigod's mission and power should be distributed, accessible, and available to anyone who feels a calling for decentralization."
-    },
-    {
-      "name": "Temple",
-      "type": "Faction",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "The Builders. Block by block they construct a Temple that is the size of a planet. A temple that will surely take thousands of years to complete, but will be a beacon to their mantra of \"Stake & Chill\"."
-    },
-    {
-      "name": "Olympus",
-      "type": "Faction",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "The Wayfarers. They of the Formless Mountain who seek to achieve a way of transcendence by collectively embodying a pure-state stability, which has long been thought of as impossible."
-    },
-    {
-      "name": "Yearn",
-      "type": "Faction",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "The Patchers. Founded by the enigmatic patcher, Andre, Yearn pledges itself to the teachings and wisdom of the four yFus; Techne, Community, Transmission, and Dominion, and, of course, the Yearning Tree that created them. They traverse Chainspace, repairing the ancient yield tech relied on by communities for bountiful harvests."
-    },
-    {
       "name": "Degenerators",
       "type": "Faction",
       "rarity": "Pillboost",
@@ -452,6 +388,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You're content with life, and it shows through your comfortable smile",
+      "conflict": null,
       "cid": "bafybeieback55fctuhhyh42tavz623xtuxk4pwrdn2jvatr6zzonui2jpa",
       "type": "Mouth"
     },
@@ -461,6 +398,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your toothy grin suggests you're generally happy in life",
+      "conflict": null,
       "cid": "bafybeiex2ikwt5gtsm4g4xus2q5wpi4gi56ta4hgrbwupiqtxajxamytou",
       "type": "Mouth"
     },
@@ -470,6 +408,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your mouth is warped into a crooked and sly grin, as though you possess a devilish plan you can't keep to yourself",
+      "conflict": null,
       "cid": "bafybeif4roaeohve22gj6xkchsdareyjwshyfkrrhiu3odqrvxukftguba",
       "type": "Mouth"
     },
@@ -479,6 +418,7 @@
       "prerequisite_type": "HAS TRAIT",
       "prerequisite_value": "Simptongued",
       "description": "Years of simping have turned your tongue limp",
+      "conflict": null,
       "cid": "bafybeibm4ba2bsy4mdgpn46syhlyrq7mt5k6fszkmqj7wd4gyetejkvgfy",
       "type": "Mouth"
     },
@@ -488,6 +428,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Whenever you look at a swamp, it appears half empty, and this dour perspective manifests itself in a seemingly permafrown",
+      "conflict": null,
       "cid": "bafybeic2msjsdyefuewky35sm3yzum4ixhzkpyu2srwj2w2evcwnpeeepm",
       "type": "Mouth"
     },
@@ -497,6 +438,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You must have descended from ancestors who were avid flesh eaters.",
+      "conflict": null,
       "cid": "bafybeibuasbtuzltmwi56z2t5ndyniwfh37atvdjv2ftf6xyisahcxqori",
       "type": "Mouth"
     },
@@ -506,6 +448,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Frogseers have taken up home in your mouth. Their psychoactive skin grants you extrasensory perception",
+      "conflict": null,
       "cid": "bafybeiaev3jn33ojwxn5icfre7y7piurmrfohwm2doa3bgozloa2efqf3q",
       "type": "Mouth"
     },
@@ -515,6 +458,7 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "shadowpak",
       "description": "Whether through some ancient sorcery, or an advanced technology, this Pepel has been transformed into...something else",
+      "conflict": null,
       "cid": "bafybeib5uvcb2e5hozcjkqpmhpu5tfkzzh7ytvev6l44xi5rmbotkysas4",
       "type": "Mouth"
     },
@@ -523,8 +467,9 @@
       "rarity": "Special",
       "prerequisite_type": "HAS ETH",
       "prerequisite_value": "1.0",
-      "description": "You've paid a small town jeweller to outfit your mouth with with whatever gems they had lying around.",
-      "cid": "bafybeiguhfhi3ojrrbgscwz4uoyygd6eujw3yuxq2si5n5bwf67e5yhaem",
+      "description": "You've paid a small town jeweller to outfit your mouth with whatever gems they had lying around.",
+      "conflict": null,
+      "cid": "bafybeic4usd6kmt3bizhjyvdtezrall5zsda6vatj4ru5onl5fry2oe5ry",
       "type": "Mouth"
     },
     {
@@ -533,6 +478,7 @@
       "prerequisite_type": "HAS ETH",
       "prerequisite_value": "10.0",
       "description": "You've paid a small fortune to outfit your mouth with polished diamond teeth, and you grin incessantly so everybody knows it.",
+      "conflict": null,
       "cid": "bafybeidjoqhrdp2zmb4lw2ewaz4qrjkum6lzdviqeyh7yhscvu2asndcm4",
       "type": "Mouth"
     },
@@ -542,6 +488,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A giant novelty zipper?",
+      "conflict": null,
       "cid": "bafybeibhr2h4pbzrmyp5l2r4ouig5ipwjzyuo3uevhecuftafrcetn6v6y",
       "type": "Mouth"
     },
@@ -551,43 +498,8 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Whether through incessant shilling, offering up terrible takes, or some other transgression it was decided that you should adopt The Mutemouth Path. A comfortable silence now surrounds you, to everyone's quiet joy.",
+      "conflict": null,
       "cid": "bafybeieqamm6d4k4muzcf5rs2k6qtz2elodm56usyo7rbzzkyavnzi6jvy",
-      "type": "Mouth"
-    },
-    {
-      "name": "Tusker Alpha",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "You were Pepel, once, but somewhere in your ancestral tree, you diverged. You're a Tusker now, of the Alpha clan.",
-      "cid": "bafybeibpso7twtngxuc3xvxisfgjvpuyadxvjphbb5yjg5nupdtbjywcxy",
-      "type": "Mouth"
-    },
-    {
-      "name": "Tusker Gitzker",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "You were Pepel, once, but somewhere in your ancestral tree, you diverged. You're a Tusker now, of the Gitzker clan.",
-      "cid": "bafybeidozkvuzl3of3gzke5j5klaroc7v2lycy5yrrd434duvq77wdv5xu",
-      "type": "Mouth"
-    },
-    {
-      "name": "Tusker Thrasher",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "You were Pepel, once, but somewhere in your ancestral tree, you diverged. You're a Tusker now, of the Thrasher clan.",
-      "cid": "bafybeidbdqulj4zslqj54hlg2pusmcbj7rpdo24qigd5uuqoghzjfpzmba",
-      "type": "Mouth"
-    },
-    {
-      "name": "Tusker Piercer",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "You were Pepel, once, but somewhere in your ancestral tree, you diverged. You're a Tusker now, of the Piercer clan.",
-      "cid": "bafybeihk3s4kr4d6mlnp65pon7xrlalywodkqw635vk54ocemcvlmbvwja",
       "type": "Mouth"
     },
     {
@@ -596,6 +508,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "This Pepel's moonmania has extended to its mouth",
+      "conflict": null,
       "cid": "bafybeiccyxhlitwoojdsgfcvo3wkmggee3fpg42jkogua5ydbyljj4ashm",
       "type": "Mouth"
     },
@@ -605,6 +518,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "This Pepel's advanced moonmania has extended to its mouth causing it to drool incessantly",
+      "conflict": null,
       "cid": "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
       "type": "Mouth"
     },
@@ -614,6 +528,7 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "0xpill",
       "description": "You have sacrificed a pill to one of the Great Old 0xmons, and they have remade you in their image as a reward",
+      "conflict": null,
       "cid": "bafybeid4nag3qw54iywe34q3eqbxzkbziouvlkhn4an2bxpfisemr3skqa",
       "type": "Mouth"
     }
@@ -625,6 +540,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "An average Pepelian eye. In all its glory.",
+      "conflict": null,
       "cid": "bafybeicdchpng53briinhnrqq54ozr2vmyd7cvwu2wndtcz4sfiugdvyxm",
       "type": "Eyes"
     },
@@ -634,6 +550,7 @@
       "prerequisite_type": "HAS TRAIT",
       "prerequisite_value": "Galaxy Brain",
       "description": "Your muscular intellect has somehow gifted you with a Third Eye.",
+      "conflict": null,
       "cid": "bafybeif32ktarjqzp2sq5mwfbgkejwcswetgpbiat3bobjr5nalc7b4zsq",
       "type": "Eyes"
     },
@@ -643,6 +560,7 @@
       "prerequisite_type": "HAS TRAIT",
       "prerequisite_value": "Galaxy Brain",
       "description": "Your muscular intellect has somehow gifted you with a Third Eye, and now, somehow it has awakened. \n\nIt seems to have a mind of its own. Sometimes it speaks to you in a flash of incoherent visions. Their origin is a mystery.",
+      "conflict": null,
       "cid": "bafybeiay3yxmsm7wl6m24oiusscu6fzw7puvgwgqqqtla66up6g653jcbe",
       "type": "Eyes"
     },
@@ -652,6 +570,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You wield a potent hypnotic ability capable of influencing those around you. Some receive this gift at birth. Others cultivate it through intense training and dedication.",
+      "conflict": null,
       "cid": "bafybeidgtytx5pclihqjvn5pm73z2vysd6xe4zu2g7ca452e5oy33kemea",
       "type": "Eyes"
     },
@@ -661,6 +580,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your have evolved to see beyond the normal visual spectrum. The nauseating neon green that tints your sight lets you perceive the imperceptible",
+      "conflict": null,
       "cid": "bafybeidbztwtrm4luep4etbkps6ngpbp6bzuxixmq53lqmbmfq3yd5o3lq",
       "type": "Eyes"
     },
@@ -670,6 +590,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your featureless eyes are black as night. Some find comfort in them, others see the void",
+      "conflict": null,
       "cid": "bafybeic7jjpwjqosqvt7yixraz2kwy6uektokbsc6kjj4vg3qfoga3rtxy",
       "type": "Eyes"
     },
@@ -679,6 +600,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your eyes are known for their almost hypnotic swirling pattern",
+      "conflict": null,
       "cid": "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
       "type": "Eyes"
     },
@@ -688,6 +610,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your eyes possess a distinctive pattern, undoubtedly inherited from your ancient ancestors",
+      "conflict": null,
       "cid": "bafybeicsh5jma3wejcj5tcmepoizpjpefichmm3dv4yfruvsjw2b5nm3qu",
       "type": "Eyes"
     },
@@ -697,16 +620,18 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You close your eyes, and they remain shut. You have dedicated yourself to sensory deprivation in a search for deeper truths. You are Blindbound.",
+      "conflict": null,
       "cid": "bafybeig3hqbdahq2qo3vmnkk4w4b3hw7wxdq5at246xnelxae5vmekl4xm",
       "type": "Eyes"
     },
     {
       "name": "Burning Eyes",
       "rarity": "Pillboost",
-      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_type": "HAS PILL",
       "prerequisite_value": "shadowpak",
       "description": "The 0x00 sees through you.",
-      "cid": "bafybeiceh6giz7aqrvkv3uwbotu6wqq4p33f3q7xjymbe2dsmzpoyncap4",
+      "conflict": null,
+      "cid": "bafybeifuvk7oghwe74og3jiv3xh3zvgh6k2mu4pkwi3wccss6gkyhfx7ly",
       "type": "Eyes"
     },
     {
@@ -715,16 +640,18 @@
       "prerequisite_type": "HAS ETH",
       "prerequisite_value": "0.1",
       "description": "You paid a local artisan to adorn your eyes with intricate linework inspired by an ancient Pepelian art style",
+      "conflict": null,
       "cid": "bafybeih6yjixll2432n77qs7clchbpxgf6hup64u6ahntzpei4ilmhlt2a",
       "type": "Eyes"
     },
     {
-      "name": "The Heart's Eye",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "Your eyes possess a deep red hue, similar to a Pepelian heart.",
-      "cid": "bafybeihiok5ah7ykhxu3lnj2so3g6tznzv43ng3jepnw77fxhafx2kcgdq",
+      "name": "Apeblood Eyes",
+      "rarity": "Special",
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "apeblood",
+      "description": "Your eyes possess a deep red hue, as if stained by the blood of Apes.",
+      "conflict": null,
+      "cid": "bafybeid3mtby5jtb4l7vxt2vmnsgis5zfobtab3mj5qoqzst6zmvbsew7a",
       "type": "Eyes"
     },
     {
@@ -733,6 +660,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your eyes possess rings of concentric circles, as if rippling out from your pupil",
+      "conflict": null,
       "cid": "bafybeidbqjmrci5qqey7x3ju6mnq6vod4tqrsolqf6p4yola6jiagdypmu",
       "type": "Eyes"
     },
@@ -742,6 +670,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "The Pepelian skin condition known as Loompox has colonized your eyes. Your vision is now filtered through these strange sentient creatures.. probably not for the better",
+      "conflict": null,
       "cid": "bafybeicsca55bubugr6v6qyjgjlrbj3wkbvadc3uvgsgcambssfxtnupwe",
       "type": "Eyes"
     },
@@ -751,6 +680,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Eyes that commonly emerge amongst those with a gift for soothsaying, or perceiving possible futures",
+      "conflict": null,
       "cid": "bafybeiasdyubap4dj66vu7kvkrh3kl5g36wques77mq5pzoewmdwf4uq7y",
       "type": "Eyes"
     },
@@ -758,45 +688,50 @@
       "name": "Eye of the Guardian, Type 1",
       "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "Egodeth Portalpill",
+      "prerequisite_value": "egodeth_portalpill",
       "description": "Your eyes depict one of the hieroglyphic symbols that adorned the Genesis Cube... You are unsure of the implications..",
-      "cid": "bafybeifu7g3ki5hbbp74ujfxgptu35rd5h7o7d7pmgk7dkgwqte3ztfrpm",
+      "conflict": null,
+      "cid": "bafybeiedcfd7g3wdh4agb4mo65nrxkgin6okfermzlnophnd2vuitx76ma",
       "type": "Eyes"
     },
     {
       "name": "Eye of the Guardian, Type 2",
       "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "Egodeth Portalpill",
+      "prerequisite_value": "egodeth_portalpill",
       "description": "Your eyes depict one of the hieroglyphic symbols that adorned the Genesis Cube... You are unsure of the implications..",
-      "cid": "bafybeiabzpva2zn4j5uhd6u6ytfoq4zo46dee7d2mxkhbcvbo4vtl6k7tu",
+      "conflict": null,
+      "cid": "bafybeicfuy5ohesayolvnzd34bis3t3zglfjloblxpzzhgff3cyzgtt2yu",
       "type": "Eyes"
     },
     {
       "name": "Eye of the Guardian, Type 3",
       "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "Egodeth Portalpill",
+      "prerequisite_value": "egodeth_portalpill",
       "description": "Your eyes depict one of the hieroglyphic symbols that adorned the Genesis Cube... You are unsure of the implications..",
-      "cid": "bafybeifvfczdg5wmclknp6cym63ljiffcmop3fqluhgcb437sm7noqvwle",
+      "conflict": null,
+      "cid": "bafybeibbzlznbhslacnrfiajx72t2arzb7kvduzuc2c5ebem7mrtxiq2ru",
       "type": "Eyes"
     },
     {
       "name": "Eye of the Guardian, Type 4",
       "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "Egodeth Portalpill",
+      "prerequisite_value": "egodeth_portalpill",
       "description": "Your eyes depict one of the hieroglyphic symbols that adorned the Genesis Cube... You are unsure of the implications..",
-      "cid": "bafybeic6ttd7xnboe4bcoe2migqioxj66mmtb4tbavokqur5gwoj4gwq4u",
+      "conflict": null,
+      "cid": "bafybeihriiodfx3jrwprrqjmd5k6ktm26ahykzat2smhtksb2b7o2bnvsa",
       "type": "Eyes"
     },
     {
       "name": "Eye of the Guardian, Type 5",
       "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "Egodeth Portalpill",
+      "prerequisite_value": "egodeth_portalpill",
       "description": "Your eyes depict one of the hieroglyphic symbols that adorned the Genesis Cube... You are unsure of the implications..",
-      "cid": "bafybeiavrdzgbggqlmasqohiaqpzihih5bbshkerg6zrcrp5qh5v6kbtk4",
+      "conflict": null,
+      "cid": "bafybeicm6na4yya6wwzkfqtywohmak2i6zzpe5cgtb2klejjxwc5a4dsqy",
       "type": "Eyes"
     },
     {
@@ -805,6 +740,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "This Pepel's moonmania has extended to its eyes",
+      "conflict": null,
       "cid": "bafybeicr5vd3mqpyqhfe55x3t23ngwy477jnqqg3ydwpbmq3missdfnvyy",
       "type": "Eyes"
     },
@@ -814,6 +750,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "This Pepel's moonmania has extended to its eyes",
+      "conflict": null,
       "cid": "bafybeieua6ps4xwzxtup4xfdn2hzwtvcxveh5aqpekablh7fcqsxrcxq4i",
       "type": "Eyes"
     }
@@ -825,6 +762,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your skin is free of markings, tattoos and other embellishments",
+      "conflict": null,
       "cid": "bafybeiavzoy6bqsgvpxbargktrh26dq2jwy6sjioa5qwch4sbdlryw7vw4",
       "type": "Marking"
     },
@@ -834,6 +772,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your face is painted in reverence to the Tyo’kuric, The Intense Storm",
+      "conflict": null,
       "cid": "bafybeihhmxfrsqp2kpdaddeqddtf6csiypaafprftk7wnumyutud7lpjia",
       "type": "Marking"
     },
@@ -843,6 +782,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your face is painted in reverence to Tkem'Skia, The Voice of God",
+      "conflict": null,
       "cid": "bafybeibuuuoycl3ufdstajfm7jizovhswmulrkqbpftgmaagci4akipzcq",
       "type": "Marking"
     },
@@ -852,6 +792,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your face is painted in reverence to Hem’Kijka, The Swarm",
+      "conflict": null,
       "cid": "bafybeihphlaqspalgem4tzecilvf2g42f52aikhbgovnqf6efxgsdeify4",
       "type": "Marking"
     },
@@ -861,6 +802,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your face is painted in reverence to Skrallw, the Life Giver",
+      "conflict": null,
       "cid": "bafybeigeykmuiqna7zyzvlbojwhoidfikijw66njx23b5sjwqsxyg2q6fi",
       "type": "Marking"
     },
@@ -870,6 +812,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You've marked your face with patterns designed to confuse simple synthetic vision systems, helping you evade detection",
+      "conflict": null,
       "cid": "bafybeiffwb43yiqz4qubsador6ysrpwzrxrfpvecp5minxgvkr4d4mn37e",
       "type": "Marking"
     },
@@ -879,6 +822,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You've marked your face with patterns designed to confuse simple synthetic vision systems, helping you evade detection",
+      "conflict": null,
       "cid": "bafybeig43rxhzduhhtxeqbn66e2isxdv5gfkinjzxx75jvuatgkunel3gu",
       "type": "Marking"
     },
@@ -888,6 +832,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You've marked your face with patterns designed to confuse simple synthetic vision systems, helping you evade detection",
+      "conflict": null,
       "cid": "bafybeihlnl545s2n5zunufg5bchmv3zg46amdfotadizm5p7r2wwxh5zza",
       "type": "Marking"
     },
@@ -897,6 +842,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You've marked your face with patterns designed to confuse simple synthetic vision systems, helping you evade detection",
+      "conflict": null,
       "cid": "bafybeicc3sqazxecjs6xktqecikryclj32wa2vvfrty3u3vfoilp6kxlsi",
       "type": "Marking"
     },
@@ -906,6 +852,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You've adorned the Jokeira across your face in an attempt to imbue its spirit within you",
+      "conflict": null,
       "cid": "bafybeiempsku777b5yttfiggnakndnkd5yfu3hfpmsl6uwpupbx6ltkv6e",
       "type": "Marking"
     },
@@ -915,6 +862,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You began adorning your body with ink from a young age and have ended up with an eclectic mix of markings that seem to say both a lot, and a little.",
+      "conflict": null,
       "cid": "bafybeiggzxrzkneefcqy3gg4yzgi346nk3l4vd5dbg2atw4xsg4iezp2yi",
       "type": "Marking"
     },
@@ -924,6 +872,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A proud display of your individuality and aesthetic preferences",
+      "conflict": null,
       "cid": "bafybeiehpm5hup4lgkcjfjlqhnheihkaorat2badbridq6e37lp2swllim",
       "type": "Marking"
     },
@@ -933,6 +882,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A display of defiance in the face of death?  A warning to your enemies? A mark of teenage rebellion? Either way, it suits you.",
+      "conflict": null,
       "cid": "bafybeifet4qtdrfh4ydmcyseqme3rseq75k6xulmn5eisvukfpb24hruiq",
       "type": "Marking"
     },
@@ -942,6 +892,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "The Jokeira smiles loudly across your stomach, orbited by the Twin Moods",
+      "conflict": null,
       "cid": "bafybeihz7vwi4ky65gs7wk56fomaa5y5nz7m3j3lmxzi3saqh62lj7sz3y",
       "type": "Marking"
     },
@@ -951,6 +902,7 @@
       "prerequisite_type": "HAS ETH",
       "prerequisite_value": "1.0",
       "description": "You could never afford a real one, but this tattoo is close enough.",
+      "conflict": null,
       "cid": "bafybeidqjrvwy76bzz2eame3pai7dsd2jchennhlkaldoowoe22wcaqq7e",
       "type": "Marking"
     },
@@ -960,6 +912,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You've adorned the Mark of the Oracle across your belly, as you seek its favor",
+      "conflict": null,
       "cid": "bafybeigroraemt2yujiqgztpaya5q6lzp3tswy7sgkaicq5phdswbkptqi",
       "type": "Marking"
     },
@@ -969,6 +922,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You were born with distinctive stripes across your body",
+      "conflict": null,
       "cid": "bafybeiavbpbpup5msq2h74u77bkrribdik5bpcg2drkag5fppdakyshf54",
       "type": "Marking"
     },
@@ -978,6 +932,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You're Memburned, and the distinctive pink patterning is emblazoned across your body. Was it from a failed memburn manoeuvre? Or overexposure to the Mempool's toxicity?",
+      "conflict": null,
       "cid": "bafybeig3igozozhnayqvheopobbakmsdoxj7gvgemefofpgarrej66y6ce",
       "type": "Marking"
     },
@@ -987,6 +942,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You must be descended from the  Leopardfrogs. For their distinctive markings adorn your body.",
+      "conflict": null,
       "cid": "bafybeihesqskkijosr6boobfsstja5ikrfmzwzkzhx77qtjpkbnrbxi37i",
       "type": "Marking"
     },
@@ -996,6 +952,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You've become afflicted with moonmania. Your obsession manifests itself in across your face via patterns of bright green bars",
+      "conflict": null,
       "cid": "bafybeifkcipvyrcsrgr6iv3qy5if4qgkqmc26kvemwrxqw4nrlf66gtvz4",
       "type": "Marking"
     },
@@ -1005,6 +962,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A Pepel skin condition resulting in the blooming of a horde of sentient, blueberry-shaped creatures",
+      "conflict": null,
       "cid": "bafybeiakcsvtjwkdp6nnvsnepxfz7cna67e5e363h37h7cr6gtimoayshi",
       "type": "Marking"
     },
@@ -1014,6 +972,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Prophetic markings adorn your body, heralding an inevitability: One day, the Etherchain will shatter",
+      "conflict": null,
       "cid": "bafybeidtnttb3huzcy2yco3heklndrhrgp7tgttjw6riwidwpnjfmcru4q",
       "type": "Marking"
     },
@@ -1023,6 +982,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Prophetic markings adorn your body, heralding an inevitability: One day, the Mempool will run dry",
+      "conflict": null,
       "cid": "bafybeia5zfcecs4s33wmg2rrqeiccmhxgk5mzbouv6tb5fsxl4nzdjssqu",
       "type": "Marking"
     },
@@ -1032,6 +992,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Prophetic markings adorn your body, heralding an inevitability: One day, the Shadowchain will awaken",
+      "conflict": null,
       "cid": "bafybeibd26bcxuy6qjgccycpn6fuzapvrqjjowhmhqqq7l5ue5o3zb5t74",
       "type": "Marking"
     },
@@ -1041,6 +1002,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Prophetic markings adorn your body, heralding an inevitability: One day, the Guardian will return",
+      "conflict": null,
       "cid": "bafybeibkbuteifkcijnm37akgareneejr3zzgzvkscfcokp22d5rb4onra",
       "type": "Marking"
     },
@@ -1050,6 +1012,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Prophetic markings adorn your body, heralding an inevitability: One day, the Regenesis will begin",
+      "conflict": null,
       "cid": "bafybeidwydml5szcsyz3blqhb67n57fel63kpl5323oogqyp3tns7p5u3m",
       "type": "Marking"
     },
@@ -1057,9 +1020,10 @@
       "name": "Genesismarked",
       "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "Egodeth Portalpill",
+      "prerequisite_value": "egodeth_portalpill",
       "description": "Enchanted fragments from the Genesis Cube adorn your skin. How, or why is a mystery. All you know is that the source of Chainspace's creation adorn your body. And you feel their murmuring in your bones.",
-      "cid": "bafybeief67ckepmx3hg7h6k7fw2eibrsmg633shrmieof4m42kvifhywj4",
+      "conflict": null,
+      "cid": "bafybeigmsycyplqfhi2we3wjdua37owigqqr5soqcgtib3llflsfqddeb4",
       "type": "Marking"
     },
     {
@@ -1068,6 +1032,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "The famous blade of the mythical Pepelian hero that led 10,000 toadz to freedom",
+      "conflict": null,
       "cid": "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       "type": "Marking"
     },
@@ -1077,7 +1042,38 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You have sought out the legendary Pepelian artist Graphe, and they have adorned your body in their signature style",
+      "conflict": null,
       "cid": "bafybeiebpndhmkgzvo523tnyitd5sdbosxhji5siposjyechqwvb7rapju",
+      "type": "Marking"
+    },
+    {
+      "name": "Collar of Thorns",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "The distinctive thorn-like collar of black ink stretches across your neck, impressed upon your skin by no less than Baphie themselves",
+      "conflict": null,
+      "cid": "bafybeiernybxobidp62nudjin7shlsuydaz24sl6rofwmt762ytgqy3gce",
+      "type": "Marking"
+    },
+    {
+      "name": "Gweimarked",
+      "rarity": "Special",
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Gweibond",
+      "description": "Your Gweibond manifests itself through distinct markings across your body",
+      "conflict": null,
+      "cid": "bafybeic5bh65cv3gzs46yle5xxd6nhwof2m66uxlu2h5p4enrkseqaidh4",
+      "type": "Marking"
+    },
+    {
+      "name": "Diamondmarked",
+      "rarity": "Special",
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Diamond Hands",
+      "description": "Your hands and arms bare the distinctive diamond mark. Yes, you possess Diamond Hands",
+      "conflict": null,
+      "cid": "bafybeigog5ba76nro55k5wqheqduolkswxg35f3zm7zzi3kt7qqa62c6ny",
       "type": "Marking"
     }
   ],
@@ -1088,6 +1084,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the waters in and around Rockpools",
+      "conflict": null,
       "cid": "bafybeid3ng4tq3nyzwzwemyt2ju3djvkw2c5wanfx4rr23aqgvjkt3rzni",
       "type": "Hashmonk Torso"
     },
@@ -1097,6 +1094,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
+      "conflict": null,
       "cid": "bafybeiddtwy36p7stylaikunv3nhtq63nlt5zyxbcy2ml3ibm5f64sz64a",
       "type": "Hashmonk Torso"
     },
@@ -1106,6 +1104,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
+      "conflict": null,
       "cid": "bafybeihnwx7e6pnfvssljfwbx3m3r3dgw6g5l42hqhqs4g6h5rjuytjbry",
       "type": "Hashmonk Torso"
     },
@@ -1113,9 +1112,10 @@
       "name": "Genesistorso Core",
       "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "Egodeth Portalpill",
+      "prerequisite_value": "egodeth_portalpill",
       "description": "You are made from the reforged fragments of the Genesis Cube, the ancient relic whose destruction gave created Chainspace. You must be nearly as ancient as the Cube itself and regularly receive the reverence of those you encounter.",
-      "cid": "bafybeicldijdap6uskn3fxjh2n24od52bmxxs5pyv4kpxty4f6l75gi2aa",
+      "conflict": null,
+      "cid": "bafybeic47e34v23jjybcz3pmetdg4uv2pqzc66jkgea5gtw443akxtl3qm",
       "type": "Hashmonk Torso"
     },
     {
@@ -1124,6 +1124,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
+      "conflict": null,
       "cid": "bafybeibg5bmwhq3ojlobeo3y7ho637wwzopqjgwlywbpqeil7jsanpnmpq",
       "type": "Hashmonk Torso"
     }
@@ -1135,6 +1136,7 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "memricorn",
       "description": "An artifact of significance, grown into being from the corals in the Mempool. Bestowed upon Hashmonks who dedicate lifetimes to cultivating Memricorns.",
+      "conflict": null,
       "cid": "bafybeieqaagaya5mq5rfneccgeaz7cwcagwehy3zcrxec37zotgu5v3zym",
       "type": "Hashmonk Crown"
     },
@@ -1144,6 +1146,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your head is unadorned",
+      "conflict": null,
       "cid": "bafybeih7il4wy626fvsk7fzm74noo7d5awppo6smfwpcmmy3uaf7t3q7iq",
       "type": "Hashmonk Crown"
     }
@@ -1155,6 +1158,10 @@
       "prerequisite_type": "HAS TRAIT",
       "prerequisite_value": "Deepmem",
       "description": "A creature from the depths of the Deepmem has colonized your head. You and it are one.",
+      "conflict": [
+        "wearable_head",
+        "base_crown"
+      ],
       "cid": "bafybeierppjhuh63eeaekfrtintwzz6swvongraj7bieryjpumhu7kt6ey",
       "type": "Hashmonk Head"
     },
@@ -1164,6 +1171,10 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "shadowpak",
       "description": "This twisted parasite has sunk its fangs into you. You and it are now one and the same. The whispers of the Shadowchain radiate throughout your corrupted body",
+      "conflict": [
+        "wearable_head",
+        "base_crown"
+      ],
       "cid": "bafybeid4ncft7expbfadr27qgoqlx2ewirsxd3wndgc4pilf22jftygyqu",
       "type": "Hashmonk Head"
     },
@@ -1173,6 +1184,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the waters in and around Rockpools",
+      "conflict": null,
       "cid": "bafybeiap7phjnmfjicslxtfaulye6bhdxovwnnomfazxllh4steeytv6ey",
       "type": "Hashmonk Head"
     },
@@ -1182,6 +1194,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
+      "conflict": null,
       "cid": "bafybeid5jm436ecxh7ig2qwgcl3biyhwbgdu6ltzirjsjv3w5l4rbekbxe",
       "type": "Hashmonk Head"
     },
@@ -1191,6 +1204,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Waxing Tide",
+      "conflict": null,
       "cid": "bafybeic6la54o73eelp44uk42w5zvsqsczihbpnyqoemufexw474de7fwq",
       "type": "Hashmonk Head"
     },
@@ -1200,6 +1214,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Waning Tide",
+      "conflict": null,
       "cid": "bafybeierjlrcmaqasnmdged5wsogxq7uk2ezyuhewvnzmgkqf6wa6xtkoe",
       "type": "Hashmonk Head"
     },
@@ -1209,6 +1224,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wading Tide",
+      "conflict": null,
       "cid": "bafybeiezjzdpzy5fyiuvqlanqvrutcbvrnbmqzf6ztehcbgnucbafldmp4",
       "type": "Hashmonk Head"
     },
@@ -1218,6 +1234,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wandering Tide",
+      "conflict": null,
       "cid": "bafybeibscf6bluxyd766hlb6ksi6dtx2gihlezgsfh6uprk2kljwerr6mm",
       "type": "Hashmonk Head"
     },
@@ -1227,6 +1244,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wondrous Tide",
+      "conflict": null,
       "cid": "bafybeifhrj5motwgirle5wlwxl5oczi2gebd7nfghqna3hurrsln5nvi5u",
       "type": "Hashmonk Head"
     },
@@ -1236,6 +1254,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Warring Tide",
+      "conflict": null,
       "cid": "bafybeiffkfo5hqskknmwb7r3zuz6iqdf3zcscvfmli4z64opkufki4udh4",
       "type": "Hashmonk Head"
     },
@@ -1245,6 +1264,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wistful Tide",
+      "conflict": null,
       "cid": "bafybeibf3sevnc655z53mtft4nreaqj5edswrntycjm7nt4k6jdlryhwpy",
       "type": "Hashmonk Head"
     },
@@ -1254,6 +1274,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wrathful Tide",
+      "conflict": null,
       "cid": "bafybeiex5frdqm4axik4rccxs73knqbz2d42syd2yskc2uesawjkyjqom4",
       "type": "Hashmonk Head"
     },
@@ -1263,6 +1284,9 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "mirrorpill",
       "description": "A Hashmonk has come into contact with this Mirrorpill and perceived incomprehensible realities that have melted its mind in the process",
+      "conflict": [
+        "base_crown"
+      ],
       "cid": "bafybeigzujm5qz6re5r7g3ndnbtcgugwip5xre3e5baiypgviwohuqhp5i",
       "type": "Hashmonk Head"
     },
@@ -1270,9 +1294,13 @@
       "name": "Flawless Quad Eye Guardianhead",
       "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "Egodeth Portalpill",
+      "prerequisite_value": "egodeth_portalpill",
       "description": "A head made from the ancient matter of the Genesis Cube and depicting The Guardian: the mysterious, metaphysical entity that watched over the Cube until its eventual destruction",
-      "cid": "bafybeig4jq46jchi7u33dz426nhexotgyoksqiyae24xnva36hiw4slrou",
+      "conflict": [
+        "wearable_head",
+        "base_crown"
+      ],
+      "cid": "bafybeicomduicckyp5w6bqadeqbfm6dsqv5smzapaiz4sblshhaivocice",
       "type": "Hashmonk Head"
     },
     {
@@ -1281,6 +1309,10 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "toadzpill",
       "description": "A Gategremplin, bound to a Hashmonk",
+      "conflict": [
+        "wearable_head",
+        "base_crown"
+      ],
       "cid": "bafybeihtrkpspv6q6spxaiaofphfoyzhfoijmpcplxtcza4wgh2e6czde4",
       "type": "Hashmonk Head"
     }
@@ -1292,6 +1324,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the waters in and around Rockpools",
+      "conflict": null,
       "cid": "bafybeibat3eowgbdsx3dzciq335h6lxkdpobb4guplyymy5oqxl4hdbryy",
       "type": "Hashmonk Left Arm"
     },
@@ -1301,6 +1334,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
+      "conflict": null,
       "cid": "bafybeigwtelxrxeuiwsxnpuyejbn3mo3b5atmccdljlsn5bbvvbuf2elvm",
       "type": "Hashmonk Left Arm"
     },
@@ -1310,6 +1344,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
+      "conflict": null,
       "cid": "bafybeidb4lmxswjuot3ykdhlqmp7pdoscszhzefvfos2menyazwkvtjolm",
       "type": "Hashmonk Left Arm"
     },
@@ -1319,7 +1354,18 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
+      "conflict": null,
       "cid": "bafybeieqznxd6wijyqs7vysqnocofinioaw75vbqoar5ldbaypsnyxdskq",
+      "type": "Hashmonk Left Arm"
+    },
+    {
+      "name": "Diamond  Left Arm",
+      "rarity": "Special",
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Diamond Hands",
+      "description": "Your arms pulsate as the diamonds within them shimmer and shake each time they catch and refract the ambient light",
+      "conflict": null,
+      "cid": "bafybeihsg2bguwkk7ejen57xkpwjq6bvaxzagjcu7uziqj6pie6etr5vxi",
       "type": "Hashmonk Left Arm"
     }
   ],
@@ -1330,6 +1376,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the waters in and around Rockpools",
+      "conflict": null,
       "cid": "bafybeiabtufdf7g54zcg7o4kqazasoqth4qxr2ivqutt6t2j5445znynje",
       "type": "Hashmonk Left Leg"
     },
@@ -1339,6 +1386,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
+      "conflict": null,
       "cid": "bafybeie6vx4ywusboy6f3orbylnwni6hj4gw4dqloehonik5onxzvug6aa",
       "type": "Hashmonk Left Leg"
     },
@@ -1348,6 +1396,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
+      "conflict": null,
       "cid": "bafybeihxmwzbundqm62r4kvqfahjhjru5c5yuqaoo5xrisqew3tsytmjie",
       "type": "Hashmonk Left Leg"
     },
@@ -1357,6 +1406,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
+      "conflict": null,
       "cid": "bafybeift3mu4hzuagckfnwhmjeoc7gcgmuddkhqedx7jmnepmdohisk7ma",
       "type": "Hashmonk Left Leg"
     }
@@ -1368,6 +1418,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "The familiar face of the Hashmonks. A simple mask that speaks to the Hashmonks humble role in the Mempool ecosystem. Every Hashmonk has worn the Hashmask at least once. Some continue to wear it.",
+      "conflict": null,
       "cid": "bafybeiab7wr5ynymlxqx4ja2kc4t5lnqne37aifcsihyz4qclazimdm3kq",
       "type": "Hashmonk Mask"
     },
@@ -1377,6 +1428,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask shaped in the image of The Dreamer, an ancient, antediluvian archetype",
+      "conflict": null,
       "cid": "bafybeibz6d6h2reybjauchsgetmtjp7f3boruxwjbtx35ehtnootk4gmky",
       "type": "Hashmonk Mask"
     },
@@ -1386,6 +1438,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask shaped in the image of The Thinker, an ancient, antediluvian archetype",
+      "conflict": null,
       "cid": "bafybeidiouunbj7kwmd7dh7qbf5qineehrolxikhsjer6gilmnbmmtbana",
       "type": "Hashmonk Mask"
     },
@@ -1395,6 +1448,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask shaped in the image of The Inquisitor, an ancient, antediluvian archetype",
+      "conflict": null,
       "cid": "bafybeidqv5bokkhlo7wz7b7rqcvy2mixlw62rd6ynipt6l7juslsovwh24",
       "type": "Hashmonk Mask"
     },
@@ -1404,6 +1458,7 @@
       "prerequisite_type": "HAS ETH",
       "prerequisite_value": "0.1",
       "description": "A mask shaped in the image of The Observer, an ancient, antediluvian archetype",
+      "conflict": null,
       "cid": "bafybeighoidfawcah3x5p4tjgnohhqm3fgp6livva53xj4dbl2vjoyboha",
       "type": "Hashmonk Mask"
     },
@@ -1413,6 +1468,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask shaped in the image of The Sage, an ancient, antediluvian archetype",
+      "conflict": null,
       "cid": "bafybeidrkmniv4yydpgbt4eqfts3dhb46snawn6lv7doyc3ok3kpadb2q4",
       "type": "Hashmonk Mask"
     },
@@ -1422,6 +1478,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask shaped in the image of The Seer, an ancient, antediluvian archetype",
+      "conflict": null,
       "cid": "bafybeiaqvgb5gvny6bi4ttpy4cjkyb7foc4hqjo45xx7ppo2xtrkh4hlpe",
       "type": "Hashmonk Mask"
     },
@@ -1431,6 +1488,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask shaped in the image of The Jester, an ancient, antediluvian archetype",
+      "conflict": null,
       "cid": "bafybeib2lcq6pqgs24w6tx6xsbichraxwxvnrag4aovhfgqdyomn6eerty",
       "type": "Hashmonk Mask"
     },
@@ -1440,6 +1498,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask shaped in the image of The Unconscious, an ancient, antediluvian archetype",
+      "conflict": null,
       "cid": "bafybeidwxk4bbxlegdlicveuuzavemse4wlib5gc3dyopdu6kfe4i2f7sy",
       "type": "Hashmonk Mask"
     },
@@ -1449,6 +1508,7 @@
       "prerequisite_type": "HAS ETH",
       "prerequisite_value": "0.1",
       "description": "A mask devoted to the crystalline nature of the Deepmem",
+      "conflict": null,
       "cid": "bafybeidni6dnquzmrg77lzs3z6lbje52hfas5aldhsbceibwcxjaw3mlzm",
       "type": "Hashmonk Mask"
     },
@@ -1458,6 +1518,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask devoted to the flowers of the Mempool",
+      "conflict": null,
       "cid": "bafybeigt5vil4gyq7z62uxwz7jmvrcs7gkahtyvdfbkn6hp4ypvgkjw65a",
       "type": "Hashmonk Mask"
     },
@@ -1467,6 +1528,7 @@
       "prerequisite_type": "HAS ETH",
       "prerequisite_value": "0.1",
       "description": "A mask devoted to the creatures of the Loclouds within the Mempool",
+      "conflict": null,
       "cid": "bafybeiahicexsn2m2q6ohp2ytsice5ayvvf35tf4ttv426aplsr2pz4vle",
       "type": "Hashmonk Mask"
     },
@@ -1476,6 +1538,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask devoted to the plantlife at the edges of the Mempool's waterways",
+      "conflict": null,
       "cid": "bafybeigbkh5ecye4sy3qntjwv46hrdeojqmtgud37sqagtucryhndudena",
       "type": "Hashmonk Mask"
     },
@@ -1485,6 +1548,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask devoted to the sea life within the Mempool",
+      "conflict": null,
       "cid": "bafybeiak6bscmxgyssx6ta5ymqukhyz53udpyhbg3o5qph4fbi32byttui",
       "type": "Hashmonk Mask"
     },
@@ -1494,6 +1558,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask devoted to the cyclical currents of the Mempool",
+      "conflict": null,
       "cid": "bafybeicjiwu2y3spuxsckqkgpkzzsrm2rmctuuqxzj7s5yjhmvztd7zhsy",
       "type": "Hashmonk Mask"
     },
@@ -1503,6 +1568,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask depicting the flowerforms that grow upon the Unigod",
+      "conflict": null,
       "cid": "bafybeid7h7zcenqymvmswiyaljk4ulsstz4meikdpbkqx5iqrqiowfndeq",
       "type": "Hashmonk Mask"
     },
@@ -1512,6 +1578,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask depicting the trident that grow upon the Unigod",
+      "conflict": null,
       "cid": "bafybeiawc5nfuvwobhd2hzti6fzssf6otwwwsd2b5yom7g6jcugkckju54",
       "type": "Hashmonk Mask"
     },
@@ -1521,6 +1588,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask depicting the starbursts that grow upon the Unigod",
+      "conflict": null,
       "cid": "bafybeid5cv7r4fmztgdxt3iguv6aqfygfm4qbwjx4kmz53llclzijvm4cm",
       "type": "Hashmonk Mask"
     },
@@ -1530,6 +1598,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask depicting a Crystalform Hashmonk that grew so large that it sunk to the darkest depths of the Deepmem, where it lies to this day.",
+      "conflict": null,
       "cid": "bafybeidtcoklvdudtv2zzcqiejmulij2nnbtyschtd7ebphrjd4kl3blqu",
       "type": "Hashmonk Mask"
     },
@@ -1539,6 +1608,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask fashioned from a piece of scrap found in Durn",
+      "conflict": null,
       "cid": "bafybeic7rwrib2j7wyhjfpe3d52u67ooe3gipdo33ga6riktaypu5uw2pa",
       "type": "Hashmonk Mask"
     },
@@ -1548,6 +1618,7 @@
       "prerequisite_type": "HAS ETH",
       "prerequisite_value": "0.1",
       "description": "An ornamental mask you commissioned from a specific craftsman inhabiting a remote area of the Loclouds",
+      "conflict": null,
       "cid": "bafybeifnrcgguzek7g3ho7ssjj7cg5tu227dkdmxnyvi3oangpwssdmegy",
       "type": "Hashmonk Mask"
     },
@@ -1557,6 +1628,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask devoted to the anemone of the Mempool",
+      "conflict": null,
       "cid": "bafybeife54kvyxzumvhhxuykzgzycj54purmrpbuxeof6ngfy6zgrdefsi",
       "type": "Hashmonk Mask"
     },
@@ -1566,6 +1638,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask depicting the hidden meaning of abstract forms",
+      "conflict": null,
       "cid": "bafybeici7tccwaiszmuuvwshe5g4eyni2nltdu4x32onz5mbwjvwaxr2ca",
       "type": "Hashmonk Mask"
     },
@@ -1575,6 +1648,7 @@
       "prerequisite_type": "HAS ETH",
       "prerequisite_value": "0.1",
       "description": "A mask celebrating an unfamiliar creature encountered in another reality",
+      "conflict": null,
       "cid": "bafybeifkvjp7nbzjdzmv32kfldn5qhamujzcpt2f6spoznv6wuvosmhdu4",
       "type": "Hashmonk Mask"
     },
@@ -1584,16 +1658,18 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask dedicated to the essential role of the Trickster",
+      "conflict": null,
       "cid": "bafybeicanjfhqdva4x6fxbyv4ov5bcfeiqx2uolxdclkfd6f2dhqfbjfdm",
       "type": "Hashmonk Mask"
     },
     {
       "name": "Mask of the Wolf",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
+      "rarity": "Pillboost",
+      "prerequisite_type": "HAS PILL",
+      "prerequisite_value": "ghiblipill",
       "description": "A strange mask from another reality.",
-      "cid": "bafybeigzbkb6yu3lvee3d7uybaey6z2oow4wpl6473fvu2bhbsdlyvbqkq",
+      "conflict": null,
+      "cid": "bafybeigdf65gsd3quc62lssmpxj6cqyyzhnyq3tyurzmhe2jl2urlccrfq",
       "type": "Hashmonk Mask"
     },
     {
@@ -1602,6 +1678,7 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "ghiblipill",
       "description": "A mask depicting the shapeshifting Nullform creatures of the Nullwastes.",
+      "conflict": null,
       "cid": "bafybeihpcyvmzyhxwonq5ympse7utxex5tggkcltlbchqkg7g5ylkpawyu",
       "type": "Hashmonk Mask"
     },
@@ -1611,6 +1688,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask depicting a dormant Memfruit",
+      "conflict": null,
       "cid": "bafybeiaoscozgkq6wczqbig74t7e3kgu5ikyp3frabso5ckjockootc4ke",
       "type": "Hashmonk Mask"
     },
@@ -1620,6 +1698,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A mask depicting a blooming Memfruit",
+      "conflict": null,
       "cid": "bafybeiaq7zpiwcezlm5skfl6jjf6kypuhpm3eq27zf5io3miijymlqljwu",
       "type": "Hashmonk Mask"
     },
@@ -1629,6 +1708,7 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "memfruit",
       "description": "A mask depicting a Memfruit Queen's crown",
+      "conflict": null,
       "cid": "bafybeidrzmoypqqgldwyku2uanmo6alngr6v6nm3sy2jc2oyqmm5xn62n4",
       "type": "Hashmonk Mask"
     },
@@ -1638,7 +1718,8 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "unipill",
       "description": "A mask devoted to the Unigod and depicting the Unigod's eye.",
-      "cid": "bafybeiaztx2qoid4eur7kpyc55nsch5pm66sisk46i5j5jokcm7ytxxqky",
+      "conflict": null,
+      "cid": "bafybeigzremws4dyhmgc4b5rj3hbgp6b7cf5ccwb2cnueoq4xrtw5r6lnq",
       "type": "Hashmonk Mask"
     },
     {
@@ -1647,7 +1728,8 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "memsnake",
       "description": "A ceremonial mask depicting the Memsnake's of the Mempool",
-      "cid": "bafybeigv6ur5gtyai3la2apauuevzq43uh24qbo43vtbwj4dot4jxdm6ta",
+      "conflict": null,
+      "cid": "bafybeibvk34zxe46xklq5w5mpxqo4kfnylg7pmrmk4nkryzfjb4hz3m5ai",
       "type": "Hashmonk Mask"
     },
     {
@@ -1656,6 +1738,7 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "0xpill",
       "description": "You have sacrificed a pill to one of the Great Old 0xmons, and they have forged this mask in the Prophet's image",
+      "conflict": null,
       "cid": "bafybeifnitgi4zaxhamn2gejzlbly6ff45vjwcobyzwews7gtkaarg7a4m",
       "type": "Hashmonk Mask"
     },
@@ -1665,6 +1748,7 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "tubbypill",
       "description": "Your mask is an ode to Tubbycats everywhere",
+      "conflict": null,
       "cid": "bafybeibiu457gukddnfnuzsv4pg62xx2lztujqrccf22wq6pofa65fklqi",
       "type": "Hashmonk Mask"
     },
@@ -1673,17 +1757,39 @@
       "rarity": "Special",
       "prerequisite_type": "HAS TRAIT",
       "prerequisite_value": "Doomskroler",
-      "description": "One of several common designs popular with the Doomskrolers",
-      "cid": "bafybeibk7ndpnm6znf6p5p2gohj3gkilinmixtrfvlqsxhbt7cdttawa4y",
+      "description": "One of several devices used by the Doomskrolers in their vigilant search for signals that herald The End",
+      "conflict": null,
+      "cid": "bafybeiciit3erus5ob7brs4jjmd7lr5lwbdenyidbpaskr3ic3ebdwikoa",
       "type": "Hashmonk Mask"
     },
     {
       "name": "Mask of the Wassie",
-      "rarity": "Special",
+      "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "wassiepill",
       "description": "A mask fashioned into the form of a Wassie",
-      "cid": "bafybeifpb2ht7set455swrh4dosvtpeqs5bahfef7nfmw3vnwyrf6cnuve",
+      "conflict": null,
+      "cid": "bafybeiddclautzo63vfozghbrbl3fpaadz7orzm7vpjdrvpdocbckzdr5e",
+      "type": "Hashmonk Mask"
+    },
+    {
+      "name": "Mask of the Bear",
+      "rarity": "Special",
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Bearbarian",
+      "description": "A mask fashioned into the form of a Bear, the namesake spirit animal of all Bearbarian",
+      "conflict": null,
+      "cid": "bafybeignczz7yoyrom2yxjehy7gc4us5h2nxbetpomjt3llt4jc3bppy6m",
+      "type": "Hashmonk Mask"
+    },
+    {
+      "name": "Mask of the Ape",
+      "rarity": "Special",
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "apeblood",
+      "description": "A golden hued material is intricately carved with the face of an Ape.",
+      "conflict": null,
+      "cid": "bafybeibed7wf47fpcelttrzfk7bew4awuoms6rg5iozvhau64nrgqk3gpu",
       "type": "Hashmonk Mask"
     }
   ],
@@ -1694,6 +1800,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the waters in and around Rockpools",
+      "conflict": null,
       "cid": "bafybeigahfafrfgdaaoqcsql3b2gz34zsppgjj6pbmnyb36vpn4y64vhjq",
       "type": "Hashmonk Right Arm"
     },
@@ -1703,6 +1810,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
+      "conflict": null,
       "cid": "bafybeibv2lawuhzz3szmuv3qp74d54zeang2rfdifnutgfwrpg53kzzre4",
       "type": "Hashmonk Right Arm"
     },
@@ -1712,6 +1820,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
+      "conflict": null,
       "cid": "bafybeibqttikx3cx3mewvzpjsed6zjayrj7lzc24mcl4hxz46faki52xy4",
       "type": "Hashmonk Right Arm"
     },
@@ -1721,6 +1830,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
+      "conflict": null,
       "cid": "bafybeiawhuqsw4v27dbcs2pdvgzaljdupccylxifs3koiffhe4wjyk67ja",
       "type": "Hashmonk Right Arm"
     },
@@ -1730,7 +1840,18 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "shadowpak",
       "description": "This parasitic creature from the inkwells in the Shadowchain has chosen you as its host. You now possess its power and abilities.",
+      "conflict": null,
       "cid": "bafybeiab4a446iacj2inrod7lykc3axrmvcucm4476xetsxzderxogisxy",
+      "type": "Hashmonk Right Arm"
+    },
+    {
+      "name": "Diamond Right Arm",
+      "rarity": "Special",
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Diamond Hands",
+      "description": "Your arms pulsate as the diamonds within them shimmer and shake each time they catch and refract the ambient light",
+      "conflict": null,
+      "cid": "bafybeiek3h2ffo6nedsdvdtpgdyghwpjmrjbx3ht4cb5ybrxxej7fpxj34",
       "type": "Hashmonk Right Arm"
     }
   ],
@@ -1741,6 +1862,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the waters in and around Rockpools",
+      "conflict": null,
       "cid": "bafybeihx37wpm2bins2zltikjsikgjcgepboqub7yumydleelddospkswi",
       "type": "Hashmonk Right Leg"
     },
@@ -1750,6 +1872,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
+      "conflict": null,
       "cid": "bafybeifcye2t5kty6gohmwmr7iizdu3jp5imzriszxpglxi4r4d6mmjbne",
       "type": "Hashmonk Right Leg"
     },
@@ -1759,6 +1882,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
+      "conflict": null,
       "cid": "bafybeihsj4c4av23ktfkyniadx7zxwi3o4ofqknp3zy4wqicuy3mgcjkha",
       "type": "Hashmonk Right Leg"
     },
@@ -1768,6 +1892,7 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
+      "conflict": null,
       "cid": "bafybeicimkt7kmdy2pafc7vwwvwd2wo5r5e53mvkjr5fgdxmai7336kjxa",
       "type": "Hashmonk Right Leg"
     }
