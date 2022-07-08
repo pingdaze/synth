@@ -111,7 +111,7 @@ describe.only("Characters Validator", () => {
         "Aateos",
         "Interstellar Nomad",
         "Diamond Hands",
-        "Aave",
+        "None",
         "bafybeieback55fctuhhyh42tavz623xtuxk4pwrdn2jvatr6zzonui2jpa", // MOUTH
         "bafybeicdchpng53briinhnrqq54ozr2vmyd7cvwu2wndtcz4sfiugdvyxm", // EYES
         "lime",                                                        // COLOR
@@ -131,7 +131,7 @@ describe.only("Characters Validator", () => {
         "Aateos",
         "Interstellar Nomad",
         "Diamond Hands",
-        "Aave",
+        "None",
         "bafybeid5jm436ecxh7ig2qwgcl3biyhwbgdu6ltzirjsjv3w5l4rbekbxe", // head
         "bafybeibg5bmwhq3ojlobeo3y7ho637wwzopqjgwlywbpqeil7jsanpnmpq", // torso
         "bafybeibat3eowgbdsx3dzciq335h6lxkdpobb4guplyymy5oqxl4hdbryy", // larm
@@ -156,7 +156,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Yearn",
+        "None",
         "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
         "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
@@ -191,7 +191,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Yearn",
+        "None",
         "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
         "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
@@ -216,7 +216,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Yearn",
+        "None",
         "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
         "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
@@ -234,7 +234,7 @@ describe.only("Characters Validator", () => {
       expect(id).to.equal(uintID);
       //const skeleton 
     });
-    it.only("Can mint an avatar with a paid in ETH upgrade", async () => {
+    it("Can mint an avatar with a paid in ETH upgrade", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
@@ -242,8 +242,8 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Yearn",
-        "bafybeiguhfhi3ojrrbgscwz4uoyygd6eujw3yuxq2si5n5bwf67e5yhaem",
+        "None",
+        "bafybeic4usd6kmt3bizhjyvdtezrall5zsda6vatj4ru5onl5fry2oe5ry",
         "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
         "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
@@ -264,7 +264,7 @@ describe.only("Characters Validator", () => {
       const endingBalance = await ethers.provider.getBalance(owner);
       expect (startingBalance.sub(endingBalance.add(gasUsed))).to.equal(cost);
     });
-    it.only("Can recover ETH sent for paid upgrades", async () => {
+    it("Can recover ETH sent for paid upgrades", async () => {
       const startingBalance = await ethers.provider.getBalance(owner);
 
       tx = await characterValidator.collectAllEth(
@@ -277,7 +277,7 @@ describe.only("Characters Validator", () => {
       const endingBalance = await ethers.provider.getBalance(owner);
       expect (endingBalance.add(gasUsed).sub(startingBalance)).to.equal(cost);
     });
-    it.only("Fails to mint an avatar with paid upgrade and no value", async () => {
+    it("Fails to mint an avatar with paid upgrade and no value", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
       const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
@@ -285,8 +285,8 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Yearn",
-        "bafybeiguhfhi3ojrrbgscwz4uoyygd6eujw3yuxq2si5n5bwf67e5yhaem",
+        "None",
+        "bafybeic4usd6kmt3bizhjyvdtezrall5zsda6vatj4ru5onl5fry2oe5ry",
         "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
         "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
@@ -303,7 +303,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Yearn",
+        "None",
         "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
         "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
@@ -332,7 +332,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Yearn",
+        "None",
         "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
         "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
@@ -355,7 +355,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Yearn",
+        "None",
         "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
         "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
@@ -377,7 +377,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "Yearn",
+        "None",
         "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
         "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
@@ -399,7 +399,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Bearbarian",
         "Frontrunner",
-        "Alchemix",
+        "None",
         "bafybeierppjhuh63eeaekfrtintwzz6swvongraj7bieryjpumhu7kt6ey",
         "bafybeid3ng4tq3nyzwzwemyt2ju3djvkw2c5wanfx4rr23aqgvjkt3rzni",
         "bafybeibat3eowgbdsx3dzciq335h6lxkdpobb4guplyymy5oqxl4hdbryy",
@@ -424,7 +424,7 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Gweibond",
-        "Yearn",
+        "None",
         "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
         "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
@@ -453,6 +453,34 @@ describe.only("Characters Validator", () => {
       await expect(
         characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
       ).to.be.revertedWith("You do not have the required Legacy pill");
+    });
+    it("Can mint an avatar with a gated faction if holding the correctlegacy pill", async () => {
+      tx = await nift.mintBatch(owner, [mockShadowPaktPill], [1], ethers.constants.HashZero);
+      const legacyPills: BigNumber[] = [
+        mockShadowPaktPill,
+        BigZero,
+        BigZero,
+        BigZero,
+        BigZero,
+      ];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
+      const traitsplus: string[] = [
+        "Pepel",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "Shadowpakt",
+        "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
+        "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
+        "lime",
+        "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
+      ] as string[];
+      await tx.wait();
+      tx = await characterValidator.createCharacter(
+        legacyPills,
+        collabPills,
+        traitsplus
+      );
     });
     it("Can mint an avatar with a gated faction if holding the correctlegacy pill", async () => {
       tx = await nift.mintBatch(owner, [mockShadowPaktPill], [1], ethers.constants.HashZero);
