@@ -4,7 +4,6 @@ import "../chainlink/VRFConsumerBase.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "../interfaces/IMintValidator.sol";
 import "../interfaces/IFabricator.sol";
-import "hardhat/console.sol";
 
 /**
  * THIS IS AN EXAMPLE CONTRACT WHICH USES HARDCODED VALUES FOR CLARITY.
