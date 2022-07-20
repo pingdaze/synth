@@ -126,11 +126,15 @@ contract Characters is Context, Auth {
     playerAddr2Id[_player] = _id;
   }
 
+  function setCharacter(Character memory character, uint256 _id) public requiresAuth {
+    characters[_id] = character;
+  }
+
   function equipSkeleton(
     uint32 id,
     uint16 slotID,
     address _player
-  ) external onlyWearables {
+  ) external requiresAuth {
     _setSkeletonSlot(slotID, skeletons[getIdFromAddress(_player)], id);
   }
 
@@ -138,13 +142,13 @@ contract Characters is Context, Auth {
     uint32 id,
     uint16 slotID,
     address _player
-  ) external onlyWearables {
+  ) external requiresAuth {
     _setOutfitSlot(slotID, outfits[getIdFromAddress(_player)], id);
   }
 
   function unequipSkeleton(uint16 slotID, address _player)
     external
-    onlyWearables
+    requiresAuth
     returns (uint256 returnID)
   {
     Skeleton storage skeleton = skeletons[getIdFromAddress(_player)];
@@ -154,7 +158,7 @@ contract Characters is Context, Auth {
 
   function unequipOutfit(uint16 slotID, address _player)
     external
-    onlyWearables
+    requiresAuth
     returns (uint256 returnID)
   {
     Outfit storage outfit = outfits[getIdFromAddress(_player)];
