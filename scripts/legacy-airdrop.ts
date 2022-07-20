@@ -17,6 +17,9 @@ const testAccounts = [
   "0x053E2aD328147a438d2B136637a213E068200fC7"
 ]
 
+const collabIds = [ 0x1, 0x2, 0x3, 0x4, 0x5, 0x6 ];
+const collabAmounts = [10, 10, 10, 10, 10, 10]
+
 async function main() {
 
   let core: Core1155, nift: Basic1155, validator: AirdropValidator, receipt, registry: MetadataRegistry;
@@ -37,10 +40,11 @@ async function main() {
       pillIDs = pillIDs.concat(pill.ids.map(id => BigNumber.from(id)));
     });
     const amounts = Array(pillIDs.length).fill(1);
-    await core.mintBatch(testAccounts[i], pillIDs, amounts, ethers.constants.HashZero);
+    await core.mintBatch("0x0f1C01d98AE190Ad2739a6075B21C2343d8b412e", pillIDs, amounts, ethers.constants.HashZero);
     console.log("Minted", pillIDs.length, "pills for", testAccounts[i]);
   }
   console.log("Core1155 deployed to " + core.address);
+  await core.mintBatch("0x0f1C01d98AE190Ad2739a6075B21C2343d8b412e", collabIds, collabAmounts, ethers.constants.HashZero);
 
 }
 

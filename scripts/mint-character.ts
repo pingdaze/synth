@@ -53,13 +53,13 @@ async function main() {
     let traitsplus: string[] = [
       "Pepel",
       "Aateos",
-      "Doomskroler",
-      "Galaxy Brain",
-      "Yearn",
+      "Interstellar Nomad",
+      "Diamond Hands",
+      "None",
       "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
-      "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
+      "bafybeicdchpng53briinhnrqq54ozr2vmyd7cvwu2wndtcz4sfiugdvyxm",
       "lime",
-      "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
+      "bafybeigog5ba76nro55k5wqheqduolkswxg35f3zm7zzi3kt7qqa62c6ny",
     ] as string[];
     receipt = await characterValidator.createCharacter(
       legacyPills,
