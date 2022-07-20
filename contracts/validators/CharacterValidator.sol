@@ -12,7 +12,6 @@ import "../interfaces/ICore.sol";
 import "../interfaces/IERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "../lib/LegacyPills.sol";
-import "hardhat/console.sol";
 
 // TODO: Put these in a single place, these are also located in the Characters contract
 
@@ -128,13 +127,19 @@ contract CharacterValidator is Ownable {
     string[] calldata traitsPlus
   ) external payable returns(uint256) {
     // Confirm address holds all the pills they claim to hold
-    return _createCharacter(
+    uint256 returnData =  _createCharacter(
       legacyPills,
       collabPills,
       traitsPlus,
       ++nextId,
       msg.sender
     );
+    for (uint256 index = 0; index < legacyPills.length; index++) {
+      if(legacyPills[index] != 0){
+        _legacyPills.safeTransferFrom(msg.sender, _zeroAddress, legacyPills[index], 1, "");
+      }
+    }
+    return returnData;
   }
 
   function createCharacterL1(
@@ -261,15 +266,8 @@ contract CharacterValidator is Ownable {
       character.setOutfitSlot(characterId, 0, uint32(selectableOptions.getOptionId(traitsPlus[13])));
     }
     character.setSkeleton(characterId, newSkeleton);
-    for (uint256 index = 0; index < legacyPills.length; index++) {
-      if(legacyPills[index] != 0){
-        console.log(legacyPills[index]);
-        console.log(msg.sender);
-        _legacyPills.safeTransferFrom(msg.sender, _zeroAddress, legacyPills[index], 1, "");
-      }
+    for (uint256 index = 0; index < collabPills.length; index++) {
       if(collabPills[index] != 0) {
-        console.log(collabPills[index]);
-        console.log(msg.sender);
         _collabPills.safeTransferFrom(msg.sender, _zeroAddress, collabPills[index], 1, "");
       }
     }
@@ -402,7 +400,7 @@ contract CharacterValidator is Ownable {
           equipment[i] = (wearableOptions.getEquipmentFromPill(LegacyPills.getTypeFromId(legacyPills[i])));
         }
         if(collabPills[i] != 0){
-          equipment[i+5] = (wearables.getEquipmentFromPill(collabPills[i]));
+          equipment[i+5] = (wearableOptions.getEquipmentFromPill(collabPills[i]));
         }
       }
   }
