@@ -395,12 +395,13 @@ contract CharacterValidator is Ownable {
       equipment = new string[](10);
       uint256[] memory legacyPills = characterInstance.legacyPills;
       uint256[] memory collabPills = characterInstance.collabPills;
+      uint8 form = _compareMem(characterInstance.form, "Pepel") ? 1 : 2;
       for(uint32 i = 0; i < 5; i++){
         if(legacyPills[i] != 0){
-          equipment[i] = (wearableOptions.getEquipmentFromPill(LegacyPills.getTypeFromId(legacyPills[i])));
+          equipment[i] = (wearableOptions.getEquipmentFromPill(LegacyPills.getTypeFromId(legacyPills[i]), form));
         }
         if(collabPills[i] != 0){
-          equipment[i+5] = (wearableOptions.getEquipmentFromPill(collabPills[i]));
+          equipment[i+5] = (wearableOptions.getEquipmentFromPill(collabPills[i], form));
         }
       }
   }

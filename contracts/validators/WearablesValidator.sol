@@ -94,12 +94,12 @@ contract WearablesValidator is Context, Auth {
     _setOption(optionString, 0);
   }
 
-  function setLegacyPill(uint256 pillId, string calldata cid) external {
-    legacyPill[pillId] = cid;
+  function setIdtoStringPill(uint256 pillId, uint256 form, string calldata cid) external {
+    legacyPill[pillId * 256 * (form+1)] = cid;
   }
 
-  function getEquipmentFromPill(uint256 pillId) public view returns (string memory) {
-    return legacyPill[pillId];
+  function getEquipmentFromPill(uint256 pillId, uint256 form) public view returns (string memory) {
+    return legacyPill[pillId * 256 * (form+1)];
   }
 
   // Unclear if slot should be at the top, or the bottom of this config?
