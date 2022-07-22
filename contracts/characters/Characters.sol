@@ -57,7 +57,7 @@ contract Characters is Context, Auth {
     ICore _core,
     SelectableOptions _selectableOptions,
     Authority auth
-  ) Auth(_msgSender(), auth) {
+  ) Auth(msg.sender, auth) {
     core = _core;
     selectableOptions = _selectableOptions;
   }
@@ -258,15 +258,20 @@ contract Characters is Context, Auth {
     skeletons[_characterID] = skeleton;
   }
 
-  function setValidator(address validator_) public {
+  // Todo: set auth
+  function setValidator(address validator_) public requiresAuth {
     _validator = validator_;
   }
 
-  function setXP(IEXP _exp) public {
+
+  // Todo: set auth
+  function setXP(IEXP _exp) public requiresAuth {
     exp = _exp;
   }
 
-  function setREP(IREP _rep) public {
+
+  // Todo: set auth
+  function setREP(IREP _rep) public requiresAuth {
     rep = _rep;
   }
 
@@ -304,26 +309,6 @@ contract Characters is Context, Auth {
     gift = char.gift;
     faction = char.faction;
     color = selectableOptions.getOptionStringFromId(skeleton.color);
-  }
-
-  function getForm(uint256 tokenID) external view returns (string memory) {
-    return characters[tokenID].form;
-  }
-
-  function getOrigin(uint256 tokenID) external view returns (string memory) {
-    return characters[tokenID].origin;
-  }
-
-  function getUpbringing(uint256 tokenID) external view returns (string memory) {
-    return characters[tokenID].upbringing;
-  }
-
-  function getGift(uint256 tokenID) external view returns (string memory) {
-    return characters[tokenID].gift;
-  }
-
-  function getFaction(uint256 tokenID) external view returns (string memory) {
-    return characters[tokenID].faction;
   }
 
   function getDescription(uint256 tokenID)
