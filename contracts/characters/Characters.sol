@@ -291,16 +291,19 @@ contract Characters is Context, Auth {
       string memory origin,
       string memory upbringing,
       string memory gift,
-      string memory faction
+      string memory faction,
+      string memory color
     )
   {
     Character memory char = characters[tokenID];
+    Skeleton memory skeleton = skeletons[tokenID];
     form = char.form;
     name = getName(tokenID);
     origin = char.origin;
     upbringing = char.upbringing;
     gift = char.gift;
     faction = char.faction;
+    color = selectableOptions.getOptionStringFromId(skeleton.color);
   }
 
   function getForm(uint256 tokenID) external view returns (string memory) {
