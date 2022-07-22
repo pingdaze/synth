@@ -12,6 +12,7 @@ import "../interfaces/ICore.sol";
 import "../interfaces/IERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "../lib/LegacyPills.sol";
+import "hardhat/console.sol";
 
 // TODO: Put these in a single place, these are also located in the Characters contract
 
@@ -393,15 +394,25 @@ contract CharacterValidator is Ownable {
   function getEquipment(uint256 characterId) external view returns (string[] memory equipment){
       Character memory characterInstance = character.getCharacter(characterId);
       equipment = new string[](10);
+      uint8 equipmentIndex = 0;
+      string[] memory equipmentArray;
       uint256[] memory legacyPills = characterInstance.legacyPills;
       uint256[] memory collabPills = characterInstance.collabPills;
       uint8 form = _compareMem(characterInstance.form, "Pepel") ? 1 : 2;
+      console.log(legacyPills.length);
       for(uint32 i = 0; i < 5; i++){
+        equipmentArray = new string[](0);
         if(legacyPills[i] != 0){
-          equipment[i] = (wearableOptions.getEquipmentFromPill(LegacyPills.getTypeFromId(legacyPills[i]), form));
+          console.log(legacyPills[i], "legacyPills[i]");
+          equipmentArray =  wearableOptions.getEquipmentFromPill(LegacyPills.getTypeFromId(legacyPills[i]), form);
         }
         if(collabPills[i] != 0){
-          equipment[i+5] = (wearableOptions.getEquipmentFromPill(collabPills[i], form));
+          console.log(collabPills[i], "collabPills[i]");
+          equipmentArray =  wearableOptions.getEquipmentFromPill(collabPills[i], form);
+        }
+        for(uint32 j = 0; j < equipmentArray.length; j++){
+          console.log(equipmentArray[j], equipmentIndex);
+          equipment[equipmentIndex++] = equipmentArray[j];
         }
       }
   }

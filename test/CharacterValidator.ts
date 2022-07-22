@@ -173,7 +173,7 @@ describe.only("Characters Validator", () => {
         console.log("CID:", await augmentsValidator.cid(element), "For:", element);
       });
     });
-    it("Can get avatar equipment", async () => {
+    it.only("Can get avatar equipment", async () => {
       tx = await nift.mintBatch(owner, [mockKirbonitePill], [1], ethers.constants.HashZero);
       await tx.wait();
       tx = await nift.mintBatch(owner, [mockShadowPaktPill], [1], ethers.constants.HashZero);
@@ -204,9 +204,11 @@ describe.only("Characters Validator", () => {
       );
       console.log(tx);
       await tx.wait();
-      const equipment = await characterValidator.getEquipment(4);
+      const equipment = await characterValidator.getEquipment(1);
       console.log(equipment);
-      expect(equipment).to.include("bafybeid5kzylu7gbo7fxvcsikju6brsjccciovgbggn43xsdm2ky5yewcm");
+      expect(equipment).to.include("bafybeiad7od2cvcravztyy4jvgih42hkukjcgnjz7mkmk2ktrafikeqvuu");
+      expect(equipment).to.include("bafybeic2s7ykcanuwdznrxtw4h4joepwutomtbbist5psqchct7hwfaibi");
+      expect(equipment).to.include("bafybeiazjnlqqzdtvgldraz4braapf3ztm6azu3ty2eggmgsgzvrqwcl2e");
     });
     it("Can retrieve a CID from a character ID", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];

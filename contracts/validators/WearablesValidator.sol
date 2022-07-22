@@ -18,7 +18,7 @@ contract WearablesValidator is Context, Auth {
   uint8 public slotCount;
   mapping(uint256 => string) public cid;
   mapping(string => uint256) public id;
-  mapping(uint256 => string) public legacyPill;
+  mapping(uint256 => string[]) public legacyPill;
 
   // Change to initialize call
   constructor(
@@ -95,10 +95,10 @@ contract WearablesValidator is Context, Auth {
   }
 
   function setIdtoStringPill(uint256 pillId, uint256 form, string calldata cid) external {
-    legacyPill[pillId * 256 * (form+1)] = cid;
+    legacyPill[pillId * 256 * (form+1)].push(cid);
   }
 
-  function getEquipmentFromPill(uint256 pillId, uint256 form) public view returns (string memory) {
+  function getEquipmentFromPill(uint256 pillId, uint256 form) public view returns (string[] memory) {
     return legacyPill[pillId * 256 * (form+1)];
   }
 
