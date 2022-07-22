@@ -40,18 +40,15 @@ const projectToId: { [key:string]: number} = {
   "tubbycats": 0x6,
 }
 
-const nameToId: { [key:string]: number} = {
-  "Pepelian Head": 1,
-  "Pepelian Torso": 2,
-  "Pepelian Left Arm": 3,
-  "Pepelian Right Arm": 4,
-  "Pepelian Left Leg": 5,
-  "Pepelian Right Leg": 6,
-  "Pepelian Mouth": 7,
-  "Pepelian Eye": 8,
-  "Pepelian Color": 9,
-  "Pepelian Marking": 10,
-  "Unadorned": 11
+const locationToId: { [key:string]: number} = {
+  "head": 1,
+  "torso": 2,
+  "left-arm": 3,
+  "right-arm": 4,
+  "left-leg": 5,
+  "right-leg": 6,
+  "eyes": 8,
+  "crown": 11
 }
 
 const pepelColors  = [
@@ -269,7 +266,7 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
   if(slot !== "") {
     if((option.name.includes("Pepelian") || option.name.includes("Unadorned")) && !option.name.includes("Mutagenic")) {
       //console.log(`Adding \nName:${option.name} \nCID:${option.cid}`);
-      receipt = await optionsContract.addOptionWithId(option.cid!, nameToId[option.name], option.name, slot, getFormUint(option.form));
+      receipt = await optionsContract.addOptionWithId(option.cid!, locationToId[option.location[0]], option.name, slot, getFormUint(option.form));
       //console.log(`Added \nName:${option.name} \nCID:${option.cid}`);
       const tx = await receipt.wait();
     } else {
