@@ -20,20 +20,20 @@
     "pill_id": null,
     "items": [
       {
-        "name": "Jumper, Left Leg",
+        "name": "Jumper",
         "location": [
           "left-leg"
         ],
         "fileName": "Legs-Pirate-Gear-L.png",
-        "url": "https://dl.airtable.com/.attachments/12cbdba074a760f6f448a7946db37320/c92537c4/Legs-Pirate-Gear-L.png?ts=1657227446&userId=usreVCJ9uD8aB9PtI&cs=631973492d871c4d"
+        "url": "https://dl.airtable.com/.attachments/12cbdba074a760f6f448a7946db37320/c92537c4/Legs-Pirate-Gear-L.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=1cee24654bb2f8a9"
       },
       {
-        "name": "Jumper, Right Leg",
+        "name": "Jumper",
         "location": [
           "right-leg"
         ],
         "fileName": "Legs-Pirate-Gear-R.png",
-        "url": "https://dl.airtable.com/.attachments/82cb79c4822edcb750d185e9f828c936/f40a0404/Legs-Pirate-Gear-R.png?ts=1657227446&userId=usreVCJ9uD8aB9PtI&cs=a8225f9a23110c1b"
+        "url": "https://dl.airtable.com/.attachments/82cb79c4822edcb750d185e9f828c936/f40a0404/Legs-Pirate-Gear-R.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=00c70b70c136cd29"
       }
     ]
   },
@@ -58,20 +58,20 @@
     "pill_id": null,
     "items": [
       {
-        "name": "Kirbojet Jumpers, Right Leg",
+        "name": "Kirbojet Jumpers",
         "location": [
           "right-leg"
         ],
         "fileName": "r-pirate-leg-v.png",
-        "url": "https://dl.airtable.com/.attachments/a9f4995778c212a0bbba873152243374/50dfece4/r-pirate-leg-v.png?ts=1657227446&userId=usreVCJ9uD8aB9PtI&cs=0fa58f75ced035db"
+        "url": "https://dl.airtable.com/.attachments/a9f4995778c212a0bbba873152243374/50dfece4/r-pirate-leg-v.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=208f5e7a4410a526"
       },
       {
-        "name": "Kirbojet Jumpers, Left Leg",
+        "name": "Kirbojet Jumpers",
         "location": [
           "left-leg"
         ],
         "fileName": "r.png",
-        "url": "https://dl.airtable.com/.attachments/4bf62e92b6659dbad0abf7300cdd9438/c3705d82/r.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=0e09b01b14c4e888"
+        "url": "https://dl.airtable.com/.attachments/4bf62e92b6659dbad0abf7300cdd9438/c3705d82/r.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=2c085d137abdd0e3"
       }
     ]
   },
@@ -109,7 +109,7 @@
           "right-leg"
         ],
         "fileName": "-wearable---shadowpak---fullbody---flamersuit.png",
-        "url": "https://dl.airtable.com/.attachments/3c0351e4c7d21e76920d05b78d0c46a3/a0f6823e/-wearable---shadowpak---fullbody---flamersuit.png?ts=1657227446&userId=usreVCJ9uD8aB9PtI&cs=619b3130de35c1b5"
+        "url": "https://dl.airtable.com/.attachments/3c0351e4c7d21e76920d05b78d0c46a3/a0f6823e/-wearable---shadowpak---fullbody---flamersuit.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=ddfc14c0e159f9df"
       },
       {
         "name": "Shadowpakt Flamer Helmet",
@@ -117,7 +117,7 @@
           "head"
         ],
         "fileName": "-wearable---shadowpakt---head-flamerhelmet-default.png",
-        "url": "https://dl.airtable.com/.attachments/e60e1a446ef31ee2b78906ed486b3514/ce84dbe8/-wearable---shadowpakt---head-flamerhelmet-default.png?ts=1657227446&userId=usreVCJ9uD8aB9PtI&cs=cbd376edb2683fc8"
+        "url": "https://dl.airtable.com/.attachments/e60e1a446ef31ee2b78906ed486b3514/ce84dbe8/-wearable---shadowpakt---head-flamerhelmet-default.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=c29ce69f2b57a17a"
       }
     ]
   },
@@ -138,12 +138,12 @@
     "pill_id": null,
     "items": [
       {
-        "name": "Armored Memfruit Right Arm",
+        "name": "Memfruit Symbiote",
         "location": [
           "right-arm"
         ],
         "fileName": "R-Memfruit-Arm.png",
-        "url": "https://dl.airtable.com/.attachments/1cd760a3a8636458398c165f8f5b8012/27b676e8/R-Memfruit-Arm.png?ts=1657227446&userId=usreVCJ9uD8aB9PtI&cs=f93a4fedc283e60d"
+        "url": "https://dl.airtable.com/.attachments/1cd760a3a8636458398c165f8f5b8012/27b676e8/R-Memfruit-Arm.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=cd7b010a49477660"
       }
     ]
   },
@@ -177,7 +177,7 @@
           "head"
         ],
         "fileName": "-wearable---ratstribe---head---rathead-artist-.png",
-        "url": "https://dl.airtable.com/.attachments/36eaab8853f09e73cddacb044e01311f/a0301f67/-wearable---ratstribe---head---rathead-artist-.png?ts=1657227446&userId=usreVCJ9uD8aB9PtI&cs=6f119dc0dd75f92f"
+        "url": "https://dl.airtable.com/.attachments/36eaab8853f09e73cddacb044e01311f/a0301f67/-wearable---ratstribe---head---rathead-artist-.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=b26bdd0d67545f4c"
       },
       {
         "name": "Artist's Ratcloak",
@@ -185,7 +185,7 @@
           "torso"
         ],
         "fileName": "-wearable---ratstribe---torso---ratneck-artist-.png",
-        "url": "https://dl.airtable.com/.attachments/1b3f311e7e6d26a05bb16647e544dafc/73e1abf0/-wearable---ratstribe---torso---ratneck-artist-.png?ts=1657227446&userId=usreVCJ9uD8aB9PtI&cs=a668173f4dc91738"
+        "url": "https://dl.airtable.com/.attachments/1b3f311e7e6d26a05bb16647e544dafc/73e1abf0/-wearable---ratstribe---torso---ratneck-artist-.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=9039171144ee8c42"
       },
       {
         "name": "Artist's Ratcloak",
@@ -193,7 +193,7 @@
           "torso"
         ],
         "fileName": "-wearable---ratstribe---torso---ratcloak-artist-.png",
-        "url": "https://dl.airtable.com/.attachments/1156da4b6935d0ce3903bdfce19454c3/ea6f4b46/-wearable---ratstribe---torso---ratcloak-artist-.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=66b3a973fd74bf6a"
+        "url": "https://dl.airtable.com/.attachments/1156da4b6935d0ce3903bdfce19454c3/ea6f4b46/-wearable---ratstribe---torso---ratcloak-artist-.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=edb077de1915b693"
       }
     ]
   },
@@ -231,7 +231,7 @@
           "head"
         ],
         "fileName": "-wearable---ratstribe--head---ratheadcrown-shaman-.png",
-        "url": "https://dl.airtable.com/.attachments/eb0ae46766fc7b3e5486512f3a4270bc/92342758/-wearable---ratstribe--head---ratheadcrown-shaman-.png?ts=1657227446&userId=usreVCJ9uD8aB9PtI&cs=b4abdccaf6fb71ef"
+        "url": "https://dl.airtable.com/.attachments/eb0ae46766fc7b3e5486512f3a4270bc/92342758/-wearable---ratstribe--head---ratheadcrown-shaman-.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=2cc14f3446f03fb7"
       },
       {
         "name": "Shaman's Ratscloak Headdress",
@@ -239,7 +239,7 @@
           "head"
         ],
         "fileName": "-wearable---ratstribe---head---rathead-shaman-.png",
-        "url": "https://dl.airtable.com/.attachments/40f6398639fe73d736785fe1af6578c1/b031b0b4/-wearable---ratstribe---head---rathead-shaman-.png?ts=1657227446&userId=usreVCJ9uD8aB9PtI&cs=de3628c1fbc7581d"
+        "url": "https://dl.airtable.com/.attachments/40f6398639fe73d736785fe1af6578c1/b031b0b4/-wearable---ratstribe---head---rathead-shaman-.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=942b49bc673083d5"
       },
       {
         "name": "Shaman's Ratcloak",
@@ -247,7 +247,7 @@
           "torso"
         ],
         "fileName": "-wearable---ratstribe---torso---ratcloak-shaman-.png",
-        "url": "https://dl.airtable.com/.attachments/bcac9eb4c470772e2571434d216520f4/dc1f98f6/-wearable---ratstribe---torso---ratcloak-shaman-.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=37960655436da6ee"
+        "url": "https://dl.airtable.com/.attachments/bcac9eb4c470772e2571434d216520f4/dc1f98f6/-wearable---ratstribe---torso---ratcloak-shaman-.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=f61624f7f9265e08"
       },
       {
         "name": "Shaman's Ratcloak",
@@ -255,7 +255,7 @@
           "torso"
         ],
         "fileName": "-wearable---ratstribe---torso---ratneck-shaman-.png",
-        "url": "https://dl.airtable.com/.attachments/beece0ba70e3a07873c9ae0bce887390/7f3bdc4f/-wearable---ratstribe---torso---ratneck-shaman-.png?ts=1657227446&userId=usreVCJ9uD8aB9PtI&cs=2de703cbe7faab34"
+        "url": "https://dl.airtable.com/.attachments/beece0ba70e3a07873c9ae0bce887390/7f3bdc4f/-wearable---ratstribe---torso---ratneck-shaman-.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=a047320200a8f51e"
       }
     ]
   },
@@ -281,7 +281,7 @@
           "left-arm"
         ],
         "fileName": "Mempill-swapper-Hand.png",
-        "url": "https://dl.airtable.com/.attachments/4ece21e3b1df719b7be5a1a738f5360a/4a2e7d76/Mempill-swapper-Hand.png?ts=1657227446&userId=usreVCJ9uD8aB9PtI&cs=da6935b2c16aeb25"
+        "url": "https://dl.airtable.com/.attachments/4ece21e3b1df719b7be5a1a738f5360a/4a2e7d76/Mempill-swapper-Hand.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=0de312d77adff2ae"
       }
     ]
   },
@@ -307,7 +307,7 @@
           "left-arm"
         ],
         "fileName": "Mirror-portal-Hand.png",
-        "url": "https://dl.airtable.com/.attachments/940f6c90e08b14802de5d4cc242df59e/344a6891/Mirror-portal-Hand.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=1eaf6c7ed3ce9a99"
+        "url": "https://dl.airtable.com/.attachments/940f6c90e08b14802de5d4cc242df59e/344a6891/Mirror-portal-Hand.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=60eeb5447c2bc003"
       }
     ]
   },
@@ -333,7 +333,7 @@
           "head"
         ],
         "fileName": "Scouter-Helmet-v2.png",
-        "url": "https://dl.airtable.com/.attachments/7a9a5717eceef5888a971b685c9ea3ca/ba757231/Scouter-Helmet-v2.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=4b2f0f0653cb3d92"
+        "url": "https://dl.airtable.com/.attachments/7a9a5717eceef5888a971b685c9ea3ca/ba757231/Scouter-Helmet-v2.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=d8a09b74a806c592"
       }
     ]
   },
@@ -359,7 +359,7 @@
           "head"
         ],
         "fileName": "-wearable---furhead---head---unicorn.png",
-        "url": "https://dl.airtable.com/.attachments/61a2a5e332fdcdf51d4e18b91585ed92/87ef17ee/-wearable---furhead---head---unicorn.png?ts=1657227446&userId=usreVCJ9uD8aB9PtI&cs=a1281ef2bcf818be"
+        "url": "https://dl.airtable.com/.attachments/61a2a5e332fdcdf51d4e18b91585ed92/87ef17ee/-wearable---furhead---head---unicorn.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=5719c3dad9f6a5ef"
       }
     ]
   },
@@ -385,7 +385,7 @@
           "floating"
         ],
         "fileName": "genesis-pet-synth-4-v.png",
-        "url": "https://dl.airtable.com/.attachments/97988c7c86af8ffb7bddd60dbb5eb449/fcc0f869/genesis-pet-synth-4-v.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=d0d585cc7751fc4e"
+        "url": "https://dl.airtable.com/.attachments/97988c7c86af8ffb7bddd60dbb5eb449/fcc0f869/genesis-pet-synth-4-v.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=a698b1b3fb6ca330"
       }
     ]
   },
@@ -411,7 +411,7 @@
           "floating"
         ],
         "fileName": "genesis-pet-egodeath-1-c.png",
-        "url": "https://dl.airtable.com/.attachments/d4dc8f52668bf2dbd5b67a35fd42434f/fa6cba76/genesis-pet-egodeath-1-c.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=f912e9f59d5ef46b"
+        "url": "https://dl.airtable.com/.attachments/d4dc8f52668bf2dbd5b67a35fd42434f/fa6cba76/genesis-pet-egodeath-1-c.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=dd5721413448f065"
       }
     ]
   },
@@ -437,7 +437,7 @@
           "floating"
         ],
         "fileName": "genesis-pet-egodeath-2-c.png",
-        "url": "https://dl.airtable.com/.attachments/489db58223ef36082f9e249392b7282b/277ac0b7/genesis-pet-egodeath-2-c.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=a161f8eee79c50c6"
+        "url": "https://dl.airtable.com/.attachments/489db58223ef36082f9e249392b7282b/277ac0b7/genesis-pet-egodeath-2-c.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=57f442786b4185b1"
       }
     ]
   },
@@ -463,7 +463,7 @@
           "floating"
         ],
         "fileName": "genesis-pet-egodeath-3-c.png",
-        "url": "https://dl.airtable.com/.attachments/a560670fd7e46e15d9f8aee4baef5ec6/7ca86d7f/genesis-pet-egodeath-3-c.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=b2f3274223500f1a"
+        "url": "https://dl.airtable.com/.attachments/a560670fd7e46e15d9f8aee4baef5ec6/7ca86d7f/genesis-pet-egodeath-3-c.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=9c86e2e4fb0c2ff8"
       }
     ]
   },
@@ -489,7 +489,7 @@
           "floating"
         ],
         "fileName": "genesis-pet-egodeath-4-c.png",
-        "url": "https://dl.airtable.com/.attachments/40bf4a4b90755b3010fd617b89baf088/4bd42580/genesis-pet-egodeath-4-c.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=e02637bd2bd1c13b"
+        "url": "https://dl.airtable.com/.attachments/40bf4a4b90755b3010fd617b89baf088/4bd42580/genesis-pet-egodeath-4-c.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=bb2cb3f98ab6ecd8"
       }
     ]
   },
@@ -515,7 +515,7 @@
           "floating"
         ],
         "fileName": "genesis-pet-egodeath-5-c.png",
-        "url": "https://dl.airtable.com/.attachments/92e385fe10456f85a6dfa609c389f1a1/7814ea95/genesis-pet-egodeath-5-c.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=f50e00cb2775c97c"
+        "url": "https://dl.airtable.com/.attachments/92e385fe10456f85a6dfa609c389f1a1/7814ea95/genesis-pet-egodeath-5-c.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=b0e7bf77ddd40b7f"
       }
     ]
   },
@@ -541,7 +541,7 @@
           "floating"
         ],
         "fileName": "genesis-pet-egodeath-6-c.png",
-        "url": "https://dl.airtable.com/.attachments/893a99172b97e988242bd395b3a713fc/a202ff6e/genesis-pet-egodeath-6-c.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=3323aae0c3513b20"
+        "url": "https://dl.airtable.com/.attachments/893a99172b97e988242bd395b3a713fc/a202ff6e/genesis-pet-egodeath-6-c.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=33ff7f038e19460b"
       }
     ]
   },
@@ -567,7 +567,7 @@
           "floating"
         ],
         "fileName": "genesis-pet-egodeath-7-c.png",
-        "url": "https://dl.airtable.com/.attachments/7040def10c82cc716eff8f3c56bed893/c59569fc/genesis-pet-egodeath-7-c.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=d2e48f0de27c382f"
+        "url": "https://dl.airtable.com/.attachments/7040def10c82cc716eff8f3c56bed893/c59569fc/genesis-pet-egodeath-7-c.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=86934ffe5e31c210"
       }
     ]
   },
@@ -593,7 +593,7 @@
           "floating"
         ],
         "fileName": "genesis-pet-egodeath-8-c.png",
-        "url": "https://dl.airtable.com/.attachments/297cdcb5f5be27763038d67b4c396d1a/f45459dd/genesis-pet-egodeath-8-c.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=b3e22cfc7f0b03dd"
+        "url": "https://dl.airtable.com/.attachments/297cdcb5f5be27763038d67b4c396d1a/f45459dd/genesis-pet-egodeath-8-c.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=312f15ddfa5bffec"
       }
     ]
   },
@@ -619,7 +619,7 @@
           "floating"
         ],
         "fileName": "genesis-pet-egodeath-9-c.png",
-        "url": "https://dl.airtable.com/.attachments/c846065af56d3d635befd18cf31749bb/b41d47d5/genesis-pet-egodeath-9-c.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=88e5a994c231b10a"
+        "url": "https://dl.airtable.com/.attachments/c846065af56d3d635befd18cf31749bb/b41d47d5/genesis-pet-egodeath-9-c.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=f2c881679fd823d5"
       }
     ]
   },
@@ -645,7 +645,7 @@
           "floating"
         ],
         "fileName": "genesis-pet-egodeath-10-c.png",
-        "url": "https://dl.airtable.com/.attachments/51834a8a9c9906fd1bbbcaad000186b9/34a0591b/genesis-pet-egodeath-10-c.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=f183f367894d36ba"
+        "url": "https://dl.airtable.com/.attachments/51834a8a9c9906fd1bbbcaad000186b9/34a0591b/genesis-pet-egodeath-10-c.png?ts=1658513873&userId=usreVCJ9uD8aB9PtI&cs=63e5ba117461c235"
       }
     ]
   },
@@ -671,7 +671,7 @@
           "floating"
         ],
         "fileName": "Memwraith-Synth-Mask-copy.png",
-        "url": "https://dl.airtable.com/.attachments/5e1e3d96e9b49dd855f4ce86d80711a9/1dde103d/Memwraith-Synth-Mask-copy.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=08ad70e303313abc"
+        "url": "https://dl.airtable.com/.attachments/5e1e3d96e9b49dd855f4ce86d80711a9/1dde103d/Memwraith-Synth-Mask-copy.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=bdac996181118d3e"
       }
     ]
   },
@@ -697,7 +697,7 @@
           "floating"
         ],
         "fileName": "Memwraith-Egodeath-Mask-1-copy.png",
-        "url": "https://dl.airtable.com/.attachments/5ce45561ab91051a454d0978005a4578/7932d66f/Memwraith-Egodeath-Mask-1-copy.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=4993de9ec87589cd"
+        "url": "https://dl.airtable.com/.attachments/5ce45561ab91051a454d0978005a4578/7932d66f/Memwraith-Egodeath-Mask-1-copy.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=2510c17c72fde54d"
       }
     ]
   },
@@ -718,12 +718,12 @@
     "pill_id": null,
     "items": [
       {
-        "name": "Pepel Prodglove, Right Arm",
+        "name": "Pepel Prodglove",
         "location": [
           "right-arm"
         ],
         "fileName": "Prodpill-Glove.png",
-        "url": "https://dl.airtable.com/.attachments/33e6d3580f0baa538114afd957cd8cd2/4ec3da3b/Prodpill-Glove.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=3d0f2aff18524f33"
+        "url": "https://dl.airtable.com/.attachments/33e6d3580f0baa538114afd957cd8cd2/4ec3da3b/Prodpill-Glove.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=f0ac63d5ff5bd666"
       }
     ]
   },
@@ -744,12 +744,154 @@
     "pill_id": null,
     "items": [
       {
-        "name": "Prodglove, Right Arm",
+        "name": "Prodglove",
         "location": [
           "right-arm"
         ],
         "fileName": "Prodpill-Arm.png",
-        "url": "https://dl.airtable.com/.attachments/3ee72b5b686c74854e0801edb391c41a/f327990d/Prodpill-Arm.png?ts=1657227447&userId=usreVCJ9uD8aB9PtI&cs=8ef8d336dddbc945"
+        "url": "https://dl.airtable.com/.attachments/3ee72b5b686c74854e0801edb391c41a/f327990d/Prodpill-Arm.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=d22260e4d8464e2f"
+      }
+    ]
+  },
+  {
+    "name": "Furhead of the Wassie",
+    "category": [
+      "furhead"
+    ],
+    "form": [
+      "pepel"
+    ],
+    "locations": [
+      "head"
+    ],
+    "pill_type": [
+      "wassiepill"
+    ],
+    "pill_id": null,
+    "items": [
+      {
+        "name": "Furhead of the Wassie",
+        "location": [
+          "head"
+        ],
+        "fileName": "-wearable--head-wassiehead.png",
+        "url": "https://dl.airtable.com/.attachments/6cf0620f7075850eacaa1caba9fb9896/a4fca547/-wearable--head-wassiehead.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=e69014147dddfb94"
+      }
+    ]
+  },
+  {
+    "name": "Ceremonial Tubbyhat",
+    "category": [
+      "tubbywear",
+      "tubbywear"
+    ],
+    "form": [
+      "pepel",
+      "pepel"
+    ],
+    "locations": [
+      "head",
+      "head"
+    ],
+    "pill_type": [
+      "tubbypill",
+      "tubbypill"
+    ],
+    "pill_id": null,
+    "items": [
+      {
+        "name": "Ceremonial Tubbyhat",
+        "location": [
+          "head"
+        ],
+        "fileName": "-wearable--head-tubbywear-front.png",
+        "url": "https://dl.airtable.com/.attachments/ba26b765742af200da983b1a8b48ce61/2d3b72b0/-wearable--head-tubbywear-front.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=8b1eb4cc8c087055"
+      },
+      {
+        "name": "Ceremonial Tubbyhat",
+        "location": [
+          "head"
+        ],
+        "fileName": "-wearable--head-tubbywear-back.png",
+        "url": "https://dl.airtable.com/.attachments/f3650416afb3e7e3b920b972a45f8634/2112a6d9/-wearable--head-tubbywear-back.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=340a359904ac7b3d"
+      }
+    ]
+  },
+  {
+    "name": "Chainspace Deck",
+    "category": [
+      "cybernetic"
+    ],
+    "form": [
+      "pepel"
+    ],
+    "locations": [
+      "head"
+    ],
+    "pill_type": [
+      "runnerpill"
+    ],
+    "pill_id": null,
+    "items": [
+      {
+        "name": "Chainspace Deck",
+        "location": [
+          "head"
+        ],
+        "fileName": "Chain-Runner-Deck-III.png",
+        "url": "https://dl.airtable.com/.attachments/6b783a8def53311242dbc2871c1aa3dd/db172e17/Chain-Runner-Deck-III.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=31c2a14f72af7c15"
+      }
+    ]
+  },
+  {
+    "name": "Gategremplin Capsuit",
+    "category": [
+      "crontech"
+    ],
+    "form": [
+      "pepel"
+    ],
+    "locations": [
+      "torso"
+    ],
+    "pill_type": [
+      "toadzpill"
+    ],
+    "pill_id": null,
+    "items": [
+      {
+        "name": "Gategremplin Capsuit",
+        "location": [
+          "torso"
+        ],
+        "fileName": "grempgatepill-copy.png",
+        "url": "https://dl.airtable.com/.attachments/17183b3664f802f1192a9fed5fd55f6c/bd820f67/grempgatepill-copy.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=5d3a7d28cba99a0e"
+      }
+    ]
+  },
+  {
+    "name": "Blitbot",
+    "category": [
+      "pets"
+    ],
+    "form": [
+      "universal"
+    ],
+    "locations": [
+      "floating"
+    ],
+    "pill_type": [
+      "blitpill"
+    ],
+    "pill_id": null,
+    "items": [
+      {
+        "name": "Blitbot",
+        "location": [
+          "floating"
+        ],
+        "fileName": "Blitbot-copy-3.png",
+        "url": "https://dl.airtable.com/.attachments/486d1245b91e67a72562f7859b12330e/53b32894/Blitbot-copy-3.png?ts=1658513874&userId=usreVCJ9uD8aB9PtI&cs=2eda019c430daf4f"
       }
     ]
   }

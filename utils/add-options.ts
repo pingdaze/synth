@@ -81,7 +81,7 @@ export async function refreshCIDs(optionsAddress: string, wearablesAddress: stri
   for(let i = index; i< SKELETON_OPTIONS.length; i++) {
     const option = SKELETON_OPTIONS[i];
     await processCIDs(options, wearables, augments)(option);
-    //console.log(`Processed:${i}#${option.name}`);
+    console.log(`Processed:${i}#${option.name}`);
   }
 }
 export async function pushOptions(optionsAddress: string, wearablesAddress: string, augmentsAddress: string, index: number = 0){
@@ -95,7 +95,7 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   for(let i = index; i< SKELETON_OPTIONS.length; i++) {
     const option = SKELETON_OPTIONS[i];
     await processSkeletonOption(options, wearables, augments)(option);
-    //console.log(`Processed:${i}#${option.name}`);
+    console.log(`Processed:${i}#${option.name}`);
   }
   //console.log("Done processing skeleton options");
 

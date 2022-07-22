@@ -9,12 +9,12 @@
       "description": "You are Tyo - and come from a part of Pepolis known as the Watching Cliffs, which overlooks one of the planet’s seas. Your tribe shapes Pepolis's weather by guiding the god Tyo’kuric, known as The Intense Storm"
     },
     {
-      "name": "Hijka",
+      "name": "Mekt",
       "type": "Tribe",
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
-      "description": "You are Hijka - a nomadic tribe that follows and protects Hem’Kijka, a swarm of a thousand insects traveling across Pepolis and destroying invasive fauna or anything that might affect life on the planet."
+      "description": "You are Mekt - a tribe shaped into formidable warriors by the relentless attacks of The Death God, M'Ekina Tkem’Mekt. Each time its agents were unleashed, the Mekt were forced to confront them. Their victories ultimately protected the Pepel species from eradication early in their evolution."
     },
     {
       "name": "Skia",
@@ -25,6 +25,14 @@
       "description": "You are Skia - a tribe of academics and scientists that reside on the mountain and M'Ekina known as Tkem'Skia, or The Voice of God. This is the name given to the giant ship of a forerunner species that is the source of much of the Pepel's early technological progress."
     },
     {
+      "name": "Hijka",
+      "type": "Tribe",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "You are Hijka - a nomadic tribe that follows and protects Hem’Kijka, a swarm of a thousand insects traveling across Pepolis and destroying invasive fauna or anything that might affect life on the planet."
+    },
+    {
       "name": "Cu’Rr’Al",
       "type": "Tribe",
       "rarity": "Standard",
@@ -33,28 +41,20 @@
       "description": "You are Cu’Rr’Al - the tribe closest to the great spawning pools that bring the Pepel to life. Joyful and peaceful, your tribe worships the great M'Ekina Curannnallsi - the water spirit goddess that watches over the waters of Pepolis."
     },
     {
-      "name": "Skro",
-      "type": "Tribe",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "You are Skro - forest wanderers regarded as great harvesters and gatherers. Your worship the great M’Ekina Skrallw, the Life Giver. A sixteen-legged beast the size of a mountain that rolls over forests, plains and pastures and collecting any food it encounters. The Skro rely on it for sustenance."
-    },
-    {
-      "name": "Mekt",
-      "type": "Tribe",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "You are Mekt - a tribe shaped into formidable warriors by the relentless attacks of The Death God, M'Ekina Tkem’Mekt. Each time its agents were unleashed, the Mekt were forced to confront them. Their victories ultimately protected the Pepel species from eradication early in their evolution."
-    },
-    {
       "name": "Quanian",
       "type": "Tribe",
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You are Quanian - the only tribe not to serve a M'Ekina. Your tribe built the first city on Pepolis: Q'Ua - now the largest and most prosperous on the planet. It is home to the ruling authority on Pepolis: The Keepers of the Node. Without M'Ekina to worship, the Quanian cultivated their own belief system focused on improving the Pepelian species."
+    },
+    {
+      "name": "Skro",
+      "type": "Tribe",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "You are Skro - forest wanderers regarded as great harvesters and gatherers. Your worship the great M’Ekina Skrallw, the Life Giver. A sixteen-legged beast the size of a mountain that rolls over forests, plains and pastures and collecting any food it encounters. The Skro rely on it for sustenance."
     }
   ],
   "Origin": [
@@ -67,28 +67,20 @@
       "description": "Carved out of one of the many blocks that exist in the Outer Blocks, Aateos (Block 447,305) has become a massive city that shelters those who have a distaste for authority and the trivialities found in the Etherchain."
     },
     {
-      "name": "Central Block",
+      "name": "Durn",
       "type": "Origin",
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
-      "description": "A giant block drifting on the edge of Chainspace, constructed by a forerunner society dedicated to the study of the blocks, the blockworms, and the end of space. It is now a Temple and site of study and analysis."
+      "description": "A ship graveyard. A planet of scrap parts that has become the Etherchain's largest junkyard."
     },
     {
-      "name": "Azshtttrokk",
+      "name": "Lusk",
       "type": "Origin",
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
-      "description": "AKA, The Host. A city built and grown within the carcass of an ancient Blockworm and home to many of the Blockeater Tribes"
-    },
-    {
-      "name": "Hued Forests",
-      "type": "Origin",
-      "rarity": "Standard",
-      "prerequisite_type": "HAS TRAIT",
-      "prerequisite_value": "Hashmonk",
-      "description": "A lush landscape floating atop the Mempool, and littered with many waterways."
+      "description": "Sitting within an asteroid belt, Lusk is the name given to a space station that was originally created to monitor the movements of the belt, but now serves as a cosmic court to the settling of disputes across Chainspace."
     },
     {
       "name": "Deepmem",
@@ -99,12 +91,12 @@
       "description": "A region in the vast depths of the Mempool that is so deep as to transmute water into crystal."
     },
     {
-      "name": "Loclouds",
+      "name": "Krolos",
       "type": "Origin",
       "rarity": "Standard",
-      "prerequisite_type": "HAS TRAIT",
-      "prerequisite_value": "Hashmonk",
-      "description": "The cloudy regions at the Mempool's outer bounds. Responsible for facilitating the Mempool's continual rejuvenation."
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A peaceful world of learning, governed by A.I. some say are the descendants of the ancient Flashbots."
     },
     {
       "name": "Genesis Cube",
@@ -115,28 +107,28 @@
       "description": "The vast construct whose explosion released the Genesis Pills and seeded the creation of all Chainspace."
     },
     {
-      "name": "Durn",
+      "name": "Azshtttrokk",
       "type": "Origin",
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
-      "description": "A ship graveyard. A planet of scrap parts that has become the Etherchain's largest junkyard."
+      "description": "AKA, The Host. A city built and grown within the carcass of an ancient Blockworm and home to many of the Blockeater Tribes"
     },
     {
-      "name": "Pepolis",
+      "name": "Central Block",
       "type": "Origin",
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
-      "description": "The swampy homeworld of the Pepel, a sentient frog-like species with advanced technology"
+      "description": "A giant block drifting on the edge of Chainspace, constructed by a forerunner society dedicated to the study of the blocks, the blockworms, and the end of space. It is now a Temple and site of study and analysis."
     },
     {
-      "name": "Krolos",
+      "name": "Hued Forests",
       "type": "Origin",
       "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A peaceful world of learning, governed by A.I. some say are the descendants of the ancient Flashbots."
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Hashmonk",
+      "description": "A lush landscape floating atop the Mempool, and littered with many waterways."
     },
     {
       "name": "Topheilia",
@@ -147,12 +139,20 @@
       "description": "Home of the Topheil, an insectoid race that has taken to preserving life found across Chainspace. They have turned their world into a conservatory for life of all kinds, where they look after each of the creatures they’ve collected."
     },
     {
-      "name": "Lusk",
+      "name": "Pepolis",
       "type": "Origin",
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
-      "description": "Sitting within an asteroid belt, Lusk is the name given to a space station that was originally created to monitor the movements of the belt, but now serves as a cosmic court to the settling of disputes across Chainspace."
+      "description": "The swampy homeworld of the Pepel, a sentient frog-like species with advanced technology"
+    },
+    {
+      "name": "Loclouds",
+      "type": "Origin",
+      "rarity": "Standard",
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Hashmonk",
+      "description": "The cloudy regions at the Mempool's outer bounds. Responsible for facilitating the Mempool's continual rejuvenation."
     }
   ],
   "Upbringing": [
@@ -163,38 +163,6 @@
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You have grown as an interstellar nomad, traveling across Chainspace."
-    },
-    {
-      "name": "Rekker",
-      "type": "Upbringing",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "Your ancestors were once rekt, their livelihoods destroyed. Now, you have nothing to lose, and have joined others like you to fight back against that system: taking what you can by force."
-    },
-    {
-      "name": "Bearbarian",
-      "type": "Upbringing",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "You've honed a sentiment of doom and gloom into a powerful frenzy state, ready to be unleashed on the battlefield."
-    },
-    {
-      "name": "Doomskroler",
-      "type": "Upbringing",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "You've trained with the Doomskroler Sekt, traveling across Chainspace to prophecize \"The End\"...or an end...any end will do."
-    },
-    {
-      "name": "Yield Farmer",
-      "type": "Upbringing",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "You've grown up a yield farmer. Its a humble life, but you know it well."
     },
     {
       "name": "Algorist",
@@ -213,6 +181,38 @@
       "description": "Your life has been dedicated to the art of buying low and selling high as you trade goods across Chainspace."
     },
     {
+      "name": "Yield Farmer",
+      "type": "Upbringing",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "You've grown up a yield farmer. Its a humble life, but you know it well."
+    },
+    {
+      "name": "Doomskroler",
+      "type": "Upbringing",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "You've trained with the Doomskroler Sekt, traveling across Chainspace to prophecize \"The End\"...or an end...any end will do."
+    },
+    {
+      "name": "Rekker",
+      "type": "Upbringing",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "Your ancestors were once rekt, their livelihoods destroyed. Now, you have nothing to lose, and have joined others like you to fight back against that system: taking what you can by force."
+    },
+    {
+      "name": "Patcher",
+      "type": "Upbringing",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "You grew up amongst Patchers, nomadic mechanics traveling between worlds to construct and tend to the yield engines communities rely on to boost their farm's yields"
+    },
+    {
       "name": "Edgelord",
       "type": "Upbringing",
       "rarity": "Standard",
@@ -229,12 +229,12 @@
       "description": "You're well trained operating vehicles: whether through space, on air, sea or land."
     },
     {
-      "name": "Patcher",
+      "name": "Bearbarian",
       "type": "Upbringing",
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
-      "description": "You grew up amongst Patchers, nomadic mechanics traveling between worlds to construct and tend to the yield engines communities rely on to boost their farm's yields"
+      "description": "You've honed a sentiment of doom and gloom into a powerful frenzy state, ready to be unleashed on the battlefield."
     }
   ],
   "Gift": [
@@ -247,20 +247,20 @@
       "description": "Whether through genetics, or a lifetime of extreme training, you possess diamond hands, and the heightened fortitude that comes with it"
     },
     {
-      "name": "Apeblood",
-      "type": "Gift",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "The blood of apes flows through your veins, and their strength is your strength"
-    },
-    {
       "name": "Frontrunner",
       "type": "Gift",
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "You possess a vast awareness of the flow of transactions across Chainspace, and the reflexes to beat them into blockspace."
+    },
+    {
+      "name": "Simptongued",
+      "type": "Gift",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "You have a way with words, though they don't always get you the desired result"
     },
     {
       "name": "Galaxy Brain",
@@ -271,31 +271,65 @@
       "description": "Your intellect is so vast as to either span across galaxies, or contain them"
     },
     {
+      "name": "Apeblood",
+      "type": "Gift",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "The blood of apes flows through your veins, and their strength is your strength"
+    },
+    {
       "name": "Gweibond",
       "type": "Gift",
       "rarity": "Standard",
       "prerequisite_type": null,
       "prerequisite_value": null,
       "description": "Your very essence is deeply bound to The Gwei, and you can perceive events in Chainspace just before they occur."
+    }
+  ],
+  "Water Type": [
+    {
+      "name": "Coral",
+      "type": "Water Type",
+      "rarity": "Standard",
+      "prerequisite_type": "HAS NOT TRAIT",
+      "prerequisite_value": "Shadowpakt",
+      "description": "You are made from the waters that ebb and flow through the coral regions, close to the Mempool's island archipelagos"
     },
     {
-      "name": "Simptongued",
-      "type": "Gift",
+      "name": "Sunstrider",
+      "type": "Water Type",
       "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "You have a way with words, though they don't always get you the desired result"
+      "prerequisite_type": "HAS NOT TRAIT",
+      "prerequisite_value": "Shadowpakt",
+      "description": "You are made from the sunkissed waterways that flow within the Mempool's islands"
+    },
+    {
+      "name": "Tropic",
+      "type": "Water Type",
+      "rarity": "Standard",
+      "prerequisite_type": "HAS NOT TRAIT",
+      "prerequisite_value": "Shadowpakt",
+      "description": "You are made from the warm waters that flow near the Mempool's center"
+    },
+    {
+      "name": "Arctic",
+      "type": "Water Type",
+      "rarity": "Standard",
+      "prerequisite_type": "HAS NOT TRAIT",
+      "prerequisite_value": "Shadowpakt",
+      "description": "You are made from the frigid waters at the Mempool's fringes."
+    },
+    {
+      "name": "Shadowmarked",
+      "type": "Water Type",
+      "rarity": "Special",
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Shadowpakt",
+      "description": "Your are made from ashen waters corrupted by the Shadowchain's touch."
     }
   ],
   "Faction": [
-    {
-      "name": "None",
-      "type": "Faction",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "You owe allegiance to no one, content to navigate your own way through Chainspace."
-    },
     {
       "name": "Degenerators",
       "type": "Faction",
@@ -319,48 +353,14 @@
       "prerequisite_type": "HAS PILL",
       "prerequisite_value": "ratspill",
       "description": "The Artists. Members of the RATStribe reject the overt commercialization of artistic practices, structuring their community around the mutual gifting of their creative expression."
-    }
-  ],
-  "Water Type": [
-    {
-      "name": "Coral",
-      "type": "Water Type",
-      "rarity": "Standard",
-      "prerequisite_type": "HAS NOT TRAIT",
-      "prerequisite_value": "Shadowpakt",
-      "description": "You are made from the waters that ebb and flow through the coral regions, close to the Mempool's island archipelagos"
     },
     {
-      "name": "Sunstrider",
-      "type": "Water Type",
+      "name": "None",
+      "type": "Faction",
       "rarity": "Standard",
-      "prerequisite_type": "HAS NOT TRAIT",
-      "prerequisite_value": "Shadowpakt",
-      "description": "You are made from the sunkissed waterways that flow within the Mempool's islands"
-    },
-    {
-      "name": "Arctic",
-      "type": "Water Type",
-      "rarity": "Standard",
-      "prerequisite_type": "HAS NOT TRAIT",
-      "prerequisite_value": "Shadowpakt",
-      "description": "You are made from the frigid waters at the Mempool's fringes."
-    },
-    {
-      "name": "Tropic",
-      "type": "Water Type",
-      "rarity": "Standard",
-      "prerequisite_type": "HAS NOT TRAIT",
-      "prerequisite_value": "Shadowpakt",
-      "description": "You are made from the warm waters that flow near the Mempool's center"
-    },
-    {
-      "name": "Shadowmarked",
-      "type": "Water Type",
-      "rarity": "Special",
-      "prerequisite_type": "HAS TRAIT",
-      "prerequisite_value": "Shadowpakt",
-      "description": "Your are made from ashen waters corrupted by the Shadowchain's touch."
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "You owe allegiance to no one, content to navigate your own way through Chainspace."
     }
   ],
   "Form": [
@@ -1077,58 +1077,6 @@
       "type": "Marking"
     }
   ],
-  "Hashmonk Torso": [
-    {
-      "name": "Rockpool Torso",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the waters in and around Rockpools",
-      "conflict": null,
-      "cid": "bafybeid3ng4tq3nyzwzwemyt2ju3djvkw2c5wanfx4rr23aqgvjkt3rzni",
-      "type": "Hashmonk Torso"
-    },
-    {
-      "name": "Earthcrusher Torso",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
-      "conflict": null,
-      "cid": "bafybeiddtwy36p7stylaikunv3nhtq63nlt5zyxbcy2ml3ibm5f64sz64a",
-      "type": "Hashmonk Torso"
-    },
-    {
-      "name": "Tidalwisp Torso",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
-      "conflict": null,
-      "cid": "bafybeihnwx7e6pnfvssljfwbx3m3r3dgw6g5l42hqhqs4g6h5rjuytjbry",
-      "type": "Hashmonk Torso"
-    },
-    {
-      "name": "Genesistorso Core",
-      "rarity": "Pillboost",
-      "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "egodeth_portalpill",
-      "description": "You are made from the reforged fragments of the Genesis Cube, the ancient relic whose destruction gave created Chainspace. You must be nearly as ancient as the Cube itself and regularly receive the reverence of those you encounter.",
-      "conflict": null,
-      "cid": "bafybeic47e34v23jjybcz3pmetdg4uv2pqzc66jkgea5gtw443akxtl3qm",
-      "type": "Hashmonk Torso"
-    },
-    {
-      "name": "Tsuno Torso",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
-      "conflict": null,
-      "cid": "bafybeibg5bmwhq3ojlobeo3y7ho637wwzopqjgwlywbpqeil7jsanpnmpq",
-      "type": "Hashmonk Torso"
-    }
-  ],
   "Hashmonk Crown": [
     {
       "name": "Memricrown",
@@ -1179,106 +1127,6 @@
       "type": "Hashmonk Head"
     },
     {
-      "name": "Rockpool Head",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the waters in and around Rockpools",
-      "conflict": null,
-      "cid": "bafybeiap7phjnmfjicslxtfaulye6bhdxovwnnomfazxllh4steeytv6ey",
-      "type": "Hashmonk Head"
-    },
-    {
-      "name": "Earthcrusher Head",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
-      "conflict": null,
-      "cid": "bafybeid5jm436ecxh7ig2qwgcl3biyhwbgdu6ltzirjsjv3w5l4rbekbxe",
-      "type": "Hashmonk Head"
-    },
-    {
-      "name": "Waxing Tidalhead",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Waxing Tide",
-      "conflict": null,
-      "cid": "bafybeic6la54o73eelp44uk42w5zvsqsczihbpnyqoemufexw474de7fwq",
-      "type": "Hashmonk Head"
-    },
-    {
-      "name": "Waning Tidalhead",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Waning Tide",
-      "conflict": null,
-      "cid": "bafybeierjlrcmaqasnmdged5wsogxq7uk2ezyuhewvnzmgkqf6wa6xtkoe",
-      "type": "Hashmonk Head"
-    },
-    {
-      "name": "Wading Tidalhead",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wading Tide",
-      "conflict": null,
-      "cid": "bafybeiezjzdpzy5fyiuvqlanqvrutcbvrnbmqzf6ztehcbgnucbafldmp4",
-      "type": "Hashmonk Head"
-    },
-    {
-      "name": "Wandering Tidalhead",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wandering Tide",
-      "conflict": null,
-      "cid": "bafybeibscf6bluxyd766hlb6ksi6dtx2gihlezgsfh6uprk2kljwerr6mm",
-      "type": "Hashmonk Head"
-    },
-    {
-      "name": "Wondrous Tidalhead",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wondrous Tide",
-      "conflict": null,
-      "cid": "bafybeifhrj5motwgirle5wlwxl5oczi2gebd7nfghqna3hurrsln5nvi5u",
-      "type": "Hashmonk Head"
-    },
-    {
-      "name": "Warring Tidalhead",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Warring Tide",
-      "conflict": null,
-      "cid": "bafybeiffkfo5hqskknmwb7r3zuz6iqdf3zcscvfmli4z64opkufki4udh4",
-      "type": "Hashmonk Head"
-    },
-    {
-      "name": "Wistful Tidalhead",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wistful Tide",
-      "conflict": null,
-      "cid": "bafybeibf3sevnc655z53mtft4nreaqj5edswrntycjm7nt4k6jdlryhwpy",
-      "type": "Hashmonk Head"
-    },
-    {
-      "name": "Wrathful Tidalhead",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wrathful Tide",
-      "conflict": null,
-      "cid": "bafybeiex5frdqm4axik4rccxs73knqbz2d42syd2yskc2uesawjkyjqom4",
-      "type": "Hashmonk Head"
-    },
-    {
       "name": "Melted Mirrorpillhead",
       "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
@@ -1317,98 +1165,16 @@
       "type": "Hashmonk Head"
     }
   ],
-  "Hashmonk Left Arm": [
+  "Hashmonk Torso": [
     {
-      "name": "Rockpool Left Arm",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the waters in and around Rockpools",
+      "name": "Genesistorso Core",
+      "rarity": "Pillboost",
+      "prerequisite_type": "HAS PILL",
+      "prerequisite_value": "egodeth_portalpill",
+      "description": "You are made from the reforged fragments of the Genesis Cube, the ancient relic whose destruction gave created Chainspace. You must be nearly as ancient as the Cube itself and regularly receive the reverence of those you encounter.",
       "conflict": null,
-      "cid": "bafybeibat3eowgbdsx3dzciq335h6lxkdpobb4guplyymy5oqxl4hdbryy",
-      "type": "Hashmonk Left Arm"
-    },
-    {
-      "name": "Earthcrusher Left Arm",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
-      "conflict": null,
-      "cid": "bafybeigwtelxrxeuiwsxnpuyejbn3mo3b5atmccdljlsn5bbvvbuf2elvm",
-      "type": "Hashmonk Left Arm"
-    },
-    {
-      "name": "Tidalwisp Left Arm",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
-      "conflict": null,
-      "cid": "bafybeidb4lmxswjuot3ykdhlqmp7pdoscszhzefvfos2menyazwkvtjolm",
-      "type": "Hashmonk Left Arm"
-    },
-    {
-      "name": "Tsuno Left Arm",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
-      "conflict": null,
-      "cid": "bafybeieqznxd6wijyqs7vysqnocofinioaw75vbqoar5ldbaypsnyxdskq",
-      "type": "Hashmonk Left Arm"
-    },
-    {
-      "name": "Diamond  Left Arm",
-      "rarity": "Special",
-      "prerequisite_type": "HAS TRAIT",
-      "prerequisite_value": "Diamond Hands",
-      "description": "Your arms pulsate as the diamonds within them shimmer and shake each time they catch and refract the ambient light",
-      "conflict": null,
-      "cid": "bafybeihsg2bguwkk7ejen57xkpwjq6bvaxzagjcu7uziqj6pie6etr5vxi",
-      "type": "Hashmonk Left Arm"
-    }
-  ],
-  "Hashmonk Left Leg": [
-    {
-      "name": "Rockpool Left Leg",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the waters in and around Rockpools",
-      "conflict": null,
-      "cid": "bafybeiabtufdf7g54zcg7o4kqazasoqth4qxr2ivqutt6t2j5445znynje",
-      "type": "Hashmonk Left Leg"
-    },
-    {
-      "name": "Earthcrusher Left Leg",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
-      "conflict": null,
-      "cid": "bafybeie6vx4ywusboy6f3orbylnwni6hj4gw4dqloehonik5onxzvug6aa",
-      "type": "Hashmonk Left Leg"
-    },
-    {
-      "name": "Tsuno Left Leg",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
-      "conflict": null,
-      "cid": "bafybeihxmwzbundqm62r4kvqfahjhjru5c5yuqaoo5xrisqew3tsytmjie",
-      "type": "Hashmonk Left Leg"
-    },
-    {
-      "name": "Tidalwisp Left Leg",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
-      "conflict": null,
-      "cid": "bafybeift3mu4hzuagckfnwhmjeoc7gcgmuddkhqedx7jmnepmdohisk7ma",
-      "type": "Hashmonk Left Leg"
+      "cid": "bafybeic47e34v23jjybcz3pmetdg4uv2pqzc66jkgea5gtw443akxtl3qm",
+      "type": "Hashmonk Torso"
     }
   ],
   "Hashmonk Mask": [
@@ -1791,110 +1557,6 @@
       "conflict": null,
       "cid": "bafybeibed7wf47fpcelttrzfk7bew4awuoms6rg5iozvhau64nrgqk3gpu",
       "type": "Hashmonk Mask"
-    }
-  ],
-  "Hashmonk Right Arm": [
-    {
-      "name": "Rockpool Right Arm",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the waters in and around Rockpools",
-      "conflict": null,
-      "cid": "bafybeigahfafrfgdaaoqcsql3b2gz34zsppgjj6pbmnyb36vpn4y64vhjq",
-      "type": "Hashmonk Right Arm"
-    },
-    {
-      "name": "Earthcrusher Right Arm",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
-      "conflict": null,
-      "cid": "bafybeibv2lawuhzz3szmuv3qp74d54zeang2rfdifnutgfwrpg53kzzre4",
-      "type": "Hashmonk Right Arm"
-    },
-    {
-      "name": "Tidalwisp Right Arm",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
-      "conflict": null,
-      "cid": "bafybeibqttikx3cx3mewvzpjsed6zjayrj7lzc24mcl4hxz46faki52xy4",
-      "type": "Hashmonk Right Arm"
-    },
-    {
-      "name": "Tsuno Right Arm",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
-      "conflict": null,
-      "cid": "bafybeiawhuqsw4v27dbcs2pdvgzaljdupccylxifs3koiffhe4wjyk67ja",
-      "type": "Hashmonk Right Arm"
-    },
-    {
-      "name": "Fangfish Arm",
-      "rarity": "Pillboost",
-      "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "shadowpak",
-      "description": "This parasitic creature from the inkwells in the Shadowchain has chosen you as its host. You now possess its power and abilities.",
-      "conflict": null,
-      "cid": "bafybeiab4a446iacj2inrod7lykc3axrmvcucm4476xetsxzderxogisxy",
-      "type": "Hashmonk Right Arm"
-    },
-    {
-      "name": "Diamond Right Arm",
-      "rarity": "Special",
-      "prerequisite_type": "HAS TRAIT",
-      "prerequisite_value": "Diamond Hands",
-      "description": "Your arms pulsate as the diamonds within them shimmer and shake each time they catch and refract the ambient light",
-      "conflict": null,
-      "cid": "bafybeiek3h2ffo6nedsdvdtpgdyghwpjmrjbx3ht4cb5ybrxxej7fpxj34",
-      "type": "Hashmonk Right Arm"
-    }
-  ],
-  "Hashmonk Right Leg": [
-    {
-      "name": "Rockpool Right Leg",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the waters in and around Rockpools",
-      "conflict": null,
-      "cid": "bafybeihx37wpm2bins2zltikjsikgjcgepboqub7yumydleelddospkswi",
-      "type": "Hashmonk Right Leg"
-    },
-    {
-      "name": "Earthcrusher Right Leg",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
-      "conflict": null,
-      "cid": "bafybeifcye2t5kty6gohmwmr7iizdu3jp5imzriszxpglxi4r4d6mmjbne",
-      "type": "Hashmonk Right Leg"
-    },
-    {
-      "name": "Tidalwisp Right Leg",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
-      "conflict": null,
-      "cid": "bafybeihsj4c4av23ktfkyniadx7zxwi3o4ofqknp3zy4wqicuy3mgcjkha",
-      "type": "Hashmonk Right Leg"
-    },
-    {
-      "name": "Tsuno Right Leg",
-      "rarity": "Standard",
-      "prerequisite_type": null,
-      "prerequisite_value": null,
-      "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
-      "conflict": null,
-      "cid": "bafybeicimkt7kmdy2pafc7vwwvwd2wo5r5e53mvkjr5fgdxmai7336kjxa",
-      "type": "Hashmonk Right Leg"
     }
   ]
 }
