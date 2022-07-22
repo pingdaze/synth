@@ -1077,6 +1077,58 @@
       "type": "Marking"
     }
   ],
+  "Hashmonk Torso": [
+    {
+      "name": "Rockpool Torso",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the waters in and around Rockpools",
+      "conflict": null,
+      "cid": "bafybeifibpo6mj3lw2zlheydgeprwx4awy3ykn6if7dgz53puw6vfsei6q",
+      "type": "Hashmonk Torso"
+    },
+    {
+      "name": "Earthcrusher Torso",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
+      "conflict": null,
+      "cid": "bafybeifunadhuta6mico7ffblcg5krcn7asnmad3pchfat67l5o6etauyy",
+      "type": "Hashmonk Torso"
+    },
+    {
+      "name": "Tidalwisp Torso",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
+      "conflict": null,
+      "cid": "bafybeid2vbj6wcjl34s7xigcrv2zqzpn5mpis3pydbkeusyqe6ckuiumry",
+      "type": "Hashmonk Torso"
+    },
+    {
+      "name": "Genesistorso Core",
+      "rarity": "Pillboost",
+      "prerequisite_type": "HAS PILL",
+      "prerequisite_value": "egodeth_portalpill",
+      "description": "You are made from the reforged fragments of the Genesis Cube, the ancient relic whose destruction gave created Chainspace. You must be nearly as ancient as the Cube itself and regularly receive the reverence of those you encounter.",
+      "conflict": null,
+      "cid": "bafybeic47e34v23jjybcz3pmetdg4uv2pqzc66jkgea5gtw443akxtl3qm",
+      "type": "Hashmonk Torso"
+    },
+    {
+      "name": "Tsuno Torso",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
+      "conflict": null,
+      "cid": "bafybeigv7y7cvlgr3z4f7oabtyzi5vk74fcqjzfulwsdoi6h4beqlbhgp4",
+      "type": "Hashmonk Torso"
+    }
+  ],
   "Hashmonk Crown": [
     {
       "name": "Memricrown",
@@ -1127,6 +1179,106 @@
       "type": "Hashmonk Head"
     },
     {
+      "name": "Rockpool Head",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the waters in and around Rockpools",
+      "conflict": null,
+      "cid": "bafybeidgs7bsufljvqrr5fjxos4zqsklpw2ktuwoschdaaantf5lashbp4",
+      "type": "Hashmonk Head"
+    },
+    {
+      "name": "Earthcrusher Head",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
+      "conflict": null,
+      "cid": "bafybeifx4deysjgvjjfj53r566c5xlyoqz3vnmilrsc7ak6txouyjkez6q",
+      "type": "Hashmonk Head"
+    },
+    {
+      "name": "Waxing Tidalhead",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Waxing Tide",
+      "conflict": null,
+      "cid": "bafybeic6la54o73eelp44uk42w5zvsqsczihbpnyqoemufexw474de7fwq",
+      "type": "Hashmonk Head"
+    },
+    {
+      "name": "Waning Tidalhead",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Waning Tide",
+      "conflict": null,
+      "cid": "bafybeierjlrcmaqasnmdged5wsogxq7uk2ezyuhewvnzmgkqf6wa6xtkoe",
+      "type": "Hashmonk Head"
+    },
+    {
+      "name": "Wading Tidalhead",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wading Tide",
+      "conflict": null,
+      "cid": "bafybeiezjzdpzy5fyiuvqlanqvrutcbvrnbmqzf6ztehcbgnucbafldmp4",
+      "type": "Hashmonk Head"
+    },
+    {
+      "name": "Wandering Tidalhead",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wandering Tide",
+      "conflict": null,
+      "cid": "bafybeibscf6bluxyd766hlb6ksi6dtx2gihlezgsfh6uprk2kljwerr6mm",
+      "type": "Hashmonk Head"
+    },
+    {
+      "name": "Wondrous Tidalhead",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wondrous Tide",
+      "conflict": null,
+      "cid": "bafybeifhrj5motwgirle5wlwxl5oczi2gebd7nfghqna3hurrsln5nvi5u",
+      "type": "Hashmonk Head"
+    },
+    {
+      "name": "Warring Tidalhead",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Warring Tide",
+      "conflict": null,
+      "cid": "bafybeiffkfo5hqskknmwb7r3zuz6iqdf3zcscvfmli4z64opkufki4udh4",
+      "type": "Hashmonk Head"
+    },
+    {
+      "name": "Wistful Tidalhead",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wistful Tide",
+      "conflict": null,
+      "cid": "bafybeibf3sevnc655z53mtft4nreaqj5edswrntycjm7nt4k6jdlryhwpy",
+      "type": "Hashmonk Head"
+    },
+    {
+      "name": "Wrathful Tidalhead",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform head fashioned in tribute to the tidal moods of the Mempool. This one depicts the Wrathful Tide",
+      "conflict": null,
+      "cid": "bafybeiex5frdqm4axik4rccxs73knqbz2d42syd2yskc2uesawjkyjqom4",
+      "type": "Hashmonk Head"
+    },
+    {
       "name": "Melted Mirrorpillhead",
       "rarity": "Pillboost",
       "prerequisite_type": "HAS PILL",
@@ -1165,16 +1317,98 @@
       "type": "Hashmonk Head"
     }
   ],
-  "Hashmonk Torso": [
+  "Hashmonk Left Arm": [
     {
-      "name": "Genesistorso Core",
-      "rarity": "Pillboost",
-      "prerequisite_type": "HAS PILL",
-      "prerequisite_value": "egodeth_portalpill",
-      "description": "You are made from the reforged fragments of the Genesis Cube, the ancient relic whose destruction gave created Chainspace. You must be nearly as ancient as the Cube itself and regularly receive the reverence of those you encounter.",
+      "name": "Rockpool Arm",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the waters in and around Rockpools",
       "conflict": null,
-      "cid": "bafybeic47e34v23jjybcz3pmetdg4uv2pqzc66jkgea5gtw443akxtl3qm",
-      "type": "Hashmonk Torso"
+      "cid": "bafybeiezcxjmw6rm66cdxb64xfwjtgw3mfteqswgotzw25iwuq6xywyqh4",
+      "type": "Hashmonk Left Arm"
+    },
+    {
+      "name": "Earthcrusher Arm",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
+      "conflict": null,
+      "cid": "bafybeih37rfjyh2rup55g4kdbjby6r7mmbloqbqrnagpo2wsnfan2ovptq",
+      "type": "Hashmonk Left Arm"
+    },
+    {
+      "name": "Tidalwisp Arm",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
+      "conflict": null,
+      "cid": "bafybeibq36sktzmwao2sza22ks6jijaphhgzcxsk6r2z6mesmhreookdye",
+      "type": "Hashmonk Left Arm"
+    },
+    {
+      "name": "Tsuno Arm",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
+      "conflict": null,
+      "cid": "bafybeif5kgx2iqade3hkyf6gkli5pph5rblwe32abv3al6ajm3myqnul4m",
+      "type": "Hashmonk Left Arm"
+    },
+    {
+      "name": "Diamond Arm",
+      "rarity": "Special",
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Diamond Hands",
+      "description": "Your arms pulsate as the diamonds within them shimmer and shake each time they catch and refract the ambient light",
+      "conflict": null,
+      "cid": "bafybeic6vuf2l6ouwg5xnzvi4zqff4ov6woqlhj54urrhatfjunmobsuxm",
+      "type": "Hashmonk Left Arm"
+    }
+  ],
+  "Hashmonk Left Leg": [
+    {
+      "name": "Rockpool Leg",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the waters in and around Rockpools",
+      "conflict": null,
+      "cid": "bafybeig5tb5rxqof5zxp2bolr5dqxhjwc7fqgprng2wc2zu5zhzncxhw5u",
+      "type": "Hashmonk Left Leg"
+    },
+    {
+      "name": "Earthcrusher Leg",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
+      "conflict": null,
+      "cid": "bafybeie6r7vrtdaudd55z2aya2hf676sbax5kmtfqoitzfhn75rgywg6ey",
+      "type": "Hashmonk Left Leg"
+    },
+    {
+      "name": "Tsuno Leg",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
+      "conflict": null,
+      "cid": "bafybeigysvssqhcs65gfqd4dyyhdonncskbl7d5fptv45gajexbtj3jq4m",
+      "type": "Hashmonk Left Leg"
+    },
+    {
+      "name": "Tidalwisp Leg",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
+      "conflict": null,
+      "cid": "bafybeic7vvmukjlghpiiaikwaz2terzrhihih6xmyt4prj7itzfoszqaf4",
+      "type": "Hashmonk Left Leg"
     }
   ],
   "Hashmonk Mask": [
@@ -1557,6 +1791,110 @@
       "conflict": null,
       "cid": "bafybeibed7wf47fpcelttrzfk7bew4awuoms6rg5iozvhau64nrgqk3gpu",
       "type": "Hashmonk Mask"
+    }
+  ],
+  "Hashmonk Right Arm": [
+    {
+      "name": "Rockpool Arm",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the waters in and around Rockpools",
+      "conflict": null,
+      "cid": "bafybeicztmflcpdmrkisn55un5npyqenqxp4milpnsvttfpi6fgzoec2bi",
+      "type": "Hashmonk Right Arm"
+    },
+    {
+      "name": "Earthcrusher Arm",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
+      "conflict": null,
+      "cid": "bafybeifwuqmjr3yv6krilnnnmk3wydimbysvvzvzf3yomp5ug7o4hbl6he",
+      "type": "Hashmonk Right Arm"
+    },
+    {
+      "name": "Tidalwisp Arm",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
+      "conflict": null,
+      "cid": "bafybeibiomic45vkvljl4ojgqs2px2ba3oehxdi7evia63xaiydv4se2me",
+      "type": "Hashmonk Right Arm"
+    },
+    {
+      "name": "Tsuno Arm",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
+      "conflict": null,
+      "cid": "bafybeihzykuxw3wl4v26wmdbzvjwpo75cjb2yodapdjvphrcescf62to6i",
+      "type": "Hashmonk Right Arm"
+    },
+    {
+      "name": "Fangfish Arm",
+      "rarity": "Pillboost",
+      "prerequisite_type": "HAS PILL",
+      "prerequisite_value": "shadowpak",
+      "description": "This parasitic creature from the inkwells in the Shadowchain has chosen you as its host. You now possess its power and abilities.",
+      "conflict": null,
+      "cid": "bafybeih3uv3c76v72arzy6iknshvr2vpntajujyd6ussomwned3t5wf7wq",
+      "type": "Hashmonk Right Arm"
+    },
+    {
+      "name": "Diamond Arm",
+      "rarity": "Special",
+      "prerequisite_type": "HAS TRAIT",
+      "prerequisite_value": "Diamond Hands",
+      "description": "Your arms pulsate as the diamonds within them shimmer and shake each time they catch and refract the ambient light",
+      "conflict": null,
+      "cid": "bafybeid4zih25aj3jhrjpi5gqsogpdt5x4tynnmlnw2bn6l6hj6l7dkg24",
+      "type": "Hashmonk Right Arm"
+    }
+  ],
+  "Hashmonk Right Leg": [
+    {
+      "name": "Rockpool Leg",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the waters in and around Rockpools",
+      "conflict": null,
+      "cid": "bafybeigtaqmia6lchu3avdq6drk4mojuhikcu5cipfbicxvabtf3zxfzze",
+      "type": "Hashmonk Right Leg"
+    },
+    {
+      "name": "Earthcrusher Leg",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from a mix of ocean and rock into a strong and resilient body",
+      "conflict": null,
+      "cid": "bafybeich2xydybqqxx53sucuswdohm4764boxcqqxywkf27frtnc5f2vr4",
+      "type": "Hashmonk Right Leg"
+    },
+    {
+      "name": "Tidalwisp Leg",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the wisps of water that fly across the Mempool's surface",
+      "conflict": null,
+      "cid": "bafybeidylwbk3gkqxauqxcqbtgtc3roada42yxw3czh5ztg6ur2j2k5tl4",
+      "type": "Hashmonk Right Leg"
+    },
+    {
+      "name": "Tsuno Leg",
+      "rarity": "Standard",
+      "prerequisite_type": null,
+      "prerequisite_value": null,
+      "description": "A waterform fashioned from the enormous waves that occasionally emerge from the Mempool's depths",
+      "conflict": null,
+      "cid": "bafybeiez6sjmci4uczf6gwk3ff2bbcaz6dvuzk3tjwvdcatkqn3pdysxci",
+      "type": "Hashmonk Right Leg"
     }
   ]
 }
