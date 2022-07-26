@@ -86,15 +86,7 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   let options = await ethers.getContractAt('SelectableOptions', optionsAddress) as SelectableOptions;
   let wearables = await ethers.getContractAt('WearablesValidator', wearablesAddress) as WearablesValidator;
   let augments = await ethers.getContractAt('AugmentsValidator', augmentsAddress) as AugmentsValidator;
-  // optionID -- name -- slot -- form
-  // let processing = SKELETON_OPTIONS.map(processSkeletonOption(options, wearables, augments));
-  // await Promise.all(processing);
-  for(let i = index; i< SKELETON_OPTIONS.length; i++) {
-    const option = SKELETON_OPTIONS[i];
-    await processSkeletonOption(options, wearables, augments)(option);
-    console.log(`Processed:${i}#${option.name}`);
-  }
-  //console.log("Done processing skeleton options");
+
 
   // processing = STEP_OPTIONS_BY_TYPE.Faction.map(processFactionOption(options, "Faction"));
   // await Promise.all(processing);
@@ -135,6 +127,16 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
     await options.addOption(color, color, "Type", 0);
     //console.log(`Added ${color}`);
   };
+
+  // optionID -- name -- slot -- form
+  // let processing = SKELETON_OPTIONS.map(processSkeletonOption(options, wearables, augments));
+  // await Promise.all(processing);
+  for(let i = index; i< SKELETON_OPTIONS.length; i++) {
+    const option = SKELETON_OPTIONS[i];
+    await processSkeletonOption(options, wearables, augments)(option);
+    console.log(`Processed:${i}#${option.name}`);
+  }
+  //console.log("Done processing skeleton options");
 }
 
 function processStepOption(optionsContract: SelectableOptions, slot: string) { return async (option: StepOption) => {
@@ -204,7 +206,8 @@ function processCIDs(optionsContract: SelectableOptions, wearablesContract: Wear
     }
   }
   else {
-    //console.log(`Could not find id for ${option.name}`);
+    console.log(`Could not find id for ${option.name}`);
+    processSkeletonOption(optionsContract, wearablesContract, augmentsContract)(option);
   }
 }}
 
