@@ -63,6 +63,9 @@ contract CharacterValidator is Ownable {
   Outfit public defaultOutfit = Outfit(
     33,34,35,36,37,38,39
   );
+
+  event CharacterCreated(address indexed _owner, uint indexed _id);
+
   /**
    * @dev
    */
@@ -272,6 +275,7 @@ contract CharacterValidator is Ownable {
         _collabPills.safeTransferFrom(msg.sender, _zeroAddress, collabPills[index], 1, "");
       }
     }
+    emit CharacterCreated(msg.sender, characterId);
     return characterId;
   }
 

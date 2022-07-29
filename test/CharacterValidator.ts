@@ -132,15 +132,15 @@ describe.only("Characters Validator", () => {
         "Interstellar Nomad",
         "Diamond Hands",
         "None",
-        "bafybeid5jm436ecxh7ig2qwgcl3biyhwbgdu6ltzirjsjv3w5l4rbekbxe", // head
-        "bafybeibg5bmwhq3ojlobeo3y7ho637wwzopqjgwlywbpqeil7jsanpnmpq", // torso
-        "bafybeibat3eowgbdsx3dzciq335h6lxkdpobb4guplyymy5oqxl4hdbryy", // larm
-        "bafybeigahfafrfgdaaoqcsql3b2gz34zsppgjj6pbmnyb36vpn4y64vhjq", // rarm
-        "bafybeiabtufdf7g54zcg7o4kqazasoqth4qxr2ivqutt6t2j5445znynje", // lleg
-        "bafybeifcye2t5kty6gohmwmr7iizdu3jp5imzriszxpglxi4r4d6mmjbne", // rleg
+        "bafybeiaoscozgkq6wczqbig74t7e3kgu5ikyp3frabso5ckjockootc4ke", // head
+        "bafybeigv7y7cvlgr3z4f7oabtyzi5vk74fcqjzfulwsdoi6h4beqlbhgp4", // torso
+        "bafybeic6vuf2l6ouwg5xnzvi4zqff4ov6woqlhj54urrhatfjunmobsuxm", // larm
+        "bafybeihp5hq6deugx4ejx6xpiibbb6vbty6anrbotp7h4he76tsjmzsqyi", // rarm
+        "bafybeig5tb5rxqof5zxp2bolr5dqxhjwc7fqgprng2wc2zu5zhzncxhw5u", // lleg
+        "bafybeich2xydybqqxx53sucuswdohm4764boxcqqxywkf27frtnc5f2vr4", // rleg
         "arctic", // color
-        "bafybeih7il4wy626fvsk7fzm74noo7d5awppo6smfwpcmmy3uaf7t3q7iq", // crown
-        "bafybeibz6d6h2reybjauchsgetmtjp7f3boruxwjbtx35ehtnootk4gmky", // mask
+        "bafybeiauxnajd2vno6dtkbr64qnksjolfoolj7sgiiz6w5aguc3gfrdsqe", // crown
+        "bafybeiab7wr5ynymlxqx4ja2kc4t5lnqne37aifcsihyz4qclazimdm3kq", // mask
       ] as string[];
       tx = await characterValidator.createCharacter(
         legacyPills,
@@ -167,13 +167,15 @@ describe.only("Characters Validator", () => {
         collabPills,
         traitsplus
       );
-      const characterID = await character.getCharacter(1);
-      const skeleton = await character.getSkeleton(1);
+      const receipt = await tx.wait();
+      const events = receipt.events?.filter((x) => {return x.event == "CharacterCreated"})[0];
+      const characterId = events && events.args ? events.args._id: 0;
+      const skeleton = await character.getSkeleton(characterId);
       skeleton.forEach(async (element) => {
         console.log("CID:", await augmentsValidator.cid(element), "For:", element);
       });
     });
-    it.only("Can get avatar equipment", async () => {
+    it("Can get avatar equipment", async () => {
       tx = await nift.mintBatch(owner, [mockKirbonitePill], [1], ethers.constants.HashZero);
       await tx.wait();
       tx = await nift.mintBatch(owner, [mockShadowPaktPill], [1], ethers.constants.HashZero);
@@ -203,12 +205,17 @@ describe.only("Characters Validator", () => {
         traitsplus
       );
       console.log(tx);
-      await tx.wait();
-      const equipment = await characterValidator.getEquipment(1);
+      const receipt = await tx.wait();
+      const events = receipt.events?.filter((x) => {return x.event == "CharacterCreated"})[0];
+      const characterId = events && events.args ? events.args._id: 0;
+      console.log("CharacterID", characterId);
+      let equipment = await characterValidator.getEquipment(characterId);
       console.log(equipment);
-      expect(equipment).to.include("bafybeiad7od2cvcravztyy4jvgih42hkukjcgnjz7mkmk2ktrafikeqvuu");
-      expect(equipment).to.include("bafybeic2s7ykcanuwdznrxtw4h4joepwutomtbbist5psqchct7hwfaibi");
+      expect(equipment).to.include("bafybeifckzrhfjvn43i5tg7fmj4i4gxsq23didycjb5rqp7mnsit66bolu");
+      expect(equipment).to.include("bafybeiajpeg6pudygrpzrj2sdpv7oxn2ft5kae5kdk5aozmzexcqiuvg5i");
       expect(equipment).to.include("bafybeiazjnlqqzdtvgldraz4braapf3ztm6azu3ty2eggmgsgzvrqwcl2e");
+      expect(equipment).to.include("bafybeibsuqdacaii6yz3tc2h3znecoum6zah7iiyipa5zegjyiw7axm2yi");
+      expect(equipment).to.include("bafybeie4amx642ryrag5twlztpy4kw5hdheo75hbtkxjilqciypgrbobma");
     });
     it("Can retrieve a CID from a character ID", async () => {
       const legacyPills: number[] = [0, 0, 0, 0, 0];
@@ -398,19 +405,19 @@ describe.only("Characters Validator", () => {
       const collabPills: number[] = [0, 0, 0, 0, 0];
       const traitsplus: string[] = [
         "Hashmonk",
-        "Deepmem",
-        "Bearbarian",
-        "Frontrunner",
+        "Aateos",
+        "Patcher",
+        "Diamond Hands",
         "None",
-        "bafybeierppjhuh63eeaekfrtintwzz6swvongraj7bieryjpumhu7kt6ey",
-        "bafybeid3ng4tq3nyzwzwemyt2ju3djvkw2c5wanfx4rr23aqgvjkt3rzni",
-        "bafybeibat3eowgbdsx3dzciq335h6lxkdpobb4guplyymy5oqxl4hdbryy",
-        "bafybeigahfafrfgdaaoqcsql3b2gz34zsppgjj6pbmnyb36vpn4y64vhjq",
-        "bafybeiabtufdf7g54zcg7o4kqazasoqth4qxr2ivqutt6t2j5445znynje",
-        "bafybeihx37wpm2bins2zltikjsikgjcgepboqub7yumydleelddospkswi",
-        "tropic",
-        "bafybeih7il4wy626fvsk7fzm74noo7d5awppo6smfwpcmmy3uaf7t3q7iq",
-        "bafybeiab7wr5ynymlxqx4ja2kc4t5lnqne37aifcsihyz4qclazimdm3kq"
+        "bafybeiaoscozgkq6wczqbig74t7e3kgu5ikyp3frabso5ckjockootc4ke", // head
+        "bafybeigv7y7cvlgr3z4f7oabtyzi5vk74fcqjzfulwsdoi6h4beqlbhgp4", // torso
+        "bafybeic6vuf2l6ouwg5xnzvi4zqff4ov6woqlhj54urrhatfjunmobsuxm", // larm
+        "bafybeiauo73tlthvqp3vem5crjkmdko2vg4dhhgrhox2wu756xkrxshbse", // rarm
+        "bafybeig5tb5rxqof5zxp2bolr5dqxhjwc7fqgprng2wc2zu5zhzncxhw5u", // lleg
+        "bafybeich2xydybqqxx53sucuswdohm4764boxcqqxywkf27frtnc5f2vr4", // rleg
+        "arctic", // color
+        "bafybeiauxnajd2vno6dtkbr64qnksjolfoolj7sgiiz6w5aguc3gfrdsqe", // crown
+        "bafybeiab7wr5ynymlxqx4ja2kc4t5lnqne37aifcsihyz4qclazimdm3kq", // mask
       ] as string[];
       tx = await characterValidator.createCharacter(
         legacyPills,
