@@ -35,6 +35,9 @@ const mockShadowPaktPill = ethers.BigNumber.from(
 const mockKirbonitePill = ethers.BigNumber.from(
   "0xC00000000000000650000000000000001"
 );
+const mockRATSPill = ethers.BigNumber.from(
+  "0xB00000000000000270000000000000001"
+);
 const mockLegacyIdReq = ethers.BigNumber.from(0xe);
 const mockShadowReq = ethers.BigNumber.from(0xd);
 const amount = 1;
@@ -312,13 +315,12 @@ describe.only("Characters Validator", () => {
         "Deepmem",
         "Doomskroler",
         "Galaxy Brain",
-        "None",
+        "Shadowpakt",
         "bafybeih53q7lmjzrbg6uycrfne3cfnxqqkfwdrv5julewb2e7qvdkcufz4",
         "bafybeidutfyyojdwoyfxv7o5js7hhgnb2fkms7ngcwqcurn33hsrn4qseu",
         "lime",
         "bafybeidnniq32g63mgxq2kw77zf4jcr3mipi72hoyi3goyi5qwez6wsnuu",
       ] as string[];
-      await options.setLegacyPillRequirement(optionID, mockLegacyIdReq);
       await expect(
         characterValidator.createCharacter(legacyPills, collabPills, traitsplus)
       ).to.be.revertedWith("You do not have the required Legacy pill");
@@ -491,7 +493,63 @@ describe.only("Characters Validator", () => {
         traitsplus
       );
     });
-    it("Can mint an avatar with a gated faction if holding the correctlegacy pill", async () => {
+    it("Can mint an avatar with a Degenerators Faction if holding the correct legacy pill", async () => {
+      tx = await nift.mintBatch(owner, [mockKirbonitePill], [1], ethers.constants.HashZero);
+      const legacyPills: BigNumber[] = [
+        mockKirbonitePill,
+        BigZero,
+        BigZero,
+        BigZero,
+        BigZero,
+      ];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
+      const traitsplus: string[] = [
+        "Pepel",
+        "Aateos",
+        "Interstellar Nomad",
+        "Galaxy Brain",
+        "Degenerators",
+        "bafybeif4roaeohve22gj6xkchsdareyjwshyfkrrhiu3odqrvxukftguba",
+        "bafybeicdchpng53briinhnrqq54ozr2vmyd7cvwu2wndtcz4sfiugdvyxm",
+        "lime",
+        "bafybeiggzxrzkneefcqy3gg4yzgi346nk3l4vd5dbg2atw4xsg4iezp2yi"
+      ] as string[];
+      await tx.wait();
+      tx = await characterValidator.createCharacter(
+        legacyPills,
+        collabPills,
+        traitsplus
+      );
+    });
+    it("Can mint an avatar with a RATS Faction if holding the correct legacy pill", async () => {
+      tx = await nift.mintBatch(owner, [mockRATSPill], [1], ethers.constants.HashZero);
+      const legacyPills: BigNumber[] = [
+        mockRATSPill,
+        BigZero,
+        BigZero,
+        BigZero,
+        BigZero,
+      ];
+      const collabPills: number[] = [0, 0, 0, 0, 0];
+      const traitsplus: string[] = [
+        "Pepel",
+        "Deepmem",
+        "Doomskroler",
+        "Galaxy Brain",
+        "RATStribe",
+        "bafybeif4roaeohve22gj6xkchsdareyjwshyfkrrhiu3odqrvxukftguba",
+        "bafybeicdchpng53briinhnrqq54ozr2vmyd7cvwu2wndtcz4sfiugdvyxm",
+        "lime",
+        "bafybeiggzxrzkneefcqy3gg4yzgi346nk3l4vd5dbg2atw4xsg4iezp2yi"
+      ] as string[];
+      await tx.wait();
+      tx = await characterValidator.createCharacter(
+        legacyPills,
+        collabPills,
+        traitsplus
+      );
+    });
+    it("Can mint an avatar with a Shadowpak Pills if holding the correctlegacy pill", async () => {
       tx = await nift.mintBatch(owner, [mockShadowPaktPill], [1], ethers.constants.HashZero);
       const legacyPills: BigNumber[] = [
         mockShadowPaktPill,
