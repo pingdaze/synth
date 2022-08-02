@@ -78,7 +78,7 @@ export async function refreshCIDs(optionsAddress: string, wearablesAddress: stri
   for(let i = index; i< SKELETON_OPTIONS.length; i++) {
     const option = SKELETON_OPTIONS[i];
     await processCIDs(options, wearables, augments)(option);
-    console.log(`Processed:${i}#${option.name}`);
+    //console.log(`Processed:${i}#${option.name}`);
   }
 }
 export async function pushOptions(optionsAddress: string, wearablesAddress: string, augmentsAddress: string, index: number = 0){
@@ -92,40 +92,40 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   // await Promise.all(processing);
   for(let option of STEP_OPTIONS_BY_TYPE.Faction) {
     await processFactionOption(options, "Faction")(option);
-    //console.log(`Added ${option.name}`);
+    console.log(`Added ${option.name}`);
   }
-  //console.log("Done processing Faction options");
+  console.log("Done processing Faction options");
   
   // processing = STEP_OPTIONS_BY_TYPE.Upbringing.map(processStepOption(options, "Upbringing"));
   // await Promise.all(processing);
   for(let option of STEP_OPTIONS_BY_TYPE.Upbringing) {
     await processStepOption(options, "Upbringing")(option);
-    //console.log(`Added ${option.name}`);
+    console.log(`Added ${option.name}`);
   }
-  //console.log("Done processing Upbringing options");
+  console.log("Done processing Upbringing options");
   
   // processing = STEP_OPTIONS_BY_TYPE.Gift.map(processStepOption(options, "Gift"));
   // await Promise.all(processing);
   for(let option of STEP_OPTIONS_BY_TYPE.Gift) {
     await processStepOption(options, "Gift")(option);
-    //console.log(`Added ${option.name}`);
+    console.log(`Added ${option.name}`);
   }
-  //console.log("Done processing Gift options");
+  console.log("Done processing Gift options");
   
   // processing = STEP_OPTIONS_BY_TYPE.Origin.map(processStepOption(options, "Origin"));
   // await Promise.all(processing);
   for(let option of STEP_OPTIONS_BY_TYPE.Origin) {
     await processStepOption(options, "Origin")(option);
-    //console.log(`Added ${option.name}`);
+    console.log(`Added ${option.name}`);
   }
-  //console.log("Done processing Origin options");
+  console.log("Done processing Origin options");
  for(let color of pepelColors) {
     await options.addOption(color, color, "Type", 1);
-    //console.log(`Added ${color}`);
+    console.log(`Added ${color}`);
    };
    for(let color of hashmonkColors) {
     await options.addOption(color, color, "Type", 0);
-    //console.log(`Added ${color}`);
+    console.log(`Added ${color}`);
   };
 
   // optionID -- name -- slot -- form
@@ -136,21 +136,21 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
     await processSkeletonOption(options, wearables, augments)(option);
     console.log(`Processed:${i}#${option.name}`);
   }
-  //console.log("Done processing skeleton options");
+  console.log("Done processing skeleton options");
 }
 
 function processStepOption(optionsContract: SelectableOptions, slot: string) { return async (option: StepOption) => {
   let id = await optionsContract.getOptionId(option.name);
   if(id.gt(0))  {
-    //console.log(`Option ${option.name} already exists`);
+    console.log(`Option ${option.name} already exists`);
     return;
   }
   let receipt;
   receipt = await optionsContract.addOption(option.name, option.name, slot, 2);
-  //console.log(option);
+  console.log(option);
   receipt.wait(4);
   id = await optionsContract.getOptionId(option.name);
-  //console.log(`Added ${option.name} with id ${id}`);
+  console.log(`Added ${option.name} with id ${id}`);
   if(option.prerequisite_type === "HAS TRAIT") {
     const id = await optionsContract.getOptionId(option.name);
     receipt = await optionsContract.setTraitRequirement(id, option.prerequisite_value!);
@@ -165,15 +165,15 @@ function processStepOption(optionsContract: SelectableOptions, slot: string) { r
 function processFactionOption(optionsContract: SelectableOptions, slot: string) { return async (option: StepOption) => {
   let id = await optionsContract.getOptionId(option.name);
   if(id.gt(0))  {
-    //console.log(`Option ${option.name} already exists`);
+    console.log(`Option ${option.name} already exists`);
     return;
   }
   let receipt;
   receipt = await optionsContract.addOption(option.name, option.name, slot, 2);
-  //console.log(option);
+  console.log(option);
   receipt.wait(4);
   id = await optionsContract.getOptionId(option.name);
-  //console.log(`Added ${option.name} with id ${id}`);
+  console.log(`Added ${option.name} with id ${id}`);
   if(option.prerequisite_type === "HAS PILL") {
     const pillId = legacyPillToId[option.prerequisite_value!];
     if(pillId !== 0x0) {
@@ -195,19 +195,19 @@ function processCIDs(optionsContract: SelectableOptions, wearablesContract: Wear
       if((await augmentsContract.cid(id)) == '') {
         receipt = await augmentsContract.setCID(id, option.cid!);
         await receipt.wait();
-        //console.log(`Added ${option.name} with id ${id} to Augments with CID: ${option.cid}`);
+        console.log(`Added ${option.name} with id ${id} to Augments with CID: ${option.cid}`);
       }
     } else if (option.skeleton === "wearable") {
-      if((await augmentsContract.cid(id)) == '') {
+      if((await wearablesContract.cid(id)) == '') {
         receipt = await wearablesContract.setCID(id, option.cid!)
         await receipt.wait();
-        //console.log(`Added ${option.name} with id ${id}  to Wearables with CID: ${option.cid}`);
+        console.log(`Added ${option.name} with id ${id}  to Wearables with CID: ${option.cid}`);
       }
     }
   }
   else {
     console.log(`Could not find id for ${option.name}`);
-    processSkeletonOption(optionsContract, wearablesContract, augmentsContract)(option);
+    await processSkeletonOption(optionsContract, wearablesContract, augmentsContract)(option);
   }
 }}
 
@@ -216,29 +216,33 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
   if(option.cid === null ){
     return;
   }
+  console.log("Processing: " + option.name);
+  console.log(option);
   if (option.prerequisite_type === "HAS PILL") {
+    console.log("Getting option ID")
     const id = await optionsContract.getOptionId(option.cid!);
     const legacyPillId = legacyPillToId[option.prerequisite_value!];
     const collabPillId = collabPillToId[option.prerequisite_value!];
-    //console.log(`Setting ${option.name} to require ${option.prerequisite_value} ID: ${legacyPillId}`);
+    console.log(`Setting ${option.name} to require ${option.prerequisite_value} ID: ${legacyPillId}`);
     if(option.skeleton === "wearable" && legacyPillId != undefined  && usedCIDs.includes(option.cid!) === false) {
-      // console.log(`Setting ${option.name} to require check 3${option.prerequisite_value} ID: ${legacyPillId}`);
-      await wearablesContract.setIdtoStringPill(BigNumber.from(legacyPillId), BigNumber.from(getFormUint(option.form)),  option.cid!);
+      console.log(`Setting ${option.name} to require check 3${option.prerequisite_value} ID: ${legacyPillId}`);
+      receipt = await wearablesContract.setIdtoStringPill(BigNumber.from(legacyPillId), BigNumber.from(getFormUint(option.form)),  option.cid!);
       usedCIDs.push(option.cid!);
-
+      await receipt.wait();
     }
-    if(legacyPillId && legacyPillId !== 0x0 && option.color !== "shadowmarked") {
-      //console.log(`Set ${option.name} to require  check 4${option.prerequisite_value}`);
+    if(legacyPillId && legacyPillId !== undefined && option.color !== "shadowmarked") {
+      console.log(`Set ${option.name} to require  check 4${option.prerequisite_value}`);
       receipt = await optionsContract.setLegacyPillRequirement(id, legacyPillId)
       await receipt.wait();
-    } else if (collabPillId && collabPillId !== 0x0 && option.color !== "shadowmarked") {
-      //console.log(`Set ${option.name} to require check 5${option.prerequisite_value}`);
+    } else if (collabPillId && collabPillId !== undefined && option.color !== "shadowmarked") {
+      console.log(`Set ${option.name} to require check 5${option.prerequisite_value}`);
       receipt = await optionsContract.setCollabPillRequirement(id, collabPillId)
+      await receipt.wait();
 
     }
   }
   if ((await optionsContract.getOptionId(option.cid!)).toNumber() !== 0) {
-    //console.log(`Option ${option.name} already exists`);
+    console.log(`Option ${option.name} already exists`);
     return;
   }
   let slot = "";
@@ -262,60 +266,62 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
     slot = "Eyes";
   } else if (option.location.includes(Location["Crown"])){
     slot = "Crown";
+  } else if (option.location.includes(Location["Floating"])){
+    slot = "Floating";
   } else if (option.category === "mask"){
     slot = "Mask";
   }
 
   if(slot !== "") {
     if((option.name.includes("Pepelian") || option.name.includes("Unadorned")) && !option.name.includes("Mutagenic")) {
-      //console.log(`Adding \nName:${option.name} \nCID:${option.cid}`);
+      console.log(`Adding \nName:${option.name} \nCID:${option.cid} as default`);
       receipt = await optionsContract.addOptionWithId(option.cid!, locationToId[option.location[0]], option.name, slot, getFormUint(option.form));
-      //console.log(`Added \nName:${option.name} \nCID:${option.cid}`);
+      console.log(`Added \nName:${option.name} \nCID:${option.cid}`);
       const tx = await receipt.wait();
     } else {
+      console.log(`Adding \nName:${option.name} \nCID:${option.cid} as option`);
       receipt = await optionsContract.addOption(option.cid!, option.name, slot, getFormUint(option.form));
+      console.log(`Added \nName:${option.name} \nCID:${option.cid}`);
       await receipt.wait();
     }
     const id = await optionsContract.getOptionId(option.cid!);
-    if(option.name.includes("Pepelian") && !option.name.includes("Mutagenic")) {
-    }
     await receipt.wait();
     if(option.skeleton === "base" || option.skeleton === "marking") {
       receipt = await augmentsContract.setCID(id, option.cid!);
       await receipt.wait();
-      //console.log(`Added ${option.name} with id ${id} to Augments with CID: ${option.cid}`);
+      console.log(`Added ${option.name} with id ${id} to Augments with CID: ${option.cid}`);
     } else if (option.skeleton === "wearable") {
       receipt = await wearablesContract.setCID(id, option.cid!)
       await receipt.wait();
-      //console.log(`Added ${option.name} with id ${id}  to Wearables with CID: ${option.cid}`);
+      console.log(`Added ${option.name} with id ${id}  to Wearables with CID: ${option.cid}`);
     }
-    //console.log(`Added ${option.name} to ${slot}`);
+    console.log(`Added ${option.name} to ${slot}`);
     if(option.prerequisite_type === "HAS TRAIT") {
       receipt = await optionsContract.setTraitRequirement(id, option.prerequisite_value!);
       await receipt.wait();
-      //console.log(`Set ${option.name} to have trait ${option.prerequisite_value}`);
+      console.log(`Set ${option.name} to have trait ${option.prerequisite_value}`);
     }    
     else if (option.prerequisite_type === "HAS NOT TRAIT") {
       const id = await optionsContract.getOptionId(option.cid!);
       receipt = await optionsContract.setNotTraitRequirement(id, option.prerequisite_value!);
       await receipt.wait();
-      //console.log(`Set ${option.name} to have not trait ${option.prerequisite_value}`);
+      console.log(`Set ${option.name} to have not trait ${option.prerequisite_value}`);
     } else if (option.prerequisite_type === "HAS ETH") {
       const id = await optionsContract.getOptionId(option.cid!);
       receipt = await optionsContract.setEthRequirement(id, ethers.utils.parseEther(option.prerequisite_value!));      
       await receipt.wait();
-      //console.log(`Set ${option.name}:${id} to have ETH ${option.prerequisite_value}`);
+      console.log(`Set ${option.name}:${id} to have ETH ${option.prerequisite_value}`);
     } else if (option.prerequisite_type === "HAS PILL") {
       const id = await optionsContract.getOptionId(option.cid!);
       const legacyPillId = legacyPillToId[option.prerequisite_value!];
       const collabPillId = legacyPillToId[option.prerequisite_value!];
       if(option.skeleton === "wearable" && legacyPillId !== undefined && usedCIDs.includes(option.cid!) === false) {
-        // console.log(`Setting ${option.name} to require test ${option.prerequisite_value} ID: ${legacyPillId}`);
+        console.log(`Setting ${option.name} to require test ${option.prerequisite_value} ID: ${legacyPillId}`);
         await wearablesContract.setIdtoStringPill(BigNumber.from(legacyPillId), BigNumber.from(getFormUint(option.form)),  option.cid!);
         usedCIDs.push(option.cid!);
 
       } else if ( option.skeleton === "wearable" && collabPillId !== undefined && usedCIDs.includes(option.cid!) === false ) {
-        // console.log(`Setting ${option.name} to require  check 1 ${option.prerequisite_value} ID: ${collabPillId}`);
+        console.log(`Setting ${option.name} to require  check 1 ${option.prerequisite_value} ID: ${collabPillId}`);
         await wearablesContract.setIdtoStringPill(BigNumber.from(collabPillId), BigNumber.from(getFormUint(option.form)),  option.cid!);
         usedCIDs.push(option.cid!);
 
@@ -323,7 +329,7 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
       if(legacyPillId && legacyPillId !== 0x0 && option.color !== "shadowmarked") {
         receipt = await optionsContract.setLegacyPillRequirement(id, legacyPillId)
         await receipt.wait();
-        //console.log(`Set ${option.name} to require check 2 ${option.prerequisite_value}`);
+        console.log(`Set ${option.name} to require check 2 ${option.prerequisite_value}`);
       } else  if (collabPillId && collabPillId !== 0x0 && option.color !== "shadowmarked") {
         receipt = await optionsContract.setCollabPillRequirement(id, collabPillId)
 
@@ -335,11 +341,11 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
     if(option.skeleton === "base") {
       receipt = await augmentsContract.addAugment(0, slotUint, form, rarity );
       await receipt.wait();
-      //console.log(`Added ${option.name} to augments`);
+      console.log(`Added ${option.name} to augments`);
     } else if (option.skeleton === "wearable") {
       receipt = await wearablesContract.addWearable(0, slotUint, form, rarity );
       await receipt.wait();
-      //console.log(`Added ${option.name} to wearables`);
+      console.log(`Added ${option.name} to wearables`);
     }
   }
 } }
