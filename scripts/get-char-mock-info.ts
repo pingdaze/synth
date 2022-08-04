@@ -4,7 +4,7 @@ import {CharacterValidator, RandomnessRelayL2, WearablesValidator, SelectableOpt
 import charDeploymant from "./deploy-args/char-mock-deployment.json"
 
 
-const id1 = 103;
+const id1 = 38;
 
 
 // Replace magic numbers
@@ -33,6 +33,7 @@ async function main() {
   wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbRinkeby.WearablesValidator) as WearablesValidator;
   augmentsValidator = await ethers.getContractAt('AugmentsValidator', charDeploymant.ArbRinkeby.AugmentsValidator) as AugmentsValidator;
   character = await ethers.getContractAt('Characters', charDeploymant.ArbRinkeby.Characters) as CharacterGenMock;
+  characterValidator = await ethers.getContractAt('CharacterValidator', charDeploymant.ArbRinkeby.CharacterValidator) as CharacterValidator;
   let skeleton = await character.getSkeleton(id1);
   console.log("Skeleton: " + JSON.stringify(skeleton));
   let outfit = await character.getOutfit(id1);
@@ -81,7 +82,8 @@ async function main() {
   console.log(`Crown: ${crown} ID: ${skeleton.crown}`);
   let marking = await augmentsValidator.cid(skeleton.marking);
   console.log(`Marking: ${marking} ID: ${skeleton.marking}`);
-
+  console.log(await character.characters(id1));
+  console.log(await characterValidator.getEquipment(id1));
     
 
   

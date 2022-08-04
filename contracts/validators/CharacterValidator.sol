@@ -279,6 +279,29 @@ contract CharacterValidator is Ownable {
     return characterId;
   }
 
+  function settings(    
+    ICore _core,
+    SelectableOptions _selectableOptions,
+    IWearables _wearableOptions,
+    IAugments _augmentOptions,
+    ICharacter _character,
+    uint32 charPerCall_,
+    address requester_,
+    IERC1155 collabPills_,
+    IERC1155 legacyPills_
+  ) external onlyOwner{
+    // TODO: create setter for this, otherwise we could have some #BadVibes with the gassage
+    core = _core;
+    _charPerCall = charPerCall_;
+    selectableOptions = _selectableOptions;
+    wearableOptions = _wearableOptions;
+    augmentOptions = _augmentOptions;
+    character = _character;
+    _requester = VRFRequester(requester_);
+    _collabPills = collabPills_;
+    _legacyPills = legacyPills_;
+  }
+
   // solhint-disable-next-line
   function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)
     internal

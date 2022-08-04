@@ -91,11 +91,11 @@ async function main() {
     await legacy.mintBatch(owner, [mockShadowPaktPill, mockKirbonitePill], [1, 1], ethers.constants.HashZero);
     await legacy.setApprovalForAll(characterValidator.address, true);
     legacyPills = [
-      BigZero,
-      BigZero,
-      BigZero,
-      mockKirbonitePill,
       mockShadowPaktPill,
+      BigZero,
+      BigZero,
+      BigZero,
+      BigZero,
       // BigNumber.from("57896044618658097711785492504343953929016968901266851264415136113747971538945"),
       // BigNumber.from("57896044618658097711785492504343953927315557066662158946876902147704615862273"),
       // BigNumber.from("57896044618658097711785492504343953927315557066662158946710881451041229897729"),
@@ -108,22 +108,22 @@ async function main() {
       BigZero,
       BigZero,
     ];
-    traitsplus = [
-      "Hashmonk",
-      "Aateos",
-      "Patcher",
-      "Diamond Hands",
-      "None",
-      "bafybeiffkfo5hqskknmwb7r3zuz6iqdf3zcscvfmli4z64opkufki4udh4", // head
-      "bafybeigv7y7cvlgr3z4f7oabtyzi5vk74fcqjzfulwsdoi6h4beqlbhgp4", // torso
-      "bafybeic6vuf2l6ouwg5xnzvi4zqff4ov6woqlhj54urrhatfjunmobsuxm", // larm
-      "bafybeiefwn32qzxqyewiadmcx4au2tuexh7pp26wfdl4uf336po7cczn2i", // rarm
-      "bafybeig5tb5rxqof5zxp2bolr5dqxhjwc7fqgprng2wc2zu5zhzncxhw5u", // lleg
-      "bafybeich2xydybqqxx53sucuswdohm4764boxcqqxywkf27frtnc5f2vr4", // rleg
-      "arctic", // color
-      "bafybeiauxnajd2vno6dtkbr64qnksjolfoolj7sgiiz6w5aguc3gfrdsqe", // crown
-      "bafybeiab7wr5ynymlxqx4ja2kc4t5lnqne37aifcsihyz4qclazimdm3kq", // mask
-    ] as string[];
+    // traitsplus = [
+    //   "Hashmonk",
+    //   "Aateos",
+    //   "Patcher",
+    //   "Diamond Hands",
+    //   "None",
+    //   "bafybeiffkfo5hqskknmwb7r3zuz6iqdf3zcscvfmli4z64opkufki4udh4", // head
+    //   "bafybeigv7y7cvlgr3z4f7oabtyzi5vk74fcqjzfulwsdoi6h4beqlbhgp4", // torso
+    //   "bafybeic6vuf2l6ouwg5xnzvi4zqff4ov6woqlhj54urrhatfjunmobsuxm", // larm
+    //   "bafybeiefwn32qzxqyewiadmcx4au2tuexh7pp26wfdl4uf336po7cczn2i", // rarm
+    //   "bafybeig5tb5rxqof5zxp2bolr5dqxhjwc7fqgprng2wc2zu5zhzncxhw5u", // lleg
+    //   "bafybeich2xydybqqxx53sucuswdohm4764boxcqqxywkf27frtnc5f2vr4", // rleg
+    //   "arctic", // color
+    //   "bafybeiauxnajd2vno6dtkbr64qnksjolfoolj7sgiiz6w5aguc3gfrdsqe", // crown
+    //   "bafybeiab7wr5ynymlxqx4ja2kc4t5lnqne37aifcsihyz4qclazimdm3kq", // mask
+    // ] as string[];
     receipt = await characterValidator.createCharacter(
       legacyPills,
       collabPills,
