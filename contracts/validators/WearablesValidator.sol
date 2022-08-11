@@ -95,17 +95,17 @@ contract WearablesValidator is Context, Auth {
   }
 
   function setIdtoStringPill(uint256 pillId, uint256 form, string calldata cid) external {
-    legacyPill[pillId * 256 * (form+1)].push(cid);
+    legacyPill[pillId + (256 * (form+1))].push(cid);
   }
 
   function removeIdfromStringPill(uint256 pillId, uint256 form, uint256 index) external {
-    string[] storage arr = legacyPill[pillId * 256 * (form+1)];
+    string[] storage arr = legacyPill[pillId + (256 * (form+1))];
     arr[index] = arr[arr.length - 1];
     arr.pop();
   }
 
   function getEquipmentFromPill(uint256 pillId, uint256 form) public view returns (string[] memory) {
-    return legacyPill[pillId * 256 * (form+1)];
+    return legacyPill[pillId + (256 * (form+1))];
   }
 
   // Unclear if slot should be at the top, or the bottom of this config?
