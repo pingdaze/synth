@@ -231,11 +231,11 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
       await receipt.wait();
     }
     if(legacyPillId && legacyPillId !== undefined && option.color !== "shadowmarked") {
-      console.log(`Set ${option.name} to require  check 4${option.prerequisite_value}`);
+      console.log(`Set ${option.name} to require  check 4${option.prerequisite_value} ID: ${legacyPillId} `);
       receipt = await optionsContract.setLegacyPillRequirement(id, legacyPillId)
       await receipt.wait();
     } else if (collabPillId && collabPillId !== undefined && option.color !== "shadowmarked") {
-      console.log(`Set ${option.name} to require check 5${option.prerequisite_value}`);
+      console.log(`Set ${option.name} to require check 5${option.prerequisite_value} ID: ${legacyPillId}`);
       receipt = await optionsContract.setCollabPillRequirement(id, collabPillId)
       await receipt.wait();
 
@@ -329,7 +329,7 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
       if(legacyPillId && legacyPillId !== 0x0 && option.color !== "shadowmarked") {
         receipt = await optionsContract.setLegacyPillRequirement(id, legacyPillId)
         await receipt.wait();
-        console.log(`Set ${option.name} to require check 2 ${option.prerequisite_value}`);
+        console.log(`Set ${option.name} to require check 2 ${option.prerequisite_value} ID: ${legacyPillId}`);
       } else  if (collabPillId && collabPillId !== 0x0 && option.color !== "shadowmarked") {
         receipt = await optionsContract.setCollabPillRequirement(id, collabPillId)
 
