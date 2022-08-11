@@ -6,6 +6,22 @@ import { BigNumber } from "ethers";
 
 
 const pillIDs =  Array.from({length: 14}, (v, k) => k);
+const pillNames = [
+  "genesis",
+  "payback pill",
+  "prodpill",
+  "unipill",
+  "hypepill",
+  "rektpill",
+  "memfruit",
+  "synth_memwraith",
+  "memricorn",
+  "memsnake",
+  "ratspill",
+  "kirbonite",
+  "shadowpak",
+  "mirrorpill"
+]
 
 // Replace magic numbers
 async function main() {
@@ -20,8 +36,9 @@ async function main() {
   [owner, user1] = await ethers.getSigners();
   console.log("Signing as " + owner.address);
   wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbRinkeby.WearablesValidator) as WearablesValidator;
-  for(let i = 0; i < pillIDs.length; i++) {
-    console.log(await wearablesValidator.getEquipmentFromPill(BigNumber.from(pillIDs[i]), 1));
+  for(let i = 1; i < pillIDs.length; i++) {
+    const cid = await wearablesValidator.getEquipmentFromPill(BigNumber.from(pillIDs[i]), 1);
+    console.log(`Pills ID ${pillIDs[i]} ${pillNames[i -1]}  CIDs: ${cid}`);
   }
     
 }
