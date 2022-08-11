@@ -25,7 +25,7 @@ import { ContractTransaction } from "ethers";
 import { pushOptions } from "../utils/add-options";
 import charDeploymant from "./deploy-args/char-mock-deployment.json"
 
-const coreIds = Array.from(Array(1200).keys());
+const coreIds = Array.from(Array(200).keys());
 const mockCollabId = 1;
 
 
@@ -48,7 +48,6 @@ async function main() {
   let character: Characters;
   let receipt: ContractTransaction;
   let options: SelectableOptions;
-  let nift: Basic1155;
   let owner: string;
   // TODO: Turn this into a cute lil' reusable function
   console.log("Network: " + network.name);
@@ -57,21 +56,17 @@ async function main() {
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   if(network.name === "arbrinkeby") {
-    nift = (await deployMock1155()) as Basic1155;
-    await nift.deployed();
-    console.log("NIFT address: ", nift.address);
-    receipt = await nift.mint(mockCollabId, owner, amount);
-    await receipt.wait();
-    console.log("NIFT balance: ", ethers.utils.formatEther(await nift.balanceOf(owner, mockCollabId)));
     core721 = (await deployCore721()) as Core721;
     await core721.deployed();
     console.log("Core721 address: ", core721.address);
     core1155 = (await deployCore1155()) as Core1155;
     await core1155.deployed();
     console.log("Core1155 address: ", core1155.address);
+    const pills1155 = await ethers.getContractAt("Core1155", charDeploymant.ArbRinkeby.Pills1155) as Core1155;
+
     options = (await deploySelectableOptions(
-      legacyPillsAddr,
-      nift.address
+      pills1155.address,
+      pills1155.address
     )) as SelectableOptions;
     await options.deployed();
     console.log("SelectableOptions address: ", options.address);
@@ -94,7 +89,6 @@ async function main() {
     requester = (await deployRequester()) as RandomnessRelayL2;
     await requester.deployed();
     console.log("Requester address: ", requester.address);
-    const pills1155 = await ethers.getContractAt("Core1155", charDeploymant.ArbRinkeby.Pills1155) as Core1155;
 
     characterValidator = (await deployCharacterValidator(
       core721,
@@ -110,6 +104,7 @@ async function main() {
     console.log("CharacterValidator address: ", characterValidator.address);
     receipt = await character.setValidator(characterValidator.address);
     await receipt.wait();
+    console.log("CharacterValidator set");
     receipt = await core721.addValidator(characterValidator.address, coreIds);
     await receipt.wait();
     console.log("Character Validator Installed");
