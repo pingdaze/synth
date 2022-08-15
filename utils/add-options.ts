@@ -78,7 +78,7 @@ export async function refreshCIDs(optionsAddress: string, wearablesAddress: stri
   for(let i = index; i< SKELETON_OPTIONS.length; i++) {
     const option = SKELETON_OPTIONS[i];
     await processCIDs(options, wearables, augments)(option);
-    //console.log(`Processed:${i}#${option.name}`);
+    // console.log(`Processed:${i}#${option.name}`);
   }
 }
 export async function pushOptions(optionsAddress: string, wearablesAddress: string, augmentsAddress: string, index: number = 0){
@@ -218,6 +218,10 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
   }
   console.log("Processing: " + option.name);
   console.log(option);
+  if ((await optionsContract.getOptionId(option.cid!)).toNumber() !== 0) {
+    console.log(`Option ${option.name} already exists`);
+    return;
+  }
   if (option.prerequisite_type === "HAS PILL") {
     console.log("Getting option ID")
     const id = await optionsContract.getOptionId(option.cid!);
@@ -240,10 +244,6 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
       await receipt.wait();
 
     }
-  }
-  if ((await optionsContract.getOptionId(option.cid!)).toNumber() !== 0) {
-    console.log(`Option ${option.name} already exists`);
-    return;
   }
   let slot = "";
   if(option.skeleton === "marking"){
