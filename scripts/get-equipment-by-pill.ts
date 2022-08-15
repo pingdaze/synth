@@ -1,6 +1,6 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { network, ethers } from "hardhat";
-import {CharacterValidator, RandomnessRelayL2, WearablesValidator, SelectableOptions, Core1155, Core721, AugmentsValidator, CharacterGenMock} from "../typechain-types";
+import { WearablesValidator } from "../typechain-types";
 import charDeploymant from "./deploy-args/char-mock-deployment.json"
 import { BigNumber } from "ethers";
 
