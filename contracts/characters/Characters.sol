@@ -329,6 +329,12 @@ contract Characters is Context, Auth {
         : characters[tokenID].name;
   }
 
+
+  function setName(uint256 tokenID, string calldata name) public {
+    require(core.ownerOf(tokenID) == msg.sender, "Player must be holding character");
+    characters[tokenID].name = name;
+  }
+
   function getCharacter(uint256 tokenID)
     external
     view
