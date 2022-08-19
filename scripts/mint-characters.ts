@@ -1,8 +1,16 @@
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { network, ethers } from "hardhat";
 import { BigNumber } from "@ethersproject/bignumber";
 import {CharacterValidator, WearablesValidator, SelectableOptions, Core1155, Core721, AugmentsValidator, Characters} from "../typechain-types";
 import charDeploymant from "./deploy-args/char-mock-deployment.json"
+import testMintData from "../data/test-mints.json";
 
+const mockShadowPaktPill = ethers.BigNumber.from(
+  "0xD00000000000000940000000000000001"
+);
+const mockKirbonitePill = ethers.BigNumber.from(
+  "0xC00000000000000650000000000000001"
+);
 const BigZero = ethers.BigNumber.from("0");
 
 async function main() {
@@ -43,47 +51,26 @@ async function main() {
       console.log("Approved legacy contract for owner");
 
     }
-    let legacyPills: BigNumber[] = [
-      BigNumber.from("0x600000000000000940000000000000001"),
-      BigZero,
-      BigZero,
-      BigZero,
-      BigZero,
-      BigZero
-    ]
-    let collabPills: BigNumber[] = [
-      BigZero,
-      BigZero,
-      BigZero,
-      BigZero,
-      BigZero,
-      BigZero
-    ]
-    let traitsplus = [
-      "Pepel",
-      "Durn",
-      "Algorist",
-      "Simptongued",
-      "None",
-      "bafybeibuasbtuzltmwi56z2t5ndyniwfh37atvdjv2ftf6xyisahcxqori",
-      "bafybeicr5vd3mqpyqhfe55x3t23ngwy477jnqqg3ydwpbmq3missdfnvyy",
-      "pale",
-      "bafybeigroraemt2yujiqgztpaya5q6lzp3tswy7sgkaicq5phdswbkptqi"
-    ]
+    for(let i = 0; i < testMintData.length; i++) {
+      let legacyPills: BigNumber[] = testMintData[i].legacyPills.map(x => ethers.BigNumber.from(x));
+      let collabPills: BigNumber[] = testMintData[i].collabPills.map(x => ethers.BigNumber.from(x));
 
-    const mintArray = legacyPills.concat(collabPills).filter(x => x.gt(BigZero));
-    const quantityArray = new Array(mintArray.length).fill(1);
-    await legacy.mintBatch(owner, mintArray, quantityArray, ethers.constants.HashZero);
-    await legacy.setApprovalForAll(characterValidator.address, true);
-    console.log(mintArray, quantityArray);
-    console.log(legacyPills, collabPills);
-    receipt = await characterValidator.createCharacter(
-      legacyPills,
-      collabPills,
-      traitsplus,
-      {gasPrice: 10000000000}
-    );
-    console.log("Character minted: ", receipt.hash);
+      let traitsplus = testMintData[i].traitsplus;
+
+      const mintArray = legacyPills.concat(collabPills).filter(x => x.gt(BigZero));
+      const quantityArray = new Array(mintArray.length).fill(1);
+      await legacy.mintBatch(owner, mintArray, quantityArray, ethers.constants.HashZero);
+      await legacy.setApprovalForAll(characterValidator.address, true);
+      console.log(mintArray, quantityArray);
+      console.log(legacyPills, collabPills);
+      receipt = await characterValidator.createCharacter(
+        legacyPills,
+        collabPills,
+        traitsplus,
+        {gasPrice: 10000000000}
+      );
+      console.log("Character minted: ", receipt.hash);
+    }
   }
 }
 
