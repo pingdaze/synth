@@ -51,7 +51,7 @@ const pepelCIDs: { [key:string]: string[] } = {
   "synth_memwraith":  ["bafybeiazjnlqqzdtvgldraz4braapf3ztm6azu3ty2eggmgsgzvrqwcl2e"],
   "memricorn":  ["bafybeifqs6s6l7mhxnsdzbnsjrru2xnipruyhlt64yilvjzxapvyf5fawe"],
   "memsnake":  ["bafybeiga7et2ixto7uvfi6yawpz56seoi5rxk3ytijjats7lotn2nehtvi"],
-  "ratspill": ["bafybeign7jdkteis3rni6guemkzqmlrvp6wxiju4kuxc6jajq4b543srre"],
+  "ratspill": ["bafybeign7jdkteis3rni6guemkzqmlrvp6wxiju4kuxc6jajq4b543srre", "bafybeibks2lzm4zxkfpt2fkmqtrsjh5gr7p5ytptrq34k4c5oakvirvxcm"],
   "kirbonite": ["bafybeifckzrhfjvn43i5tg7fmj4i4gxsq23didycjb5rqp7mnsit66bolu","bafybeiajpeg6pudygrpzrj2sdpv7oxn2ft5kae5kdk5aozmzexcqiuvg5i"],
   "shadowpak": ["bafybeie4amx642ryrag5twlztpy4kw5hdheo75hbtkxjilqciypgrbobma","bafybeidiob6m4kol32m3j3czf3n7sudsfsvguwj7yjncr2woz2oumyki3q"],
   "mirrorpill":  ["bafybeibn52d2otv24in2oc5nzn4zlobbvu23aflwcqsw77dtvo6yj7viba"]
@@ -91,9 +91,16 @@ async function main() {
   wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbRinkeby.WearablesValidator) as WearablesValidator;
   // receipt = await wearablesValidator.removeIdfromStringPill(BigNumber.from(6), BigNumber.from(2), BigNumber.from(1));
   // await receipt.wait();
-  await adjustWearables(wearablesValidator, hashmonkForm);
+  // await adjustWearables(wearablesValidator, hashmonkForm);
   // await adjustWearables(wearablesValidator, pepelForm);
     
+  // receipt = await wearablesValidator.setIdtoStringPill(BigNumber.from(0x6), pepelForm,  "bafybeidqmvrkq2ovb7zmlqqdpf6xgwupkwfrjz64njx42oae4r7y5y6jmy", {gasLimit: 1000000});
+  receipt = await wearablesValidator.setIdtoStringPill(BigNumber.from(0xB), pepelForm, "bafybeibks2lzm4zxkfpt2fkmqtrsjh5gr7p5ytptrq34k4c5oakvirvxcm");
+  // receipt = await wearablesValidator.removeIdfromStringPill(BigNumber.from(0x6), pepelForm, BigNumber.from(1));
+
+  await receipt.wait();
+  console.log("Done");
+  
 }
 
 async function adjustWearables( wearablesValidator: WearablesValidator, form: BigNumber)  {
