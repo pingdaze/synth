@@ -9,7 +9,6 @@ import {
   Core1155,
   Basic1155,
 } from "../typechain-types/";
-import AggregateValidatorABI from "../artifacts/contracts/validators/AggregateValidator.sol/AggregateValidator.json";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import {
   deployPaymentValidatorV2,
@@ -69,18 +68,6 @@ describe("AggregateValidator", () => {
         nift,
         coreId
       )) as CheckerValidator;
-      // Setup all of the authorities for the aggregator
-      const AggregateInterface = new ethers.utils.Interface(
-        AggregateValidatorABI.abi
-      );
-      const aggregateSig = AggregateInterface.getSighash(
-        AggregateInterface.getFunction("modularMintCallback")
-      );
-
-      authority.setUserRole(payments.address, mintRole, true);
-      authority.setUserRole(checker.address, mintRole, true);
-      authority.setRoleCapability(mintRole, aggregateSig, true);
-      validator.setAuthority(authority.address);
       // Finally we deploy the main aggregate validator and attach it to core
       const tx = await core.addValidator(validator.address, [coreId]);
       receipt = await tx.wait();

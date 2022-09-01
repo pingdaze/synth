@@ -12,8 +12,6 @@ import "@rari-capital/solmate/src/auth/Auth.sol";
 contract AugmentsValidator is Context, Auth {
   ICore public core;
   ICharacter public character;
-  mapping(string => uint32) public optionStringToSeries;
-  mapping(uint8 => uint16) public formToSlotCount;
   mapping(uint256 => bool) public augmentExists;
   uint16 public slotCount;
   mapping(uint256 => string) public cid;
@@ -38,28 +36,6 @@ contract AugmentsValidator is Context, Auth {
     character.unequipSkeleton(slotID, msg.sender);
   }
 
-  function getAugmentIDByOption(
-    string memory option,
-    uint16 slot,
-    uint8 form,
-    uint8 rarity
-  ) external view returns (uint256 id) {
-    uint32 series = optionStringToSeries[option];
-    require(series != 0, "Sorry the requested option does not exist");
-    id = convertToAugmentUUID(series, slot, form, rarity);
-    require(augmentExists[id], "Sorry the requested augment doesn't exist");
-  }
-
-  function getAugmentIDBySeries(
-    uint32 series,
-    uint16 slot,
-    uint8 form,
-    uint8 rarity
-  ) external view returns (uint256 id) {
-    id = convertToAugmentUUID(series, slot, form, rarity);
-    require(augmentExists[id], "Sorry the requested augment doesn't exist");
-  }
-
   function addAugment(
     uint32 series,
     uint16 slot,
@@ -76,21 +52,6 @@ contract AugmentsValidator is Context, Auth {
     uint8 rarity
   ) external requiresAuth {
     augmentExists[convertToAugmentUUID(series, slot, form, rarity)] = false;
-  }
-
-  function _setOption(string calldata optionString, uint32 series)
-    internal
-    requiresAuth
-  {
-    optionStringToSeries[optionString] = series;
-  }
-
-  function addOption(string calldata optionString, uint32 series) external {
-    _setOption(optionString, series);
-  }
-
-  function removeOption(string calldata optionString) external {
-    _setOption(optionString, 0);
   }
 
   // Unclear if slot should be at the top, or the bottom of this config?

@@ -129,9 +129,9 @@ contract CharacterValidator is Ownable {
     uint256[] calldata legacyPills,
     uint256[] calldata collabPills,
     string[] calldata traitsPlus
-  ) external payable returns(uint256) {
+  ) external payable {
     // Confirm address holds all the pills they claim to hold
-    uint256 returnData =  _createCharacter(
+    _createCharacter(
       legacyPills,
       collabPills,
       traitsPlus,
@@ -143,7 +143,6 @@ contract CharacterValidator is Ownable {
         _legacyPills.safeTransferFrom(msg.sender, _zeroAddress, legacyPills[index], 1, "");
       }
     }
-    return returnData;
   }
 
   function createCharacterL1(
@@ -163,10 +162,11 @@ contract CharacterValidator is Ownable {
     string[] calldata traitsPlus,
     uint256 characterId,
     address target
-  ) internal returns (uint256){
+  ) internal {
     Skeleton memory newSkeleton;
     selectableOptions.validateFaction(traitsPlus[4], legacyPills[0], target);
-    if (_compareMem(traitsPlus[0], "Pepel")) {
+    uint8 form = _compareMem(traitsPlus[0], "Pepel") ? 1 : 2;
+    if (form == 1) {
       newSkeleton = defaultSkeleton;
       newSkeleton.mouth = selectableOptions.validateOption(
         traitsPlus,
@@ -196,7 +196,7 @@ contract CharacterValidator is Ownable {
         legacyPills,
         target
       );
-    } else if (_compareMem(traitsPlus[0], "Hashmonk")) {
+    } else if (form == 2) {
       newSkeleton.head = selectableOptions.validateOption(
         traitsPlus,
         5,
@@ -270,13 +270,17 @@ contract CharacterValidator is Ownable {
       character.setOutfitSlot(characterId, 0, uint32(selectableOptions.getOptionId(traitsPlus[13])));
     }
     character.setSkeleton(characterId, newSkeleton);
+
     for (uint256 index = 0; index < collabPills.length; index++) {
       if(collabPills[index] != 0) {
         _collabPills.safeTransferFrom(msg.sender, _zeroAddress, collabPills[index], 1, "");
       }
     }
+    string[] memory equipment = getEquipment(characterId);
+    for(uint256 index = 0; index < equipment.length; index++) {
+      character.setOutfitSlot(characterId, wearableOptions.getSlot(equipment[index]), wearableOptions.id(equipment[index]));
+    }
     emit CharacterCreated(msg.sender, characterId);
-    return characterId;
   }
 
   function settings(    
@@ -302,20 +306,6 @@ contract CharacterValidator is Ownable {
     _legacyPills = legacyPills_;
   }
 
-  // solhint-disable-next-line
-  function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords)
-    internal
-  {
-    uint256 length = randomWords.length;
-    require(length == _charPerCall);
-    uint256 characterId;
-    for (uint32 i = 0; i < length; i++) {
-      uint256 shiftedIndex = _charIdQueue[requestId] + i;
-      characterId = _charIdQueue[shiftedIndex];
-      _generateDrops(characterId, randomWords[shiftedIndex]);
-    }
-  }
-
   function _compareMem(string memory a, string memory b)
     internal
     pure
@@ -339,67 +329,6 @@ contract CharacterValidator is Ownable {
     return uint8(source / (256 * index));
   }
 
-  function _generateDrops(uint256 characterId, uint256 seed) internal {
-    Character memory characterInstance = character.getCharacter(characterId);
-    uint8 chance;
-    uint8 roll;
-    uint8 characterOptionNum;
-    string memory optionString;
-    uint8 rarity;
-    uint8 form = _compareMem(characterInstance.form, "Pepel") ? 1 : 2;
-    uint8 augmentSlots = augmentOptions.formToSlotCount(form);
-    uint8 wearableSlots = wearableOptions.formToSlotCount(form);
-    // set these to the bitshifted roll just to dodge the even/odd divider
-    // These get further manipulated later in the algo this is just a convenient
-    // start value
-    uint8 wearableSlot = (roll >> 2);
-    uint8 augmentSlot = (roll >> 2);
-    roll = _getSubRandom(1, seed);
-    for (
-      uint32 i = 5;
-      i > 0 && roll >= chance;
-      roll = _getSubRandom(i++, seed)
-    ) {
-      if (i > characterInstance.legacyPills.length) {
-        chance = 0;
-      } else {
-        chance = uint8(256 - (2**(3 + i)));
-      }
-      // Shift the chance so we evade the even check in the next statement
-      // then get a character option ()
-      characterOptionNum = 3 + ((roll >> 1) % 3);
-      optionString = _getTraitFromIndex(characterOptionNum, characterInstance);
-      rarity = _getRarityFromRoll(roll);
-      if (roll % 2 == 0) {
-        //You get an AUGMENT!
-        augmentSlot = augmentSlot++ % augmentSlots;
-        character.equipSkeleton(
-          augmentSlot,
-          augmentOptions.getAugmentIDByOption(
-            optionString,
-            form,
-            rarity,
-            augmentSlot
-          ),
-          characterInstance.player
-        );
-      } else {
-        //You get an WEARABLE!
-        wearableSlot = wearableSlot++ % wearableSlots;
-        character.equipOutfit(
-          wearableSlot,
-          wearableOptions.getWearableIDByOption(
-            optionString,
-            form,
-            rarity,
-            wearableSlot
-          ),
-          characterInstance.player
-        );
-      }
-    }
-  }
-
   /// @notice Collects and sends an amount of ETH to the selected target from this validator
   /// @param target Address to send requested ETH to
   /// @param value Amount of ETH (in wei) to transfer
@@ -418,7 +347,7 @@ contract CharacterValidator is Ownable {
     require(success, "Transfer failed.");
   }
 
-  function getEquipment(uint256 characterId) external view returns (string[] memory equipment){
+  function getEquipment(uint256 characterId) public view returns (string[] memory equipment){
       Character memory characterInstance = character.getCharacter(characterId);
       equipment = new string[](10);
       uint8 equipmentIndex = 0;

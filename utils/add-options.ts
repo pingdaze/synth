@@ -343,7 +343,7 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
       await receipt.wait();
       console.log(`Added ${option.name} to augments`);
     } else if (option.skeleton === "wearable") {
-      receipt = await wearablesContract.addWearable(0, slotUint, form, rarity );
+      receipt = await wearablesContract.addWearable( slotUint, form, rarity, option.cid! );
       await receipt.wait();
       console.log(`Added ${option.name} to wearables`);
     }

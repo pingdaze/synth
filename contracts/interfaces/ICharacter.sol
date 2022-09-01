@@ -11,8 +11,8 @@ interface ICharacter {
   ) external;
 
   function equipOutfit(
+    uint32 id,
     uint16 slotID,
-    uint256 id,
     address _player
   ) external;
 

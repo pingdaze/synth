@@ -12,13 +12,18 @@ import "@rari-capital/solmate/src/auth/Auth.sol";
 contract WearablesValidator is Context, Auth {
   ICore public core;
   ICharacter public character;
-  mapping(string => uint32) public optionStringToSeries;
-  mapping(uint8 => uint8) public formToSlotCount;
   mapping(uint256 => bool) public wearableExists;
   uint8 public slotCount;
   mapping(uint256 => string) public cid;
-  mapping(string => uint256) public id;
+  mapping(string => uint32) public id;
   mapping(uint256 => string[]) public legacyPill;
+  mapping(string => Wearable) public wearables;
+
+  struct Wearable {
+    uint16 slot;
+    uint8 form;
+    uint8 rarity;
+  }
 
   // Change to initialize call
   constructor(
@@ -39,63 +44,30 @@ contract WearablesValidator is Context, Auth {
     character.unequipSkeleton(slotID, msg.sender);
   }
 
-  function getWearableIDByOption(
-    string memory option,
-    uint16 slot,
-    uint8 form,
-    uint8 rarity
-  ) external view returns (uint256 id) {
-    uint32 series = optionStringToSeries[option];
-    require(series != 0, "Sorry the requested option does not exist");
-    id = convertToWearableUUID(series, slot, form, rarity);
-    require(wearableExists[id], "Sorry the requested wearable doesn't exist");
-  }
-
-  function getWearableIDBySeries(
-    uint32 series,
-    uint16 slot,
-    uint8 form,
-    uint8 rarity
-  ) external view returns (uint256 id) {
-    id = convertToWearableUUID(series, slot, form, rarity);
-    require(wearableExists[id], "Sorry the requested wearable doesn't exist");
-  }
-
   function addWearable(
-    uint32 series,
     uint16 slot,
     uint8 form,
-    uint8 rarity
+    uint8 rarity,
+    string calldata _cid
   ) external requiresAuth {
-    wearableExists[convertToWearableUUID(series, slot, form, rarity)] = true;
+    wearableExists[convertToWearableUUID(slot, form, rarity)] = true;
+    wearables[_cid] =  Wearable(slot, form, rarity);
+  }
+
+  function getSlot(string calldata _cid) external view returns (uint16 slot) {
+    slot = wearables[_cid].slot;
   }
 
   function removeWearable(
-    uint32 series,
     uint16 slot,
     uint8 form,
     uint8 rarity
   ) external requiresAuth {
-    wearableExists[convertToWearableUUID(series, slot, form, rarity)] = false;
+    wearableExists[convertToWearableUUID(slot, form, rarity)] = false;
   }
 
-  function _setOption(string calldata optionString, uint32 series)
-    internal
-    requiresAuth
-  {
-    optionStringToSeries[optionString] = series;
-  }
-
-  function addOption(string calldata optionString, uint32 series) external {
-    _setOption(optionString, series);
-  }
-
-  function removeOption(string calldata optionString) external {
-    _setOption(optionString, 0);
-  }
-
-  function setIdtoStringPill(uint256 pillId, uint256 form, string calldata cid) external {
-    legacyPill[pillId + (256 * (form+1))].push(cid);
+  function setIdtoStringPill(uint256 pillId, uint256 form, string calldata _cid) external {
+    legacyPill[pillId + (256 * (form+1))].push(_cid);
   }
 
   function removeIdfromStringPill(uint256 pillId, uint256 form, uint256 index) external {
@@ -110,7 +82,6 @@ contract WearablesValidator is Context, Auth {
 
   // Unclear if slot should be at the top, or the bottom of this config?
   function convertToWearableUUID(
-    uint32 series,
     uint16 slot,
     uint8 form,
     uint8 rarity
@@ -118,19 +89,16 @@ contract WearablesValidator is Context, Auth {
     //solhint-disable-next-line
     assembly {
       // Bitshift and Pack series, rarity, and slot into ID -- [series][rarity][slot]
-      id := add(
-        add(add(slot, mul(rarity, 0x100)), mul(form, 0x10000)),
-        mul(series, 0x1000000)
-      )
+      id := add(add(slot, mul(rarity, 0x100)), mul(form, 0x10000))
     }
   }
 
-  function setCID(uint256 _id, string calldata _cid) external {
+  function setCID(uint32 _id, string calldata _cid) external {
     cid[_id] = _cid;
     id[_cid] = _id;
   }
 
-  function uri(uint256 id) external view returns (string memory) {
-    return core.uri(id);
+  function uri(uint32 _id) external view returns (string memory) {
+    return core.uri(_id);
   }
 }

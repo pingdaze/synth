@@ -23,21 +23,21 @@ const pillNames = [
   "mirrorpill"
 ]
 
-const legacyPillToId: { [key:string]: number} = {
-  "genesis": 0x1,
-  "payback pill": 0x2,
-  "prodpill": 0x3,
-  "unipill":  0x4,
-  "hypepill":  0x5,
-  "rektpill":  0x6,
-  "memfruit":  0x7,
-  "synth_memwraith":  0x8,
-  "memricorn":  0x9,
-  "memsnake":  0xA,
-  "ratspill": 0xB,
-  "kirbonite": 0xC,
-  "shadowpak": 0xD,
-  "mirrorpill":  0xE
+const legacyPillToId: { [key:string]: number[]} = {
+  "genesis": [0x1],
+  "payback pill": [0x2],
+  "prodpill": [0x3],
+  "unipill":  [0x4],
+  "hypepill":  [0x5],
+  "rektpill":  [0x6],
+  "memfruit":  [0x7],
+  "synth_memwraith":  [0x8],
+  "memricorn": [0x9],
+  "memsnake":  [0xA],
+  "ratspill": [0xB],
+  "kirbonite": [0xC],
+  "shadowpak": [0xD],
+  "mirrorpill":  [0xE]
 }
 
 const pepelCIDs: { [key:string]: string[] } = {

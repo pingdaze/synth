@@ -6,8 +6,6 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/utils/Context.sol";
 // Note: This is a really heavy contract to implement directly. We want more of a centralized approach here
 import "../interfaces/ICore.sol";
-import "../interfaces/IEXP.sol";
-import "../interfaces/IREP.sol";
 import "../interfaces/IWearables.sol";
 import "./SelectableOptions.sol";
 import "../lib/CharacterLibrary.sol";
@@ -24,8 +22,6 @@ contract Characters is Context, Auth {
   address private _validator;
   string private _defaultDescription;
   string private _defaultName;
-  IEXP public exp;
-  IREP public rep;
 
   // Need to replace with the solmate access control
   modifier onlyWearables() {
@@ -261,18 +257,6 @@ contract Characters is Context, Auth {
   // Todo: set auth
   function setValidator(address validator_) public requiresAuth {
     _validator = validator_;
-  }
-
-
-  // Todo: set auth
-  function setXP(IEXP _exp) public requiresAuth {
-    exp = _exp;
-  }
-
-
-  // Todo: set auth
-  function setREP(IREP _rep) public requiresAuth {
-    rep = _rep;
   }
 
   function getSkeleton(uint256 tokenID)
