@@ -11,7 +11,6 @@ import "../interfaces/ICharacter.sol";
 import "../interfaces/ICore.sol";
 import "../interfaces/IERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "../lib/LegacyPills.sol";
 import "hardhat/console.sol";
 
 // TODO: Put these in a single place, these are also located in the Characters contract
@@ -360,7 +359,7 @@ contract CharacterValidator is Ownable {
         equipmentArray = new string[](0);
         if(legacyPills[i] != 0){
           console.log(legacyPills[i], "legacyPills[i]");
-          equipmentArray =  wearableOptions.getEquipmentFromPill(LegacyPills.getTypeFromId(legacyPills[i]), form);
+          equipmentArray =  wearableOptions.getEquipmentFromPill(legacyPills[i], form);
         }
         if(collabPills[i] != 0){
           console.log(collabPills[i], "collabPills[i]");

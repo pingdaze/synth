@@ -44,12 +44,11 @@ async function main() {
 
     }
     let legacyPills: BigNumber[] = [
-      BigNumber.from("0x600000000000000940000000000000001"),
+      BigNumber.from("0x000000000000000000000000000000c000000000000000d0000000000000001"),
       BigZero,
       BigZero,
       BigZero,
       BigZero,
-      BigZero
     ]
     let collabPills: BigNumber[] = [
       BigZero,
@@ -57,7 +56,6 @@ async function main() {
       BigZero,
       BigZero,
       BigZero,
-      BigZero
     ]
     let traitsplus = [
       "Pepel",
@@ -74,7 +72,9 @@ async function main() {
     const mintArray = legacyPills.concat(collabPills).filter(x => x.gt(BigZero));
     const quantityArray = new Array(mintArray.length).fill(1);
     await legacy.mintBatch(owner, mintArray, quantityArray, ethers.constants.HashZero);
+    console.log("Minted legacy pills");
     await legacy.setApprovalForAll(characterValidator.address, true);
+    console.log("Approved legacy pills for character validator");
     console.log(mintArray, quantityArray);
     console.log(legacyPills, collabPills);
     receipt = await characterValidator.createCharacter(

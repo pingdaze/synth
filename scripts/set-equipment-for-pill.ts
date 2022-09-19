@@ -23,21 +23,22 @@ const pillNames = [
   "mirrorpill"
 ]
 
-const legacyPillToId: { [key:string]: number[]} = {
-  "genesis": [0x1],
-  "payback pill": [0x2],
-  "prodpill": [0x3],
-  "unipill":  [0x4],
-  "hypepill":  [0x5],
-  "rektpill":  [0x6],
-  "memfruit":  [0x7],
-  "synth_memwraith":  [0x8],
-  "memricorn": [0x9],
-  "memsnake":  [0xA],
-  "ratspill": [0xB],
-  "kirbonite": [0xC],
-  "shadowpak": [0xD],
-  "mirrorpill":  [0xE]
+const legacyPillToId: { [key:string]: string} = {
+  "genesis": "0x80000000000000000000000000000001000000000000000d0000000000000001",
+  "payback pill": "0x80000000000000000000000000000002000000000000000c0000000000000001",
+  "prodpill": "0x8000000000000000000000000000000300000000000000000000000000000003",
+  "unipill": "0x80000000000000000000000000000004000000000000000c0000000000000001",
+  "hypepill":  "0x8000000000000000000000000000000500000000000000040000000000000001",
+  "rektpill":  "0x80000000000000000000000000000006000000000000002a0000000000000001",
+  "memfruit":  "0x80000000000000000000000000000007000000000000000d0000000000000001",
+  "synth_memwraith":  "0x80000000000000000000000000000008000000000000000d0000000000000001",
+  "memricorn": "0x80000000000000000000000000000009000000000000000d0000000000000001",
+  "memsnake":  "0x8000000000000000000000000000000a000000000000000d0000000000000001",
+  "ratspill": "0x8000000000000000000000000000000b00000000000000110000000000000001",
+  "egodeth_ratspill": "0x8000000000000000000000000000000b00000000000000030000000000000001",
+  "kirbonite": "0x8000000000000000000000000000000c000000000000000d0000000000000001",
+  "shadowpak": "0x8000000000000000000000000000000d000000000000000d0000000000000001",
+  "mirrorpill":  "0x8000000000000000000000000000000e000000000000000d0000000000000001"
 }
 
 const pepelCIDs: { [key:string]: string[] } = {
@@ -51,11 +52,13 @@ const pepelCIDs: { [key:string]: string[] } = {
   "synth_memwraith":  ["bafybeiazjnlqqzdtvgldraz4braapf3ztm6azu3ty2eggmgsgzvrqwcl2e"],
   "memricorn":  ["bafybeifqs6s6l7mhxnsdzbnsjrru2xnipruyhlt64yilvjzxapvyf5fawe"],
   "memsnake":  ["bafybeiga7et2ixto7uvfi6yawpz56seoi5rxk3ytijjats7lotn2nehtvi"],
-  "ratspill": ["bafybeign7jdkteis3rni6guemkzqmlrvp6wxiju4kuxc6jajq4b543srre", "bafybeibks2lzm4zxkfpt2fkmqtrsjh5gr7p5ytptrq34k4c5oakvirvxcm"],
+  "ratspill": ["bafybeieqwibeyolnfu7ro3hyin2aedt7otg7c3abtthl3uwg52ep57uxti", "bafybeihchrjnf24itjfkwlwaroidsc7mlhumsdb5ixfjj3ntngowvocpku"],
+  "egodeth_ratspill": ["bafybeibks2lzm4zxkfpt2fkmqtrsjh5gr7p5ytptrq34k4c5oakvirvxcm", "bafybeign7jdkteis3rni6guemkzqmlrvp6wxiju4kuxc6jajq4b543srre"],
   "kirbonite": ["bafybeifckzrhfjvn43i5tg7fmj4i4gxsq23didycjb5rqp7mnsit66bolu","bafybeiajpeg6pudygrpzrj2sdpv7oxn2ft5kae5kdk5aozmzexcqiuvg5i"],
   "shadowpak": ["bafybeie4amx642ryrag5twlztpy4kw5hdheo75hbtkxjilqciypgrbobma","bafybeidiob6m4kol32m3j3czf3n7sudsfsvguwj7yjncr2woz2oumyki3q"],
   "mirrorpill":  ["bafybeibn52d2otv24in2oc5nzn4zlobbvu23aflwcqsw77dtvo6yj7viba"]
 }
+
 const hashmonkCIDs: { [key:string]: string[] } = {
   "genesis": ["bafybeibfjlyibyafhrnjrx7bweluws5uefbvupatwx5vxgvpt6quxhfkoq"],
   "payback pill": [],
@@ -90,15 +93,13 @@ async function main() {
   console.log("Signing as " + owner.address);
   wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbRinkeby.WearablesValidator) as WearablesValidator;
   // receipt = await wearablesValidator.removeIdfromStringPill(BigNumber.from(6), BigNumber.from(2), BigNumber.from(1));
-  // await receipt.wait();
-  // await adjustWearables(wearablesValidator, hashmonkForm);
-  // await adjustWearables(wearablesValidator, pepelForm);
+  await adjustWearables(wearablesValidator, hashmonkForm);
+  await adjustWearables(wearablesValidator, pepelForm);
     
   // receipt = await wearablesValidator.setIdtoStringPill(BigNumber.from(0x6), pepelForm,  "bafybeidqmvrkq2ovb7zmlqqdpf6xgwupkwfrjz64njx42oae4r7y5y6jmy", {gasLimit: 1000000});
-  receipt = await wearablesValidator.setIdtoStringPill(BigNumber.from(0xB), pepelForm, "bafybeibks2lzm4zxkfpt2fkmqtrsjh5gr7p5ytptrq34k4c5oakvirvxcm");
+  // receipt = await wearablesValidator.setIdtoStringPill(BigNumber.from(0xB), pepelForm, "bafybeibks2lzm4zxkfpt2fkmqtrsjh5gr7p5ytptrq34k4c5oakvirvxcm");
   // receipt = await wearablesValidator.removeIdfromStringPill(BigNumber.from(0x6), pepelForm, BigNumber.from(1));
 
-  await receipt.wait();
   console.log("Done");
   
 }
@@ -109,7 +110,7 @@ async function adjustWearables( wearablesValidator: WearablesValidator, form: Bi
     const pillName = pillNames[i-1];
     const legacyPillId = legacyPillToId[pillName];
   
-    const cid = await wearablesValidator.getEquipmentFromPill(BigNumber.from(pillIDs[i]), form);
+    let cid = await wearablesValidator.getEquipmentFromPill(BigNumber.from(legacyPillId), form);
     console.log(`Pills ID ${legacyPillId} ${pillName}  CIDs: ${cid}`);
     const newCIDs = form.eq(1) ? pepelCIDs[pillName] : hashmonkCIDs[pillName];
     if(cid.length < newCIDs.length) {
@@ -119,10 +120,13 @@ async function adjustWearables( wearablesValidator: WearablesValidator, form: Bi
         await receipt.wait();
       }
     }
-    while(cid.length > newCIDs.length) {
-      receipt = await wearablesValidator.removeIdfromStringPill(BigNumber.from(legacyPillId), form, BigNumber.from(cid.length - 1));
+    let cidIndex = cid.length - 1;
+    while(cidIndex + 1 > newCIDs.length) {
+      receipt = await wearablesValidator.removeIdfromStringPill(BigNumber.from(legacyPillId), form, BigNumber.from(cidIndex));
+      console.log(`Removing ${cidIndex} from ${legacyPillId} ${pillName}  CIDs: ${cid}`);
+      cidIndex--;
       await receipt.wait();
-
+      
     }
   }
 }

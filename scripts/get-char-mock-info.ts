@@ -4,7 +4,7 @@ import {CharacterValidator, RandomnessRelayL2, WearablesValidator, SelectableOpt
 import charDeploymant from "./deploy-args/char-mock-deployment.json"
 
 
-const id1 = 38;
+const id1 = 1;
 
 
 // Replace magic numbers
@@ -56,6 +56,8 @@ async function main() {
   console.log(`LLeg: ${lLeg} ID: ${outfit.lLeg}`);
   let rLeg = await wearablesValidator.cid(outfit.rLeg);
   console.log(`RLeg: ${rLeg} ID: ${outfit.rLeg}`);
+  let floating = await wearablesValidator.cid(outfit.floating);
+  console.log(`Floating: ${floating} ID: ${outfit.floating}`);
   let headAug = await augmentsValidator.cid(skeleton.head);
   console.log(`HeadAug: ${headAug} ID: ${skeleton.head}`);
   let mouthAug = await augmentsValidator.cid(skeleton.mouth);

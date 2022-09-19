@@ -23,7 +23,7 @@ import {
   deployMock1155,
 } from "../test/shared/deploys";
 import { ContractTransaction } from "ethers";
-const coreIds = Array.from(Array(1200).keys());
+const coreIds = Array.from(Array(400).keys());
 const mockCollabId = 1;
 
 
@@ -69,6 +69,7 @@ async function main() {
     console.log("Core1155 address: ", core1155.address);
     options = await ethers.getContractAt('SelectableOptions', charDeploymant.ArbRinkeby.SelectableOptions) as SelectableOptions;
     console.log("SelectableOptions address: ", options.address);
+    const pills1155 = await ethers.getContractAt("Core1155", charDeploymant.ArbRinkeby.Pills1155) as Core1155;
     // In production instances the IDs must line up correctly
     character = (await deployCharacter(core721, options)) as Characters;
     await character.deployed();
@@ -80,18 +81,22 @@ async function main() {
     requester = (await deployRequester()) as RandomnessRelayL2;
     await requester.deployed();
     console.log("Requester address: ", requester.address);
+
     characterValidator = (await deployCharacterValidator(
       core721,
       options,
       wearablesValidator,
       augmentsValidator,
       character,
-      requester
+      requester,
+      pills1155,
+      pills1155
     )) as CharacterValidator;
     await characterValidator.deployed();
     console.log("CharacterValidator address: ", characterValidator.address);
     receipt = await character.setValidator(characterValidator.address);
     await receipt.wait();
+    console.log("Character validator set");
     receipt = await core721.addValidator(characterValidator.address, coreIds);
     await receipt.wait();
     console.log("Character Validator Installed");

@@ -112,15 +112,8 @@ export const deployCharacterValidator = async (
   charCount = 10
 ) => {
 
-  const library = await (
-    await ethers.getContractFactory("LegacyPills")
-  ).deploy();
   const CharacterValidator = await ethers.getContractFactory(
-    "CharacterValidator", {
-      libraries: {
-        LegacyPills: library.address,
-      },
-    }
+    "CharacterValidator"
   );
   return CharacterValidator.deploy(
     core.address,
@@ -140,10 +133,20 @@ export const deployWearablesValidator = async (
   character: Characters,
   authority: Authority | string = zeroAddress
 ) => {
+
+  const library = await (
+    await ethers.getContractFactory("LegacyPills")
+  ).deploy();
+
   const WearablesValidator = await ethers.getContractFactory(
-    "WearablesValidator"
-  );
+    "WearablesValidator",{
+    libraries: {
+      LegacyPills: library.address,
+    }
+  });
   return WearablesValidator.deploy(character.address, core.address, authority);
+
+
 };
 export const deployAggregateValidator = async (
   core: Core1155,

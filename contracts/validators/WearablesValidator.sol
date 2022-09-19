@@ -7,6 +7,7 @@ import "@openzeppelin/contracts/utils/Context.sol";
 import "../interfaces/ICharacter.sol";
 import "../interfaces/ICore.sol";
 import "@rari-capital/solmate/src/auth/Auth.sol";
+import "../lib/LegacyPills.sol";
 
 // Note: try to minimize the contract depth that mutative actions have to take
 contract WearablesValidator is Context, Auth {
@@ -18,6 +19,7 @@ contract WearablesValidator is Context, Auth {
   mapping(string => uint32) public id;
   mapping(uint256 => string[]) public legacyPill;
   mapping(string => Wearable) public wearables;
+  mapping(uint256 => bool) public isEgodeth;
 
   struct Wearable {
     uint16 slot;
@@ -67,17 +69,39 @@ contract WearablesValidator is Context, Auth {
   }
 
   function setIdtoStringPill(uint256 pillId, uint256 form, string calldata _cid) external {
-    legacyPill[pillId + (256 * (form+1))].push(_cid);
+    uint256 subType = LegacyPills.getSubTypeFromId(pillId);
+    uint256 pillType = LegacyPills.getTypeFromId(pillId);
+    uint256 egoDethShift = isEgodeth[subType] ? 1 : 0;
+    if(pillType == 1 && egoDethShift == 1) {
+      pillType = LegacyPills.getRootIdFromId(pillId);
+    }
+    legacyPill[pillType + (256 * (form+1)) + (1024 * (egoDethShift+1))].push(_cid);
   }
 
   function removeIdfromStringPill(uint256 pillId, uint256 form, uint256 index) external {
-    string[] storage arr = legacyPill[pillId + (256 * (form+1))];
+    uint256 subType = LegacyPills.getSubTypeFromId(pillId);
+    uint256 pillType = LegacyPills.getTypeFromId(pillId);
+    uint256 egoDethShift = isEgodeth[subType] ? 1 : 0;
+    if(pillType == 1 && egoDethShift == 1) {
+      pillType = LegacyPills.getRootIdFromId(pillId);
+    }
+    string[] storage arr = legacyPill[pillType + (256 * (form+1)) + (1024 * (egoDethShift+1))];
     arr[index] = arr[arr.length - 1];
     arr.pop();
   }
 
   function getEquipmentFromPill(uint256 pillId, uint256 form) public view returns (string[] memory) {
-    return legacyPill[pillId + (256 * (form+1))];
+    uint256 subType = LegacyPills.getSubTypeFromId(pillId);
+    uint256 pillType = LegacyPills.getTypeFromId(pillId);
+    uint256 egoDethShift = isEgodeth[subType] ? 1 : 0;
+    if(pillType == 1 && egoDethShift == 1) {
+      pillType = LegacyPills.getRootIdFromId(pillId);
+    }
+    return legacyPill[pillType + (256 * (form+1)) + (1024 * (egoDethShift+1))];
+  }
+
+  function setEgodeth(uint256 subType, bool isEgo) external {
+    isEgodeth[subType] = isEgo;
   }
 
   // Unclear if slot should be at the top, or the bottom of this config?
