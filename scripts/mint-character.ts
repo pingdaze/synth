@@ -44,7 +44,7 @@ async function main() {
 
     }
     let legacyPills: BigNumber[] = [
-      BigNumber.from("0x000000000000000000000000000000c000000000000000d0000000000000001"),
+      BigNumber.from("0x8000000000000000000000000000000b00000000000000110000000000000001"),
       BigZero,
       BigZero,
       BigZero,

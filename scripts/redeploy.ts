@@ -60,7 +60,7 @@ async function main() {
     console.log("NIFT address: ", nift.address);
     receipt = await nift.mint(mockCollabId, owner, amount);
     await receipt.wait();
-    console.log("NIFT balance: ", ethers.utils.formatEther(await nift.balanceOf(owner, mockCollabId)));
+    // console.log("NIFT balance: ", ethers.utils.formatEther(await nift.balanceOf(owner, mockCollabId)));
     core721 = (await deployCore721()) as Core721;
     await core721.deployed();
     console.log("Core721 address: ", core721.address);

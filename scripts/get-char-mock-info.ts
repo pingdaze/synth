@@ -4,7 +4,7 @@ import {CharacterValidator, RandomnessRelayL2, WearablesValidator, SelectableOpt
 import charDeploymant from "./deploy-args/char-mock-deployment.json"
 
 
-const id1 = 1;
+const id1 = 2;
 
 
 // Replace magic numbers
