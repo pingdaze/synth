@@ -168,37 +168,38 @@ contract Characters is Context, Auth {
     uint32 value
   ) internal {
     if (slotID == 0) {
-      require(skeleton.head == 0, "Slot must be empty to equip into");
+      // TODO: This needs to mint the collision not error
+      // require(skeleton.head == 0, "Slot must be empty to equip into");
       skeleton.head = value;
     } else if (slotID == 1) {
-      require(skeleton.mouth == 0, "Slot must be empty to equip into");
+      // require(skeleton.mouth == 0, "Slot must be empty to equip into");
       skeleton.mouth = value;
     } else if (slotID == 2) {
-      require(skeleton.eyes == 0, "Slot must be empty to equip into");
+      // require(skeleton.eyes == 0, "Slot must be empty to equip into");
       skeleton.eyes = value;
     } else if (slotID == 3) {
-      require(skeleton.torso == 0, "Slot must be empty to equip into");
+      // require(skeleton.torso == 0, "Slot must be empty to equip into");
       skeleton.torso = value;
     } else if (slotID == 4) {
-      require(skeleton.lArm == 0, "Slot must be empty to equip into");
+      // require(skeleton.lArm == 0, "Slot must be empty to equip into");
       skeleton.lArm = value;
     } else if (slotID == 5) {
-      require(skeleton.rArm == 0, "Slot must be empty to equip into");
+      // require(skeleton.rArm == 0, "Slot must be empty to equip into");
       skeleton.rArm = value;
     } else if (slotID == 6) {
-      require(skeleton.rLeg == 0, "Slot must be empty to equip into");
+      // require(skeleton.rLeg == 0, "Slot must be empty to equip into");
       skeleton.rLeg = value;
     } else if (slotID == 7) {
-      require(skeleton.lLeg == 0, "Slot must be empty to equip into");
+      // require(skeleton.lLeg == 0, "Slot must be empty to equip into");
       skeleton.lLeg = value;
     } else if (slotID == 8) {
-      require(skeleton.color == 0, "Slot must be empty to equip into");
+      // require(skeleton.color == 0, "Slot must be empty to equip into");
       skeleton.color = value;
     } else if (slotID == 9) {
-      require(skeleton.marking == 0, "Slot must be empty to equip into");
+      // require(skeleton.marking == 0, "Slot must be empty to equip into");
       skeleton.marking = value;
     } else if (slotID == 10) {
-      require(skeleton.crown == 0, "Slot must be empty to equip into");
+      // require(skeleton.crown == 0, "Slot must be empty to equip into");
       skeleton.crown = value;
     }
   }
@@ -209,25 +210,27 @@ contract Characters is Context, Auth {
     uint32 value
   ) internal {
     if (slotID == 0) {
-      require(outfit.head == 0, "Slot must be empty to equip into");
+      // TODO: This needs to mint the collision not error
+
+      // require(outfit.head == 0, "Slot must be empty to equip into");
       outfit.head = value;
     } else if (slotID == 1) {
-      require(outfit.torso == 0, "Slot must be empty to equip into");
+      // require(outfit.torso == 0, "Slot must be empty to equip into");
       outfit.torso = value;
     } else if (slotID == 2) {
-      require(outfit.lArm == 0, "Slot must be empty to equip into");
+      // require(outfit.lArm == 0, "Slot must be empty to equip into");
       outfit.lArm = value;
     } else if (slotID == 3) {
-      require(outfit.rArm == 0, "Slot must be empty to equip into");
+      // require(outfit.rArm == 0, "Slot must be empty to equip into");
       outfit.rArm = value;
     } else if (slotID == 4) {
-      require(outfit.rLeg == 0, "Slot must be empty to equip into");
+      // require(outfit.rLeg == 0, "Slot must be empty to equip into");
       outfit.rLeg = value;
     } else if (slotID == 5) {
-      require(outfit.lLeg == 0, "Slot must be empty to equip into");
+      // require(outfit.lLeg == 0, "Slot must be empty to equip into");
       outfit.lLeg = value;
     } else if (slotID == 6) {
-      require(outfit.floating == 0, "Slot must be empty to equip into");
+      // require(outfit.floating == 0, "Slot must be empty to equip into");
       outfit.floating = value;
     }
   }
