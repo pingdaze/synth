@@ -275,7 +275,7 @@ contract CharacterValidator is Ownable {
         _collabPills.safeTransferFrom(msg.sender, _zeroAddress, collabPills[index], 1, "");
       }
     }
-    string[] memory equipment = getEquipment(characterId);
+    string[] memory equipment = _processEquipment(legacyPills, collabPills, form);
     for(uint256 index = 0; index < equipment.length; index++) {
       character.setOutfitSlot(characterId, wearableOptions.getSlot(equipment[index]), wearableOptions.id(equipment[index]));
     }
@@ -348,13 +348,14 @@ contract CharacterValidator is Ownable {
 
   function getEquipment(uint256 characterId) public view returns (string[] memory equipment){
       Character memory characterInstance = character.getCharacter(characterId);
-      equipment = new string[](10);
-      uint8 equipmentIndex = 0;
-      string[] memory equipmentArray;
-      uint256[] memory legacyPills = characterInstance.legacyPills;
-      uint256[] memory collabPills = characterInstance.collabPills;
       uint8 form = _compareMem(characterInstance.form, "Pepel") ? 1 : 2;
-      console.log(legacyPills.length);
+      equipment = _processEquipment(characterInstance.legacyPills, characterInstance.collabPills, form);
+  }
+
+  function _processEquipment(uint256[] memory legacyPills, uint256[] memory collabPills, uint8 form) internal view returns (string[] memory equipment){
+      equipment = new string[](10);
+      string[] memory equipmentArray;
+      uint8 equipmentIndex = 0;
       for(uint32 i = 0; i < 5; i++){
         equipmentArray = new string[](0);
         if(legacyPills[i] != 0){
