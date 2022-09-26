@@ -58,6 +58,10 @@ contract Characters is Context, Auth {
     selectableOptions = _selectableOptions;
   }
 
+  function setWearables(IWearables _wearables) external requiresAuth {
+    wearables = _wearables;
+  }
+
 
   /**
    * @dev Do we want to make this validator protected? onlyValidator
@@ -139,7 +143,7 @@ contract Characters is Context, Auth {
     uint16 slotID,
     address _player
   ) external requiresAuth {
-    _setOutfitSlot(slotID, outfits[getIdFromAddress(_player)], id);
+    _setOutfitSlot(slotID, outfits[getIdFromAddress(_player)], id, _player);
   }
 
   function unequipSkeleton(uint16 slotID, address _player)
@@ -159,7 +163,8 @@ contract Characters is Context, Auth {
   {
     Outfit storage outfit = outfits[getIdFromAddress(_player)];
     returnID = CharacterLibrary.getOutfitSlot(slotID, outfit);
-    _setOutfitSlot(slotID, outfit, 0);
+    _setOutfitSlot(slotID, outfit, 0, _player);
+    wearables.mintEquipment(_player, returnID);
   }
 
   function _setSkeletonSlot(
@@ -169,7 +174,6 @@ contract Characters is Context, Auth {
   ) internal {
     if (slotID == 0) {
       // TODO: This needs to mint the collision not error
-      // require(skeleton.head == 0, "Slot must be empty to equip into");
       skeleton.head = value;
     } else if (slotID == 1) {
       // require(skeleton.mouth == 0, "Slot must be empty to equip into");
@@ -207,30 +211,30 @@ contract Characters is Context, Auth {
   function _setOutfitSlot(
     uint16 slotID,
     Outfit storage outfit,
-    uint32 value
+    uint32 value,
+    address player
   ) internal {
     if (slotID == 0) {
       // TODO: This needs to mint the collision not error
-
-      // require(outfit.head == 0, "Slot must be empty to equip into");
+      wearables.mintEquipment(player, outfit.head);
       outfit.head = value;
     } else if (slotID == 1) {
-      // require(outfit.torso == 0, "Slot must be empty to equip into");
+      wearables.mintEquipment(player, outfit.torso);
       outfit.torso = value;
     } else if (slotID == 2) {
-      // require(outfit.lArm == 0, "Slot must be empty to equip into");
+      wearables.mintEquipment(player, outfit.lArm);
       outfit.lArm = value;
     } else if (slotID == 3) {
-      // require(outfit.rArm == 0, "Slot must be empty to equip into");
+      wearables.mintEquipment(player, outfit.rArm);
       outfit.rArm = value;
     } else if (slotID == 4) {
-      // require(outfit.rLeg == 0, "Slot must be empty to equip into");
+      wearables.mintEquipment(player, outfit.rLeg);
       outfit.rLeg = value;
     } else if (slotID == 5) {
-      // require(outfit.lLeg == 0, "Slot must be empty to equip into");
+      wearables.mintEquipment(player, outfit.lLeg);
       outfit.lLeg = value;
     } else if (slotID == 6) {
-      // require(outfit.floating == 0, "Slot must be empty to equip into");
+      wearables.mintEquipment(player, outfit.floating);
       outfit.floating = value;
     }
   }
@@ -240,7 +244,7 @@ contract Characters is Context, Auth {
     uint16 slotID,
     uint32 value
   ) external onlyValidator {
-    _setOutfitSlot(slotID, outfits[_characterID], value);
+    _setOutfitSlot(slotID, outfits[_characterID], value, characters[_characterID].player);
   }
 
   function setOutfit(uint256 _characterID, Outfit calldata outfit)

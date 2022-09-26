@@ -79,6 +79,8 @@ async function main() {
       character
     )) as WearablesValidator;
     await wearablesValidator.deployed();
+    receipt = await character.setWearables(wearablesValidator.address);
+    await receipt.wait();
     console.log("WearablesValidator address: ", wearablesValidator.address);
     augmentsValidator = (await deployAugmentsValidator(
       core1155,

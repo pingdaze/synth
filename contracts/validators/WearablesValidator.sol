@@ -5,13 +5,14 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Context.sol";
 import "../interfaces/ICharacter.sol";
-import "../interfaces/ICore.sol";
+import "../interfaces/IWearables.sol";
+import "../interfaces/ICore1155.sol";
 import "@rari-capital/solmate/src/auth/Auth.sol";
 import "../lib/LegacyPills.sol";
 
 // Note: try to minimize the contract depth that mutative actions have to take
-contract WearablesValidator is Context, Auth {
-  ICore public core;
+contract WearablesValidator is Context, Auth, IWearables {
+  ICore1155 public core;
   ICharacter public character;
   mapping(uint256 => bool) public wearableExists;
   uint8 public slotCount;
@@ -30,7 +31,7 @@ contract WearablesValidator is Context, Auth {
   // Change to initialize call
   constructor(
     ICharacter _character,
-    ICore _core,
+    ICore1155 _core,
     Authority auth
   ) Auth(msg.sender, auth) {
     core = _core;
@@ -125,4 +126,13 @@ contract WearablesValidator is Context, Auth {
   function uri(uint32 _id) external view returns (string memory) {
     return core.uri(_id);
   }
+
+  function mintEquipment(address target, uint256 item) external {
+    uint256[] memory idReturn = new uint256[](1);
+    uint256[] memory quantityReturn = new uint256[](1);
+    idReturn[0] = item;
+    quantityReturn[0] = 1;
+    core.modularMintCallback(target, idReturn, quantityReturn, "");
+  } 
+
 }

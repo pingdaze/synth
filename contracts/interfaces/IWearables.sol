@@ -7,4 +7,6 @@ interface IWearables {
 
   function getEquipmentFromPill(uint256 pillId, uint256 form) external view returns (string[] memory);
   
+  function mintEquipment(address target, uint256 item) external;
+
 }

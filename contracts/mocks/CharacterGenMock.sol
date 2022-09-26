@@ -20,7 +20,7 @@ contract CharacterGenMock is Characters {
     uint32 id,
     address _player
   ) external requiresAuth {
-    _setOutfitSlot(slotID, outfits[getIdFromAddress(_player)], id);
+    _setOutfitSlot(slotID, outfits[getIdFromAddress(_player)], id, _player);
   }
 
   function equipSkeletonAdmin(
