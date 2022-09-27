@@ -109,6 +109,9 @@ async function main() {
     console.log("CharacterValidator set");
     receipt = await core721.addValidator(characterValidator.address, coreIds);
     await receipt.wait();
+    console.log("WearablesValidator set");
+    receipt = await core1155.addValidator(wearablesValidator.address, coreIds);
+    await receipt.wait();
     console.log("Character Validator Installed");
     await pushOptions(
       options.address,
