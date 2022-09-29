@@ -70,6 +70,7 @@ async function main() {
         {gasPrice: 10000000000}
       );
       console.log("Character minted: ", receipt.hash);
+      await receipt.wait();
     }
   }
 }
