@@ -277,7 +277,9 @@ contract CharacterValidator is Ownable {
     }
     string[] memory equipment = _processEquipment(legacyPills, collabPills, form);
     for(uint256 index = 0; index < equipment.length; index++) {
-      character.setOutfitSlot(characterId, wearableOptions.getSlot(equipment[index]), wearableOptions.id(equipment[index]));
+      if(_compareMem(equipment[index], "" ) == false) {
+        character.setOutfitSlot(characterId, wearableOptions.getSlot(equipment[index]), wearableOptions.id(equipment[index]));
+      }
     }
     emit CharacterCreated(msg.sender, characterId);
   }
