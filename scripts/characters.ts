@@ -25,7 +25,7 @@ import { ContractTransaction } from "ethers";
 import { pushOptions } from "../utils/add-options";
 import charDeploymant from "./deploy-args/char-mock-deployment.json"
 
-const coreIds = Array.from(Array(200).keys());
+const coreIds = Array.from(Array(1200).keys());
 const mockCollabId = 1;
 
 

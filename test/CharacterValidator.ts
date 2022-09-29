@@ -98,6 +98,11 @@ describe.only("Characters Validator", () => {
       nift.setApprovalForAll(characterValidator.address, true);
       character.setValidator(characterValidator.address);
       tx = await core721.addValidator(characterValidator.address, coreIds);
+      await tx.wait();
+      tx = await character.setWearables(wearablesValidator.address);
+      await tx.wait();
+      tx = await core1155.addValidator(wearablesValidator.address, coreIds);
+      await tx.wait();
       await pushOptions(
         options.address,
         wearablesValidator.address,

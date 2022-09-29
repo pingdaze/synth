@@ -216,25 +216,39 @@ contract Characters is Context, Auth {
   ) internal {
     if (slotID == 0) {
       // TODO: This needs to mint the collision not error
-      wearables.mintEquipment(player, outfit.head);
+      if(outfit.head != 0) {
+        wearables.mintEquipment(player, outfit.head);
+      }
       outfit.head = value;
     } else if (slotID == 1) {
-      wearables.mintEquipment(player, outfit.torso);
+      if(outfit.torso != 0) {
+        wearables.mintEquipment(player, outfit.torso);
+      }
       outfit.torso = value;
     } else if (slotID == 2) {
-      wearables.mintEquipment(player, outfit.lArm);
+      if(outfit.lArm != 0) {
+        wearables.mintEquipment(player, outfit.lArm);
+      }
       outfit.lArm = value;
     } else if (slotID == 3) {
-      wearables.mintEquipment(player, outfit.rArm);
+      if(outfit.rArm != 0) {
+        wearables.mintEquipment(player, outfit.rArm);
+      }
       outfit.rArm = value;
     } else if (slotID == 4) {
-      wearables.mintEquipment(player, outfit.rLeg);
+      if(outfit.rLeg != 0) {
+        wearables.mintEquipment(player, outfit.rLeg);
+      }
       outfit.rLeg = value;
     } else if (slotID == 5) {
-      wearables.mintEquipment(player, outfit.lLeg);
+      if(outfit.lLeg != 0) {
+        wearables.mintEquipment(player, outfit.lLeg);
+      }
       outfit.lLeg = value;
     } else if (slotID == 6) {
-      wearables.mintEquipment(player, outfit.floating);
+      if(outfit.floating != 0) {
+        wearables.mintEquipment(player, outfit.floating);
+      }
       outfit.floating = value;
     }
   }
