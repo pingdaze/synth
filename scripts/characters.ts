@@ -41,6 +41,7 @@ async function main() {
   }
   let core721: Core721;
   let core1155: Core1155;
+  let booster1155: Core1155;
   let characterValidator: CharacterValidator;
   let wearablesValidator: WearablesValidator;
   let augmentsValidator: AugmentsValidator;
@@ -62,6 +63,9 @@ async function main() {
     core1155 = (await deployCore1155()) as Core1155;
     await core1155.deployed();
     console.log("Core1155 address: ", core1155.address);
+    booster1155 = (await deployCore1155()) as Core1155;
+    await booster1155.deployed();
+    console.log("Booster 1155 address: ", core1155.address);
     const pills1155 = await ethers.getContractAt("Core1155", charDeploymant.ArbRinkeby.Pills1155) as Core1155;
 
     options = (await deploySelectableOptions(
@@ -98,9 +102,9 @@ async function main() {
       wearablesValidator,
       augmentsValidator,
       character,
-      requester,
       pills1155,
-      pills1155
+      pills1155,
+      booster1155
     )) as CharacterValidator;
     await characterValidator.deployed();
     console.log("CharacterValidator address: ", characterValidator.address);
@@ -113,6 +117,9 @@ async function main() {
     receipt = await core1155.addValidator(wearablesValidator.address, coreIds);
     await receipt.wait();
     console.log("Character Validator Installed");
+    receipt = await booster1155.addValidator(characterValidator.address, coreIds);
+    await receipt.wait();
+    console.log("Booster Validator Installed");
     await pushOptions(
       options.address,
       wearablesValidator.address,

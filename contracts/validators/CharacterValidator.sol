@@ -3,13 +3,13 @@
 
 pragma solidity ^0.8.0;
 
-import "../chainlink/VRFRequester.sol";
 import "../characters/SelectableOptions.sol";
 import "../interfaces/IWearables.sol";
 import "../interfaces/IAugments.sol";
 import "../interfaces/ICharacter.sol";
 import "../interfaces/ICore.sol";
 import "../interfaces/IERC1155.sol";
+import "../interfaces/ICore1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "hardhat/console.sol";
 
@@ -40,9 +40,9 @@ import "hardhat/console.sol";
 contract CharacterValidator is Ownable {
   uint256 public constant MAX_INT = 2**256 - 1;
   address private _zeroAddress = 0x0000000000000000000000000000000000000000;
-  VRFRequester _requester;
   // Instance of core
   ICore public core;
+  ICore1155 public _boosters;
   IWearables public wearables;
   SelectableOptions public selectableOptions;
   IWearables public wearableOptions;
@@ -75,9 +75,9 @@ contract CharacterValidator is Ownable {
     IAugments _augmentOptions,
     ICharacter _character,
     uint32 charPerCall_,
-    address requester_,
     IERC1155 collabPills_,
-    IERC1155 legacyPills_
+    IERC1155 legacyPills_,
+    ICore1155 boosters_
   ) {
     // TODO: create setter for this, otherwise we could have some #BadVibes with the gassage
     core = _core;
@@ -86,9 +86,9 @@ contract CharacterValidator is Ownable {
     wearableOptions = _wearableOptions;
     augmentOptions = _augmentOptions;
     character = _character;
-    _requester = VRFRequester(requester_);
     _collabPills = collabPills_;
     _legacyPills = legacyPills_;
+    _boosters = boosters_;
   }
 
   /**
@@ -281,6 +281,8 @@ contract CharacterValidator is Ownable {
         character.setOutfitSlot(characterId, wearableOptions.getSlot(equipment[index]), wearableOptions.id(equipment[index]));
       }
     }
+    _boosters.modularMintCallbackSingle(msg.sender, equipment.length, "");
+
     emit CharacterCreated(msg.sender, characterId);
   }
 
@@ -291,7 +293,6 @@ contract CharacterValidator is Ownable {
     IAugments _augmentOptions,
     ICharacter _character,
     uint32 charPerCall_,
-    address requester_,
     IERC1155 collabPills_,
     IERC1155 legacyPills_
   ) external onlyOwner{
@@ -302,7 +303,6 @@ contract CharacterValidator is Ownable {
     wearableOptions = _wearableOptions;
     augmentOptions = _augmentOptions;
     character = _character;
-    _requester = VRFRequester(requester_);
     _collabPills = collabPills_;
     _legacyPills = legacyPills_;
   }

@@ -59,6 +59,7 @@ describe.only("Characters Validator", () => {
     let tx: ContractTransaction;
     let options: SelectableOptions;
     let nift: Core1155;
+    let booster: Core1155;
     let owner: string;
     let optionID: BigNumber;
 
@@ -68,6 +69,7 @@ describe.only("Characters Validator", () => {
       const balance = await ethers.provider.getBalance(owner);
       console.log("Owner balance: ", ethers.utils.formatEther(balance));
       nift = (await deployCore1155()) as Core1155;
+      booster = (await deployCore1155()) as Core1155;
       core721 = (await deployCore721()) as Core721;
       core1155 = (await deployCore1155()) as Core1155;
       options = (await deploySelectableOptions(
@@ -91,9 +93,9 @@ describe.only("Characters Validator", () => {
         wearablesValidator,
         augmentsValidator,
         character,
-        requester,
         nift,
-        nift
+        nift,
+        booster
       )) as CharacterValidator;
       nift.setApprovalForAll(characterValidator.address, true);
       character.setValidator(characterValidator.address);
@@ -102,6 +104,7 @@ describe.only("Characters Validator", () => {
       tx = await character.setWearables(wearablesValidator.address);
       await tx.wait();
       tx = await core1155.addValidator(wearablesValidator.address, coreIds);
+      tx = await booster.addValidator(characterValidator.address, coreIds);
       await tx.wait();
       await pushOptions(
         options.address,

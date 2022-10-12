@@ -106,9 +106,9 @@ export const deployCharacterValidator = async (
   wearablesValidator: WearablesValidator,
   augmentsValidator: AugmentsValidator,
   character: Characters,
-  requester: RandomnessRelayL2,
   collab: Core1155,
   legacy: Core1155,
+  booster: Core1155,
   charCount = 10
 ) => {
 
@@ -122,9 +122,9 @@ export const deployCharacterValidator = async (
     augmentsValidator.address,
     character.address,
     charCount,
-    requester.address,
     collab.address,
-    legacy.address
+    legacy.address,
+    booster.address
   );
 };
 

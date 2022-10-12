@@ -165,6 +165,23 @@ contract Core1155 is Context, ERC1155, Auth, IFabricator {
     _mintBatch(recipient, _ids, _requestedAmounts, _data);
     _updateMintedQuantities(_ids, _requestedAmounts);
   }
+  /**
+   * @dev Creates `amount` new tokens for `to`, of token type `id`.
+   *      At least one Validator must be active in order to utilized this interface.
+   */
+  function modularMintCallbackSingle(
+    address recipient,
+    uint256 _id,
+    bytes calldata _data
+  ) public virtual onlyValidator {
+      require(idToValidator[_id] == address(msg.sender), "INVALID_MINT");
+    uint256[] memory ids = new uint256[](1);
+    uint256[] memory amounts = new uint256[](1);
+    ids[0] = _id;
+    amounts[0] = 1;
+    _mintBatch(recipient, ids, amounts, _data);
+    _updateMintedQuantities(ids, amounts);
+  }
 
   function _updateMintedQuantities(
     uint256[] memory _ids,

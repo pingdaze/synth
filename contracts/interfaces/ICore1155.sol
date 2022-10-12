@@ -10,4 +10,9 @@ interface ICore1155 {
     uint256[] calldata _requestedAmounts,
     bytes calldata _data
   ) external;
+  function modularMintCallbackSingle(
+    address recipient,
+    uint256 _id,
+    bytes calldata _data
+  ) external;
 }
