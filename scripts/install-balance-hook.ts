@@ -15,11 +15,11 @@ async function main() {
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network.name);
-  core721 = await ethers.getContractAt('Core721', charDeploymant.ArbRinkeby.Core721) as Core721;
-  if(network.name === "arbrinkeby" ) {
+  core721 = await ethers.getContractAt('Core721', charDeploymant.ArbGorli.Core721) as Core721;
+  if(network.name === "arbgorli" ) {
     Hook = await ethers.getContractFactory('BalanceHook');
     hook = await Hook.deploy() as BalanceHook;    
-    await core721.addTransferHook(charDeploymant.ArbRinkeby.BalanceHook, coreIds);
+    await core721.addTransferHook(charDeploymant.ArbGorli.BalanceHook, coreIds);
   }
 }
 

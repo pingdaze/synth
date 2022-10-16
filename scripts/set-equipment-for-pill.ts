@@ -91,7 +91,7 @@ async function main() {
   //await deployToTestnet();
   [owner, user1] = await ethers.getSigners();
   console.log("Signing as " + owner.address);
-  wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbRinkeby.WearablesValidator) as WearablesValidator;
+  wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbGorli.WearablesValidator) as WearablesValidator;
   // receipt = await wearablesValidator.removeIdfromStringPill(BigNumber.from(6), BigNumber.from(2), BigNumber.from(1));
   await adjustWearables(wearablesValidator, hashmonkForm);
   await adjustWearables(wearablesValidator, pepelForm);

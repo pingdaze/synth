@@ -73,6 +73,10 @@ const enableProduction = process.env.COMPILE_MODE === "production";
       url: node_url('arbrinkeby'),
       accounts: accounts('arbrinkeby'),
     },
+    arbgorli: {
+      url: node_url('arbgorli'),
+      accounts: accounts('arbgorli'),
+    },
     arbmainnet: {
       url: node_url('arbmainnet'),
       accounts: accounts('arbmainnet'),

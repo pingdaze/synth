@@ -47,9 +47,9 @@ async function main() {
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network);
-  registry =  await ethers.getContractAt("MetadataRegistry", charDeploymant.ArbRinkeby.Registry) as MetadataRegistry;
-  core =  await ethers.getContractAt("Core1155", charDeploymant.ArbRinkeby.Core1155) as Core1155;
-  validator = await ethers.getContractAt("AirdropValidator", charDeploymant.ArbRinkeby.AirdropValidator) as AirdropValidator;
+  registry =  await ethers.getContractAt("MetadataRegistry", charDeploymant.ArbGorli.Registry) as MetadataRegistry;
+  core =  await ethers.getContractAt("Core1155", charDeploymant.ArbGorli.Core1155) as Core1155;
+  validator = await ethers.getContractAt("AirdropValidator", charDeploymant.ArbGorli.AirdropValidator) as AirdropValidator;
   let runnersDrop: dropInfo[] = [];
   let oxDrop: dropInfo[] = [];
   let toadzDrop: dropInfo[] = [];

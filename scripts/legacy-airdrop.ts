@@ -7,6 +7,9 @@ import { BigNumber } from "ethers";
 
 import charDeploymant from "./deploy-args/char-mock-deployment.json"
 
+import {
+  deployCore1155,
+} from "../test/shared/deploys";
 
 const oldTestAccounts = [
   "0x3aD353E2845B96fB1B58C1Ca6CdA46B870dE8D6f",
@@ -18,7 +21,7 @@ const oldTestAccounts = [
   "0x446e8c0af98a03ccc7ce4af821362b281e787b47"
 ]
 const testAccounts = [
-  "0x3aD353E2845B96fB1B58C1Ca6CdA46B870dE8D6f"
+  "0x1622734a37d9E06312f835e45A27FB5FC127ab75"
 ]
 
 const collabIds = [ 0x1, 0x2, 0x3, 0x4, 0x5, 0x6 ];
@@ -33,7 +36,9 @@ async function main() {
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network.name);
-  core = await ethers.getContractAt("Core1155", charDeploymant.ArbRinkeby.Pills1155) as Core1155;
+  core = (await deployCore1155()) as Core1155;
+  // TODO: Setup conditional logic for already deployed/new deploy
+  //core = await ethers.getContractAt("Core1155", charDeploymant.ArbGorli.Pills1155) as Core1155;
 
 
   let pillIDs: BigNumber[] = [];

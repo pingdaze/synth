@@ -27,16 +27,16 @@ async function main() {
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network.name);
-  core721 = await ethers.getContractAt('Core721', charDeploymant.ArbRinkeby.Core721) as Core721;
-  core1155 = await ethers.getContractAt('Core1155', charDeploymant.ArbRinkeby.Core1155) as Core1155;
-  characterValidator = await ethers.getContractAt('CharacterValidator', charDeploymant.ArbRinkeby.CharacterValidator) as CharacterValidator;
-  wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbRinkeby.WearablesValidator) as WearablesValidator;
-  augmentsValidator = await ethers.getContractAt('AugmentsValidator', charDeploymant.ArbRinkeby.AugmentsValidator) as AugmentsValidator;
-  character = await ethers.getContractAt('Characters', charDeploymant.ArbRinkeby.Characters) as Characters;
-  legacy = await ethers.getContractAt("Core1155", charDeploymant.ArbRinkeby.Pills1155) as Core1155;
+  core721 = await ethers.getContractAt('Core721', charDeploymant.ArbGorli.Core721) as Core721;
+  core1155 = await ethers.getContractAt('Core1155', charDeploymant.ArbGorli.Core1155) as Core1155;
+  characterValidator = await ethers.getContractAt('CharacterValidator', charDeploymant.ArbGorli.CharacterValidator) as CharacterValidator;
+  wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbGorli.WearablesValidator) as WearablesValidator;
+  augmentsValidator = await ethers.getContractAt('AugmentsValidator', charDeploymant.ArbGorli.AugmentsValidator) as AugmentsValidator;
+  character = await ethers.getContractAt('Characters', charDeploymant.ArbGorli.Characters) as Characters;
+  legacy = await ethers.getContractAt("Core1155", charDeploymant.ArbGorli.Pills1155) as Core1155;
 
-  options = await ethers.getContractAt('SelectableOptions', charDeploymant.ArbRinkeby.SelectableOptions) as SelectableOptions;
-  if(network.name === "arbrinkeby" ) {   
+  options = await ethers.getContractAt('SelectableOptions', charDeploymant.ArbGorli.SelectableOptions) as SelectableOptions;
+  if(network.name === "ArbGorli" ) {   
     if(await legacy.isApprovedForAll(owner, character.address) == false) {
       console.log("Approving legacy contract for owner");
       await legacy.setApprovalForAll(character.address, true);

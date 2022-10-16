@@ -12,7 +12,7 @@ async function main() {
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network.name);
-  hook = await ethers.getContractAt('BalanceHook', charDeploymant.ArbRinkeby.BalanceHook) as BalanceHook;
+  hook = await ethers.getContractAt('BalanceHook', charDeploymant.ArbGorli.BalanceHook) as BalanceHook;
   console.log(await hook.getTokens(owner));
 }
 

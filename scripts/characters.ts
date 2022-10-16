@@ -25,7 +25,7 @@ import { ContractTransaction } from "ethers";
 import { pushOptions } from "../utils/add-options";
 import charDeploymant from "./deploy-args/char-mock-deployment.json"
 
-const coreIds = Array.from(Array(1200).keys());
+const coreIds = Array.from(Array(800).keys());
 const mockCollabId = 1;
 
 
@@ -56,7 +56,7 @@ async function main() {
   console.log("owner", owner);
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
-  if(network.name === "arbrinkeby") {
+  if(network.name === "arbrinkeby" || network.name === "arbgorli") {
     core721 = (await deployCore721()) as Core721;
     await core721.deployed();
     console.log("Core721 address: ", core721.address);
@@ -66,7 +66,7 @@ async function main() {
     booster1155 = (await deployCore1155()) as Core1155;
     await booster1155.deployed();
     console.log("Booster 1155 address: ", core1155.address);
-    const pills1155 = await ethers.getContractAt("Core1155", charDeploymant.ArbRinkeby.Pills1155) as Core1155;
+    const pills1155 = await ethers.getContractAt("Core1155", charDeploymant.ArbGorli.Pills1155) as Core1155;
 
     options = (await deploySelectableOptions(
       pills1155.address,

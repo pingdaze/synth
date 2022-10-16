@@ -52,7 +52,7 @@ async function main() {
   //await deployToTestnet();
   [owner, user1] = await ethers.getSigners();
   console.log("Signing as " + owner.address);
-  wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbRinkeby.WearablesValidator) as WearablesValidator;
+  wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbGorli.WearablesValidator) as WearablesValidator;
   for(const pill in legacyPillToId) {
     const cid = await wearablesValidator.getEquipmentFromPill(BigNumber.from(legacyPillToId[pill]), 1);
     console.log(`Pills ID ${legacyPillToId[pill]} ${pill}  CIDs: ${cid}`);

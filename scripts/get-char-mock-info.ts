@@ -30,10 +30,10 @@ async function main() {
   //await deployToTestnet();
   [owner, user1] = await ethers.getSigners();
   console.log("Signing as " + owner.address);
-  wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbRinkeby.WearablesValidator) as WearablesValidator;
-  augmentsValidator = await ethers.getContractAt('AugmentsValidator', charDeploymant.ArbRinkeby.AugmentsValidator) as AugmentsValidator;
-  character = await ethers.getContractAt('Characters', charDeploymant.ArbRinkeby.Characters) as CharacterGenMock;
-  characterValidator = await ethers.getContractAt('CharacterValidator', charDeploymant.ArbRinkeby.CharacterValidator) as CharacterValidator;
+  wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbGorli.WearablesValidator) as WearablesValidator;
+  augmentsValidator = await ethers.getContractAt('AugmentsValidator', charDeploymant.ArbGorli.AugmentsValidator) as AugmentsValidator;
+  character = await ethers.getContractAt('Characters', charDeploymant.ArbGorli.Characters) as CharacterGenMock;
+  characterValidator = await ethers.getContractAt('CharacterValidator', charDeploymant.ArbGorli.CharacterValidator) as CharacterValidator;
   let skeleton = await character.getSkeleton(id1);
   console.log("Skeleton: " + JSON.stringify(skeleton));
   let outfit = await character.getOutfit(id1);

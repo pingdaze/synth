@@ -24,6 +24,21 @@
         "Registry":  "0x0770EA499C7D6f4A5725c07daB328b50cdF926C4",
         "BalanceHook":  "N/A"
     },
+    "ArbGorli": {
+        "Core721":  "0xdaD6d668d17214E0388864b8baA6F3001250a460",
+        "Core1155":  "0x2d79D63a1e3DD48Ea043F79534205e8282b93CeB",
+        "Booster1155":  "0x2d79D63a1e3DD48Ea043F79534205e8282b93CeB",
+        "SelectableOptions":  "0xB7082bBC95181E58FEFDe952157b5e5E61154250",
+        "Characters":  "0xD3cd3c9DAbEfCeD4fA3d1394463914648dE27a5F",
+        "WearablesValidator":  "0x49aaF0A7945C39e283DE60CB5281671Fda76346C",
+        "AugmentsValidator":  "0x06B6f0A64f6d951D7B75593FFA11dd7a1f473f93",
+        "Requester":  "0x69400d3B365DA1c7C3c5998D698292c27969D5E0",
+        "CharacterValidator":  "0xeA7c201dd33433B6d88Cd33816b1e0863C838E59",
+        "AirdropValidator":  "0x78cd20B7bAB7be9C077944A25c041feb607a0faC",
+        "Pills1155":  "0x6342A19598EB79DdD7dBd9D52Ad846aC84cD0e5d",
+        "Registry":  "0x0770EA499C7D6f4A5725c07daB328b50cdF926C4",
+        "BalanceHook":  "N/A"
+    },
     "ArbMainnet": {
         "Core1155":  "0xEA635dDc046eEc4906911fce889C15376A4f6889",
         "AirdropValidator":  "0x7cDdf5Bb7FF0ad7412A425eE57E815e7C8Ee5389",

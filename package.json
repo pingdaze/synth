@@ -21,8 +21,8 @@
     "char-mock-info": "hardhat run scripts/get-char-mock-info.ts --network rinkeby",
     "goMainnet": "hardhat run scripts/auction.js --network mainnet",
     "deployRinkeby": "hardhat run scripts/deploy.js --network rinkeby",
-    "characters:arb": "hardhat run scripts/characters.ts --network arbrinkeby",
-    "characters:mint:arb": "hardhat run scripts/mint-character.ts --network arbrinkeby",
+    "characters:arb": "hardhat run scripts/characters.ts --network arbgorli",
+    "characters:mint:arb": "hardhat run scripts/mint-character.ts --network arbgorli",
     "deployMainnet": "hardhat run scripts/deploy.js --network mainnet",
     "airtable": "ts-node-esm ./scripts/airtable.ts"
 

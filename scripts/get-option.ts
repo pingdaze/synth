@@ -31,12 +31,12 @@ async function main() {
   console.log("owner", owner);
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
-  if(network.name === "arbrinkeby") {
-    options = await ethers.getContractAt('SelectableOptions', charDeploymant.ArbRinkeby.SelectableOptions) as SelectableOptions;
+  if(network.name === "arbgorli") {
+    options = await ethers.getContractAt('SelectableOptions', charDeploymant.ArbGorli.SelectableOptions) as SelectableOptions;
     console.log("SelectableOptions address: ", options.address);
-    wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbRinkeby.WearablesValidator) as WearablesValidator;  
+    wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbGorli.WearablesValidator) as WearablesValidator;  
     console.log("WearablesValidator address: ", wearablesValidator.address);
-    augmentsValidator = await ethers.getContractAt('AugmentsValidator', charDeploymant.ArbRinkeby.AugmentsValidator) as AugmentsValidator;
+    augmentsValidator = await ethers.getContractAt('AugmentsValidator', charDeploymant.ArbGorli.AugmentsValidator) as AugmentsValidator;
     console.log("AugmentsValidator address: ", augmentsValidator.address);
     console.log(await options.getOption("bafybeih7il4wy626fvsk7fzm74noo7d5awppo6smfwpcmmy3uaf7t3q7iq"))
   }

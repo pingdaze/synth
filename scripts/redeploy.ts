@@ -54,7 +54,7 @@ async function main() {
   console.log("owner", owner);
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
-  if(network.name === "arbrinkeby") {
+  if(network.name === "arbgorli") {
     nift = (await deployMock1155()) as Basic1155;
     await nift.deployed();
     console.log("NIFT address: ", nift.address);
@@ -67,16 +67,16 @@ async function main() {
     core1155 = (await deployCore1155()) as Core1155;
     await core1155.deployed();
     console.log("Core1155 address: ", core1155.address);
-    options = await ethers.getContractAt('SelectableOptions', charDeploymant.ArbRinkeby.SelectableOptions) as SelectableOptions;
+    options = await ethers.getContractAt('SelectableOptions', charDeploymant.ArbGorli.SelectableOptions) as SelectableOptions;
     console.log("SelectableOptions address: ", options.address);
-    const pills1155 = await ethers.getContractAt("Core1155", charDeploymant.ArbRinkeby.Pills1155) as Core1155;
+    const pills1155 = await ethers.getContractAt("Core1155", charDeploymant.ArbGorli.Pills1155) as Core1155;
     // In production instances the IDs must line up correctly
     character = (await deployCharacter(core721, options)) as Characters;
     await character.deployed();
     console.log("Characters address: ", character.address);
-    wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbRinkeby.WearablesValidator) as WearablesValidator;  
+    wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbGorli.WearablesValidator) as WearablesValidator;  
     console.log("WearablesValidator address: ", wearablesValidator.address);
-    augmentsValidator = await ethers.getContractAt('AugmentsValidator', charDeploymant.ArbRinkeby.AugmentsValidator) as AugmentsValidator;
+    augmentsValidator = await ethers.getContractAt('AugmentsValidator', charDeploymant.ArbGorli.AugmentsValidator) as AugmentsValidator;
     console.log("AugmentsValidator address: ", augmentsValidator.address);
     requester = (await deployRequester()) as RandomnessRelayL2;
     await requester.deployed();

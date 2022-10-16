@@ -8,9 +8,9 @@ async function main() {
 
     
     await pushOptions(
-      charDeploymant.ArbRinkeby.SelectableOptions,
-      charDeploymant.ArbRinkeby.WearablesValidator,
-      charDeploymant.ArbRinkeby.AugmentsValidator
+      charDeploymant.ArbGorli.SelectableOptions,
+      charDeploymant.ArbGorli.WearablesValidator,
+      charDeploymant.ArbGorli.AugmentsValidator
     );
 
 }

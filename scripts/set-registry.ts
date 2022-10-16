@@ -15,7 +15,7 @@ async function main() {
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network.name);
   registry = await deployRegistry() as MetadataRegistry;
-  core721 = await ethers.getContractAt('Core721', charDeploymant.ArbRinkeby.Core721) as Core721;
+  core721 = await ethers.getContractAt('Core721', charDeploymant.ArbGorli.Core721) as Core721;
   core721.setNewRegistry(registry.address);
   console.log("Registry address: ", registry.address);
 }

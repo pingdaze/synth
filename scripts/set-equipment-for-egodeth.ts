@@ -33,7 +33,7 @@ async function main() {
   //await deployToTestnet();
   [owner, user1] = await ethers.getSigners();
   console.log("Signing as " + owner.address);
-  wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbRinkeby.WearablesValidator) as WearablesValidator;
+  wearablesValidator = await ethers.getContractAt('WearablesValidator', charDeploymant.ArbGorli.WearablesValidator) as WearablesValidator;
 
   for(let id in genesisID2CID) {
     receipt = await wearablesValidator.setIdtoStringPill(BigNumber.from(id), pepelForm,  genesisID2CID[id], {gasLimit: 1000000});
