@@ -18,10 +18,12 @@ const oldTestAccounts = [
   "0x0f1c01d98ae190ad2739a6075b21c2343d8b412e",
   "0xc6665eb39d2106fb1DBE54bf19190F82FD535c19",
   "0x053E2aD328147a438d2B136637a213E068200fC7",
-  "0x446e8c0af98a03ccc7ce4af821362b281e787b47"
+  "0x446e8c0af98a03ccc7ce4af821362b281e787b47",
+
 ]
 const testAccounts = [
-  "0x1622734a37d9E06312f835e45A27FB5FC127ab75"
+  "0x1622734a37d9E06312f835e45A27FB5FC127ab75",
+  "0xf6fDeE29e3A14610fdbE187e2d3442543cfA45B8"
 ]
 
 const collabIds = [ 0x1, 0x2, 0x3, 0x4, 0x5, 0x6 ];
@@ -36,9 +38,9 @@ async function main() {
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network.name);
-  core = (await deployCore1155()) as Core1155;
+  //core = (await deployCore1155()) as Core1155;
   // TODO: Setup conditional logic for already deployed/new deploy
-  //core = await ethers.getContractAt("Core1155", charDeploymant.ArbGorli.Pills1155) as Core1155;
+  core = await ethers.getContractAt("Core1155", charDeploymant.ArbGorli.Pills1155) as Core1155;
 
 
   let pillIDs: BigNumber[] = [];
