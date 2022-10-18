@@ -36,7 +36,7 @@ async function main() {
   legacy = await ethers.getContractAt("Core1155", charDeploymant.ArbGorli.Pills1155) as Core1155;
 
   options = await ethers.getContractAt('SelectableOptions', charDeploymant.ArbGorli.SelectableOptions) as SelectableOptions;
-  if(network.name === "ArbGorli" ) {   
+  if(network.name === "arbgorli" ) {   
     if(await legacy.isApprovedForAll(owner, character.address) == false) {
       console.log("Approving legacy contract for owner");
       await legacy.setApprovalForAll(character.address, true);
@@ -44,7 +44,7 @@ async function main() {
 
     }
     let legacyPills: BigNumber[] = [
-      BigNumber.from("0x8000000000000000000000000000000b00000000000000110000000000000001"),
+      BigNumber.from("0x8000000000000000000000000000000300000000000000000000000000000003"),
       BigZero,
       BigZero,
       BigZero,
