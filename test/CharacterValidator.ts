@@ -47,7 +47,7 @@ const cost = ethers.utils.parseEther("1");
 
 // Replace magic numbers
 
-describe.only("Characters Validator", () => {
+describe("Characters Validator", () => {
   describe("isValid", () => {
     let core721: Core721;
     let core1155: Core1155;
