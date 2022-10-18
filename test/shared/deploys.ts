@@ -5,7 +5,9 @@ import {
   LinkMock,
   VRFCoordinatorMock,
   Characters,
+  CharactersV2,
   SelectableOptions,
+  SelectableOptionsV2,
   WearablesValidator,
   AugmentsValidator,
   Core721,
@@ -105,6 +107,7 @@ export const deployCharacterValidator = async (
   options: SelectableOptions,
   wearablesValidator: WearablesValidator,
   augmentsValidator: AugmentsValidator,
+
   character: Characters,
   collab: Core1155,
   legacy: Core1155,
@@ -120,6 +123,7 @@ export const deployCharacterValidator = async (
     options.address,
     wearablesValidator.address,
     augmentsValidator.address,
+
     character.address,
     charCount,
     collab.address,
@@ -127,10 +131,29 @@ export const deployCharacterValidator = async (
     booster.address
   );
 };
+export const deployCharacterValidatorV2 = async (
+  core: Core721,
+  options: SelectableOptionsV2,
+  wearablesValidator: WearablesValidator,
+  character: CharactersV2,
+  charCount = 10
+) => {
+
+  const CharacterValidator = await ethers.getContractFactory(
+    "CharacterValidatorV2"
+  );
+  return CharacterValidator.deploy(
+    core.address,
+    options.address,
+    wearablesValidator.address,
+    character.address,
+    charCount,
+  );
+};
 
 export const deployWearablesValidator = async (
   core: Core1155,
-  character: Characters,
+  character: Characters | CharactersV2,
   authority: Authority | string = zeroAddress
 ) => {
 
@@ -167,7 +190,7 @@ export const deployAggregateValidator = async (
 
 export const deployAugmentsValidator = async (
   core: Core1155,
-  character: Characters,
+  character: Characters | CharactersV2,
   authority: Authority | string = zeroAddress
 ) => {
   const AugmentsValidator = await ethers.getContractFactory(
@@ -188,6 +211,17 @@ export const deployCharacter = async (
     libraries: {
       CharacterLibrary: library.address,
     },
+  });
+  return characters.deploy(core.address, options.address, authority);
+};
+
+export const deployCharacterV2 = async (
+  core: Core721,
+  options: SelectableOptionsV2,
+  authority: Authority | string = zeroAddress
+) => {
+
+  const characters = await ethers.getContractFactory("CharactersV2", {
   });
   return characters.deploy(core.address, options.address, authority);
 };
@@ -220,6 +254,11 @@ export const deploySelectableOptions = async (
     },
   });
   return Options.deploy(legacyAddr, collabAddr);
+};
+export const deploySelectableOptionsV2 = async (
+) => {
+  const Options = await ethers.getContractFactory("SelectableOptionsV2");
+  return Options.deploy();
 };
 
 export const deployCheckerValidator = async (
