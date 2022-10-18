@@ -187,9 +187,14 @@ function processFactionOption(optionsContract: SelectableOptions, slot: string) 
 function processCIDs(optionsContract: SelectableOptions, wearablesContract: WearablesValidator, augmentsContract: AugmentsValidator) { return async (option: SkeletonOption) => {
   if(option.cid === null) {
     return;
+  } else {
+    console.log(`Processing ${option.name}`);
   }
   let receipt;
   const id = (await optionsContract.getOptionId(option.cid!)).toNumber();
+  if(option.cid == "bafybeidwnw43hvgat2ay32z44x7umjmhozjnpx3fiiybmmzux4rkh26foa") {
+    console.log("option,", option);
+  }
   if(id !== 0) {
     if(option.skeleton === "base" || option.skeleton === "marking") {
       if((await augmentsContract.cid(id)) == '') {
