@@ -3,7 +3,6 @@
 
 pragma solidity ^0.8.0;
 import "../lib/LegacyPills.sol";
-import "../lib/CharacterLibrary.sol";
 //Interface
 
 interface IToken {
