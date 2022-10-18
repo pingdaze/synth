@@ -5,40 +5,7 @@ import {SelectableOptions, WearablesValidator, AugmentsValidator} from "../typec
 import   {SKELETON_OPTIONS, SkeletonOption, Location, StepOption, STEP_OPTIONS_BY_TYPE } from "../data/airtable"
 import { BigNumber } from "ethers";
 
-const legacyPillToId: { [key:string]: number} = {
-  "genesis": 0x1,
-  "payback pill": 0x2,
-  "prodpill": 0x3,
-  "unipill":  0x4,
-  "hypepill":  0x5,
-  "rektpill":  0x6,
-  "memfruit":  0x7,
-  "synth_memwraith":  0x8,
-  "memricorn":  0x9,
-  "memsnake":  0xA,
-  "ratspill": 0xB,
-  "kirbonite": 0xC,
-  "shadowpak": 0xD,
-  "mirrorpill":  0xE
-}
-const collabPillToId: { [key:string]: number} = {
 
-"runnerpill":  0x1,
-"0xpill":  0x2,
-"toadzpill":  0x3,
-"blitpill":  0x4,
-"wassiepill":  0x5,
-"tubbypill":  0x6,
-}
-const projectToId: { [key:string]: number} = {
-  "chainrunners": 0x1,
-  "0xmons": 0x2,
-  "cryptoadz": 0x3,
-  "blitmap": 0x4,
-  "blitnauts": 0x4,
-  "wassies": 0x5,
-  "tubbycats": 0x6,
-}
 
 const locationToId: { [key:string]: number} = {
   "head": 1,
@@ -174,13 +141,6 @@ function processFactionOption(optionsContract: SelectableOptions, slot: string) 
   receipt.wait(4);
   id = await optionsContract.getOptionId(option.name);
   console.log(`Added ${option.name} with id ${id}`);
-  if(option.prerequisite_type === "HAS PILL") {
-    const pillId = legacyPillToId[option.prerequisite_value!];
-    if(pillId !== 0x0) {
-      receipt = await optionsContract.setLegacyPillRequirement(id, pillId)
-      receipt.wait();
-    }
-  }
 
 }}
 
@@ -227,29 +187,7 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
     console.log(`Option ${option.name} already exists`);
     return;
   }
-  if (option.prerequisite_type === "HAS PILL") {
-    console.log("Getting option ID")
-    const id = await optionsContract.getOptionId(option.cid!);
-    const legacyPillId = legacyPillToId[option.prerequisite_value!];
-    const collabPillId = collabPillToId[option.prerequisite_value!];
-    console.log(`Setting ${option.name} to require ${option.prerequisite_value} ID: ${legacyPillId}`);
-    if(option.skeleton === "wearable" && legacyPillId != undefined  && usedCIDs.includes(option.cid!) === false) {
-      console.log(`Setting ${option.name} to require check 3${option.prerequisite_value} ID: ${legacyPillId}`);
-      receipt = await wearablesContract.setIdtoStringPill(BigNumber.from(legacyPillId), BigNumber.from(getFormUint(option.form)),  option.cid!);
-      usedCIDs.push(option.cid!);
-      await receipt.wait();
-    }
-    if(legacyPillId && legacyPillId !== undefined && option.color !== "shadowmarked") {
-      console.log(`Set ${option.name} to require  check 4${option.prerequisite_value} ID: ${legacyPillId} `);
-      receipt = await optionsContract.setLegacyPillRequirement(id, legacyPillId)
-      await receipt.wait();
-    } else if (collabPillId && collabPillId !== undefined && option.color !== "shadowmarked") {
-      console.log(`Set ${option.name} to require check 5${option.prerequisite_value} ID: ${legacyPillId}`);
-      receipt = await optionsContract.setCollabPillRequirement(id, collabPillId)
-      await receipt.wait();
 
-    }
-  }
   let slot = "";
   if(option.skeleton === "marking"){
     slot = "Markings";
@@ -316,30 +254,7 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
       receipt = await optionsContract.setEthRequirement(id, ethers.utils.parseEther(option.prerequisite_value!));      
       await receipt.wait();
       console.log(`Set ${option.name}:${id} to have ETH ${option.prerequisite_value}`);
-    } else if (option.prerequisite_type === "HAS PILL") {
-      const id = await optionsContract.getOptionId(option.cid!);
-      const legacyPillId = legacyPillToId[option.prerequisite_value!];
-      const collabPillId = legacyPillToId[option.prerequisite_value!];
-      if(option.skeleton === "wearable" && legacyPillId !== undefined && usedCIDs.includes(option.cid!) === false) {
-        console.log(`Setting ${option.name} to require test ${option.prerequisite_value} ID: ${legacyPillId}`);
-        await wearablesContract.setIdtoStringPill(BigNumber.from(legacyPillId), BigNumber.from(getFormUint(option.form)),  option.cid!);
-        usedCIDs.push(option.cid!);
-
-      } else if ( option.skeleton === "wearable" && collabPillId !== undefined && usedCIDs.includes(option.cid!) === false ) {
-        console.log(`Setting ${option.name} to require  check 1 ${option.prerequisite_value} ID: ${collabPillId}`);
-        await wearablesContract.setIdtoStringPill(BigNumber.from(collabPillId), BigNumber.from(getFormUint(option.form)),  option.cid!);
-        usedCIDs.push(option.cid!);
-
-      }
-      if(legacyPillId && legacyPillId !== 0x0 && option.color !== "shadowmarked") {
-        receipt = await optionsContract.setLegacyPillRequirement(id, legacyPillId)
-        await receipt.wait();
-        console.log(`Set ${option.name} to require check 2 ${option.prerequisite_value} ID: ${legacyPillId}`);
-      } else  if (collabPillId && collabPillId !== 0x0 && option.color !== "shadowmarked") {
-        receipt = await optionsContract.setCollabPillRequirement(id, collabPillId)
-
-      }
-    }
+    } 
     const rarity = option.rarity ? getRarityUint(option.rarity): 0
     const form = getFormUint(option.form);
     const slotUint = getSlotUint(option.location);
