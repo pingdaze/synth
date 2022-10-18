@@ -23,6 +23,26 @@ const pillNames = [
   "mirrorpill"
 ]
 
+
+const collabPillToId: { [key:string]: number} = {
+
+"runnerpill":  0x1,
+"0xpill":  0x2,
+"toadzpill":  0x3,
+"blitpill":  0x4,
+"wassiepill":  0x5,
+"tubbypill":  0x6,
+}
+const projectToId: { [key:string]: number} = {
+  "chainrunners": 0x1,
+  "0xmons": 0x2,
+  "cryptoadz": 0x3,
+  "blitmap": 0x4,
+  "blitnauts": 0x4,
+  "wassies": 0x5,
+  "tubbycats": 0x6,
+}
+
 const legacyPillToId: { [key:string]: string} = {
   "genesis": "0x80000000000000000000000000000001000000000000000d0000000000000001",
   "payback pill": "0x80000000000000000000000000000002000000000000000c0000000000000001",
