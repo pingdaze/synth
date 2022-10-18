@@ -39,6 +39,14 @@
         "Registry":  "0x0770EA499C7D6f4A5725c07daB328b50cdF926C4",
         "BalanceHook":  "N/A"
     },
+    "ArbGorliV2": {
+        "Core721":  "0xFCE57a0Af5b936f2dd4086d3385F331dA2D30b7E",
+        "SelectableOptionsV2":  "0x047391A77c7eF29AA5C6cb31312c998584f9c9b9",
+        "CharactersV2":  "0xfC9df3C754f3263fb674a24FAC78424B67C96f10",
+        "WearablesValidator":  "0x97832abB4a30aE3A6aA56A62c4dCeC5f13A5d80b",
+        "AugmentsValidator":  "0x1E676bFD75f93E30970c370B57694CeD41D02Ebb",
+        "CharacterValidatorV2":  "0x01b22118b4Da6236327E554a4220904343B30d09"
+    },
     "ArbMainnet": {
         "Core1155":  "0xEA635dDc046eEc4906911fce889C15376A4f6889",
         "AirdropValidator":  "0x7cDdf5Bb7FF0ad7412A425eE57E815e7C8Ee5389",
@@ -46,3 +54,5 @@
         "BalanceHook":  "N/A"
     }
 }
+
+
