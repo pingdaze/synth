@@ -8,9 +8,9 @@ async function main() {
 
     
     await refreshCIDs(
-      charDeploymant.ArbGorli.SelectableOptions,
-      charDeploymant.ArbGorli.WearablesValidator,
-      charDeploymant.ArbGorli.AugmentsValidator
+      charDeploymant.ArbGorliV2.SelectableOptionsV2,
+      charDeploymant.ArbGorliV2.WearablesValidator,
+      charDeploymant.ArbGorliV2.AugmentsValidator
     );
 
 }
