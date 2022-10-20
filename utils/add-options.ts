@@ -35,7 +35,40 @@ const hashmonkColors  = [
   "sunstrider",
   "tropic"
 ]
+
 let usedCIDs: string[] = [];
+
+let testData: string[][] = [];
+
+let traitsPlusPepel = [
+  "Pepel",
+  "Durn",
+  "Algorist",
+  "Simptongued",
+  "None",
+  "bafybeibuasbtuzltmwi56z2t5ndyniwfh37atvdjv2ftf6xyisahcxqori",
+  "bafybeicr5vd3mqpyqhfe55x3t23ngwy477jnqqg3ydwpbmq3missdfnvyy",
+  "pale",
+  "bafybeigroraemt2yujiqgztpaya5q6lzp3tswy7sgkaicq5phdswbkptqi"
+]
+
+
+let traitsPlusHashmonk = [
+  "Hashmonk",
+  "Aateos",
+  "Patcher",
+  "Diamond Hands",
+  "None",
+  "bafybeiffkfo5hqskknmwb7r3zuz6iqdf3zcscvfmli4z64opkufki4udh4", 
+  "bafybeigv7y7cvlgr3z4f7oabtyzi5vk74fcqjzfulwsdoi6h4beqlbhgp4",
+  "bafybeic6vuf2l6ouwg5xnzvi4zqff4ov6woqlhj54urrhatfjunmobsuxm", 
+  "bafybeiefwn32qzxqyewiadmcx4au2tuexh7pp26wfdl4uf336po7cczn2i", 
+  "bafybeig5tb5rxqof5zxp2bolr5dqxhjwc7fqgprng2wc2zu5zhzncxhw5u", 
+  "bafybeich2xydybqqxx53sucuswdohm4764boxcqqxywkf27frtnc5f2vr4", 
+  "arctic",
+  "bafybeiauxnajd2vno6dtkbr64qnksjolfoolj7sgiiz6w5aguc3gfrdsqe", 
+  "bafybeiab7wr5ynymlxqx4ja2kc4t5lnqne37aifcsihyz4qclazimdm3kq"
+]
 
 export async function refreshCIDs(optionsAddress: string, wearablesAddress: string, augmentsAddress: string, index: number = 0){
   // Grab the signers so we can drop them test tokens
@@ -60,6 +93,12 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   for(let option of STEP_OPTIONS_BY_TYPE.Faction) {
     await processFactionOption(options, "Faction")(option);
     console.log(`Added ${option.name}`);
+    let tempTestData = [...traitsPlusPepel];
+    tempTestData[4] = option.name;
+    testData.push(tempTestData);
+    tempTestData = [...traitsPlusHashmonk];
+    tempTestData[4] = option.name;
+    testData.push(tempTestData);
   }
   console.log("Done processing Faction options");
   
@@ -68,6 +107,12 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   for(let option of STEP_OPTIONS_BY_TYPE.Upbringing) {
     await processStepOption(options, "Upbringing")(option);
     console.log(`Added ${option.name}`);
+    let tempTestData = [...traitsPlusPepel];
+    tempTestData[2] = option.name;
+    testData.push(tempTestData);
+    tempTestData = [...traitsPlusHashmonk];
+    tempTestData[2] = option.name;
+    testData.push(tempTestData);
   }
   console.log("Done processing Upbringing options");
   
@@ -76,6 +121,13 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   for(let option of STEP_OPTIONS_BY_TYPE.Gift) {
     await processStepOption(options, "Gift")(option);
     console.log(`Added ${option.name}`);
+    
+    let tempTestData = [...traitsPlusPepel];
+    tempTestData[3] = option.name;
+    testData.push(tempTestData);
+    tempTestData = [...traitsPlusHashmonk];
+    tempTestData[3] = option.name;
+    testData.push(tempTestData);
   }
   console.log("Done processing Gift options");
   
@@ -84,17 +136,33 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
   for(let option of STEP_OPTIONS_BY_TYPE.Origin) {
     await processStepOption(options, "Origin")(option);
     console.log(`Added ${option.name}`);
+    
+    let tempTestData = [...traitsPlusPepel];
+    tempTestData[1] = option.name;
+    testData.push(tempTestData);
+    tempTestData = [...traitsPlusHashmonk];
+    tempTestData[1] = option.name;
+    testData.push(tempTestData);
   }
   console.log("Done processing Origin options");
- for(let color of pepelColors) {
+
+  for(let color of pepelColors) {
+    let tempTestData = [...traitsPlusPepel];
     await options.addOption(color, color, "Type", 1);
     console.log(`Added ${color}`);
-   };
+    tempTestData[7] = color;
+    testData.push(tempTestData);
+  };
    for(let color of hashmonkColors) {
+    let tempTestData = [...traitsPlusHashmonk];
+
     await options.addOption(color, color, "Type", 0);
     console.log(`Added ${color}`);
+    tempTestData[11] = color;
+    testData.push(tempTestData);
   };
-
+  console.log(testData);
+  
   // optionID -- name -- slot -- form
   // let processing = SKELETON_OPTIONS.map(processSkeletonOption(options, wearables, augments));
   // await Promise.all(processing);
@@ -103,6 +171,7 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
     await processSkeletonOption(options, wearables, augments)(option);
     console.log(`Processed:${i}#${option.name}`);
   }
+  console.log(JSON.stringify(testData));
   console.log("Done processing skeleton options");
 }
 
@@ -190,6 +259,9 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
 
   let slot = "";
   if(option.skeleton === "marking"){
+    let tempTestData = [...traitsPlusPepel];
+    tempTestData[8] = option.cid!;
+    testData.push(tempTestData);
     slot = "Markings";
   } else if (option.location.includes(Location["Head"])){
     slot = "Head";
@@ -204,8 +276,14 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
   } else if (option.location.includes(Location["RightLeg"])){
     slot = "RightLeg";
   } else if (option.location.includes(Location["Mouth"])){
+    let tempTestData = [...traitsPlusPepel];
+    tempTestData[5] = option.cid!;
+    testData.push(tempTestData);
     slot = "Mouth";
   } else if (option.location.includes(Location["Eyes"])){
+    let tempTestData = [...traitsPlusPepel];
+    tempTestData[6] = option.cid!;
+    testData.push(tempTestData);
     slot = "Eyes";
   } else if (option.location.includes(Location["Crown"])){
     slot = "Crown";
