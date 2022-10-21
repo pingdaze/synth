@@ -61,7 +61,7 @@ let traitsPlusHashmonk = [
   "None",
   "bafybeiffkfo5hqskknmwb7r3zuz6iqdf3zcscvfmli4z64opkufki4udh4", 
   "bafybeigv7y7cvlgr3z4f7oabtyzi5vk74fcqjzfulwsdoi6h4beqlbhgp4",
-  "bafybeic6vuf2l6ouwg5xnzvi4zqff4ov6woqlhj54urrhatfjunmobsuxm", 
+  "bafybeibq36sktzmwao2sza22ks6jijaphhgzcxsk6r2z6mesmhreookdye", 
   "bafybeiefwn32qzxqyewiadmcx4au2tuexh7pp26wfdl4uf336po7cczn2i", 
   "bafybeig5tb5rxqof5zxp2bolr5dqxhjwc7fqgprng2wc2zu5zhzncxhw5u", 
   "bafybeich2xydybqqxx53sucuswdohm4764boxcqqxywkf27frtnc5f2vr4", 
@@ -264,20 +264,42 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
     testData.push(tempTestData);
     slot = "Markings";
   } else if (option.location.includes(Location["Head"])){
+    let tempTestData = [...traitsPlusHashmonk];
+    tempTestData[5] = option.cid!;
+    testData.push(tempTestData);
+
     slot = "Head";
   } else if (option.location.includes(Location["Torso"])){
+    let tempTestData = [...traitsPlusHashmonk];
+    tempTestData[6] = option.cid!;
+    testData.push(tempTestData);
+
     slot = "Torso";
   } else if (option.location.includes(Location["LeftArm"])){
+    let tempTestData = [...traitsPlusHashmonk];
+    tempTestData[7] = option.cid!;
+    testData.push(tempTestData);
+
     slot = "LeftArm";
   } else if (option.location.includes(Location["RightArm"])){
     slot = "RightArm";
+    let tempTestData = [...traitsPlusHashmonk];
+    tempTestData[8] = option.cid!;
+    testData.push(tempTestData);
+
   } else if (option.location.includes(Location["LeftLeg"])){
+    let tempTestData = [...traitsPlusHashmonk];
+    tempTestData[9] = option.cid!;
+    testData.push(tempTestData);
     slot = "LeftLeg";
   } else if (option.location.includes(Location["RightLeg"])){
+    let tempTestData = [...traitsPlusHashmonk];
+    tempTestData[10] = option.cid!;
+    testData.push(tempTestData);
     slot = "RightLeg";
   } else if (option.location.includes(Location["Mouth"])){
     let tempTestData = [...traitsPlusPepel];
-    tempTestData[5] = option.cid!;
+    tempTestData[11] = option.cid!;
     testData.push(tempTestData);
     slot = "Mouth";
   } else if (option.location.includes(Location["Eyes"])){
@@ -286,10 +308,16 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
     testData.push(tempTestData);
     slot = "Eyes";
   } else if (option.location.includes(Location["Crown"])){
+    let tempTestData = [...traitsPlusHashmonk];
+    tempTestData[12] = option.cid!;
+    testData.push(tempTestData);
     slot = "Crown";
   } else if (option.location.includes(Location["Floating"])){
     slot = "Floating";
   } else if (option.category === "mask"){
+    let tempTestData = [...traitsPlusHashmonk];
+    tempTestData[12] = option.cid!;
+    testData.push(tempTestData);
     slot = "Mask";
   }
 
