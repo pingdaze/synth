@@ -39,7 +39,9 @@ async function main() {
   options = await ethers.getContractAt('SelectableOptionsV2', charDeploymant.ArbGorliV2.SelectableOptionsV2) as SelectableOptionsV2;
   if(network.name === "arbgorli" ) {   
     for(let i = 0; i < testMintData.length; i++) {
-      let traitsplus = testMintData[i];
+      let traitsplus: string[] = testMintData[i] != null ? testMintData[i] as string[] : [];
+      if(traitsplus.length == 0) 
+        continue;
       try {
         receipt = await characterValidator.createCharacter(
           traitsplus,
