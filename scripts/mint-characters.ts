@@ -40,12 +40,16 @@ async function main() {
   if(network.name === "arbgorli" ) {   
     for(let i = 0; i < testMintData.length; i++) {
       let traitsplus = testMintData[i];
-      receipt = await characterValidator.createCharacter(
-        traitsplus,
-        {gasPrice: 10000000000}
-      );
-      console.log("Character minted: ", receipt.hash);
-      await receipt.wait();
+      try {
+        receipt = await characterValidator.createCharacter(
+          traitsplus,
+          {gasPrice: 10000000000}
+        );
+        await receipt.wait();
+      } catch (e){
+        console.log(`Error creating character ${i}: ${e}`);
+        console.log(traitsplus);
+      }
     }
   }
 }
