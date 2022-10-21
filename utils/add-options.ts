@@ -161,7 +161,6 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
     tempTestData[11] = color;
     testData.push(tempTestData);
   };
-  fs.writeFileSync('./data/test-mints.json', JSON.stringify(testData));
   // optionID -- name -- slot -- form
   // let processing = SKELETON_OPTIONS.map(processSkeletonOption(options, wearables, augments));
   // await Promise.all(processing);
@@ -170,7 +169,8 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
     await processSkeletonOption(options, wearables, augments)(option);
     console.log(`Processed:${i}#${option.name}`);
   }
-  console.log(JSON.stringify(testData));
+  fs.writeFileSync('./data/test-mints.json', JSON.stringify(testData));
+
   console.log("Done processing skeleton options");
 }
 
@@ -251,10 +251,7 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
   }
   console.log("Processing: " + option.name);
   console.log(option);
-  if ((await optionsContract.getOptionId(option.cid!)).toNumber() !== 0) {
-    console.log(`Option ${option.name} already exists`);
-    return;
-  }
+
 
   let slot = "";
   if(option.skeleton === "marking"){
@@ -318,6 +315,10 @@ function processSkeletonOption(optionsContract: SelectableOptions, wearablesCont
     tempTestData[12] = option.cid!;
     testData.push(tempTestData);
     slot = "Mask";
+  }
+  if ((await optionsContract.getOptionId(option.cid!)).toNumber() !== 0) {
+    console.log(`Option ${option.name} already exists`);
+    return;
   }
 
   if(slot !== "") {
