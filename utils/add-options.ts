@@ -4,7 +4,7 @@ const { ethers } = require("hardhat");
 import {SelectableOptions, WearablesValidator, AugmentsValidator} from "../typechain-types/";
 import   {SKELETON_OPTIONS, SkeletonOption, Location, StepOption, STEP_OPTIONS_BY_TYPE } from "../data/airtable"
 import { BigNumber } from "ethers";
-
+import * as fs from 'fs';
 
 
 const locationToId: { [key:string]: number} = {
@@ -161,8 +161,7 @@ export async function pushOptions(optionsAddress: string, wearablesAddress: stri
     tempTestData[11] = color;
     testData.push(tempTestData);
   };
-  console.log(testData);
-  
+  fs.writeFileSync('./data/test-mints.json', JSON.stringify(testData));
   // optionID -- name -- slot -- form
   // let processing = SKELETON_OPTIONS.map(processSkeletonOption(options, wearables, augments));
   // await Promise.all(processing);
