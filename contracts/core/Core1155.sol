@@ -21,6 +21,7 @@ contract Core1155 is Context, ERC1155, Auth, IFabricator {
   mapping(IMintValidator => bool) public isValidator;
   mapping(uint256 => address) public override idToValidator;
   mapping(uint256 => uint256) public override quantityMinted;
+  mapping(uint256 => address) public idToTransferHook;
   // URI base; NOT the whole uri.
   string private _uri;
   IReadMetadata private _registry;
