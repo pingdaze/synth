@@ -134,7 +134,7 @@ contract CharacterValidatorV2 is Ownable {
   function createCharacterL1(
     string[] calldata traitsPlus,
     address target
-  ) external payable {
+  ) external payable onlyOwner {
     _createCharacter(traitsPlus, ++nextId, target);
   }
 

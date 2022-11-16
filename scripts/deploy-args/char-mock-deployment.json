@@ -52,6 +52,8 @@
         "Core1155":  "0xEA635dDc046eEc4906911fce889C15376A4f6889",
         "AirdropValidator":  "0x7cDdf5Bb7FF0ad7412A425eE57E815e7C8Ee5389",
         "Registry":  "0x773f0a1A43D3aB24CEd36aE46B0811DDfAAe9d08",
-        "BalanceHook":  "N/A"
+        "BalanceHook":  "N/A",
+        "SelectableOptions":  "0x8F3286a2668fDeaf39e89A07B3C7A60809F4C111",
+        "WearablesValidator":  "0x15a4C477A63A8a260fe86AEE06842CB83d0eC1D2"
     }
 }
