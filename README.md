@@ -3,9 +3,9 @@
 Hello!
 
 This repo is still very much in flux, but some key pieces are relatively set in place. At this time, we're most concerned with
-the defensibility of the Core instances ``contracts/core/Core1155.sol`` && ``contracts/core/Core1155.sol``.
+the defensibility of the Core instances ``contracts/core/Core1155.sol`` && ``contracts/core/Core721.sol``.
 
-These are where we hold most of the main bussiness logic for token balances, and where any token compromising vulnerabilities would likely live.
+These are where we hold most of the main business logic for token balances, and where any token compromising vulnerabilities would likely live.
 
 It has been suggested that we simplify the Core721 and Core1155 interfacing to allow for 1 interface, so we may revise this, and some other small naming tweaks but the core logic should be good.
 
