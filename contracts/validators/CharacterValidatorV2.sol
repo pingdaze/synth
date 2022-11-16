@@ -48,6 +48,7 @@ contract CharacterValidatorV2 is Ownable {
   ICharacter public character;
   IERC1155 private _collabPills;
   IERC1155 private _legacyPills;
+  IERC1155 private _portalPill;
   uint256 public nextId = 0;
 
   uint256[] private _charIdQueue;
@@ -71,9 +72,11 @@ contract CharacterValidatorV2 is Ownable {
     SelectableOptionsV2 _selectableOptions,
     IWearables _wearableOptions,
     ICharacter _character,
-    uint32 charPerCall_
+    uint32 charPerCall_,
+    IERC1155 portalPill_
   ) {
     // TODO: create setter for this, otherwise we could have some #BadVibes with the gassage
+    _portalPill = portalPill_;
     core = _core;
     _charPerCall = charPerCall_;
     selectableOptions = _selectableOptions;
@@ -114,6 +117,13 @@ contract CharacterValidatorV2 is Ownable {
   function createCharacter(
     string[] calldata traitsPlus
   ) external payable {
+    if(_portalPill.balanceOf(msg.sender, 1) > 0) {
+      _portalPill.safeTransferFrom(msg.sender, address(_zeroAddress), 1, 1, "");
+    } else if (_portalPill.balanceOf(msg.sender, 2) > 0) {
+      _portalPill.safeTransferFrom(msg.sender, address(_zeroAddress), 1, 1, "");
+    } else {
+      revert("You need a portal pill to create a character");
+    }
     _createCharacter(
       traitsPlus,
       ++nextId,
@@ -235,9 +245,11 @@ contract CharacterValidatorV2 is Ownable {
     ICharacter _character,
     uint32 charPerCall_,
     IERC1155 collabPills_,
-    IERC1155 legacyPills_
+    IERC1155 legacyPills_,
+    IERC1155 portalPill_
   ) external onlyOwner{
     // TODO: create setter for this, otherwise we could have some #BadVibes with the gassage
+    _portalPill = portalPill_;
     core = _core;
     _charPerCall = charPerCall_;
     selectableOptions = _selectableOptions;

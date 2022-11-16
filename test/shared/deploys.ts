@@ -136,6 +136,7 @@ export const deployCharacterValidatorV2 = async (
   options: SelectableOptionsV2,
   wearablesValidator: WearablesValidator,
   character: CharactersV2,
+  portalPill: Core1155,
   charCount = 10
 ) => {
 
@@ -148,6 +149,7 @@ export const deployCharacterValidatorV2 = async (
     wearablesValidator.address,
     character.address,
     charCount,
+    portalPill.address
   );
 };
 

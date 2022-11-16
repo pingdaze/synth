@@ -51,6 +51,7 @@ describe.only("Characters Validator V2", () => {
   describe("isValid", () => {
     let core721: Core721;
     let core1155: Core1155;
+    let portalPill: Core1155;
     let characterValidator: CharacterValidatorV2;
     let wearablesValidator: WearablesValidator;
     let augmentsValidator: AugmentsValidator;
@@ -59,7 +60,6 @@ describe.only("Characters Validator V2", () => {
     let tx: ContractTransaction;
     let options: SelectableOptionsV2;
     let nift: Core1155;
-    let booster: Core1155;
     let owner: string;
     let optionID: BigNumber;
 
@@ -69,10 +69,11 @@ describe.only("Characters Validator V2", () => {
       const balance = await ethers.provider.getBalance(owner);
       console.log("Owner balance: ", ethers.utils.formatEther(balance));
       nift = (await deployCore1155()) as Core1155;
-      booster = (await deployCore1155()) as Core1155;
+      portalPill = (await deployCore1155()) as Core1155;
       core721 = (await deployCore721()) as Core721;
       core1155 = (await deployCore1155()) as Core1155;
       options = (await deploySelectableOptionsV2()) as SelectableOptionsV2;
+      await portalPill.mintBatch(owner, [1], [1000], ethers.constants.HashZero);
       // In production instances the IDs must line up correctly
       character = (await deployCharacterV2(core721, options)) as CharactersV2;
       wearablesValidator = (await deployWearablesValidator(
@@ -89,7 +90,9 @@ describe.only("Characters Validator V2", () => {
         options,
         wearablesValidator,
         character,
+        portalPill
       )) as CharacterValidatorV2;
+      portalPill.setApprovalForAll(characterValidator.address, true);
       nift.setApprovalForAll(characterValidator.address, true);
       character.setValidator(characterValidator.address);
       tx = await core721.addValidator(characterValidator.address, coreIds);
@@ -97,7 +100,7 @@ describe.only("Characters Validator V2", () => {
       tx = await character.setWearables(wearablesValidator.address);
       await tx.wait();
       tx = await core1155.addValidator(wearablesValidator.address, coreIds);
-      tx = await booster.addValidator(characterValidator.address, coreIds);
+      tx = await portalPill.addValidator(characterValidator.address, coreIds);
       await tx.wait();
       await pushOptions(
         options.address,
