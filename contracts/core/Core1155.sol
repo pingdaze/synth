@@ -77,6 +77,7 @@ contract Core1155 is Context, ERC1155, Auth, IFabricator {
     for (uint256 i; i < ids.length; i++) {
       require(idToValidator[ids[i]] == address(0x0), "INVALID_VALIDATOR_IDS");
       idToValidator[ids[i]] = address(_validator);
+      validatorToIds[_validator].push(ids[i]);
     }
     isValidator[_validator] = true;
     emit Validator(_validator, !isActive);

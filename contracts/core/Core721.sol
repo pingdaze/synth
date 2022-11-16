@@ -84,6 +84,7 @@ contract Core721 is Context, ERC721, IFabricator721, Auth {
     for (uint256 i; i < ids.length; i++) {
       require(idToValidator[ids[i]] == address(0x0), "INVALID_VALIDATOR_IDS");
       idToValidator[ids[i]] = address(_validator);
+      validatorToIds[_validator].push(ids[i]);
     }
     isValidator[_validator] = true;
     emit Validator(_validator, !isActive);
