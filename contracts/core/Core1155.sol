@@ -10,6 +10,7 @@ import "../interfaces/IMintValidator.sol";
 import "../interfaces/IFabricator.sol";
 import "../registries/MetadataRegistry.sol";
 import "@rari-capital/solmate/src/auth/Auth.sol";
+import "../interfaces/IXferHook.sol";
 
 // write interface for
 //Interface
@@ -18,7 +19,6 @@ contract Core1155 is Context, ERC1155, Auth, IFabricator {
   event Validator(IMintValidator indexed validator, bool indexed active);
 
   mapping(IMintValidator => bool) public isValidator;
-  mapping(IMintValidator => uint256[]) public validatorToIds;
   mapping(uint256 => address) public override idToValidator;
   mapping(uint256 => uint256) public override quantityMinted;
   // URI base; NOT the whole uri.
@@ -77,23 +77,36 @@ contract Core1155 is Context, ERC1155, Auth, IFabricator {
     for (uint256 i; i < ids.length; i++) {
       require(idToValidator[ids[i]] == address(0x0), "INVALID_VALIDATOR_IDS");
       idToValidator[ids[i]] = address(_validator);
-      validatorToIds[_validator].push(ids[i]);
     }
     isValidator[_validator] = true;
     emit Validator(_validator, !isActive);
   }
 
   /**
+   * @dev An active Validator is necessary to enable `modularMint`
+   */
+  function addTransferHook(IXferHook hooker, uint256[] memory ids)
+    external
+    virtual
+    requiresAuth
+  {
+    for (uint256 i; i < ids.length; i++) {
+      require(idToTransferHook[ids[i]] == address(0x0), "INVALID_HOOK_IDS");
+      idToTransferHook[ids[i]] = address(hooker);
+    }
+  }
+
+
+  /**
    * @dev Remove Validators that are no longer needed to remove attack surfaces
    */
-  function removeValidator(IMintValidator _validator)
+  function removeValidator(IMintValidator _validator, uint256[] memory ids)
     external
     virtual
     requiresAuth
   {
     bool isActive = isValidator[_validator];
     require(isActive, "VALIDATOR_INACTIVE");
-    uint256[] memory ids = validatorToIds[_validator];
     for (uint256 i; i < ids.length; i++) {
       idToValidator[ids[i]] = address(0x0);
     }
@@ -101,24 +114,6 @@ contract Core1155 is Context, ERC1155, Auth, IFabricator {
     emit Validator(_validator, !isActive);
   }
 
-  /**
-   * @dev Upgrade the validator responsible for a certain
-   */
-  function upgradeValidator(
-    IMintValidator _oldValidator,
-    IMintValidator _newValidator
-  ) external virtual requiresAuth {
-    bool isActive = isValidator[_oldValidator];
-    require(isActive, "VALIDATOR_INACTIVE");
-    uint256[] memory ids = validatorToIds[_oldValidator];
-    for (uint256 i; i < ids.length; i++) {
-      idToValidator[ids[i]] = address(_newValidator);
-    }
-    isValidator[_oldValidator] = false;
-    emit Validator(_oldValidator, !isActive);
-    isValidator[_newValidator] = true;
-    emit Validator(_newValidator, !isActive);
-  }
 
   /**
    * @dev Mint mulitiple tokens at different quantities. This is an onlyOwner-guareded

@@ -23,7 +23,6 @@ contract Core721 is Context, ERC721, IFabricator721, Auth {
   event Validator(IMintValidator721 indexed validator, bool indexed active);
 
   mapping(IMintValidator721 => bool) public isValidator;
-  mapping(IMintValidator721 => uint256[]) public validatorToIds;
   mapping(uint256 => address) public override idToValidator;
   mapping(uint256 => uint256) public override quantityMinted;
   mapping(uint256 => address) public idToTransferHook;
@@ -84,7 +83,6 @@ contract Core721 is Context, ERC721, IFabricator721, Auth {
     for (uint256 i; i < ids.length; i++) {
       require(idToValidator[ids[i]] == address(0x0), "INVALID_VALIDATOR_IDS");
       idToValidator[ids[i]] = address(_validator);
-      validatorToIds[_validator].push(ids[i]);
     }
     isValidator[_validator] = true;
     emit Validator(_validator, !isActive);
@@ -107,38 +105,18 @@ contract Core721 is Context, ERC721, IFabricator721, Auth {
   /**
    * @dev Remove Validators that are no longer needed to remove attack surfaces
    */
-  function removeValidator(IMintValidator721 _validator)
+  function removeValidator(IMintValidator721 _validator, uint256[] memory ids)
     external
     virtual
     requiresAuth
   {
     bool isActive = isValidator[_validator];
     require(isActive, "VALIDATOR_INACTIVE");
-    uint256[] memory ids = validatorToIds[_validator];
     for (uint256 i; i < ids.length; i++) {
       idToValidator[ids[i]] = address(0x0);
     }
     isValidator[_validator] = false;
     emit Validator(_validator, !isActive);
-  }
-
-  /**
-   * @dev Upgrade the validator responsible for a certain
-   */
-  function upgradeValidator(
-    IMintValidator721 _oldValidator,
-    IMintValidator721 _newValidator
-  ) external virtual requiresAuth {
-    bool isActive = isValidator[_oldValidator];
-    require(isActive, "VALIDATOR_INACTIVE");
-    uint256[] memory ids = validatorToIds[_oldValidator];
-    for (uint256 i; i < ids.length; i++) {
-      idToValidator[ids[i]] = address(_newValidator);
-    }
-    isValidator[_oldValidator] = false;
-    emit Validator(_oldValidator, !isActive);
-    isValidator[_newValidator] = true;
-    emit Validator(_newValidator, !isActive);
   }
 
   /**
