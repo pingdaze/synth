@@ -72,9 +72,13 @@ let traitsPlusHashmonk = [
 
 export async function refreshCIDs(optionsAddress: string, wearablesAddress: string, augmentsAddress: string, index: number = 0){
   // Grab the signers so we can drop them test tokens
-  let options = await ethers.getContractAt('SelectableOptions', optionsAddress) as SelectableOptions;
-  let wearables = await ethers.getContractAt('WearablesValidator', wearablesAddress) as WearablesValidator;
-  let augments = await ethers.getContractAt('AugmentsValidator', augmentsAddress) as AugmentsValidator;
+  const accounts = await ethers.getSigners();
+  let optionsT = await ethers.getContractAt('SelectableOptions', optionsAddress) as SelectableOptions;
+  let wearablesT = await ethers.getContractAt('WearablesValidator', wearablesAddress) as WearablesValidator;
+  let augmentsT = await ethers.getContractAt('AugmentsValidator', augmentsAddress) as AugmentsValidator;
+  let options = optionsT.connect(accounts[3]);
+  let wearables =  wearablesT.connect(accounts[3]);
+  let augments = augmentsT.connect(accounts[3]);
   for(let i = index; i< SKELETON_OPTIONS.length; i++) {
     const option = SKELETON_OPTIONS[i];
     await processCIDs(options, wearables, augments)(option);

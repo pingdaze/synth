@@ -109,6 +109,7 @@ async function main() {
   Factory = await ethers.getContractFactory(
     "AugmentsValidator"
   );
+  
   augmentsValidator =  await Factory.connect(accounts[3]).deploy(character.address, core721.address, auth.address) as AugmentsValidator;
   await augmentsValidator.deployed();
   Factory = await ethers.getContractFactory(
