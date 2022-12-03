@@ -56,7 +56,7 @@ async function main() {
   console.log("owner", owner);
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
-  let portalPillAddr = "0xa16891897378a82e9f0ad44a705b292c9753538c";
+  let portalPillAddr = charDeploymant.ArbMainnet.PortalCore;
   let portalPill = await ethers.getContractAt('Core1155', portalPillAddr) as Core1155;
 
   core721 = (await deployCore721()) as Core721;
