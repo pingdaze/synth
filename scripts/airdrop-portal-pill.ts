@@ -17,8 +17,8 @@ async function main() {
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network);
-  core =  await ethers.getContractAt("Core1155", charDeploymant.ArbGorli.Core1155) as Core1155;
-  validator = await ethers.getContractAt("AirdropValidator", charDeploymant.ArbGorli.AirdropValidator) as AirdropValidator;
+  core =  await ethers.getContractAt("Core1155", charDeploymant.ArbMainnet.Core1155) as Core1155;
+  validator = await ethers.getContractAt("AirdropValidator", charDeploymant.ArbMainnet.PortalValidator) as AirdropValidator;
 
 
   
