@@ -58,6 +58,9 @@
         "WearablesValidator":  "0x52839843052499878505DCdfC492636bdf2fc21c",
         "AugmentsValidator":  "0x68DD1532373E621837e89D42c145137A9747BAeA",
         "CharacterValidator":  "0x0d835662dF1e372da3b61fc93DF13CDCa69C941B",
-        "CharactersV2": "0x8ee690Bd190f4E3BC18e97c3ac980852B5A59e81"
+        "CharactersV2": "0x8ee690Bd190f4E3BC18e97c3ac980852B5A59e81",
+        "PortalRegistry" : "0x30b7E1f30D5c73078458c4D76EAe951bd86D9Bb6",
+        "PortalCore" : "0x9DB6F3e46d667998ac38A743522DAFb19fc70140",
+        "PortalValidator": "0x35A5Df0BFE9E77E56E1FB57dEe919a92Aa1b2fA7"
     }
 }
