@@ -1,6 +1,5 @@
 import { network, ethers } from "hardhat";
-import { MetadataRegistry, CharacterValidatorV2 } from "../typechain-types";
-import { deployRegistry } from "../test/shared/deploys";
+import { CharacterValidatorV2 } from "../typechain-types";
 import charDeploymant from "./deploy-args/char-mock-deployment.json"
 
 
@@ -8,14 +7,12 @@ async function main() {
 
   const accounts = await ethers.getSigners();
   let charactersValidator : CharacterValidatorV2;
-  let registry : MetadataRegistry;
   let owner;
   owner = (await ethers.getSigners())[0].address;
   console.log("owner", owner);
   const balance = await ethers.provider.getBalance(owner);
   console.log("Owner balance: ", ethers.utils.formatEther(balance));
   console.log("Network: " + network.name);
-  registry = await deployRegistry() as MetadataRegistry;
   charactersValidator = await ethers.getContractAt('CharacterValidatorV2', charDeploymant.ArbMainnet.CharacterValidator) as CharacterValidatorV2;
   let core = charDeploymant.ArbMainnet.Core721;
   let options = charDeploymant.ArbMainnet.SelectableOptions;
@@ -35,8 +32,7 @@ async function main() {
     legacyPills,
     portalPill
   );
-  console.log("Registry address: ", registry.address);
-}
+  console.log("Settings updated");}
 
   
 main()
