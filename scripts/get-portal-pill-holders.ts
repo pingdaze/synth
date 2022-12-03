@@ -12,7 +12,14 @@ async function main() {
   let tokenAddress = "0xa16891897378a82e9f0ad44a705b292c9753538c";
   owners =  await getOwnersForToken(tokenAddress, "1");
   owners = [...owners, await getOwnersForToken(tokenAddress, "2")];
-
+  const filePath = path.join(__dirname, '/portal-pill-holders.json');
+  var file = fs.createWriteStream(filePath);
+  file.on('error', (err: Error) => { console.error(err) });
+  // Write the JSON blob to a file
+  file.write(owners.toString());
+  // Housekeeping
+  file.close();
+  await streamPromise(file);
   console.log(data);
 }
 
@@ -42,14 +49,7 @@ async function getOwnersForToken(tokenAddress: string, tokenId: string) {
       console.log(e);
     }
   }
-  const filePath = path.join(__dirname, '/portal-pill-holders.json');
-  var file = fs.createWriteStream(filePath);
-  file.on('error', (err: Error) => { console.error(err) });
-  // Write the JSON blob to a file
-  file.write(owners.toString());
-  // Housekeeping
-  file.close();
-  await streamPromise(file);
+
   return owners;
 }
 
